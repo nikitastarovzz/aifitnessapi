@@ -12,9 +12,9 @@ import type { DriftGroup, NoticeRow, PricingRow } from "@/lib/researchStats.mjs"
 
 export const DRIFT_HISTORY_FROM = "2026-10-17";
 export const DRIFT_HISTORY_THROUGH = "2026-11-14";
-export const DRIFT_HISTORY_COMMIT = "5b095e4";
-export const DRIFT_COMMITS_READ = 27;
-export const DRIFT_ROWS_READ = 9531;
+export const DRIFT_HISTORY_COMMIT = "e9c4f6e";
+export const DRIFT_COMMITS_READ = 29;
+export const DRIFT_ROWS_READ = 9548;
 
 export const DRIFT_GROUPS: DriftGroup[] = [
   {
@@ -13295,13 +13295,26 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "support.google.com",
     "writtenOn": "2026-11-05",
     "writtenCommit": "0ff2eb7",
+    "endedOn": "2026-11-14",
+    "endedCommit": "aae8fc4",
+    "endKind": "url",
+    "cause": "not-stated",
+    "kind": null,
+    "statement": null,
+    "rows": 1
+  },
+  {
+    "file": "tools-compliance-wizard.json",
+    "source": "support.google.com",
+    "writtenOn": "2026-11-05",
+    "writtenCommit": "0ff2eb7",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 2
+    "rows": 1
   },
   {
     "file": "tools-compliance-wizard.json",
@@ -13672,13 +13685,26 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "support.google.com",
     "writtenOn": "2026-11-05",
     "writtenCommit": "0ff2eb7",
+    "endedOn": "2026-11-14",
+    "endedCommit": "aae8fc4",
+    "endKind": "url",
+    "cause": "not-stated",
+    "kind": null,
+    "statement": null,
+    "rows": 8
+  },
+  {
+    "file": "tools-store-submission-checklist.json",
+    "source": "support.google.com",
+    "writtenOn": "2026-11-05",
+    "writtenCommit": "0ff2eb7",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 23
+    "rows": 15
   },
   {
     "file": "tools-webhook-verifier.json",
@@ -16792,6 +16818,19 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "developer.android.com",
     "writtenOn": "2026-11-14",
     "writtenCommit": "5b095e4",
+    "endedOn": "2026-11-14",
+    "endedCommit": "aae8fc4",
+    "endKind": "url",
+    "cause": "not-stated",
+    "kind": null,
+    "statement": null,
+    "rows": 2
+  },
+  {
+    "file": "fitness-apis-wearable-data-apis.json",
+    "source": "developer.android.com",
+    "writtenOn": "2026-11-14",
+    "writtenCommit": "aae8fc4",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
@@ -16883,6 +16922,19 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "developers.google.com",
     "writtenOn": "2026-11-14",
     "writtenCommit": "5b095e4",
+    "endedOn": "2026-11-14",
+    "endedCommit": "e9c4f6e",
+    "endKind": "url",
+    "cause": "not-stated",
+    "kind": null,
+    "statement": null,
+    "rows": 2
+  },
+  {
+    "file": "fix-fitbit-api-410-gone.json",
+    "source": "developers.google.com",
+    "writtenOn": "2026-11-14",
+    "writtenCommit": "e9c4f6e",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
@@ -17013,13 +17065,52 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "developer.android.com",
     "writtenOn": "2026-11-14",
     "writtenCommit": "5b095e4",
+    "endedOn": "2026-11-14",
+    "endedCommit": "aae8fc4",
+    "endKind": "url",
+    "cause": "not-stated",
+    "kind": null,
+    "statement": null,
+    "rows": 2
+  },
+  {
+    "file": "learn-what-is-oauth-for-health-data.json",
+    "source": "developer.android.com",
+    "writtenOn": "2026-11-14",
+    "writtenCommit": "5b095e4",
+    "endedOn": "2026-11-14",
+    "endedCommit": "e9c4f6e",
+    "endKind": "url",
+    "cause": "not-stated",
+    "kind": null,
+    "statement": null,
+    "rows": 2
+  },
+  {
+    "file": "learn-what-is-oauth-for-health-data.json",
+    "source": "developer.android.com",
+    "writtenOn": "2026-11-14",
+    "writtenCommit": "aae8fc4",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 4
+    "rows": 2
+  },
+  {
+    "file": "learn-what-is-oauth-for-health-data.json",
+    "source": "developer.android.com",
+    "writtenOn": "2026-11-14",
+    "writtenCommit": "e9c4f6e",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 2
   },
   {
     "file": "learn-what-is-oauth-for-health-data.json",
@@ -17178,6 +17269,19 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "rows": 2
   },
   {
+    "file": "tools-compliance-wizard.json",
+    "source": "support.google.com",
+    "writtenOn": "2026-11-14",
+    "writtenCommit": "aae8fc4",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 1
+  },
+  {
     "file": "tools-deprecation-scanner.json",
     "source": "developer.android.com",
     "writtenOn": "2026-11-14",
@@ -17228,6 +17332,19 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "kind": null,
     "statement": null,
     "rows": 2
+  },
+  {
+    "file": "tools-store-submission-checklist.json",
+    "source": "support.google.com",
+    "writtenOn": "2026-11-14",
+    "writtenCommit": "aae8fc4",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 8
   },
   {
     "file": "tools-webhook-verifier.json",
@@ -17285,10 +17402,10 @@ export const NOTICE_ROWS: NoticeRow[] = [
     "id": "terra-legacy-widget-session",
     "name": "Terra legacy widget session endpoint",
     "vendor": "Terra",
-    "status": "dying",
+    "status": "deprecated",
     "end": "2026-11-03",
     "endPrecision": "day",
-    "endLabel": "Deprecation planned",
+    "endLabel": "Deprecated",
     "announced": null,
     "noticeDays": null,
     "exclusion": "no dated announcement on the pages read",
@@ -17297,7 +17414,7 @@ export const NOTICE_ROWS: NoticeRow[] = [
     "announcementUrl": null,
     "announcementQuote": null,
     "endUrl": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
-    "endQuote": "Existing integrations keep working today, and the legacy endpoint is planned for deprecation on 3 November 2026. Accounts created after 3 September 2026 cannot use it at all.",
+    "endQuote": "POST /auth/generateWidgetSession is deprecated, with deprecation planned for 3 November 2026. Existing apps keep working, and we will give notice well before any breaking change.",
     "changesEntries": "Terra legacy widget endpoint deprecation",
     "page": "/graveyard#terra-legacy-widget-session"
   },

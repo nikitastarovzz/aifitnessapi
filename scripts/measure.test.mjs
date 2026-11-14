@@ -1,12 +1,23 @@
 /**
- * The landing-source classifier and the funder-link helper, tested through
+ * The landing-source classifier, the funder-link helper and the picker-answer
+ * property, tested through
  * the same module the browser runs (src/lib/measure.mjs).
  *
  *   node --test scripts/measure.test.mjs     (npm run test:measure)
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { classifySource, funderHref, isFunderUrl, FUNDER_PLACEMENTS } from "../src/lib/measure.mjs";
+import { readFileSync } from "node:fs";
+import {
+  classifySource,
+  funderHref,
+  isFunderUrl,
+  FUNDER_PLACEMENTS,
+  PICKER_KEY,
+  pickerAnswerId,
+  parsePickerId,
+  withPicker,
+} from "../src/lib/measure.mjs";
 
 const SITE = "aifitnessapi.com";
 const c = (referrer, utmSource = "") => classifySource({ referrer, utmSource, siteHost: SITE });
@@ -119,4 +130,78 @@ test("isFunderUrl", () => {
   assert.ok(!isFunderUrl("https://kinestex.com.evil.example/"));
   assert.ok(!isFunderUrl("/about#funding"));
   assert.ok(!isFunderUrl("mailto:nikita@kinestex.com"));
+});
+
+test("pickerAnswerId joins the three option values", () => {
+  assert.equal(pickerAnswerId("ai-motion", "ios", "ship-fast"), "ai-motion.ios.ship-fast");
+  assert.equal(
+    pickerAnswerId("specific-metric", "cross-platform", "avoid-lock-in"),
+    "specific-metric.cross-platform.avoid-lock-in",
+  );
+  assert.equal(PICKER_KEY, "aifa_picker");
+});
+
+test("pickerAnswerId rejects anything that is not a short option slug", () => {
+  assert.equal(pickerAnswerId("ai-motion", "ios", null), null);
+  assert.equal(pickerAnswerId("ai-motion", "", "ship-fast"), null);
+  assert.equal(pickerAnswerId(undefined, "ios", "ship-fast"), null);
+  assert.equal(pickerAnswerId("AI-Motion", "ios", "ship-fast"), null);
+  assert.equal(pickerAnswerId("ai motion", "ios", "ship-fast"), null);
+  assert.equal(pickerAnswerId("someone@example.com", "ios", "ship-fast"), null);
+  assert.equal(pickerAnswerId("ai.motion", "ios", "ship-fast"), null);
+  assert.equal(pickerAnswerId("-ai", "ios", "ship-fast"), null);
+  assert.equal(pickerAnswerId("a".repeat(25), "ios", "ship-fast"), null);
+});
+
+test("parsePickerId re-checks a stored value", () => {
+  assert.equal(parsePickerId("nutrition.web.low-cost"), "nutrition.web.low-cost");
+  assert.equal(parsePickerId(null), null);
+  assert.equal(parsePickerId(""), null);
+  assert.equal(parsePickerId("nutrition.web"), null);
+  assert.equal(parsePickerId("nutrition.web.low-cost.extra"), null);
+  assert.equal(parsePickerId("nutrition.web.<script>"), null);
+  assert.equal(parsePickerId(42), null);
+});
+
+test("withPicker adds the answer id only when there is a valid one", () => {
+  const cta = { id: "picker-result", source: "spoke-inline", page: "/picker" };
+  assert.deepEqual(withPicker(cta, "ai-motion.ios.ship-fast"), { ...cta, picker: "ai-motion.ios.ship-fast" });
+  const funder = { placement: "kinestex_note", page: "/motion" };
+  assert.deepEqual(withPicker(funder, "ai-motion.android.data-depth"), {
+    ...funder,
+    picker: "ai-motion.android.data-depth",
+  });
+  // No answer, no property — never an empty one.
+  assert.deepEqual(withPicker(cta, null), cta);
+  assert.ok(!("picker" in withPicker(cta, null)));
+  assert.ok(!("picker" in withPicker(cta, "free text from somewhere")));
+  // Never mutates the caller's object, never overwrites an explicit value.
+  const before = { ...cta };
+  withPicker(cta, "ai-motion.ios.ship-fast");
+  assert.deepEqual(cta, before);
+  assert.equal(withPicker({ ...cta, picker: "x.y.z" }, "ai-motion.ios.ship-fast").picker, "x.y.z");
+});
+
+test("every picker answer has an id (option values read from src/lib/picker.ts)", () => {
+  // picker.ts is TypeScript, so its option arrays are read as text: a new
+  // option value that is not a short hyphenated slug would otherwise drop
+  // the picker property silently.
+  const src = readFileSync(new URL("../src/lib/picker.ts", import.meta.url), "utf8");
+  const values = (name) => {
+    const block = src.match(new RegExp(`export const ${name}[^=]*= \\[([\\s\\S]*?)\\n\\];`));
+    assert.ok(block, name);
+    return [...block[1].matchAll(/value: "([^"]+)"/g)].map((m) => m[1]);
+  };
+  const jobs = values("JOB_OPTIONS");
+  const platforms = values("PLATFORM_OPTIONS");
+  const priorities = values("PRIORITY_OPTIONS");
+  assert.equal(jobs.length + platforms.length + priorities.length, 16);
+  const ids = new Set();
+  for (const j of jobs) for (const p of platforms) for (const pr of priorities) {
+    const id = pickerAnswerId(j, p, pr);
+    assert.ok(id, `${j} ${p} ${pr}`);
+    assert.equal(parsePickerId(id), id);
+    ids.add(id);
+  }
+  assert.equal(ids.size, jobs.length * platforms.length * priorities.length);
 });

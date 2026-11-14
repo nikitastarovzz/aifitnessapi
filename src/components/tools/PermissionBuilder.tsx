@@ -212,7 +212,7 @@ function buildAndroid(picked: PickedRow[]): string {
   return lines.join("\n");
 }
 
-function CopyButton({ text, label }: { text: string; label: string }) {
+export function CopyButton({ text, label }: { text: string; label: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <button

@@ -16,8 +16,8 @@ No API route, no middleware, no new dependency. None of it runs under
 | Event | When | Properties |
 |---|---|---|
 | `landing` | first page view of a browser session (a `sessionStorage` flag, `aifa_landed`) | `source_class`, `source`, `landing_path` |
-| `cta_click` | a click on any `[data-cta]` element (CtaLink and the delegated backstop) | `id`, `source` (the CtaSource placement), `page` |
-| `funder_click` | a click on any link to kinestex.com or a subdomain | `placement`, `page` |
+| `cta_click` | a click on any `[data-cta]` element (CtaLink and the delegated backstop) | `id`, `source` (the CtaSource placement), `page`, and `picker` when the session reached a picker answer |
+| `funder_click` | a click on any link to kinestex.com or a subdomain | `placement`, `page`, and `picker` when the session reached a picker answer |
 
 `source_class` is one of:
 
@@ -41,9 +41,42 @@ as plain `bing.com` / `kagi.com` / `duckduckgo.com` and count as `search`.
 Assistants that open links with `noreferrer` and no utm tag count as
 `direct`. Treat `ai_assistant` as a floor.
 
+`picker` is the last picker answer this browser session reached, as
+`<job>.<platform>.<priority>` (e.g. `ai-motion.ios.ship-fast`; the option
+values in `src/lib/picker.ts`). The property is absent, never empty, when the
+session saw no answer. See "Picker answer on clicks" below.
+
 `placement` on `funder_click` is `kinestex_note` (the contextual
 KinestexNote), `footer_funding` (the sitewide credit), `methodology`, or
 `citation` for a "Sources checked" link to a kinestex.com page.
+
+## Picker answer on clicks
+
+Added 2026-11-14 (ops/GROWTH-PLAN-IMPRESSIONS-CTR-CONVERSION.md §4.4,
+ops/NEXT-10-2026-11-04.md item 2). Before this, a `funder_click` or
+`cta_click` could not be traced to the picker recommendation that preceded
+it.
+
+When a picker result is on screen (the `/picker` result box, or a shared
+`/s?t=picker&…` page that resolves to an answer), `components/PickerSeen`
+stores the answer id in `sessionStorage` under `aifa_picker`. It sends no
+event of its own. Every later `cta_click` and `funder_click` in that tab adds
+it as `picker` (`withPickerProp` in `src/lib/track.ts`, rules in
+`pickerAnswerId` / `parsePickerId` / `withPicker` in `src/lib/measure.mjs`).
+The latest answer wins: start over and get another, and later clicks carry the
+new one. The id is built only from the picker's fixed option values and is
+re-checked on read, so free text cannot reach it; when storage is blocked the
+clicks simply go without it. Nothing is stored or added under `/embed/`.
+
+How to read it in Vercel Analytics: Events → `funder_click`, filter `picker`
+(or break down by `picker`) to see which recommendations precede a KinesteX
+click; add `placement` or `page` to see where the click happened. The same on
+`cta_click` (with `id`) for newsletter and kit clicks. A click with no
+`picker` came from a session that never reached an answer. `picker-result`
+clicks (a link inside the result box) always carry it, so exclude that id when
+reading downstream CTAs. There are 144 possible ids (6 jobs × 4 platforms × 6
+priorities); to group by job, read the part before the first dot. Compare
+before/after 2026-11-14 by presence of the property, not by its values.
 
 ## CTA ids (`cta_click` → `id`)
 
@@ -124,6 +157,8 @@ property:
   compare the note against the footer. Divide by page views of the same path
   (Pages panel) for a click rate.
 - **CTA clicks**: `cta_click` → `id`, `source` or `page`.
+- **Which picker answer leads to a funder or CTA click**: `funder_click` or
+  `cta_click` → filter or break down by `picker` (from 2026-11-14).
 
 Use the panel's date range for before/after reads against the Nov 10 and
 Nov 24 search pulls. Could not verify from the dev environment (vercel.com is
@@ -133,7 +168,8 @@ the Vercel dashboard before reading a zero as "no traffic".
 
 ## Privacy
 
-`/privacy` states all three events in plain language. The classifier returns
+`/privacy` states all three events, and the `picker` property on clicks, in
+plain language. The classifier returns
 labels from fixed lists and a bare host; the full referrer URL, its query and
 free-text utm values never reach an event. Change the privacy page in the
 same PR as any new event or property.

@@ -48,5 +48,15 @@
     "claim": "Google's June 24, 2011 blog post set Google Health's retirement for January 1, 2012, with downloads through January 1, 2013.",
     "url": "https://web.archive.org/web/20120107124413/http://googleblog.blogspot.com/2011/06/update-on-google-health-and-google.html",
     "quote": "Google Health (retiring January 1, 2012; data available for download through January 1, 2013)"
+  },
+  {
+    "claim": "Terra's documentation calls the legacy widget session endpoint deprecated (read 2026-11-14 through source-snapshot run 43653445670).",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "POST /auth/generateWidgetSession is deprecated, with deprecation planned for 3 November 2026"
+  },
+  {
+    "claim": "Existing apps on the legacy endpoint keep working, and Terra says it will give notice before any breaking change.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "Existing apps keep working, and we will give notice well before any breaking change."
   }
 ]

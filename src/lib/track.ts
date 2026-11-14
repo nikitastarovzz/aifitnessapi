@@ -1,4 +1,5 @@
 import { track as vercelTrack } from "@vercel/analytics";
+import { PICKER_KEY, parsePickerId, withPicker } from "@/lib/measure.mjs";
 
 /**
  * One tracking entry point. Fires to Vercel Web Analytics (the provider the
@@ -42,8 +43,40 @@ export function trackEvent(name: string, props: EventProps) {
   }
 }
 
-/** A data-cta click: which CTA, from which placement, on which page. */
+const inEmbed = () => window.location.pathname.startsWith("/embed/");
+
+/**
+ * Remember the picker answer this session reached (an id from
+ * pickerAnswerId() in src/lib/measure.mjs), so later cta_click and
+ * funder_click events can name it. The latest answer wins. A no-op under
+ * /embed and when storage is blocked: the clicks then go without `picker`.
+ */
+export function rememberPicker(id: string | null) {
+  if (typeof window === "undefined" || inEmbed()) return;
+  const valid = parsePickerId(id);
+  if (!valid) return;
+  try {
+    window.sessionStorage.setItem(PICKER_KEY, valid);
+  } catch {
+    /* storage blocked: clicks go without the picker property */
+  }
+}
+
+/** Props plus `picker` when this session reached a picker answer. */
+export function withPickerProp(props: EventProps): EventProps {
+  if (typeof window === "undefined" || inEmbed()) return props;
+  let raw: string | null = null;
+  try {
+    raw = window.sessionStorage.getItem(PICKER_KEY);
+  } catch {
+    /* storage blocked */
+  }
+  return withPicker(props, raw);
+}
+
+/** A data-cta click: which CTA, from which placement, on which page, and the
+ *  picker answer reached earlier in the session, if any. */
 export function track(id: string, source: string) {
   if (typeof window === "undefined") return;
-  trackEvent("cta_click", { id, source, page: window.location.pathname });
+  trackEvent("cta_click", withPickerProp({ id, source, page: window.location.pathname }));
 }
