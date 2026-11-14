@@ -424,7 +424,7 @@ export const WEBHOOK_VENDORS = [
     secretLabel: "Destination signing secret",
     summary:
       "X-Terra-Signature: t=<timestamp>,v1=<signature>. HMAC-SHA256, keyed by the endpoint's signing secret, over timestamp + \".\" + raw body; compare with every v1 value, ignore other schemes.",
-    headers: ["X-Terra-Signature"],
+    headers: ["X-Terra-Signature", "terra-signature"],
     source: {
       url: "https://docs.tryterra.co/destinations/webhooks",
       label: "Terra docs, “Webhooks” (destinations)",
@@ -743,8 +743,12 @@ export async function verifyWebhook(vendorId, /** @type {WebhookInput} */ input)
     }
 
     case "terra": {
-      const header = h["x-terra-signature"];
-      if (!header) return missing("X-Terra-Signature header");
+      // Terra's webhooks page (read 2026-11-14) names the header
+      // X-Terra-Signature; its own JavaScript SDK on GitHub (terra-client-js,
+      // src/utils.ts, read the same day) still documents 'terra-signature'.
+      // Accept either, and say which one the delivery used.
+      const header = h["x-terra-signature"] ?? h["terra-signature"];
+      if (!header) return missing("X-Terra-Signature (or terra-signature) header");
       if (!secret) return missing("signing secret");
       let t = null;
       const v1 = [];
