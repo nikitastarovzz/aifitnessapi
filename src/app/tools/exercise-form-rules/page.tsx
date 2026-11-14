@@ -26,7 +26,8 @@ import { toolGraph } from "@/lib/schema";
  * hidden, because "nobody we could read states this" is the finding.
  *
  * The page does not rank the sources or say which threshold is right. They
- * disagree (a push-up top of 145 degrees in one, 160 in another), and the
+ * disagree (formRuleDisagreement in src/lib/formRulesView.ts names a pair the
+ * data holds), and the
  * reader's footage decides; the rep counter playground is linked from every
  * rule set that can drive it.
  */
@@ -241,6 +242,12 @@ export default function ExerciseFormRulesPage() {
               whose README claims a license but that ship no LICENSE file were left out.
             </li>
             <li>
+              A source that disappears is dropped, not kept from an old copy. thphuc05/PythonExcercisePoseEstimation
+              (MIT), the source of 11 squat, push-up and plank rules here until November 2026, answered 404 on
+              November 14, 2026, while its owner&rsquo;s GitHub account still answered, so its rules were removed,
+              and squat rep counting and the plank hold, which only it filled, are null.
+            </li>
+            <li>
               No number is typed by hand. The generator fetches each file, refuses to write unless the quoted
               line is in it, and captures the value from that line; the line that applies the value and the
               line that computes the angle are stored and checked the same way, and a weekly job re-checks
@@ -261,8 +268,8 @@ export default function ExerciseFormRulesPage() {
               medical advice.
             </li>
             <li>
-              Some sources count a rep on the way down, others on the way back up; the &ldquo;meaning&rdquo;
-              column says which, in the source&rsquo;s own terms where they differ from the rep counter&rsquo;s.
+              Sources count a rep at different points of the movement; the &ldquo;meaning&rdquo; column says
+              where, in the source&rsquo;s own terms where they differ from the rep counter&rsquo;s.
             </li>
           </ul>
         </section>

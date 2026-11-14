@@ -1,78 +1,8 @@
 [
   {
-    "claim": "Squat: Back at the top (standing): knee angle above this, together with the hip angle above its own top value, ends a rep. Value: 160 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "ExerciseConfig(name=\"Squat\", knee_angle_up=160, knee_angle_down_entry=100,"
-  },
-  {
-    "claim": "Squat: how squat-knee-top-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if knee_angle > cfg.knee_angle_up and hip_angle > cfg.hip_angle_up:"
-  },
-  {
-    "claim": "Squat: what squat-knee-top-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "knee_angle = calculate_angle(hip, knee, ankle)"
-  },
-  {
-    "claim": "Squat: Going down: knee angle below this, from the top, enters the down phase. Value: 100 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "ExerciseConfig(name=\"Squat\", knee_angle_up=160, knee_angle_down_entry=100,"
-  },
-  {
-    "claim": "Squat: how squat-knee-bottom-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if knee_angle < cfg.knee_angle_down_entry and stage == \"up\":"
-  },
-  {
-    "claim": "Squat: what squat-knee-bottom-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "knee_angle = calculate_angle(hip, knee, ankle)"
-  },
-  {
-    "claim": "Squat: Back at the top: hip angle above this is also required to end a rep. Value: 160 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "knee_angle_down_entry=100, # Squat hip_angle_up=160, correct_knee_max=95"
-  },
-  {
-    "claim": "Squat: how squat-hip-top-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if knee_angle > cfg.knee_angle_up and hip_angle > cfg.hip_angle_up:"
-  },
-  {
-    "claim": "Squat: what squat-hip-top-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "hip_angle = calculate_angle(knee, hip, shouder)"
-  },
-  {
-    "claim": "Squat: Depth: the smallest knee angle of the rep must fall below this (with the hip and hip-drop checks) for the rep to be marked correct. Value: 95 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "knee_angle_down_entry=100, # Squat hip_angle_up=160, correct_knee_max=95"
-  },
-  {
-    "claim": "Squat: how squat-knee-depth-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if is_hip_drop and min_knee_angle < cfg.correct_knee_max and min_hip_angle < cfg.correct_hip_max:"
-  },
-  {
-    "claim": "Squat: what squat-knee-depth-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "knee_angle = calculate_angle(hip, knee, ankle)"
-  },
-  {
-    "claim": "Squat: Depth: the smallest hip angle of the rep must fall below this (with the knee check) for the rep to be marked correct. Value: 95 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "correct_knee_max=95, correct_hip_max=95, hip_drop_min=0.08)"
-  },
-  {
-    "claim": "Squat: how squat-hip-depth-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if is_hip_drop and min_knee_angle < cfg.correct_knee_max and min_hip_angle < cfg.correct_hip_max:"
-  },
-  {
-    "claim": "Squat: what squat-hip-depth-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "hip_angle = calculate_angle(knee, hip, shouder)"
+    "claim": "Squat rep-count thresholds are null in the form-rules dataset: The one licensed squat source read counts squat stages with a trained classifier, not an angle threshold, so it states no top or bottom knee angle. The project that gave the squat angles here until November 2026 (thphuc05/PythonExcercisePoseEstimation) answered 404 on 2026-11-14 and was dropped.",
+    "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/squat.py",
+    "quote": "ML_MODEL_PATH = get_static_file_url(\"model/squat_model.pkl\")"
   },
   {
     "claim": "Squat: Foot placement: foot width divided by shoulder width must fall within this range. Value: 1.2 to 2.8 (ratio).",
@@ -120,66 +50,6 @@
     "quote": "kpts=[6, 8, 10],  # keypoints for monitoring specific exercise, by default it's for pushup"
   },
   {
-    "claim": "Push-up: Up: elbow angle above this, with the body straight, ends a rep. Value: 160 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "ExerciseConfig(name=\"PushUp\", elbow_angle_up=160, elbow_angle_down_entry=90,"
-  },
-  {
-    "claim": "Push-up: how push-up-elbow-top-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if elbow_angle > cfg.elbow_angle_up:"
-  },
-  {
-    "claim": "Push-up: what push-up-elbow-top-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "elbow_angle = calculate_angle(wrist, elbow, shouder)"
-  },
-  {
-    "claim": "Push-up: Down: elbow angle below this, from the top, enters the down phase. Value: 90 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "ExerciseConfig(name=\"PushUp\", elbow_angle_up=160, elbow_angle_down_entry=90,"
-  },
-  {
-    "claim": "Push-up: how push-up-elbow-bottom-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if elbow_angle < cfg.elbow_angle_down_entry and stage == \"up\":"
-  },
-  {
-    "claim": "Push-up: what push-up-elbow-bottom-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "elbow_angle = calculate_angle(wrist, elbow, shouder)"
-  },
-  {
-    "claim": "Push-up: Depth: the smallest elbow angle of the rep must fall below this for the rep to be marked correct. Value: 90 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "correct_elbow_max=90, body_straight_min=160)"
-  },
-  {
-    "claim": "Push-up: how push-up-elbow-depth-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if min_elbow_angle < cfg.correct_elbow_max:"
-  },
-  {
-    "claim": "Push-up: what push-up-elbow-depth-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "elbow_angle = calculate_angle(wrist, elbow, shouder)"
-  },
-  {
-    "claim": "Push-up: Straight body: the shoulder-hip-ankle angle must stay above this for the source to track the rep at all. Value: 160 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "correct_elbow_max=90, body_straight_min=160)"
-  },
-  {
-    "claim": "Push-up: how push-up-body-line-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "is_body_straight = body_line_angle > cfg.body_straight_min"
-  },
-  {
-    "claim": "Push-up: what push-up-body-line-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "body_line_angle = calculate_angle(shouder, hip, ankle)"
-  },
-  {
     "claim": "Lunge: At the bottom (the source's down stage): each knee angle must fall within this range, or the rep is flagged with a knee-angle error. Value: 60 to 125 (degrees).",
     "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/lunge.py",
     "quote": "KNEE_ANGLE_THRESHOLD = [60, 125]"
@@ -200,34 +70,9 @@
     "quote": "STAGE_ML_MODEL_PATH = get_static_file_url(\"model/lunge_stage_model.pkl\")"
   },
   {
-    "claim": "Plank: Hold: the hip angle must stay above this; dropping below stops the hold timer. Value: 160 (degrees).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "ExerciseConfig(name=\"Plank\", plank_hip_min=160, hold_frames_required=60)"
-  },
-  {
-    "claim": "Plank: how plank-hip-hold-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if hip_angle > cfg.plank_hip_min:"
-  },
-  {
-    "claim": "Plank: what plank-hip-hold-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "hip_angle = calculate_angle(knee, hip, shouder)"
-  },
-  {
-    "claim": "Plank: Hold start: the hip rule must hold for this many consecutive frames before the timer starts (the source's comment says 2 s at 30 fps). Value: 60 (frames).",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "ExerciseConfig(name=\"Plank\", plank_hip_min=160, hold_frames_required=60)"
-  },
-  {
-    "claim": "Plank: how plank-hold-frames-thphuc05 is applied in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if down_frame_counter >= cfg.hold_frames_required and not timer_running:"
-  },
-  {
-    "claim": "Plank: what plank-hold-frames-thphuc05 measures in the source.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "down_frame_counter += 1"
+    "claim": "Plank hold thresholds are null in the form-rules dataset: The one licensed plank source read judges plank form with a trained classifier, not an angle threshold, so it states no hip angle and no hold time. The project that gave both here until November 2026 (thphuc05/PythonExcercisePoseEstimation) answered 404 on 2026-11-14 and was dropped.",
+    "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/plank.py",
+    "quote": "ML_MODEL_PATH = get_static_file_url(\"model/plank_model.pkl\")"
   },
   {
     "claim": "Bicep curl: Arm extended (the source's down stage): elbow angle above this. Value: 120 (degrees).",
@@ -373,15 +218,5 @@
     "claim": "Exercise-Correction (Ngô Hồng Quốc Bảo) computes joint angles as a 0-180 degree angle in the image plane.",
     "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/utils.py",
     "quote": "angleInDeg = angleInDeg if angleInDeg <= 180 else 360 - angleInDeg"
-  },
-  {
-    "claim": "PythonExcercisePoseEstimation (thphuc05) is licensed MIT.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/LICENSE",
-    "quote": "MIT License Copyright (c) 2026 Phuc"
-  },
-  {
-    "claim": "PythonExcercisePoseEstimation (thphuc05) computes joint angles as a 0-180 degree angle in the image plane.",
-    "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-    "quote": "if angle > 180.0: angle = 360 - angle"
   }
 ]

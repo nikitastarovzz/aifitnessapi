@@ -7,6 +7,7 @@
 import { FORM_RULES, FORM_RULE_EXERCISES, FORM_RULE_PRESETS, FORM_RULE_SOURCES, FORM_RULES_FETCHED_ON } from "@/data/formRules";
 import { POSE_BENCHMARK_RESULTS } from "@/data/poseBenchmarkResults";
 import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
+import { formRuleDisagreement } from "@/lib/formRulesView";
 import { DEFAULT_CONFIG } from "@/lib/repPlayground.mjs";
 import { ACCEPT_LABEL, REPO } from "@/lib/poseBenchmarkSubmission.mjs";
 
@@ -23,7 +24,17 @@ export function repPlaygroundText(): string {
 
 export function formRulesText(): string {
   const srcs = FORM_RULE_SOURCES.map((s) => `${s.name} (${s.repo}, ${s.license})`).join("; ");
-  return `An open dataset (CC BY 4.0, JSON and CSV at /datasets/exercise-form-rules-2026.json and .csv) of ${FORM_RULES.length} rules for ${FORM_RULE_EXERCISES.map((e) => e.name.toLowerCase()).join(", ")}: the joint-angle, ratio and hold-time thresholds that licensed open-source exercise trackers use to count reps and check form, read from their code on ${FORM_RULES_FETCHED_ON}: ${srcs}. ${withValue.length} rules carry a value captured from a verbatim line of code (stored with the line that applies it and the line that computes the angle; a weekly job re-checks each quote against the live file); ${nulls.length} are null with the reason (${nulls.map((r) => `${r.exerciseName.toLowerCase()} ${r.purpose}`).join("; ")}), because no licensed source read states a number and peer-reviewed definitions on hosts the build could not reach are not copied. The sources disagree, for example on push-up elbow angles (${FORM_RULE_PRESETS.filter((p) => p.exercise === "push-up").map((p) => `${p.top}/${p.bottom}`).join(" vs ")} degrees). They are the authors' choices for their own camera setups, measured as 2D image angles, not biomechanical standards. Each rule set with a top and a bottom angle opens as a starting config in the rep counter playground.`;
+  const kinds = ["joint-angle", withValue.some((r) => r.unit === "ratio") ? "ratio" : null, withValue.some((r) => r.unit === "frames") ? "hold-time" : null].filter(Boolean);
+  const kindText = kinds.length > 1 ? `${kinds.slice(0, -1).join(", ")} and ${kinds.at(-1)}` : kinds[0];
+  const pushUps = FORM_RULE_PRESETS.filter((p) => p.exercise === "push-up");
+  const pair = formRuleDisagreement();
+  const disagree =
+    pushUps.length >= 2
+      ? ` The sources disagree, for example on push-up elbow angles (${pushUps.map((p) => `${p.top}/${p.bottom}`).join(" vs ")} degrees).`
+      : pair
+        ? ` The sources disagree, for example on the ${pair.exerciseName.toLowerCase()} ${pair.joint} ${pair.role} check (${pair.a.value} vs ${pair.b.value} degrees).`
+        : "";
+  return `An open dataset (CC BY 4.0, JSON and CSV at /datasets/exercise-form-rules-2026.json and .csv) of ${FORM_RULES.length} rules for ${FORM_RULE_EXERCISES.map((e) => e.name.toLowerCase()).join(", ")}: the ${kindText} thresholds that licensed open-source exercise trackers use to count reps and check form, read from their code on ${FORM_RULES_FETCHED_ON}: ${srcs}. ${withValue.length} rules carry a value captured from a verbatim line of code (stored with the line that applies it and the line that computes the angle; a weekly job re-checks each quote against the live file); ${nulls.length} are null with the reason (${nulls.map((r) => `${r.exerciseName.toLowerCase()} ${r.purpose}`).join("; ")}), because no licensed source read states a number and peer-reviewed definitions on hosts the build could not reach are not copied.${disagree} They are the authors' choices for their own camera setups, measured as 2D image angles, not biomechanical standards. Each rule set with a top and a bottom angle opens as a starting config in the rep counter playground.`;
 }
 
 export function leaderboardText(): string {
