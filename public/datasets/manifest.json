@@ -51,15 +51,15 @@
     },
     {
       "file": "fitness-api-docs-drift-2026.csv",
-      "bytes": 112254,
-      "rows": 982,
-      "sha256": "b5017f9407b7ef2299a7d46fde0ecd3afd7b97ff839350c525e2907168510bb0"
+      "bytes": 162754,
+      "rows": 1326,
+      "sha256": "50b0b3c79fa9561c46c1d3c9f72a8347d17888c13b20750fb2cacaad8ae6df59"
     },
     {
       "file": "fitness-api-docs-drift-2026.json",
-      "bytes": 341215,
-      "rows": 982,
-      "sha256": "ec23289faf1529343c703fc796b75aa79394f18f475e86c31d72bc0e4fa86e45"
+      "bytes": 468930,
+      "rows": 1326,
+      "sha256": "bf4e5da09c2d7a9eda86cce3526f7c384a1533647d876f008b734d062a3dbd91"
     },
     {
       "file": "fitness-api-glossary-2026.csv",
@@ -87,15 +87,15 @@
     },
     {
       "file": "fitness-api-shutdown-notice-2026.csv",
-      "bytes": 8014,
+      "bytes": 8048,
       "rows": 15,
-      "sha256": "210be33e10a12d596d36730a61c9932283e14ca95f3d4271d9641226142c4e15"
+      "sha256": "2fee79a9a84583c8ab845165aa588fe928e1f5186bd80944c3d23fe8446dedc1"
     },
     {
       "file": "fitness-api-shutdown-notice-2026.json",
-      "bytes": 16877,
+      "bytes": 16945,
       "rows": 15,
-      "sha256": "c0a654bc64679ed3bdb02f7cdb869b00b52500759171c44e5fd3d719646c6067"
+      "sha256": "da0786067e33aec0d0b4700c598417841f39afb672fa4dbc27ac62809b4e00da"
     },
     {
       "file": "fitness-apis-2026.csv",
