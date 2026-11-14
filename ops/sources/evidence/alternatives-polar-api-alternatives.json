@@ -126,12 +126,12 @@
   },
   {
     "claim": "Terra managed credentials definition: works with Terra's credentials; some also let you use your own.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration. Some also let you use your own credentials"
   },
   {
     "claim": "Terra Polar row.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Polar POLAR Event-Driven Managed"
   },
   {

@@ -23,6 +23,41 @@ export type Correction = {
 
 export const CORRECTIONS: Correction[] = [
   {
+    date: "2026-11-14",
+    page: { href: "/compare/terra-vs-spike", label: "Terra vs Spike Health: Which Aggregator for Your App?" },
+    was: "An FAQ answer said Terra retries failed webhook deliveries up to 10 times.",
+    now: "Terra retries failed deliveries with exponential backoff for several hours, without a fixed count: its docs say \"The number and timing of retries can change, so don't depend on a specific schedule.\" The page body already said Terra commits to no count.",
+    how: "Found on 2026-11-14 while re-sourcing the Terra rows that source-quotes run 43588988828 flagged. The Terra integration guide had recorded on 2026-11-05 that Terra's webhook docs no longer give a retry count or window; this FAQ answer was not updated with it.",
+  },
+  {
+    date: "2026-11-14",
+    page: { href: "/compare/terra-vs-sahha", label: "Terra vs Sahha: Which Health Data API for Your App?" },
+    was: "An FAQ answer said Terra retries failed webhook deliveries up to 10 times with exponential backoff.",
+    now: "Terra retries failed deliveries with exponential backoff for several hours, without a fixed count, as the page's own comparison table already said.",
+    how: "Same finding as the Terra vs Spike FAQ, corrected the same day.",
+  },
+  {
+    date: "2026-11-14",
+    page: { href: "/fix/wearable-data-delayed", label: "Why Is Wearable Data Missing or Delayed?" },
+    was: "The fix described a Terra \"28-day async rule\": for ranges longer than 28 days Terra sends the data asynchronously over your webhook even if to_webhook is false.",
+    now: "Terra's historical-data guide says \"Time ranges longer than one month must use to_webhook=true\", and the same request with to_webhook=false returns a 400.",
+    how: "Found on 2026-11-14 while re-sourcing the page's Terra rows. The Terra integration guide had recorded the one-month rule on 2026-11-05; the fix page kept the earlier rule.",
+  },
+  {
+    date: "2026-11-14",
+    page: { href: "/tools/rate-limit-calculator", label: "Wearable API Rate-Limit Calculator" },
+    was: "The calculator took Terra's per-request cap as 1,826 days, our own reading of \"wider than 5 years\", so it did not warn about a request spanning exactly 1,826 days.",
+    now: "Terra's rate-limit reference gives the cap in days: \"Requests of exactly 1,825 days are allowed: only more than 1,825 is rejected.\" The calculator now warns above 1,825.",
+    how: "Found on 2026-11-14 while re-sourcing the calculator's Terra quotes, which the rate-limit reference had reworded.",
+  },
+  {
+    date: "2026-11-14",
+    page: { href: "/no-code-fitness-app", label: "Fitness App Builder: Build an AI Fitness App From APIs" },
+    was: "An FAQ answer listed Oura, with Garmin, WHOOP and Strava, among the providers for which you must still obtain your own developer credentials with Terra.",
+    now: "Terra's integrations table marks Garmin, WHOOP and Strava as Required and Oura as Managed, which it defines as working with Terra's credentials. The page body already said so.",
+    how: "Found on 2026-11-14 while re-sourcing the page's Terra rows: the FAQ answer contradicted the body and the evidence rows it shares with it.",
+  },
+  {
     date: "2026-10-27",
     page: { href: "/motion/apple-vision-body-pose", label: "VNDetectHumanBodyPoseRequest: Apple Vision Body Pose on iOS" },
     was: "The page said Apple's documentation does not state a person-count limit for either body pose request, in either direction, and that it contains no fitness positioning and no statement of intended use cases.",
@@ -138,7 +173,7 @@ export const CORRECTIONS: Correction[] = [
     date: "2026-10-18",
     page: { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
     was: "The report counted 12 of 25 items (48%) as approval-gated and recorded no gate for Terra, and its usage-billing finding said Terra carries no documented approval gate at all.",
-    now: "13 of 25 (52%). Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym, the same kind of own-credentials gate the report already recorded for Rook. A dated revision note at the top of the report lists every figure that moved, including Spike's move from contact-sales to usage-based, which it records as an update rather than a correction.",
+    now: "13 of 25 (52%). Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym as providers that \"need your own developer app or keys before you can enable them\" (wording read November 14, 2026), the same kind of own-credentials gate the report already recorded for Rook. A dated revision note at the top of the report lists every figure that moved, including Spike's move from contact-sales to usage-based, which it records as an update rather than a correction.",
     how: "Found on 2026-10-17 while re-verifying the aggregator pages against Terra's docs, fetched by a source-snapshot run. The gate was already on this site when the report went up: the 2026-08-02 versions of the aggregator comparison and of Terra vs Vital said some providers need your own developer credentials with Terra, so the dataset's empty field was wrong at publication.",
   },
   {

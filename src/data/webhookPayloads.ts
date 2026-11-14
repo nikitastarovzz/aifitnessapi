@@ -40,6 +40,7 @@ export type WebhookSourceId =
   | "wahooApi"
   | "terraWebhooks"
   | "terraEvents"
+  | "terraDelivery"
   | "googleWebhooks"
   | "suuntoFaq";
 
@@ -61,7 +62,8 @@ export const WEBHOOK_SOURCES: Record<WebhookSourceId, WebhookSource> = {
     via: "snapshot",
   },
   wahooApi: { url: "https://cloud-api.wahooligan.com/", label: "Wahoo Cloud API documentation, “Webhooks”", via: "snapshot" },
-  terraWebhooks: { url: "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks", label: "Terra docs, “Webhooks”", via: "snapshot" },
+  terraWebhooks: { url: "https://docs.tryterra.co/destinations/webhooks", label: "Terra docs, “Webhooks”", via: "snapshot" },
+  terraDelivery: { url: "https://docs.tryterra.co/destinations/events", label: "Terra docs, “Event delivery”", via: "snapshot" },
   terraEvents: { url: "https://docs.tryterra.co/reference/health-and-fitness-api/event-types.md", label: "Terra API reference, “Event Types”", via: "snapshot" },
   googleWebhooks: { url: "https://developers.google.com/health/webhooks", label: "Google Health API, “Webhook subscriptions”", via: "direct" },
   suuntoFaq: { url: "https://apizone.suunto.com/faq", label: "Suunto API Zone, “FAQ”", via: "snapshot" },
@@ -655,20 +657,21 @@ export const WEBHOOK_VENDORS: WebhookVendorDoc[] = [
     guide: "/integrate/terra-api",
     verifier: "terra",
     signature: {
-      text: "terra-signature: t=<timestamp>,v1=<signature>; HMAC-SHA256 keyed by the webhook's signing secret over the timestamp, a \".\" and the raw body. Ignore schemes other than v1.",
+      text: "X-Terra-Signature: t=<timestamp>,v1=<signature>; HMAC-SHA256 keyed by the webhook's signing secret over the timestamp, a \".\" and the raw body. Ignore schemes other than v1.",
       quote: "Compute an HMAC with the SHA256 hash function. Use the endpoint’s signing secret as the key, and use the signed_payload string as the message.",
       source: "terraWebhooks",
     },
     respond: { text: "Respond within 8 seconds; accept immediately (return 200) and process asynchronously. Sustained timeouts, 5xx and repeated 4xx can trip a per-destination circuit breaker.", quote: "Terra waits 8 seconds for your server to respond before considering the request timed out.", source: "terraWebhooks" },
     retries: {
-      text: "Retried automatically with exponential backoff for several hours; Terra says the number and timing of retries may change without notice. After the retry budget is spent the event is dropped, with no notification.",
-      quote: "Terra retries the delivery automatically with exponential backoff for several hours.",
+      text: "Retried with exponential backoff for several hours; Terra says the number and timing of retries can change. When the retries run out the delivery becomes failed, with no notification, and failed events can be resent from the dashboard.",
+      quote: "Terra then retries the delivery with exponential backoff for several hours.",
       source: "terraWebhooks",
     },
     notes: [
-      { text: "Do not depend on a specific retry schedule.", quote: "The exact number and timing of retries may change without notice, so don't depend on a specific schedule.", source: "terraWebhooks" },
+      { text: "Do not depend on a specific retry schedule.", quote: "The number and timing of retries can change, so don't depend on a specific schedule.", source: "terraDelivery" },
       { text: "Each webhook has its own signing secret; rotating one re-signs its retries with the new secret.", quote: "Each webhook has its own signing secret.", source: "terraWebhooks" },
-      { text: "Every event carries a terra-reference header tying it to the request that caused it.", quote: "every event sent from Terra will contain a `terra-reference` header", source: "terraEvents" },
+      { text: "Every event carries a terra-reference header with a unique identifier for the event.", quote: "every event sent from Terra, carries a `terra-reference` header with a unique identifier for the request or event.", source: "terraEvents" },
+      { text: "A delivery can arrive more than once, for example after a resend: deduplicate on the event_id in the terra-reference header.", quote: "Your server can receive the same event more than once, so deduplicate on event_id", source: "terraDelivery" },
     ],
     payloads: [
       {

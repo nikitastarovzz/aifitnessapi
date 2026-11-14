@@ -118,13 +118,13 @@ test("WHOOP, Terra and Polar sign raw bytes, so re-serializing breaks them", () 
 
 test("Terra: every v1 value is tried, other schemes are ignored", () => {
   const rawBody = BODIES.terra;
-  const good = signLikeVendor("terra", { rawBody, secret: SECRET, timestamp: TS.terra })["terra-signature"];
+  const good = signLikeVendor("terra", { rawBody, secret: SECRET, timestamp: TS.terra })["x-terra-signature"];
   const sig = good.split("v1=")[1];
   const header = `t=${TS.terra},v0=${sig},v1=deadbeef,v1=${sig}`;
   assert.deepEqual(parseTerraHeader(header), { t: TS.terra, v1: ["deadbeef", sig] });
-  assert.equal(verifyVendorSignature("terra", { rawBody, headers: { "terra-signature": header }, secret: SECRET }).ok, true);
+  assert.equal(verifyVendorSignature("terra", { rawBody, headers: { "x-terra-signature": header }, secret: SECRET }).ok, true);
   const downgrade = `t=${TS.terra},v0=${sig}`;
-  assert.equal(verifyVendorSignature("terra", { rawBody, headers: { "terra-signature": downgrade }, secret: SECRET }).reason, REASON.MALFORMED_HEADER);
+  assert.equal(verifyVendorSignature("terra", { rawBody, headers: { "x-terra-signature": downgrade }, secret: SECRET }).reason, REASON.MALFORMED_HEADER);
 });
 
 test("Polar: hex is compared case-insensitively", () => {

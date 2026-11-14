@@ -76,17 +76,17 @@
   },
   {
     "claim": "Terra lists COROS periodically fetched with Managed credentials.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Coros COROS Periodically fetched Managed"
   },
   {
     "claim": "Terra's developer-portal link for COROS is COROS's API application page.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "https://support.coros.com/hc/en-us/articles/17085887816340-Submit-an-API-Application"
   },
   {
     "claim": "Terra's table explains Managed credentials: the integration works with Terra's credentials, so you don't need an account with it; some also let you use your own.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration. Some also let you use your own credentials"
   },
   {

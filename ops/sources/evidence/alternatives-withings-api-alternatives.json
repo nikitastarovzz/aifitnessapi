@@ -36,12 +36,12 @@
   },
   {
     "claim": "Terra lists Withings as event-driven with Managed credentials.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Withings WITHINGS Event-Driven Managed"
   },
   {
     "claim": "Terra's table explains Managed credentials: the integration works with Terra's credentials, so you don't need an account with it; some also let you use your own.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration. Some also let you use your own credentials"
   },
   {

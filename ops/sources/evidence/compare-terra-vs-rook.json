@@ -15,9 +15,9 @@
     "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
   },
   {
-    "claim": "Terra docs: the Unified API \"supports over 150+ Data Sources\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "The Unified API supports over 150+ Data Sources"
+    "claim": "Terra's setup docs say to \"choose from 150+ integrations\".",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "Click Add New and choose from 150+ integrations."
   },
   {
     "claim": "ROOK docs: \"400+ wearables and health data sources\".",
@@ -32,7 +32,7 @@
   {
     "claim": "Terra: cloud APIs plus a mobile SDK for Apple Health, Samsung Health and Health Connect.",
     "url": "https://docs.tryterra.co/unified-api/getting-started",
-    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra."
   },
   {
     "claim": "ROOK: direct API integrations for cloud providers; SDKs for Apple Health and Health Connect.",
@@ -46,7 +46,7 @@
   },
   {
     "claim": "Terra: signed webhooks.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
@@ -145,18 +145,18 @@
     "quote": "ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice."
   },
   {
-    "claim": "Terra docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "claim": "Terra docs say WHOOP, Dexcom, Huawei, Strava and Virtuagym need your own developer app or keys before you can enable them (read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
     "claim": "Terra integrations table marks Garmin as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
   },
   {
     "claim": "Terra integrations table marks Samsung as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Samsung SAMSUNG Event-Driven Required"
   },
   {
@@ -181,7 +181,7 @@
   },
   {
     "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
@@ -400,13 +400,13 @@
     "quote": "The Connections Page is designed exclusively for the sandbox environment . For production integrations, the frontend or mobile team must implement the individual authorization endpoint"
   },
   {
-    "claim": "Terra's supported-integrations page says Fitbit has been retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 6, 2026).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Fitbit has been retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and new users can't connect through Fitbit."
+    "claim": "Terra's supported-integrations page says Fitbit is retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Fitbit is retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and end users can't connect through Fitbit."
   },
   {
     "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Move your users to Google Health ( GOOGLE_HEALTH )"
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
   }
 ]

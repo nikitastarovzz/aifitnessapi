@@ -471,8 +471,8 @@ export const CURATED = {
       status: "documented",
       note: "Testing and staging environments, each capped at 50 users.",
       src: {
-        url: "https://docs.tryterra.co/unified-api/integration-setup/understanding-terra-environments",
-        quote: "Note that for testing & staging, there is a user limit of 50 users on each environment.",
+        url: "https://docs.tryterra.co/unified-api/understanding-terra-environments",
+        quote: "Testing and staging each have a limit of 50 users.",
         ev: EV.terra,
       },
     },
@@ -488,17 +488,17 @@ export const CURATED = {
     disconnect: {
       status: "not-documented",
       note: "Terra sends a deauth event when a user disconnects; the pages read name no call your app makes for it.",
-      src: { url: "https://docs.tryterra.co/reference/health-and-fitness-api/event-types", quote: "deauth Occurs when a user deauthenticates through the Terra", ev: EV.terra },
+      src: { url: "https://docs.tryterra.co/reference/health-and-fitness-api/event-types", quote: "deauth Occurs when a user deauthenticates through Terra", ev: EV.terra },
     },
     pkce: {
       status: "n/a",
       note: "Your server calls Terra with a dev-id and an API key; the pages read describe no OAuth client on your side.",
-      src: { url: "https://docs.tryterra.co/reference", quote: "dev-id string Required Your developer ID for authentication and tracking", ev: EV.terra },
+      src: { url: "https://docs.tryterra.co/reference", quote: "For the data APIs, send your developer ID and API key as headers on every request from your server:", ev: EV.terra },
     },
     refresh: {
       status: "n/a",
       note: "Your server calls Terra with a dev-id and an API key; the pages read describe no OAuth client on your side.",
-      src: { url: "https://docs.tryterra.co/reference", quote: "dev-id string Required Your developer ID for authentication and tracking", ev: EV.terra },
+      src: { url: "https://docs.tryterra.co/reference", quote: "For the data APIs, send your developer ID and API key as headers on every request from your server:", ev: EV.terra },
     },
   },
   wahoo: {

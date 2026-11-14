@@ -22,7 +22,7 @@
  *
  *   oura      HMAC-SHA256(secret, x-oura-timestamp + JSON.stringify(body)), hex upper-case
  *   whoop     base64 HMAC-SHA256(secret, X-WHOOP-Signature-Timestamp (ms) + raw body)
- *   terra     terra-signature: t=<seconds>,v1=hex HMAC-SHA256(secret, t + "." + raw body)
+ *   terra     X-Terra-Signature: t=<seconds>,v1=hex HMAC-SHA256(secret, t + "." + raw body)
  *   polar     Polar-Webhook-Signature: hex HMAC-SHA256(secret, raw body)
  *   strava    unsigned (Strava documents no signature for events)
  *   withings  unsigned form body; your secret goes on the URL as ?token=
@@ -69,7 +69,7 @@ export function buildRequest(vendorId, eventId, { url, secret = DEMO_SECRET, now
       break;
     }
     case "terra": {
-      headers["terra-signature"] = `t=${sec},v1=${hmac(secret, `${sec}.${body}`).toString("hex")}`;
+      headers["X-Terra-Signature"] = `t=${sec},v1=${hmac(secret, `${sec}.${body}`).toString("hex")}`;
       break;
     }
     case "polar": {

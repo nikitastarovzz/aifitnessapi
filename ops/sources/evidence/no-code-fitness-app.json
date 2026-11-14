@@ -1,17 +1,17 @@
 [
   {
     "claim": "Terra's integrations table marks WHOOP as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Whoop WHOOP Event-Driven Required"
   },
   {
     "claim": "Terra's integrations table marks Strava as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Strava STRAVA Event-Driven Required"
   },
   {
     "claim": "Terra's integrations table marks Garmin as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
   },
   {
@@ -21,12 +21,12 @@
   },
   {
     "claim": "Oura is marked Managed.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Oura OURA Event-Driven Managed"
   },
   {
     "claim": "Managed means your own credentials are optional: the integration works with Terra's credentials, and some also let you use your own.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration. Some also let you use your own credentials"
   }
 ]

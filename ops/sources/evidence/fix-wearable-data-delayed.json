@@ -1,7 +1,7 @@
 [
   {
     "claim": "Keep the terra-reference header from your request: Terra's docs say the event it eventually sends to your webhook carries the same terra-reference, which is how you know the transfer completed.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
     "quote": "When making a to_webhook=true request, keep track of the value of the terra-reference header. When the event is eventually sent to your webhook, the event's terra-reference will match that of the initial request, allowing you to mark off the data transfer as successfully completed"
   },
   {
@@ -10,8 +10,18 @@
     "quote": "url: https://access.tryterra.co/api/v2"
   },
   {
-    "claim": "to_webhook=true asks Terra to send the retrieved data to your webhook instead of returning it in the response.",
+    "claim": "to_webhook=true asks Terra to deliver the retrieved data to your destinations instead of returning it in the response.",
     "url": "https://raw.githubusercontent.com/tryterra/openapi/master/dist/core/v2-bundled.yaml",
-    "quote": "Boolean flag specifying whether to send the data retrieved to the webhook instead of in the response"
+    "quote": "Whether to deliver the data to your destinations as data events instead of in the response."
+  },
+  {
+    "claim": "Terra's one-month rule: \"Time ranges longer than one month must use to_webhook=true\".",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
+    "quote": "Time ranges longer than one month must use to_webhook=true"
+  },
+  {
+    "claim": "The same request with to_webhook=false returns a 400.",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
+    "quote": "The same request with to_webhook=false returns a 400"
   }
 ]

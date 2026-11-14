@@ -21,22 +21,22 @@
   },
   {
     "claim": "Terra's current docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
     "claim": "Its integrations table marks Garmin as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
   },
   {
     "claim": "Its integrations table marks Samsung as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Samsung SAMSUNG Event-Driven Required"
   },
   {
     "claim": "Its integrations table lists Oura as Managed.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Oura OURA Event-Driven Managed"
   },
   {
@@ -52,7 +52,7 @@
   {
     "claim": "The dashboard gives you a dev-id and an x-api-key.",
     "url": "https://docs.tryterra.co/introduction/core-concepts",
-    "quote": "Your Developer ID dev-id is your unique identifier as a developer on the Terra platform."
+    "quote": "Every Terra product uses the same two credentials. Find both under API keys in the header bar of the Terra Dashboard."
   },
   {
     "claim": "Separate credentials for testing, staging and production.",
@@ -61,8 +61,8 @@
   },
   {
     "claim": "Testing and staging environments are capped at 50 users each.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/understanding-terra-environments",
-    "quote": "Note that for testing & staging, there is a user limit of 50 users on each environment."
+    "url": "https://docs.tryterra.co/unified-api/understanding-terra-environments",
+    "quote": "Testing and staging each have a limit of 50 users."
   },
   {
     "claim": "A destination: a webhook URL, database, cloud storage bucket or queue.",
@@ -82,7 +82,7 @@
   {
     "claim": "Every API call sends both as headers.",
     "url": "https://docs.tryterra.co/reference",
-    "quote": "dev-id string Required Your developer ID for authentication and tracking"
+    "quote": "For the data APIs, send your developer ID and API key as headers on every request from your server:"
   },
   {
     "claim": "Terra can deliver to \"SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\".",
@@ -90,14 +90,14 @@
     "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
   },
   {
-    "claim": "Terra \"manages API Keys of data sources, meaning you can connect users without having to apply for each API Key\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
-    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+    "claim": "Terra \"manages the API keys of data sources, so you can connect users without applying for each key yourself\".",
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
+    "quote": "Terra manages the API keys of data sources, so you can connect users without applying for each key yourself."
   },
   {
-    "claim": "\"Some providers require special processes before being able to start using them\": WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "claim": "These providers \"need your own developer app or keys before you can enable them\": WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
     "claim": "WHOOP \"requires every company to connect users through its own app\" on its developer portal.",
@@ -131,17 +131,17 @@
   },
   {
     "claim": "Strava: create an application at strava.com/settings/api, then enter its client ID and secret.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
     "quote": "Log in to https://strava.com/settings/api and create an application. Save its client ID and client secret."
   },
   {
     "claim": "Terra's supported-integrations table marks Garmin as Required for integration credentials.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
   },
   {
     "claim": "And Samsung.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Samsung SAMSUNG Event-Driven Required"
   },
   {
@@ -151,13 +151,13 @@
   },
   {
     "claim": "For Samsung Health's direct route, apply through Samsung's partnership portal.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
-    "quote": "Submit your application through the Samsung Health partnership portal"
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
+    "quote": "Apply through the Samsung Health partnership portal with your app's package name and the SHA-256 fingerprint of its signing certificate."
   },
   {
     "claim": "Develop on the Health Connect route while you wait.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
-    "quote": "While waiting for approval, you can start development using the Health Connect route immediately"
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
+    "quote": "Until Samsung approves it, you can read Samsung Health's data through Health Connect."
   },
   {
     "claim": "Pass your own reference_id.",
@@ -240,14 +240,14 @@
     "quote": "Pass your own identifier as reference_id when you open the widget, and Terra returns it alongside the user_id so you can match the two."
   },
   {
-    "claim": "Terra \"will delete the previous user record for that account and yield a new user_id\".",
-    "url": "https://docs.tryterra.co/unified-api/user-authentication/handling-authentication-events",
-    "quote": "will delete the previous user record for that account and yield a new user_id"
+    "claim": "The reconnection \"deletes the previous user record and creates a new user_id\".",
+    "url": "https://docs.tryterra.co/unified-api/authentication-flow",
+    "quote": "deletes the previous user record and creates a new user_id"
   },
   {
-    "claim": "\"Terra sends a user_reauth event containing both the old and new user_id\".",
-    "url": "https://docs.tryterra.co/unified-api/user-authentication/handling-authentication-events",
-    "quote": "Terra sends a user_reauth event containing both the old and new user_id"
+    "claim": "\"Terra sends a user_reauth event with both the old and new user_id\".",
+    "url": "https://docs.tryterra.co/unified-api/authentication-flow",
+    "quote": "Terra sends a user_reauth event with both the old and new user_id"
   },
   {
     "claim": "Data event types: activity, athlete, body, daily, hormone, menstruation, nutrition and sleep.",
@@ -257,7 +257,7 @@
   {
     "claim": "Lifecycle events: deauth.",
     "url": "https://docs.tryterra.co/reference/health-and-fitness-api/event-types",
-    "quote": "deauth Occurs when a user deauthenticates through the Terra"
+    "quote": "deauth Occurs when a user deauthenticates through Terra"
   },
   {
     "claim": "Lifecycle events: access_revoked.",
@@ -272,126 +272,126 @@
   {
     "claim": "Overwrite the stored day with the latest daily payload.",
     "url": "https://docs.tryterra.co/introduction/core-concepts",
-    "quote": "When ingesting Daily events, always overwrite data for a given date with the latest one sent to your Destination."
+    "quote": "daily and body payloads arrive several times a day. Each one holds the running total for that day so far, so overwrite the stored payload for that date with the latest one."
   },
   {
     "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
     "claim": "The header takes the form t=...,v1=....",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks.md",
     "quote": "t=1723808700,v1=a5ee9dba96b4f65aeff6c841aa50121b1f73ec7990d28d53b201523776d4eb00"
   },
   {
     "claim": "The signed payload is the timestamp, a period, then \"The actual JSON payload (that is, the request body)\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "The actual JSON payload (that is, the request body)"
   },
   {
     "claim": "The key is your endpoint's signing secret; HMAC with SHA256.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Compute an HMAC with the SHA256 hash function. Use the endpoint's signing secret as the key, and use the signed_payload string as the message."
   },
   {
     "claim": "Terra \"requires the raw, unaltered body of the request to perform signature verification\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Terra requires the raw, unaltered body of the request to perform signature verification."
   },
   {
     "claim": "Ignore every scheme except v1.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "ignore all schemes that aren't v1"
   },
   {
     "claim": "Compare in constant time.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "To protect against timing attacks, use a constant-time-string comparison to compare the expected signature to each of the received signatures."
   },
   {
     "claim": "Check the timestamp against your own tolerance.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "compute the difference between the current timestamp and the received timestamp, then decide if the difference is within your tolerance."
   },
   {
     "claim": "Terra recommends its official libraries over a manual check.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "We recommend that you use our official libraries to verify webhook event signatures."
   },
   {
     "claim": "Its webhook docs show Python, JavaScript and Java SDK versions.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Python SDK Javascript SDK Java SDK"
   },
   {
     "claim": "\"Terra waits 8 seconds for your server to respond before considering the request timed out.\"",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Terra waits 8 seconds for your server to respond before considering the request timed out."
   },
   {
     "claim": "Terra retries a failed webhook delivery with exponential backoff for several hours.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
-    "claim": "Terra says the number and timing of retries may change without notice.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
+    "claim": "Terra says the number and timing of retries can change.",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "The number and timing of retries can change, so don't depend on a specific schedule."
   },
   {
-    "claim": "\"the event is dropped. There is no notification when this happens\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "After the retry budget is exhausted, the event is dropped. There is no notification when this happens"
+    "claim": "After the retries, \"the delivery becomes failed and Terra does not notify you\".",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "When the retries run out, the delivery becomes failed and Terra does not notify you."
   },
   {
-    "claim": "/activity \"Returns completed workout sessions\".",
+    "claim": "/activity returns \"a user's completed workout sessions in a date range\".",
     "url": "https://raw.githubusercontent.com/tryterra/openapi/master/dist/core/v2-bundled.yaml",
-    "quote": "Returns completed workout sessions, each with a defined start and end time and an activity type such as running or cycling."
+    "quote": "Returns a user's completed workout sessions in a date range, each with a start and end time and an activity type such as running or cycling."
   },
   {
     "claim": "Per-type endpoints keyed by the Terra user_id.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
-    "quote": "user_id (required)"
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
+    "quote": "request it from the Unified API endpoints by user ID, data type and time range."
   },
   {
     "claim": "user_id and start_date are required.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
-    "quote": "start_date (required)"
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
+    "quote": "Requests take that user's user_id and at least a start date."
   },
   {
     "claim": "end_date \"is exclusive on these endpoints\".",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
     "quote": "is exclusive on these endpoints. Data is returned up to but not including this date"
   },
   {
-    "claim": "to_webhook \"will always be defaulted to true if not provided\".",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
-    "quote": "will always be defaulted to true if not provided"
+    "claim": "to_webhook \"defaults to true if not provided\".",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
+    "quote": "It defaults to true if not provided."
   },
   {
     "claim": "Set it to false for a synchronous reply.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
     "quote": "For synchronous data retrieval (if your use case is time-sensitive), just set this parameter to false"
   },
   {
     "claim": "Time ranges longer than one month must use to_webhook=true and arrive asynchronously.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
     "quote": "Time ranges longer than one month must use to_webhook=true , and Terra sends the data asynchronously ."
   },
   {
     "claim": "The same long request with to_webhook=false returns a 400.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
     "quote": "The same request with to_webhook=false returns a 400"
   },
   {
     "claim": "In chunks of at most 10MB.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
-    "quote": "When a large request is made, Terra will send the data to you in chunks of at most 10MB each."
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
+    "quote": "Terra sends the data to you in chunks of at most 10MB each."
   },
   {
     "claim": "with_samples must be true to receive granular data.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
     "quote": "must be set to true to receive granular data"
   },
   {
@@ -405,19 +405,19 @@
     "quote": "Terra has no rate limits of its own. Providers do, and Terra handles retries and backoff for you."
   },
   {
-    "claim": "Its rate-limit reference says it \"applies rate limits on data-read endpoints\".",
+    "claim": "Its rate-limit reference says it \"applies rate limits to data-read endpoints\".",
     "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
-    "quote": "Terra applies rate limits on data-read endpoints"
+    "quote": "Terra applies rate limits to data-read endpoints"
   },
   {
-    "claim": "No single request may span more than five years.",
+    "claim": "No single request may span more than 1,825 days (five years).",
     "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
-    "quote": "your start_date / end_date window is wider than 5 years"
+    "quote": "your start_date to end_date window is wider than 5 years"
   },
   {
-    "claim": "A user's requests may not total more than 6,000 requested days in an hour.",
+    "claim": "A user's requests may not add up to more than 6,000 requested days in an hour.",
     "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
-    "quote": "your code has issued requests for this user totalling more than 6,000 days in the current hour"
+    "quote": "your requests for this user add up to more than 6,000 days in the current hour"
   },
   {
     "claim": "Subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", including 100,000 credits a month.",
@@ -467,7 +467,7 @@
   {
     "claim": "A webhook is the simplest destination.",
     "url": "https://docs.tryterra.co/unified-api/quickstart",
-    "quote": "A webhook is the simplest destination. Databases and cloud storage are also supported."
+    "quote": "A webhook is the simplest destination; databases, cloud storage and queues are also supported."
   },
   {
     "claim": "Providers may completely block authentication.",
@@ -530,13 +530,48 @@
     "quote": "Apply for production access. If WHOOP contacts you for more information during the review, let us know and we can help."
   },
   {
-    "claim": "Terra says Fitbit has been retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 6, 2026).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Fitbit has been retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and new users can't connect through Fitbit."
+    "claim": "Terra says Fitbit is retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Fitbit is retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and end users can't connect through Fitbit."
   },
   {
-    "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Move your users to Google Health ( GOOGLE_HEALTH )"
+    "claim": "Terra points Fitbit end users to its Google Health source (GOOGLE_HEALTH).",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
+  },
+  {
+    "claim": "Revision, November 14, 2026: Terra's webhook docs now name the header X-Terra-Signature (step 6, FAQ, answer).",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header X-Terra-Signature , which takes the form:"
+  },
+  {
+    "claim": "Terra's Python, JavaScript and Java examples read x-terra-signature.",
+    "url": "https://docs.tryterra.co/destinations/webhooks.md",
+    "quote": "signature = request.headers.get('x-terra-signature')"
+  },
+  {
+    "claim": "Revision, November 14, 2026: when the retries run out, Terra marks the delivery failed.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "When the retries run out, the delivery becomes failed and Terra does not notify you."
+  },
+  {
+    "claim": "Once your endpoint is fixed, Terra says to \"Resend failed events from the Events page of the dashboard\".",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Resend failed events from the Events page of the dashboard once your endpoint is fixed."
+  },
+  {
+    "claim": "A resend can deliver an event you already processed, so deduplicate on the event's event_id.",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "Your server can receive the same event more than once, so deduplicate on event_id"
+  },
+  {
+    "claim": "Terra sends the event_id in the terra-reference header.",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "Your webhook receives it in the terra-reference header."
+  },
+  {
+    "claim": "No single request may span more than 1,825 days.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
+    "quote": "Requests of exactly 1,825 days are allowed: only more than 1,825 is rejected."
   }
 ]

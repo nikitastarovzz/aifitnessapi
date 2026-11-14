@@ -1,29 +1,29 @@
 ---
 path: "/integrate/terra-api"
-translatedOn: "2026-11-06"
+translatedOn: "2026-11-14"
 sourceUpdated: "2026-11-05"
-sourceHash: "d9cfbd61c47b3e26"
+sourceHash: "2108f6ee34b9b530"
 metaTitle: "API Terra (2026): um webhook para Garmin, Oura e WHOOP"
 metaDescription: >-
   O Terra (tryterra) reúne Garmin, Oura, WHOOP e outros em uma integração: o endpoint de sessão do widget, checagem HMAC de webhooks, backfills e preços.
 h1: "Como integrar o Terra (agregador de dados de saúde) (2026)"
 answer: >-
-  O Terra é um agregador de dados de saúde: você integra uma vez e ele devolve dados normalizados de Garmin, Oura, WHOOP, Strava, Apple Health e, pela contagem dele, mais de 500 fornecedores (500+) sob um único esquema. O seu backend se autentica com os headers dev-id e x-api-key, cria uma sessão de widget em POST https://access.tryterra.co/api/widget/session para que o usuário escolha e autorize o fornecedor dele, e recebe eventos normalizados em um destino como um webhook, verificados com um header terra-signature HMAC-SHA256. Em 5 de novembro de 2026, o endpoint antigo /v2/auth/generateWidgetSession está fechado para contas criadas depois de 3 de setembro de 2026, e a documentação do Terra ainda dá 3 de novembro de 2026, data que já passou, como a descontinuação prevista; alguns fornecedores, entre eles WHOOP, Dexcom e Strava, ainda exigem o seu próprio app de desenvolvedor configurado no painel do Terra.
+  O Terra é um agregador de dados de saúde: você integra uma vez e ele devolve dados normalizados de Garmin, Oura, WHOOP, Strava, Apple Health e, pela contagem dele, mais de 500 fornecedores (500+) sob um único esquema. O seu backend se autentica com os headers dev-id e x-api-key, cria uma sessão de widget em POST https://access.tryterra.co/api/widget/session para que o usuário escolha e autorize o fornecedor dele, e recebe eventos normalizados em um destino como um webhook, verificados com um header X-Terra-Signature HMAC-SHA256. Em 5 de novembro de 2026, o endpoint antigo /v2/auth/generateWidgetSession está fechado para contas criadas depois de 3 de setembro de 2026, e a documentação do Terra ainda dá 3 de novembro de 2026, data que já passou, como a descontinuação prevista; alguns fornecedores, entre eles WHOOP, Dexcom e Strava, ainda exigem o seu próprio app de desenvolvedor configurado no painel do Terra.
 cta: >-
   Publicamos passo a passos de integração com wearables e agregadores e registramos mudanças de endpoint como o relançamento do widget do Terra, então assine e conecte o próximo dispositivo sem surpresas.
 faqs:
   - q: "O que diferencia o Terra de integrar cada wearable diretamente?"
     a: >-
-      O Terra é um agregador: você constrói uma integração e recebe Garmin, Oura, WHOOP, Strava, Apple Health e outras fontes normalizados em um único esquema, em um só destino, de um webhook a um banco de dados ou fila. O Fitbit não é mais uma delas: em 6 de novembro de 2026, a página de integrações suportadas do Terra dizia "Fitbit has been retired" [o Fitbit foi aposentado] porque o Google desligou a Fitbit Web API em 2 de novembro de 2026, e direcionava os usuários ao Google Health (GOOGLE_HEALTH). Em vez de fluxos OAuth e parsers separados por dispositivo, você escreve um único receptor. As contrapartidas são uma conta baseada em créditos, a partir de US$ 399 por mês com cobrança anual em 5 de novembro de 2026, e o seu próprio app de desenvolvedor para alguns fornecedores.
+      O Terra é um agregador: você constrói uma integração e recebe Garmin, Oura, WHOOP, Strava, Apple Health e outras fontes normalizados em um único esquema, em um só destino, de um webhook a um banco de dados ou fila. O Fitbit não é mais uma delas: em 14 de novembro de 2026, a página de integrações suportadas do Terra dizia "Fitbit is retired" [o Fitbit está aposentado] porque o Google desligou a Fitbit Web API em 2 de novembro de 2026, e direcionava os usuários finais ao Google Health (GOOGLE_HEALTH). Em vez de fluxos OAuth e parsers separados por dispositivo, você escreve um único receptor. As contrapartidas são uma conta baseada em créditos, a partir de US$ 399 por mês com cobrança anual em 5 de novembro de 2026, e o seu próprio app de desenvolvedor para alguns fornecedores.
   - q: "Ainda preciso das minhas próprias credenciais de desenvolvedor em cada fornecedor?"
     a: >-
-      Para alguns. Em 5 de novembro de 2026, a documentação do Terra diz que ele gerencia as chaves de API dos fornecedores em geral, mas cita WHOOP, Dexcom, Huawei, Strava e Virtuagym como exigindo processos especiais; WHOOP e Dexcom exigem o seu próprio app nos portais de desenvolvedor deles, com URLs em um domínio seu. A tabela de integrações dele também marca Garmin e Samsung como Required [obrigatório], enquanto a página inicial diz que os dados da Garmin passam pela integração de parceiro do Terra, então confira a página Connections do seu painel.
+      Para alguns. A documentação do Terra diz que ele gerencia as chaves de API dos fornecedores em geral, mas, em 14 de novembro de 2026, que WHOOP, Dexcom, Huawei, Strava e Virtuagym exigem o seu próprio app de desenvolvedor ou as suas próprias chaves antes de poderem ser ativados; WHOOP e Dexcom exigem o seu próprio app nos portais de desenvolvedor deles, com URLs em um domínio seu. A tabela de integrações dele também marca Garmin e Samsung como Required [obrigatório], enquanto a página inicial diz que os dados da Garmin passam pela integração de parceiro do Terra, então confira a página Connections do seu painel.
   - q: "Como um usuário conecta o wearable dele pelo Terra?"
     a: >-
       O seu backend chama POST https://access.tryterra.co/api/widget/session com o seu dev-id e x-api-key, passando opcionalmente reference_id, uma lista de providers separada por vírgulas e URLs de redirecionamento. O Terra responde com HTTP 201 e uma url do widget válida por 24 horas. O usuário a abre em uma nova aba ou em um navegador dentro do app, não em uma WebView nem em um iframe, escolhe um fornecedor e faz login, e o Terra envia um evento auth com o user_id do Terra, que você guarda.
   - q: "Como verifico se um webhook do Terra é autêntico?"
     a: >-
-      O Terra assina cada webhook com HMAC-SHA256 e envia um header terra-signature no formato t=timestamp,v1=signature. Concatene o timestamp, um ponto e o corpo bruto da requisição, calcule o HMAC com o signing secret do seu endpoint e compare em tempo constante com cada valor v1, ignorando os outros esquemas. Leia o corpo bruto antes de fazer o parse do JSON, ou use as bibliotecas oficiais do Terra para Python, JavaScript ou Java.
+      O Terra assina cada webhook com HMAC-SHA256 e envia um header X-Terra-Signature no formato t=timestamp,v1=signature. Concatene o timestamp, um ponto e o corpo bruto da requisição, calcule o HMAC com o signing secret do seu endpoint e compare em tempo constante com cada valor v1, ignorando os outros esquemas. Leia o corpo bruto antes de fazer o parse do JSON, ou use as bibliotecas oficiais do Terra para Python, JavaScript ou Java.
   - q: "Quanto custa o Terra?"
     a: >-
       Em 5 de novembro de 2026, a página de preços do Terra diz que as assinaturas começam em US$ 399 por mês com cobrança anual ou US$ 499 com cobrança mensal, incluindo 100.000 créditos por mês. Cada fonte de dados conectada custa 200 créditos por mês, os primeiros 400 eventos por fonte a cada mês são gratuitos, eventos extras custam 0,5 crédito, e créditos extras começam em US$ 0,005, caindo para US$ 0,003 acima de 1.000.000. Complementos como streaming têm preço à parte.
@@ -45,7 +45,7 @@ steps:
       O Terra envia eventos activity, athlete, body, daily, hormone, menstruation, nutrition e sleep, cada um indicando o usuário e o fornecedor, no mesmo formato para todas as fontes. Escreva um handler por tipo, e sobrescreva os registros daily e body com o payload mais recente.
   - name: "Verifique a assinatura do webhook"
     text: >-
-      Todo webhook traz um header terra-signature no formato t=timestamp,v1=signature. Calcule um HMAC-SHA256 sobre o timestamp, um ponto e o corpo bruto com o seu signing secret, compare em tempo constante com cada valor v1 e responda em até 8 segundos.
+      Todo webhook traz um header X-Terra-Signature no formato t=timestamp,v1=signature. Calcule um HMAC-SHA256 sobre o timestamp, um ponto e o corpo bruto com o seu signing secret, compare em tempo constante com cada valor v1 e responda em até 8 segundos.
   - name: "Puxe os dados históricos via REST"
     text: >-
       Para o backfill, chame os endpoints por tipo, como /activity, com o user_id do Terra e um start_date; o end_date é exclusivo. O to_webhook tem true como padrão, então defina-o como false para uma resposta síncrona, e intervalos maiores que um mês precisam usar to_webhook=true, que entrega os dados de forma assíncrona, em partes.
@@ -63,13 +63,19 @@ related:
 ---
 O motivo de usar um agregador, e o que você deve guardar: **uma integração, muitos fornecedores, entregues em um só destino.** Você nunca escreve parsing específico de fornecedor. Para ver onde o Terra fica entre os agregadores, veja [APIs agregadoras de dados de saúde](/fitness-apis/health-data-aggregator-apis) e a comparação direta [Terra vs Vital](/fitness-apis/terra-vs-vital); a [visão geral da API do Terra](/apis/terra) reúne como obter acesso e todas as páginas deste site que tratam do Terra. Este guia também é um passo da [trilha de leitura para suportar todos os wearables por um único agregador](/paths), que põe as páginas desse trabalho na ordem em que você vai precisar delas.
 
-Todo endpoint, campo e limite abaixo vem da documentação, da especificação OpenAPI e da página de preços do Terra, como as lemos em 5 de novembro de 2026.
+Todo endpoint, campo e limite abaixo vem da documentação, da especificação OpenAPI e da página de preços do Terra, como as lemos em 5 de novembro de 2026, exceto os trechos que o Terra reescreveu ou mudou de lugar até 14 de novembro de 2026, citados a partir da documentação daquele dia.
 
 ## O que mudou nesta revisão
 
+14 de novembro de 2026:
+
+- **O header da assinatura.** A documentação de webhooks do Terra agora chama o header de `X-Terra-Signature`, e os exemplos dela em Python, JavaScript e Java leem `x-terra-signature`. Versões anteriores deste guia, e da documentação, o chamavam de `terra-signature`. O esquema não mudou; o passo 6 traz os detalhes.
+- **Entregas que falharam podem ser reenviadas.** Quando as novas tentativas se esgotam, o Terra agora marca a entrega como falha em vez de descartá-la, e eventos que falharam podem ser reenviados pelo painel. O passo 6 traz a redação.
+- **O Terra mudou a documentação de lugar.** A maioria das páginas de guia agora fica em docs.tryterra.co/unified-api e docs.tryterra.co/destinations.
+
 5 de novembro de 2026:
 
-- **Novas tentativas de webhook.** A documentação de webhooks do Terra não dá mais um número nem uma janela de novas tentativas. Agora diz que o Terra "retries the delivery automatically with exponential backoff for several hours" [repete a entrega automaticamente com backoff exponencial por várias horas] e que "The exact number and timing of retries may change without notice" [o número e o momento exatos das novas tentativas podem mudar sem aviso]. Uma versão anterior deste guia citava 10 novas tentativas ao longo de cerca de oito horas; o passo 6 traz a redação atual.
+- **Novas tentativas de webhook.** A documentação de webhooks do Terra não dá mais um número nem uma janela de novas tentativas: diz que as novas tentativas usam backoff exponencial por várias horas e que o número e o momento delas podem mudar. Uma versão anterior deste guia citava 10 novas tentativas ao longo de cerca de oito horas; o passo 6 traz a redação atual.
 - **Backfills longos.** O guia de dados históricos do Terra agora diz "Time ranges longer than one month must use to_webhook=true" [intervalos de tempo maiores que um mês precisam usar to_webhook=true], e "The same request with to_webhook=false returns a 400." [A mesma requisição com to_webhook=false devolve um 400.] Uma versão anterior dizia que intervalos acima de 28 dias passam a ser entregues de forma assíncrona por padrão; o passo 7 traz os detalhes.
 - **A data do widget legado.** A documentação do widget do Terra ainda diz que o endpoint legado "keeps working today, with deprecation planned for 3 November 2026" [continua funcionando hoje, com descontinuação prevista para 3 de novembro de 2026], uma data que já passou. Migre para o endpoint novo em vez de depender do antigo.
 
@@ -100,7 +106,7 @@ Depois escolha para onde os dados vão. Um webhook é o destino mais simples; o 
 
 ## Passo 2: registre as suas próprias credenciais nos fornecedores que exigem
 
-A documentação do Terra diz que ele "manages API Keys of data sources, meaning you can connect users without having to apply for each API Key" [gerencia as chaves de API das fontes de dados, o que significa que você pode conectar usuários sem precisar pedir cada chave de API], mas "Some providers require special processes before being able to start using them" [alguns fornecedores exigem processos especiais antes de poderem ser usados]: WHOOP, Dexcom, Huawei, Strava e Virtuagym.
+A documentação do Terra diz que ele "manages the API keys of data sources, so you can connect users without applying for each key yourself" [gerencia as chaves de API das fontes de dados, então você pode conectar usuários sem pedir cada chave você mesmo], mas que estes fornecedores "need your own developer app or keys before you can enable them" [exigem o seu próprio app de desenvolvedor ou as suas próprias chaves antes de você poder ativá-los]: WHOOP, Dexcom, Huawei, Strava e Virtuagym.
 
 - **WHOOP e Dexcom.** Cada um "requires every company to connect users through its own app" [exige que toda empresa conecte os usuários pelo seu próprio app] no portal de desenvolvedor dele, com a URL de redirecionamento (e, no WHOOP, a URL do webhook) "on a domain that belongs to you" [em um domínio que pertence a você]. No painel, abra Connections, escolha o fornecedor e siga a configuração; ela configura o domínio personalizado e mostra as URLs para colar no seu app, e então você pede acesso de produção ao fornecedor.
 - **Strava.** Crie um aplicativo em strava.com/settings/api e depois informe o client ID e o secret dele na configuração do Strava no painel.
@@ -133,7 +139,7 @@ Migrando do endpoint legado? Ele ficava em `POST https://api.tryterra.co/v2/auth
 
 Abra a `url` em uma nova aba ou em um navegador dentro do app. A documentação do Terra diz: "Do not use WebView or iFrame for the authentication flow" [não use WebView nem iFrame no fluxo de autenticação], porque o usuário não consegue ver em qual domínio está digitando a senha, e os fornecedores podem bloquear isso. O usuário escolhe um fornecedor e faz login com o login do próprio fornecedor; depois ele cai na sua URL de sucesso "with their Terra user_id and your reference_id as query parameters" [com o user_id dele no Terra e o seu reference_id como parâmetros de query].
 
-O sinal que vale é o **evento auth** que o Terra envia ao seu destino, com o `user_id` do Terra, o seu `reference_id` e o `provider`. Guarde esse `user_id` associado à sua conta: ele é a chave de toda requisição posterior e a chave de roteamento de todo payload. Se um usuário reconecta o mesmo fornecedor sob o mesmo `reference_id`, o Terra "will delete the previous user record for that account and yield a new user_id" [apaga o registro de usuário anterior daquela conta e gera um novo user_id], e "Terra sends a user_reauth event containing both the old and new user_id" [o Terra envia um evento user_reauth com o user_id antigo e o novo], então trate esse evento ou os dados novos vão parar de bater com os seus registros.
+O sinal que vale é o **evento auth** que o Terra envia ao seu destino, com o `user_id` do Terra, o seu `reference_id` e o `provider`. Guarde esse `user_id` associado à sua conta: ele é a chave de toda requisição posterior e a chave de roteamento de todo payload. Se um usuário reconecta o mesmo fornecedor sob o mesmo `reference_id`, a documentação do Terra diz que a reconexão "deletes the previous user record and creates a new user_id" [apaga o registro de usuário anterior e cria um novo user_id], e "Terra sends a user_reauth event with both the old and new user_id" [o Terra envia um evento user_reauth com o user_id antigo e o novo], então trate esse evento ou os dados novos vão parar de bater com os seus registros.
 
 ## Passo 5: receba os dados normalizados no seu destino
 
@@ -155,13 +161,13 @@ Roteie por `type` e `user.user_id`. Como o esquema é idêntico entre fornecedor
 
 ## Passo 6: verifique a assinatura do webhook
 
-"Every webhook sent by Terra includes an HMAC-based signature header" [todo webhook enviado pelo Terra inclui um header de assinatura baseado em HMAC], `terra-signature`, no formato `t=<timestamp>,v1=<signature>`. O Terra assina com HMAC-SHA256: o payload assinado é o timestamp, um `.` e depois "The actual JSON payload (that is, the request body)" [o payload JSON propriamente dito (ou seja, o corpo da requisição)], e a chave é o signing secret do seu endpoint. O Terra "requires the raw, unaltered body of the request to perform signature verification" [exige o corpo bruto e inalterado da requisição para verificar a assinatura], então leia o corpo bruto antes de qualquer parse de JSON. Ignore todo esquema que não seja `v1` e compare em tempo constante.
+"Every webhook sent by Terra includes an HMAC-based signature header" [todo webhook enviado pelo Terra inclui um header de assinatura baseado em HMAC], `X-Terra-Signature`, no formato `t=<timestamp>,v1=<signature>`. O Terra assina com HMAC-SHA256: o payload assinado é o timestamp, um `.` e depois "The actual JSON payload (that is, the request body)" [o payload JSON propriamente dito (ou seja, o corpo da requisição)], e a chave é o signing secret do seu endpoint. O Terra "requires the raw, unaltered body of the request to perform signature verification" [exige o corpo bruto e inalterado da requisição para verificar a assinatura], então leia o corpo bruto antes de qualquer parse de JSON. Ignore todo esquema que não seja `v1` e compare em tempo constante.
 
 ```js
 const crypto = require("crypto");
 
 function verifyTerraSignature(rawBody, header, secret) {
-  // header example: "t=1723808700,v1=a5ee9dba..."
+  // header: the X-Terra-Signature value, e.g. "t=1723808700,v1=a5ee9dba..."
   let timestamp = null;
   const signatures = [];
   for (const part of header.split(",")) {
@@ -183,11 +189,11 @@ function verifyTerraSignature(rawBody, header, secret) {
 
 Confira também o timestamp contra a sua própria tolerância, como a documentação do Terra sugere, para rejeitar replays. O Terra recomenda as bibliotecas oficiais dele em vez de uma checagem manual; a documentação de webhooks mostra versões com os SDKs para Python, JavaScript e Java.
 
-Responda rápido: "Terra waits 8 seconds for your server to respond before considering the request timed out." [O Terra espera 8 segundos pela resposta do seu servidor antes de considerar que a requisição expirou.] O Terra repete uma entrega que falhou "with exponential backoff for several hours" [com backoff exponencial por várias horas], e diz que "The exact number and timing of retries may change without notice, so don't depend on a specific schedule." [O número e o momento exatos das novas tentativas podem mudar sem aviso, então não dependa de um cronograma específico.] Depois disso "the event is dropped. There is no notification when this happens" [o evento é descartado. Não há notificação quando isso acontece], então devolva 200 na hora, processe de forma assíncrona e monitore o seu endpoint.
+Responda rápido: "Terra waits 8 seconds for your server to respond before considering the request timed out." [O Terra espera 8 segundos pela resposta do seu servidor antes de considerar que a requisição expirou.] O Terra "retries the delivery with exponential backoff for several hours" [repete a entrega com backoff exponencial por várias horas], e diz que "The number and timing of retries can change, so don't depend on a specific schedule." [O número e o momento das novas tentativas podem mudar, então não dependa de um cronograma específico.] Depois disso, "the delivery becomes failed and Terra does not notify you" [a entrega passa a falha e o Terra não avisa você], então devolva 200 na hora, processe de forma assíncrona e monitore o seu endpoint. Depois de corrigi-lo, o Terra diz para "Resend failed events from the Events page of the dashboard" [reenviar os eventos que falharam pela página Events do painel]. Um reenvio pode entregar um evento que você já processou, então elimine duplicatas pelo `event_id` do evento, que o Terra envia no header `terra-reference`.
 
 ## Passo 7: puxe os dados históricos via REST (opcional)
 
-Os webhooks entregam dados novos conforme chegam. Para o backfill na primeira conexão, chame os endpoints por tipo, como `/activity` (que "Returns completed workout sessions" [devolve sessões de treino concluídas]), `/sleep`, `/daily`, `/body`, `/nutrition`, `/menstruation` e `/athlete`, usando o `user_id` do Terra como chave.
+Os webhooks entregam dados novos conforme chegam. Para o backfill na primeira conexão, chame os endpoints por tipo, como `/activity` (que devolve "a user's completed workout sessions in a date range" [as sessões de treino concluídas de um usuário em um intervalo de datas]), `/sleep`, `/daily`, `/body`, `/nutrition`, `/menstruation` e `/athlete`, usando o `user_id` do Terra como chave.
 
 ```bash
 curl --get "https://access.tryterra.co/api/v2/activity" \
@@ -203,7 +209,7 @@ curl --get "https://access.tryterra.co/api/v2/activity" \
 Quatro detalhes do guia de dados históricos do Terra pegam as pessoas desprevenidas:
 
 - `user_id` e `start_date` são obrigatórios, e `end_date` "is exclusive on these endpoints" [é exclusivo nesses endpoints], então passe o dia seguinte ao último dia que você quer.
-- `to_webhook` "will always be defaulted to true if not provided" [sempre terá true como padrão se não for informado], o que manda os dados para o seu destino em vez da resposta; defina-o como `false` para uma resposta síncrona.
+- `to_webhook` "defaults to true if not provided" [tem true como padrão se não for informado], o que manda os dados para o seu destino em vez da resposta; defina-o como `false` para uma resposta síncrona.
 - "Time ranges longer than one month must use to_webhook=true" [intervalos de tempo maiores que um mês precisam usar to_webhook=true], e a mesma requisição com `to_webhook=false` devolve um 400. Requisições grandes chegam de forma assíncrona, em partes de no máximo 10MB.
 - `with_samples` precisa ser true para receber dados granulares.
 
@@ -211,7 +217,7 @@ Quatro detalhes do guia de dados históricos do Terra pegam as pessoas despreven
 
 - **Comece cedo os cadastros nos fornecedores.** WHOOP e Dexcom exigem o seu próprio app nos portais deles e um domínio seu, e o acesso de produção é decisão do fornecedor, não do Terra.
 - **Nunca exponha a chave de API.** Crie sessões de widget e puxe dados só a partir do seu backend; chamar a API de um navegador também falha por CORS.
-- **Verifique as assinaturas desde o primeiro dia** e responda em até 8 segundos, ou os eventos começam a ser reenviados e, no fim, descartados.
-- **Limites de requisições (rate limits).** A visão geral do Terra diz que ele "has no rate limits of its own" [não tem limites de requisições próprios], mas a referência de rate limits diz que ele "applies rate limits on data-read endpoints" [aplica limites de requisições nos endpoints de leitura de dados]: nenhuma requisição pode cobrir mais de cinco anos, e as requisições de um usuário não podem somar mais de 6.000 dias pedidos em uma hora. Divida os backfills de acordo.
+- **Verifique as assinaturas desde o primeiro dia** e responda em até 8 segundos, ou os eventos começam a ser reenviados e, no fim, a falhar.
+- **Limites de requisições (rate limits).** A visão geral do Terra diz que ele "has no rate limits of its own" [não tem limites de requisições próprios], mas a referência de rate limits diz que ele "applies rate limits to data-read endpoints" [aplica limites de requisições aos endpoints de leitura de dados]: nenhuma requisição pode cobrir mais de 1.825 dias (cinco anos), e as requisições de um usuário não podem somar mais de 6.000 dias pedidos em uma hora. Divida os backfills de acordo.
 - **O preço é baseado em créditos, então faça a conta.** Em 5 de novembro de 2026, as assinaturas "start from $399 per month billed annually, or $499 per month billed monthly" [começam em US$ 399 por mês com cobrança anual, ou US$ 499 por mês com cobrança mensal], incluindo 100.000 créditos por mês. Cada fonte de dados conectada custa 200 créditos por mês, os primeiros 400 eventos por fonte são gratuitos, e créditos extras começam em US$ 0,005. Pela nossa conta, 100.000 créditos cobrem 500 fontes conectadas antes dos eventos. Reconfira tryterra.co/pricing antes de fazer o orçamento.
 - **Agregador, não mágica.** O Terra elimina o código OAuth e o parsing por fornecedor; ele não elimina a aprovação do app em cada fornecedor quando o fornecedor a exige. Essa troca, um pouco de papelada no painel em troca de uma base de código única para [muitos wearables](/fitness-apis/wearable-data-apis), é o que você está comprando.

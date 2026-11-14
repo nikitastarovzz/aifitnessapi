@@ -72,7 +72,7 @@
   {
     "claim": "Terra mobile SDK for Apple Health, Samsung Health and Health Connect.",
     "url": "https://docs.tryterra.co/unified-api/getting-started",
-    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra."
   },
   {
     "claim": "Junction mobile SDKs for Apple HealthKit.",
@@ -165,9 +165,9 @@
     "quote": "That covers sleep stages and latency, workouts, heart rate, HRV, VO2max, blood oxygen (SpO2), continuous glucose monitoring (CGM), menstrual cycle, body composition and per-set strength training."
   },
   {
-    "claim": "Apple Health, Samsung Health and Health Connect \"have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra.\"",
+    "claim": "Apple Health, Samsung Health and Health Connect \"have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra.\"",
     "url": "https://docs.tryterra.co/unified-api/getting-started",
-    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra."
   },
   {
     "claim": "The Vantage API lets you \"order blood and DNA test kits, track fulfilment, and receive lab results in FHIR format through a single API\".",
@@ -300,13 +300,13 @@
     "quote": "Supported Countries United Kingdom 🇬🇧 USA"
   },
   {
-    "claim": "Terra's supported-integrations page says Fitbit has been retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 6, 2026).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Fitbit has been retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and new users can't connect through Fitbit."
+    "claim": "Terra's supported-integrations page says Fitbit is retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Fitbit is retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and end users can't connect through Fitbit."
   },
   {
     "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Move your users to Google Health ( GOOGLE_HEALTH )"
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
   }
 ]

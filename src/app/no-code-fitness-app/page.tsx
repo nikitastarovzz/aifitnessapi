@@ -57,7 +57,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How do you connect a user's Garmin, Oura, or WHOOP without writing OAuth code?",
-    a: "Through a health-data aggregator whose auth flow is hosted. With Terra — the example this page uses — your builder's workflow mints a widget session with a simple authenticated request, then opens the returned URL; Terra's hosted Connect flow walks the user through picking a provider and authorizing it, runs each provider's OAuth for you, and delivers normalized data to a webhook. You never build a consent screen or handle a token exchange. Two costs stay honest: for several providers (Garmin, WHOOP, Strava, Oura) you must still obtain your own developer credentials and hand them to the aggregator, and aggregator pricing is typically per connected user — the convenience is the product you are paying for.",
+    a: "Through a health-data aggregator whose auth flow is hosted. With Terra — the example this page uses — your builder's workflow mints a widget session with a simple authenticated request, then opens the returned URL; Terra's hosted Connect flow walks the user through picking a provider and authorizing it, runs each provider's OAuth for you, and delivers normalized data to a webhook. You never build a consent screen or handle a token exchange. Two costs stay honest: for several providers (Terra's integrations table marks Garmin, WHOOP and Strava as Required) you must still obtain your own developer credentials and hand them to the aggregator, and aggregator pricing is typically per connected user — the convenience is the product you are paying for.",
   },
   {
     q: "Where does the no-code approach break down for a fitness app?",

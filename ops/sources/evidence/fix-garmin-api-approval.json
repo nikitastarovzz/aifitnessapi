@@ -111,7 +111,7 @@
   },
   {
     "claim": "Step 3 / FAQ: Terra's supported-integrations table marks Garmin's integration credentials as Required and links Garmin's developer portal.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required https://developerportal.garmin.com"
   },
   {

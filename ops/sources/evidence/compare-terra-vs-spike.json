@@ -20,9 +20,9 @@
     "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
   },
   {
-    "claim": "Terra docs: \"supports over 150+ Data Sources\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "The Unified API supports over 150+ Data Sources"
+    "claim": "Terra's setup docs say to \"choose from 150+ integrations\".",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "Click Add New and choose from 150+ integrations."
   },
   {
     "claim": "Spike: \"Access 40+ providers and 500+ devices via single SDK\".",
@@ -95,13 +95,13 @@
     "quote": "After each data update from the provider, a webhook event will be sent to your endpoint."
   },
   {
-    "claim": "Terra: HMAC in a terra-signature header.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+    "claim": "Terra: HMAC in an X-Terra-Signature header.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header X-Terra-Signature , which takes the form:"
   },
   {
     "claim": "Terra: HMAC with SHA256.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Compute an HMAC with the SHA256 hash function. Use the endpoint's signing secret as the key, and use the signed_payload string as the message."
   },
   {
@@ -221,12 +221,12 @@
   },
   {
     "claim": "Terra signs every webhook with HMAC-SHA256.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Compute an HMAC with the SHA256 hash function. Use the endpoint's signing secret as the key, and use the signed_payload string as the message."
   },
   {
     "claim": "Terra's signed payload includes the raw body.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "The actual JSON payload (that is, the request body)"
   },
   {
@@ -236,13 +236,13 @@
   },
   {
     "claim": "Terra retries a failed delivery \"with exponential backoff for several hours\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
-    "claim": "Terra commits to no retry count: \"The exact number and timing of retries may change without notice\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
+    "claim": "Terra commits to no retry count: \"The number and timing of retries can change, so don't depend on a specific schedule\" (body and FAQ).",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "The number and timing of retries can change, so don't depend on a specific schedule."
   },
   {
     "claim": "Spike will \"retry the request up to 10 times with exponential backoff\".",
