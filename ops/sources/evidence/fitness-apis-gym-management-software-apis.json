@@ -245,9 +245,9 @@
     "quote": "Mariana Tek's Customer API gives you the power to build custom booking and buying experiences for fitness customers."
   },
   {
-    "claim": "Wodify's documentation tells a gym where its API key lives in Wodify Core.",
+    "claim": "Wodify's documentation tells a gym where its API key lives in Wodify Core: Automations → Integrations (as of November 14, 2026).",
     "url": "https://docs.wodify.com/docs/authentication",
-    "quote": "You can find it in Wodify Core via Digital Presence > Web Integrations > API Keys."
+    "quote": "In Wodify Core, go to Automations → Integrations and open the API & MCP section."
   },
   {
     "claim": "Its API reference says to request one through the Automations → Integrations page.",
@@ -460,14 +460,14 @@
     "quote": "Specify ToDate/FromDate (max 7 days) to get a list of classes within a date range."
   },
   {
-    "claim": "Zen Planner's integrations page says its flexible API lets businesses build custom integrations or connect proprietary tools.",
-    "url": "https://www.zenplanner.com/integrations",
+    "claim": "Zen Planner's integrations page says its flexible API lets businesses build custom integrations or connect proprietary tools (Internet Archive capture of October 4, 2026; the live page answered 429 with a browser check on November 14, 2026).",
+    "url": "https://web.archive.org/web/20261004122230id_/https://www.zenplanner.com/integrations",
     "quote": "Zen Planner’s flexible API allows your to build custom integrations or connect proprietary tools to create a setup tailored to your operations."
   },
   {
-    "claim": "Zen Planner lists Zapier among its integrations.",
-    "url": "https://www.zenplanner.com/integrations",
-    "quote": "Automate workflows with Zapier"
+    "claim": "Zen Planner lists Zapier among its integrations (Internet Archive capture of October 4, 2026).",
+    "url": "https://web.archive.org/web/20261004122230id_/https://www.zenplanner.com/integrations",
+    "quote": "Automate workflows with Zapier Connect Zen Planner to thousands of apps to eliminate manual work and keep systems in sync."
   },
   {
     "claim": "PushPress says integration partners are curated by actual gym owners rather than opened to thousands of integrations.",

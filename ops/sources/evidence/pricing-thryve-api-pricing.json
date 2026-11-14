@@ -190,9 +190,9 @@
     "quote": "Oura Web Ping yes yes"
   },
   {
-    "claim": "The table lists \"Fitbit (Deprecated)\" as of November 2, 2026.",
+    "claim": "The table lists \"Fitbit (Removed Support)\" as of November 14, 2026 (\"Fitbit (Deprecated)\" on November 2).",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
-    "quote": "Fitbit (Deprecated)"
+    "quote": "Fitbit (Removed Support)"
   },
   {
     "claim": "Polar: no historic data.",
@@ -248,5 +248,10 @@
     "claim": "Terra bills credits per connected data source.",
     "url": "https://tryterra.co/pricing",
     "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "The page says \"Removed Fitbit from the available sources following the shutdown from Google.\" (November 14, 2026).",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Removed Fitbit from the available sources following the shutdown from Google."
   }
 ]

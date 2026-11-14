@@ -16,12 +16,12 @@
     "verifiedOn": "Date this entry was last checked against its source page"
   },
   "stats": {
-    "totalItems": 22,
+    "totalItems": 23,
     "byStatus": {
-      "confirmed": 19,
+      "confirmed": 20,
       "reported": 3
     },
-    "confirmed": 19,
+    "confirmed": 20,
     "reported": 3,
     "watch": 0,
     "earliestSortDate": "2023-04-15",
@@ -37,6 +37,16 @@
       "source": "https://aifitnessapi.com/google-fit-shutdown",
       "sourceLabel": "Google Fit shutdown hub",
       "verifiedOn": "2026-10-02"
+    },
+    {
+      "date": "2026-11",
+      "sortDate": "2026-11-14",
+      "title": "Thryve removes its Fitbit data source",
+      "summary": "Thryve gives no date for the change: first seen on 2026-11-14; on 2026-11-02 its data-sources table listed \"Fitbit (Deprecated)\". The table now lists \"Fitbit (Removed Support)\", and the page says \"Removed Fitbit from the available sources following the shutdown from Google.\" Google Health stays a separate source with no shared OAuth client, and the docs do not say what happens to existing Fitbit connections.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/pricing/thryve-api-pricing",
+      "sourceLabel": "Thryve API pricing",
+      "verifiedOn": "2026-11-14"
     },
     {
       "date": "2026-11-03",

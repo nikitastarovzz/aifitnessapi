@@ -42,6 +42,16 @@ export type ChangeEvent = {
 
 export const CHANGE_EVENTS: ChangeEvent[] = [
   {
+    date: "2026-11",
+    sortDate: "2026-11-14",
+    title: "Thryve removes its Fitbit data source",
+    summary:
+      "Thryve gives no date for the change: first seen on 2026-11-14; on 2026-11-02 its data-sources table listed \"Fitbit (Deprecated)\". The table now lists \"Fitbit (Removed Support)\", and the page says \"Removed Fitbit from the available sources following the shutdown from Google.\" Google Health stays a separate source with no shared OAuth client, and the docs do not say what happens to existing Fitbit connections.",
+    status: "confirmed",
+    page: { href: "/pricing/thryve-api-pricing", label: "Thryve API pricing" },
+    verifiedOn: "2026-11-14",
+  },
+  {
     date: "2026-11-03",
     sortDate: "2026-11-03",
     title: "Terra legacy widget endpoint deprecation",

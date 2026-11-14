@@ -1,9 +1,9 @@
 {
   "generatedBy": "scripts/build-deprecation-rules.mjs",
   "site": "https://aifitnessapi.com",
-  "updated": "2026-11-06",
+  "updated": "2026-11-14",
   "inputs": {
-    "graveyard": "2026-10-31",
+    "graveyard": "2026-11-14",
     "fitbitWebApi": "2026-11-05",
     "googleHealthApi": "2026-10-31",
     "libraries": "2026-10-03",
@@ -30,7 +30,7 @@
       "quote": "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP 410 Gone status code.",
       "url": "https://developers.google.com/health/about",
       "publisher": "Google for Developers",
-      "checkedOn": "2026-10-31",
+      "checkedOn": "2026-11-14",
       "replacedBy": [
         {
           "label": "Google Health API",

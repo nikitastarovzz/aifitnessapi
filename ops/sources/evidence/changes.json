@@ -68,5 +68,15 @@
     "claim": "Garmin entry: the earlier FAQ statement that the program was only for business use (Wayback Machine capture of 17 October 2026).",
     "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
     "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Thryve entry: the data-sources table lists \"Fitbit (Removed Support)\" (first seen 2026-11-14).",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Fitbit (Removed Support)"
+  },
+  {
+    "claim": "Thryve entry: the page says \"Removed Fitbit from the available sources following the shutdown from Google.\"",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Removed Fitbit from the available sources following the shutdown from Google."
   }
 ]

@@ -335,9 +335,9 @@
     "quote": "Profiling will normally be necessary for implementation."
   },
   {
-    "claim": "HL7 also publishes a Personal Health Device FHIR implementation guide, version 2.0.0 (STU 2), based on R4.",
+    "claim": "HL7 also publishes a Personal Health Device FHIR implementation guide, version 2.0.1 (STU 2) as of November 14, 2026, based on R4.",
     "url": "https://hl7.org/fhir/uv/phd/",
-    "quote": "This page is part of the Personal Health Device FHIR IG (v2.0.0: STU 2) based on FHIR"
+    "quote": "This page is part of the Personal Health Device FHIR IG (v2.0.1: STU 2) based on FHIR"
   },
   {
     "claim": "HL7 says a body mass index Observation \"should not contain components for height and weight because they are clinically relevant observations on their own\".",

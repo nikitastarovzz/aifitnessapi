@@ -35,9 +35,9 @@
     "quote": "49 Google Health Web Bulk yes no"
   },
   {
-    "claim": "Migration guide correction: as of November 2, 2026 Thryve's docs list \"Fitbit (Deprecated)\".",
+    "claim": "Migration guide correction: as of November 14, 2026 Thryve's docs list \"Fitbit (Removed Support)\" (\"Fitbit (Deprecated)\" on November 2).",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
-    "quote": "Fitbit (Deprecated)"
+    "quote": "Fitbit (Removed Support)"
   },
   {
     "claim": "Report and /apis/terra corrections: Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",

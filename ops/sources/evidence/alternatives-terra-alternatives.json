@@ -275,9 +275,9 @@
     "quote": "You must apply for Garmin Developer Program"
   },
   {
-    "claim": "It is still pre-1.0 (version 0.11.0 when we read it on November 2, 2026).",
+    "claim": "You upgrade it yourself (its backend declared version 1.0.0 when we read it on November 14, 2026).",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/backend/pyproject.toml",
-    "quote": "version = \"0.11.0\""
+    "quote": "version = \"1.0.0\""
   },
   {
     "claim": "FAQ: Terra remains strong on lab testing.",
