@@ -646,6 +646,23 @@ function healthChecks() {
   }
   if (!current?.engines?.google?.length) return;
 
+  // A weekly pull that skips (no repository secret) still reports success, by
+  // design, so the age of the newest data is the signal: the 2026-11-09 run
+  // skipped and nothing said so (ops/MORE-20-2026-11-14.md item 17).
+  {
+    const ends = [current.range?.end, ...snapDates].filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d ?? "")).sort();
+    const newest = ends.at(-1);
+    if (newest) {
+      const days = Math.floor((Date.now() - Date.parse(`${newest}T00:00:00Z`)) / 86_400_000);
+      if (days > 10) {
+        console.log(
+          `\n  ⚠ The newest search data is ${days} days old (${newest}). The Monday pull may be skipping: ` +
+            `check that GSC_SERVICE_ACCOUNT_JSON and BING_WEBMASTER_API_KEY are set (ops/gsc/README.md), or pull by hand.`,
+        );
+      }
+    }
+  }
+
   // Previous: explicit, or the newest earlier snapshot with a different window.
   let previous = null;
   if (argValue("--previous")) previous = loadSnapshot(argValue("--previous"));

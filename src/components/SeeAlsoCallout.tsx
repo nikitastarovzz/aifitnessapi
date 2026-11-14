@@ -50,6 +50,13 @@ const RATE_CALC = { href: "/tools/rate-limit-calculator", label: name("/tools/ra
 // pages below are among the ones it shows most.
 const FITBIT_410 = { href: "/fix/fitbit-api-410-gone", label: "Fitbit API 410 Gone: the turn-off and the fix" };
 const ROOK_ALTERNATIVES = { href: "/alternatives/rook-alternatives", label: "ROOK API alternatives" };
+// Added 2026-11-14 (ops/MORE-20-2026-11-14.md item 19): the new page, from
+// the nutrition pages Google shows most.
+const NUTRITICS = {
+  href: "/alternatives/nutritics-alternatives",
+  label: "Nutritics alternatives",
+  why: "Nutritics sells its Food Data API by quote, and we found no published price or API reference; five developer alternatives and what each publishes.",
+};
 
 const MAP: Record<string, Pointer[]> = {
   // ── Pose and motion ──────────────────────────────────────────────────
@@ -205,6 +212,9 @@ const MAP: Record<string, Pointer[]> = {
     { ...MARKET_MAP, why: "Every wearable and aggregator API in the directory on one map, filterable by approval gate." },
     { ...API_INDEX, why: "Releases, dated changes and verification age for every product we track, sortable." },
   ],
+  "/fitness-apis/nutrition-apis": [NUTRITICS],
+  "/compare/nutritionix-vs-edamam": [NUTRITICS],
+  "/compare/edamam-vs-spoonacular": [NUTRITICS],
   // ── HealthKit, Health Connect and Google Health API references ───────
   "/integrate/healthkit": [
     {

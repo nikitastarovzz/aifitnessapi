@@ -64,6 +64,7 @@ import {
   indexLag,
   normalisePath,
 } from "./lib/gsc-sections.mjs";
+import { readBuiltSitemap } from "./lib/sitemap-files.mjs";
 
 const SNAP_DIR = "data/gsc/snapshots";
 const LATEST = "data/gsc/latest.json";
@@ -213,9 +214,18 @@ async function sitemapPaths() {
     await fetchXml(url);
     return { paths: locs.map(normalisePath), from: url };
   }
-  const file = arg("--sitemap") ?? ".next/server/app/sitemap.xml.body";
-  if (!fs.existsSync(file)) return { paths: null, from: file };
-  return { paths: parseSitemap(fs.readFileSync(file, "utf8")), from: file };
+  const file = arg("--sitemap");
+  if (file) {
+    if (!fs.existsSync(file)) return { paths: null, from: file };
+    return { paths: parseSitemap(fs.readFileSync(file, "utf8")), from: file };
+  }
+  // /sitemap.xml has been an index since 2026-11-05 (ops/MORE-30-2026-11-05.md
+  // item 26): its eight <loc>s are child sitemaps, not pages. Read it the way
+  // gsc-report.mjs and qa.mjs do, children included; until 2026-11-14 this
+  // judged the eight child URLs and reported "0 of 8" (ops/MORE-20-2026-11-14.md).
+  const built = readBuiltSitemap(".next/server/app");
+  if (built.index === null) return { paths: null, from: ".next/server/app/sitemap.xml.body" };
+  return { paths: parseSitemap(built.xml), from: `.next/server/app/sitemap.xml.body and its ${built.children.length} child sitemaps` };
 }
 
 // ── Collect and score ────────────────────────────────────────────────────
