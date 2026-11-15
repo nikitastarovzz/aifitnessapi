@@ -53,5 +53,95 @@
     "claim": "Fitbit / Garmin and table: some features are marked Supported with Enterprise Access only.",
     "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
     "quote": "Supported with Enterprise Access only"
+  },
+  {
+    "claim": "WHOOP says you need a WHOOP membership to develop an app.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform."
+  },
+  {
+    "claim": "The API requests consent from WHOOP members.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "Oura: its own 10-user cap until Oura approves your app.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "By default, API Applications have a ten user limit."
+  },
+  {
+    "claim": "Terra's docs say 150+ integrations.",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "Click Add New and choose from 150+ integrations."
+  },
+  {
+    "claim": "Terra: WHOOP connects through your own app on the WHOOP developer portal.",
+    "url": "https://docs.tryterra.co/unified-api/whoop",
+    "quote": "WHOOP requires every company to connect users through its own app on the WHOOP developer portal"
+  },
+  {
+    "claim": "Terra's integrations page says Google turned the Fitbit Web API off on 2 November 2026.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Google turned off the Fitbit Web API on 2 November 2026"
+  },
+  {
+    "claim": "Rook: over 400 health data sources and wearable devices.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "The integration ecosystem consolidates access to over 400 health data sources and wearable devices."
+  },
+  {
+    "claim": "Rook: clients create their own WHOOP developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "Junction's docs say 300+ devices.",
+    "url": "https://docs.junction.com/home/welcome",
+    "quote": "Connect to 300+ devices, and receive data in Junction standardized schemas."
+  },
+  {
+    "claim": "Junction supports WHOOP with Bring Your Own OAuth.",
+    "url": "https://docs.junction.com/wearables/connecting-providers/bring-your-own-oauth/overview",
+    "quote": "WHOOP BYOO is available for the Launch, Grow and Scale plans"
+  },
+  {
+    "claim": "Junction was formerly Vital.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Vital was always about helping healthcare systems operate more effectively."
+  },
+  {
+    "claim": "Terra from $499 a month billed monthly.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly."
+  },
+  {
+    "claim": "Junction $300 a month for up to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "Junction $300 a month for up to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "for a flat $300 a month"
+  },
+  {
+    "claim": "Rook from $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "$399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Google lists November 2, 2026 as the Fitbit Web API and Fitbit OAuth turn-off.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Google tells developers to migrate applications and users to the Google Health API and Google OAuth 2.0.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "must migrate their applications and users to the Google Health API and Google OAuth 2.0"
+  },
+  {
+    "claim": "The Google Health API returns data from Fitbit devices and Pixel watches.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "All Fitbit devices and Google Pixel watches, current and previous, will collect data that is returned through the Google Health API."
   }
 ]

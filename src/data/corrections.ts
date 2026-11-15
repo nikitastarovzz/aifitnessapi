@@ -23,6 +23,13 @@ export type Correction = {
 
 export const CORRECTIONS: Correction[] = [
   {
+    date: "2026-11-15",
+    page: { href: "/alternatives/whoop-api-alternatives", label: "The Best WHOOP API Alternatives (2026)" },
+    was: "The page and one FAQ answer said that with an aggregator such as Terra, Junction or Rook, WHOOP's member tiers on your own app stop being the constraint.",
+    now: "With Terra and Rook they do not. Terra's WHOOP guide says \"WHOOP requires every company to connect users through its own app on the WHOOP developer portal\", and Rook's data-sources page says clients \"are required to create their own developer accounts\" for WHOOP, so WHOOP's tiers still apply to that app. Junction lists WHOOP under Bring Your Own OAuth; the Junction pages read that day do not say whether WHOOP works without your own app, and the page says so.",
+    how: "Found on 2026-11-15 by the daily vendor watch while re-verifying the page against each vendor's pages, fetched that day by a source-snapshot run. The site had recorded both sentences since 2026-10-18, in the evidence for the aggregator comparison and the Terra integration guide; this page was not updated with them.",
+  },
+  {
     date: "2026-11-14",
     page: { href: "/compare/terra-vs-spike", label: "Terra vs Spike Health: Which Aggregator for Your App?" },
     was: "An FAQ answer said Terra retries failed webhook deliveries up to 10 times.",
