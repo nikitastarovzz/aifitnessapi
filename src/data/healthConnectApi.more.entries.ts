@@ -78,7 +78,7 @@ export const healthConnectApiMoreEntries: ClusterEntry[] =
     "slug": "read-health-data-history",
     "primaryQuery": "READ_HEALTH_DATA_HISTORY",
     "h1": "READ_HEALTH_DATA_HISTORY: reading Health Connect data older than 30 days",
-    "metaTitle": "READ_HEALTH_DATA_HISTORY and the 30-Day Read Limit",
+    "metaTitle": "READ_HEALTH_DATA_HISTORY: Health Connect's 30-Day Read Limit",
     "metaDescription": "Health Connect reads stop 30 days before your app's first permission grant. What READ_HEALTH_DATA_HISTORY lifts, the feature check and reinstall resets.",
     "updated": "2026-10-04",
     "answer": "By default, Google says, \"all applications can read data from Health Connect for up to 30 days prior to when any permission was first granted.\" The android.permission.health.READ_HEALTH_DATA_HISTORY permission lifts that limit for every data type and applies to readRecord, readRecords, the three aggregate methods and getChanges. Without it, readRecord on an older record fails, while the other methods quietly leave older data out. It depends on the Health Connect version, so check FEATURE_READ_HEALTH_DATA_HISTORY first, and note that uninstalling the app revokes it and restarts the 30-day window from the new grant.",
