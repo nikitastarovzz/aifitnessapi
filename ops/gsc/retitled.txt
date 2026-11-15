@@ -105,3 +105,5 @@
 # 2026-11-13: GSC-10 item 2 and 3 (ops/GSC-10-2026-11-13.md): /fitness-apis gives "fitness api" to the homepage; the exercise roundup gives the exercise searches to the pricing page.
 /fitness-apis
 /fitness-apis/exercise-database-apis
+# 2026-11-15: daily search loop, ops/QUEUE.md #17 (CTR anomaly, queries withheld); title only.
+/health-connect-api/read-health-data-history

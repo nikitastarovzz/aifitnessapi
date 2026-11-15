@@ -1,5 +1,5 @@
 {
-  "generatedOn": "2026-11-14",
+  "generatedOn": "2026-11-15",
   "asOf": "2026-11-14",
   "verdict": "closed",
   "reason": "3 of 54 pages published 2026-10-24 to 2026-11-07 were shown in Google within 7 days",
@@ -20,67 +20,77 @@
   "newPagesToday": 0,
   "requestIndexing": [
     {
-      "path": "/alternatives/mediapipe-alternatives",
-      "published": "2026-10-18",
-      "ageDays": 27
+      "path": "/alternatives/polar-api-alternatives",
+      "published": "2026-11-04",
+      "ageDays": 10
     },
     {
-      "path": "/alternatives/quickpose-alternatives",
-      "published": "2026-10-18",
-      "ageDays": 27
+      "path": "/alternatives/spike-api-alternatives",
+      "published": "2026-11-04",
+      "ageDays": 10
     },
     {
-      "path": "/alternatives/openpose-alternatives",
+      "path": "/pricing/suunto-api-pricing",
+      "published": "2026-10-27",
+      "ageDays": 18
+    },
+    {
+      "path": "/pricing/wahoo-api-pricing",
+      "published": "2026-10-27",
+      "ageDays": 18
+    },
+    {
+      "path": "/pricing/junction-api-pricing",
+      "published": "2026-11-04",
+      "ageDays": 10
+    },
+    {
+      "path": "/pricing/nutritionix-api-pricing",
+      "published": "2026-11-04",
+      "ageDays": 10
+    },
+    {
+      "path": "/pricing/rook-api-pricing",
+      "published": "2026-11-04",
+      "ageDays": 10
+    },
+    {
+      "path": "/pricing/terra-api-pricing",
+      "published": "2026-11-04",
+      "ageDays": 10
+    },
+    {
+      "path": "/compare/exercisedb-vs-free-exercise-db",
       "published": "2026-10-22",
       "ageDays": 23
     },
     {
-      "path": "/alternatives/wger-alternatives",
+      "path": "/compare/mediapipe-vs-movenet",
       "published": "2026-10-22",
       "ageDays": 23
-    },
-    {
-      "path": "/alternatives/dexcom-api-alternatives",
-      "published": "2026-10-27",
-      "ageDays": 18
-    },
-    {
-      "path": "/alternatives/samsung-health-api-alternatives",
-      "published": "2026-10-27",
-      "ageDays": 18
-    },
-    {
-      "path": "/alternatives/suunto-api-alternatives",
-      "published": "2026-10-27",
-      "ageDays": 18
-    },
-    {
-      "path": "/alternatives/withings-api-alternatives",
-      "published": "2026-10-27",
-      "ageDays": 18
-    },
-    {
-      "path": "/alternatives/rook-alternatives",
-      "published": "2026-11-02",
-      "ageDays": 12
-    },
-    {
-      "path": "/alternatives/sahha-alternatives",
-      "published": "2026-11-02",
-      "ageDays": 12
     }
   ],
   "listed": {
     "/alternatives/dexcom-api-alternatives": "2026-11-14",
     "/alternatives/mediapipe-alternatives": "2026-11-14",
     "/alternatives/openpose-alternatives": "2026-11-14",
+    "/alternatives/polar-api-alternatives": "2026-11-15",
     "/alternatives/quickpose-alternatives": "2026-11-14",
     "/alternatives/rook-alternatives": "2026-11-14",
     "/alternatives/sahha-alternatives": "2026-11-14",
     "/alternatives/samsung-health-api-alternatives": "2026-11-14",
+    "/alternatives/spike-api-alternatives": "2026-11-15",
     "/alternatives/suunto-api-alternatives": "2026-11-14",
     "/alternatives/wger-alternatives": "2026-11-14",
-    "/alternatives/withings-api-alternatives": "2026-11-14"
+    "/alternatives/withings-api-alternatives": "2026-11-14",
+    "/compare/exercisedb-vs-free-exercise-db": "2026-11-15",
+    "/compare/mediapipe-vs-movenet": "2026-11-15",
+    "/pricing/junction-api-pricing": "2026-11-15",
+    "/pricing/nutritionix-api-pricing": "2026-11-15",
+    "/pricing/rook-api-pricing": "2026-11-15",
+    "/pricing/suunto-api-pricing": "2026-11-15",
+    "/pricing/terra-api-pricing": "2026-11-15",
+    "/pricing/wahoo-api-pricing": "2026-11-15"
   },
   "recovered": [],
   "previousAsOf": null,
