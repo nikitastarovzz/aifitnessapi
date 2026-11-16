@@ -1,6 +1,7 @@
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { site, absoluteUrl } from "@/lib/site";
 import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
+import { escapeXml } from "@/lib/xml";
 
 /**
  * Per-cluster RSS — one feed per content cluster, at `/feeds/<cluster>.xml`.
@@ -36,25 +37,6 @@ export function generateStaticParams(): { cluster: string }[] {
 
 /** Copied from /feed.xml deliberately: one escaping rule for the whole site's
  *  RSS, so a fix in how we handle `&` never lands in one feed and not another. */
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) => {
-    switch (c) {
-      case "<":
-        return "&lt;";
-      case ">":
-        return "&gt;";
-      case "&":
-        return "&amp;";
-      case "'":
-        return "&apos;";
-      case '"':
-        return "&quot;";
-      default:
-        return c;
-    }
-  });
-}
-
 /**
  * Wrap a capsule in CDATA. Answer capsules are prose we want readers to render
  * as-is, and CDATA keeps them readable in the raw feed instead of a wall of

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Code from "@/components/Code";
 import ContentAge from "@/components/ContentAge";
 import CodeBlock from "@/components/CodeBlock";
 import { absoluteUrl } from "@/lib/site";
@@ -70,9 +71,7 @@ export function Inline({ text }: { text: string }) {
   );
 }
 
-export function Code({ children }: { children: string }) {
-  return <code className="break-all font-mono text-[13px] text-[var(--fg)]">{children}</code>;
-}
+export { Code };
 
 export function Snippet({ code, label }: { code: string; label?: string }) {
   return (

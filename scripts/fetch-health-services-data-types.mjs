@@ -31,6 +31,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { googleLastUpdated, textOf, trimPage } from "./lib/html.mjs";
 
 const ORIGIN = "https://developer.android.com";
 const DATA_TYPE_URL = `${ORIGIN}/reference/kotlin/androidx/health/services/client/data/DataType`;
@@ -56,13 +57,6 @@ const meta = existsSync(META) ? JSON.parse(readFileSync(META, "utf8")) : {};
 
 /** Every URL read this run (as requested, with hl=en). */
 const fetched = [];
-
-function trimPage(html) {
-  const a = html.indexOf("<article");
-  const footEnd = html.indexOf("</devsite-content-footer>");
-  if (a < 0 || footEnd < 0) return html;
-  return html.slice(a, footEnd + "</devsite-content-footer>".length);
-}
 
 async function getPage(url, cacheFile) {
   const path = join(CACHE, cacheFile);
@@ -94,21 +88,8 @@ async function getPage(url, cacheFile) {
 
 const problems = [];
 
-function decodeEntities(s) {
-  return s
-    .replace(/&nbsp;/g, " ")
-    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&amp;/g, "&");
-}
-const textOf = (html) => decodeEntities(html.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
 const paragraphsOf = (html) =>
   [...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map((m) => textOf(m[1])).filter(Boolean);
-const googleLastUpdated = (html) => /Last updated (\d{4}-\d{2}-\d{2}) UTC/.exec(html)?.[1] ?? null;
 
 // ── 1. DataType companion constants ────────────────────────────────────────
 const dtHtml = await getPage(DATA_TYPE_URL, "DataType.html");

@@ -50,6 +50,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { trimPage } from "./lib/html.mjs";
 
 const ORIGIN = "https://developer.android.com";
 const DATA_TYPES_URL = `${ORIGIN}/health-and-fitness/health-connect/data-types`;
@@ -76,13 +77,6 @@ const EXPECTED_MIN_AGGREGATES = 92;
 
 mkdirSync(CACHE, { recursive: true });
 const meta = existsSync(META) ? JSON.parse(readFileSync(META, "utf8")) : {};
-
-function trimPage(html) {
-  const a = html.indexOf("<article");
-  const footEnd = html.indexOf("</devsite-content-footer>");
-  if (a < 0 || footEnd < 0) return html;
-  return html.slice(a, footEnd + "</devsite-content-footer>".length);
-}
 
 async function getPage(url, cacheFile) {
   const path = join(CACHE, cacheFile);

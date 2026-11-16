@@ -1,56 +1,18 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ClusterPage from "@/components/ClusterPage";
 import InlineSignup from "@/components/InlineSignup";
-import {
-  releasedPricing,
-  getPricing,
-  clampTitle,
-  clampDescription,
-  PRICING_PATH,
-  PRICING_CONFIG,
-} from "@/data/pricing";
-import { robotsFor } from "@/data/noindex";
-import { languageAlternates } from "@/lib/translations";
+import { releasedPricing, getPricing, PRICING_PATH, PRICING_CONFIG } from "@/data/pricing";
+import { clusterMetadata, clusterStaticParams, type SlugParams } from "@/lib/clusterRoute";
 
 export const dynamicParams = false;
 
-type Params = { slug: string };
-
-export function generateStaticParams(): Params[] {
-  return releasedPricing().map((e) => ({ slug: e.slug }));
+export function generateStaticParams(): SlugParams[] {
+  return clusterStaticParams(releasedPricing);
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const entry = getPricing(slug);
-  if (!entry) return {};
-  const canonical = `${PRICING_PATH}/${entry.slug}`;
-  const title = clampTitle(entry.metaTitle);
-  const description = clampDescription(entry.metaDescription);
-  return {
-    title: { absolute: title },
-    description,
-    // hreflang to the Portuguese edition, only while it is current.
-    alternates: { canonical, ...languageAlternates(canonical) },
-    ...robotsFor(canonical),
-    openGraph: {
-      type: "article",
-      title,
-      description,
-      url: canonical,
-      publishedTime: entry.updated,
-      modifiedTime: entry.updated,
-    },
-    twitter: { card: "summary_large_image", title, description },
-  };
-}
+export const generateMetadata = clusterMetadata(PRICING_PATH, getPricing);
 
-export default async function Page({ params }: { params: Promise<Params> }) {
+export default async function Page({ params }: { params: Promise<SlugParams> }) {
   const { slug } = await params;
   const entry = getPricing(slug);
   if (!entry) notFound();

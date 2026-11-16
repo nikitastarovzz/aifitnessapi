@@ -1,53 +1,17 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ClusterPage from "@/components/ClusterPage";
-import {
-  releasedMotion,
-  getMotion,
-  clampTitle,
-  clampDescription,
-  MOTION_PATH,
-  MOTION_CONFIG,
-} from "@/data/motion";
-import { robotsFor } from "@/data/noindex";
+import { releasedMotion, getMotion, MOTION_PATH, MOTION_CONFIG } from "@/data/motion";
+import { clusterMetadata, clusterStaticParams, type SlugParams } from "@/lib/clusterRoute";
 
 export const dynamicParams = false;
 
-type Params = { slug: string };
-
-export function generateStaticParams(): Params[] {
-  return releasedMotion().map((e) => ({ slug: e.slug }));
+export function generateStaticParams(): SlugParams[] {
+  return clusterStaticParams(releasedMotion);
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const entry = getMotion(slug);
-  if (!entry) return {};
-  const canonical = `${MOTION_PATH}/${entry.slug}`;
-  const title = clampTitle(entry.metaTitle);
-  const description = clampDescription(entry.metaDescription);
-  return {
-    title: { absolute: title },
-    description,
-    alternates: { canonical },
-    ...robotsFor(canonical),
-    openGraph: {
-      type: "article",
-      title,
-      description,
-      url: canonical,
-      publishedTime: entry.updated,
-      modifiedTime: entry.updated,
-    },
-    twitter: { card: "summary_large_image", title, description },
-  };
-}
+export const generateMetadata = clusterMetadata(MOTION_PATH, getMotion);
 
-export default async function Page({ params }: { params: Promise<Params> }) {
+export default async function Page({ params }: { params: Promise<SlugParams> }) {
   const { slug } = await params;
   const entry = getMotion(slug);
   if (!entry) notFound();

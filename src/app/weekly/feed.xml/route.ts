@@ -1,6 +1,7 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 import { WEEKLY_FEED_PATH, WEEKLY_PATH, weekDataDate, weekHeading, weekPath, weekText, weeks } from "@/lib/weekly";
+import { escapeXml } from "@/lib/xml";
 
 /**
  * /weekly/feed.xml — one RSS item per week of the roundup
@@ -10,12 +11,6 @@ import { WEEKLY_FEED_PATH, WEEKLY_PATH, weekDataDate, weekHeading, weekPath, wee
  * build time keeps one guid and grows in place.
  */
 export const dynamic = "force-static";
-
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) =>
-    c === "<" ? "&lt;" : c === ">" ? "&gt;" : c === "&" ? "&amp;" : c === "'" ? "&apos;" : "&quot;",
-  );
-}
 
 export function GET(): Response {
   const items = weeks()

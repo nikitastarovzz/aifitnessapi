@@ -1,90 +1,73 @@
-import type { ClusterEntry } from "./cluster";
-import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
-import { releasedGuides, GUIDES_PATH } from "@/data/guides";
-import { releasedBuilds, BUILD_PATH } from "@/data/build";
-import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
-import { releasedFixes, FIX_PATH } from "@/data/fix";
-import { releasedLearn, LEARN_PATH } from "@/data/learn";
-import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
-import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
-import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
-import { releasedPricing, PRICING_PATH } from "@/data/pricing";
-import { releasedCompare, COMPARE_PATH } from "@/data/compare";
-import { releasedData, DATA_PATH } from "@/data/healthData";
-import { releasedMotion, MOTION_PATH } from "@/data/motion";
-import { releasedAi, AI_PATH } from "@/data/ai";
-import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
-import { releasedTesting, TEST_PATH } from "@/data/testing";
-import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
-import { releasedDevices, DEVICES_PATH } from "@/data/devices";
-import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
-import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
-import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
-import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
-import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
-import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
-import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
-import { releasedOwnYourData, OWN_DATA_PATH } from "@/data/ownYourData";
-import { FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
-import { GUIDES_CONFIG } from "@/data/guides";
-import { BUILD_CONFIG } from "@/data/build";
-import { INTEGRATE_CONFIG } from "@/data/integrate";
-import { FIX_CONFIG } from "@/data/fix";
-import { LEARN_CONFIG } from "@/data/learn";
-import { ALTERNATIVES_CONFIG } from "@/data/alternatives";
-import { COMPLIANCE_CONFIG } from "@/data/compliance";
-import { MIGRATE_CONFIG } from "@/data/migrate";
-import { PRICING_CONFIG } from "@/data/pricing";
-import { COMPARE_CONFIG } from "@/data/compare";
-import { DATA_CONFIG } from "@/data/healthData";
-import { MOTION_CONFIG } from "@/data/motion";
-import { AI_CONFIG } from "@/data/ai";
-import { ARCHITECTURE_CONFIG } from "@/data/architecture";
-import { TEST_CONFIG } from "@/data/testing";
-import { COOKBOOK_CONFIG } from "@/data/cookbook";
-import { DEVICES_CONFIG } from "@/data/devices";
-import { ENGAGEMENT_CONFIG } from "@/data/engagement";
-import { WATCH_CONFIG } from "@/data/watchApps";
-import { A11Y_CONFIG } from "@/data/accessibility";
-import { AUDIO_CONFIG } from "@/data/audioCoaching";
-import { HKQ_CONFIG } from "@/data/healthkitQueries";
-import { SENSORS_CONFIG } from "@/data/phoneSensors";
-import { HCAPI_CONFIG } from "@/data/healthConnectApi";
-import { OWN_DATA_CONFIG } from "@/data/ownYourData";
+import type { ClusterConfig, ClusterEntry } from "./cluster";
+import { releasedEntries, FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
+import { releasedGuides, GUIDES_CONFIG } from "@/data/guides";
+import { releasedBuilds, BUILD_CONFIG } from "@/data/build";
+import { releasedIntegrations, INTEGRATE_CONFIG } from "@/data/integrate";
+import { releasedFixes, FIX_CONFIG } from "@/data/fix";
+import { releasedLearn, LEARN_CONFIG } from "@/data/learn";
+import { releasedAlternatives, ALTERNATIVES_CONFIG } from "@/data/alternatives";
+import { releasedCompliance, COMPLIANCE_CONFIG } from "@/data/compliance";
+import { releasedMigrate, MIGRATE_CONFIG } from "@/data/migrate";
+import { releasedPricing, PRICING_CONFIG } from "@/data/pricing";
+import { releasedCompare, COMPARE_CONFIG } from "@/data/compare";
+import { releasedData, DATA_CONFIG } from "@/data/healthData";
+import { releasedMotion, MOTION_CONFIG } from "@/data/motion";
+import { releasedAi, AI_CONFIG } from "@/data/ai";
+import { releasedArchitecture, ARCHITECTURE_CONFIG } from "@/data/architecture";
+import { releasedTesting, TEST_CONFIG } from "@/data/testing";
+import { releasedCookbook, COOKBOOK_CONFIG } from "@/data/cookbook";
+import { releasedDevices, DEVICES_CONFIG } from "@/data/devices";
+import { releasedEngagement, ENGAGEMENT_CONFIG } from "@/data/engagement";
+import { releasedWatchApps, WATCH_CONFIG } from "@/data/watchApps";
+import { releasedAccessibility, A11Y_CONFIG } from "@/data/accessibility";
+import { releasedAudioCoaching, AUDIO_CONFIG } from "@/data/audioCoaching";
+import { releasedHealthkitQueries, HKQ_CONFIG } from "@/data/healthkitQueries";
+import { releasedPhoneSensors, SENSORS_CONFIG } from "@/data/phoneSensors";
+import { releasedHealthConnectApi, HCAPI_CONFIG } from "@/data/healthConnectApi";
+import { releasedOwnYourData, OWN_DATA_CONFIG } from "@/data/ownYourData";
+
+/**
+ * Every cluster, once: its ClusterConfig (basePath, hub label) and its
+ * released-entries function. REGISTRY and CLUSTER_LABELS are derived from
+ * this list, so the order here is the registry order everything iterates in.
+ */
+export const CLUSTERS: { config: ClusterConfig; released: () => ClusterEntry[] }[] = [
+  { config: FITNESS_APIS_CONFIG, released: releasedEntries },
+  { config: GUIDES_CONFIG, released: releasedGuides },
+  { config: BUILD_CONFIG, released: releasedBuilds },
+  { config: INTEGRATE_CONFIG, released: releasedIntegrations },
+  { config: FIX_CONFIG, released: releasedFixes },
+  { config: LEARN_CONFIG, released: releasedLearn },
+  { config: ALTERNATIVES_CONFIG, released: releasedAlternatives },
+  { config: COMPLIANCE_CONFIG, released: releasedCompliance },
+  { config: MIGRATE_CONFIG, released: releasedMigrate },
+  { config: PRICING_CONFIG, released: releasedPricing },
+  { config: COMPARE_CONFIG, released: releasedCompare },
+  { config: DATA_CONFIG, released: releasedData },
+  { config: MOTION_CONFIG, released: releasedMotion },
+  { config: AI_CONFIG, released: releasedAi },
+  { config: ARCHITECTURE_CONFIG, released: releasedArchitecture },
+  { config: TEST_CONFIG, released: releasedTesting },
+  { config: COOKBOOK_CONFIG, released: releasedCookbook },
+  { config: DEVICES_CONFIG, released: releasedDevices },
+  { config: ENGAGEMENT_CONFIG, released: releasedEngagement },
+  { config: WATCH_CONFIG, released: releasedWatchApps },
+  { config: A11Y_CONFIG, released: releasedAccessibility },
+  { config: AUDIO_CONFIG, released: releasedAudioCoaching },
+  { config: HKQ_CONFIG, released: releasedHealthkitQueries },
+  { config: SENSORS_CONFIG, released: releasedPhoneSensors },
+  { config: HCAPI_CONFIG, released: releasedHealthConnectApi },
+  { config: OWN_DATA_CONFIG, released: releasedOwnYourData },
+];
 
 /**
  * basePath → released entries, for anything that needs to see a cluster's
- * siblings without threading them through 16 route files (prev/next nav,
+ * siblings without threading them through 26 route files (prev/next nav,
  * the search index's future needs). Server-side only.
  */
-const REGISTRY: Record<string, () => ClusterEntry[]> = {
-  [PILLAR_PATH]: releasedEntries,
-  [GUIDES_PATH]: releasedGuides,
-  [BUILD_PATH]: releasedBuilds,
-  [INTEGRATE_PATH]: releasedIntegrations,
-  [FIX_PATH]: releasedFixes,
-  [LEARN_PATH]: releasedLearn,
-  [ALTERNATIVES_PATH]: releasedAlternatives,
-  [COMPLIANCE_PATH]: releasedCompliance,
-  [MIGRATE_PATH]: releasedMigrate,
-  [PRICING_PATH]: releasedPricing,
-  [COMPARE_PATH]: releasedCompare,
-  [DATA_PATH]: releasedData,
-  [MOTION_PATH]: releasedMotion,
-  [AI_PATH]: releasedAi,
-  [ARCHITECTURE_PATH]: releasedArchitecture,
-  [TEST_PATH]: releasedTesting,
-  [COOKBOOK_PATH]: releasedCookbook,
-  [DEVICES_PATH]: releasedDevices,
-  [ENGAGEMENT_PATH]: releasedEngagement,
-  [WATCH_PATH]: releasedWatchApps,
-  [A11Y_PATH]: releasedAccessibility,
-  [AUDIO_PATH]: releasedAudioCoaching,
-  [HKQ_PATH]: releasedHealthkitQueries,
-  [SENSORS_PATH]: releasedPhoneSensors,
-  [HCAPI_PATH]: releasedHealthConnectApi,
-  [OWN_DATA_PATH]: releasedOwnYourData,
-};
+const REGISTRY: Record<string, () => ClusterEntry[]> = Object.fromEntries(
+  CLUSTERS.map((c) => [c.config.basePath, c.released]),
+);
 
 /** All clusters as basePath → released entries. */
 export function clusterMap(): Record<string, ClusterEntry[]> {
@@ -111,34 +94,7 @@ export function clusterNeighbors(
  * Consumed by the markdown mirrors, llms.txt and the answer index.
  */
 export const CLUSTER_LABELS: Record<string, string> = Object.fromEntries(
-  [
-    FITNESS_APIS_CONFIG,
-    GUIDES_CONFIG,
-    BUILD_CONFIG,
-    INTEGRATE_CONFIG,
-    FIX_CONFIG,
-    LEARN_CONFIG,
-    ALTERNATIVES_CONFIG,
-    COMPLIANCE_CONFIG,
-    MIGRATE_CONFIG,
-    PRICING_CONFIG,
-    COMPARE_CONFIG,
-    DATA_CONFIG,
-    MOTION_CONFIG,
-    AI_CONFIG,
-    ARCHITECTURE_CONFIG,
-    TEST_CONFIG,
-    COOKBOOK_CONFIG,
-    DEVICES_CONFIG,
-    ENGAGEMENT_CONFIG,
-    WATCH_CONFIG,
-    A11Y_CONFIG,
-    AUDIO_CONFIG,
-    HKQ_CONFIG,
-    SENSORS_CONFIG,
-    HCAPI_CONFIG,
-    OWN_DATA_CONFIG,
-  ].map((c) => [c.basePath, c.hubLabel]),
+  CLUSTERS.map((c) => [c.config.basePath, c.config.hubLabel]),
 );
 
 /** All released spokes as (basePath, entry) pairs, in registry order. */

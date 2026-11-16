@@ -63,6 +63,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { googleLastUpdated } from "./lib/html.mjs";
 import { createHash } from "node:crypto";
 
 const CACHE = ".cache/workout-types";
@@ -234,7 +235,6 @@ const textOf = (html) =>
   )
     .replace(/\s+([.,;:)])/g, "$1")
     .replace(/\(\s+/g, "(");
-const googleLastUpdated = (html) => /Last updated (\d{4}-\d{2}-\d{2}) UTC/.exec(html)?.[1] ?? null;
 /** Kotlin source with the block and line comments removed. */
 const uncomment = (code) => code.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/\/\/[^\n]*/g, " ");
 

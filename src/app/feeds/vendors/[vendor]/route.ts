@@ -1,6 +1,7 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 import { vendorChangesPath, vendorFeedPath, vendorTimeline, vendorTimelines, timelineCheckedOn } from "@/lib/vendorChanges";
+import { escapeXml } from "@/lib/xml";
 
 /**
  * Per-vendor RSS for the changes tracker, at /feeds/vendors/<id>.xml: the
@@ -20,12 +21,6 @@ export function generateStaticParams(): { vendor: string }[] {
 }
 
 /** The same escaping rule as /changes.xml and the cluster feeds. */
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) =>
-    c === "<" ? "&lt;" : c === ">" ? "&gt;" : c === "&" ? "&amp;" : c === "'" ? "&apos;" : "&quot;",
-  );
-}
-
 const rfc822 = (day: string) => new Date(`${day}T00:00:00Z`).toUTCString();
 
 export async function GET(_req: Request, { params }: { params: Promise<{ vendor: string }> }): Promise<Response> {
