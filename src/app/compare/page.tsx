@@ -12,7 +12,7 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
 import { hubQaJsonLd } from "@/data/hubGlance";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getComparison, releasedCompare, COMPARE_PATH, COMPARE_CONFIG } from "@/data/compare";
 
@@ -128,7 +128,7 @@ export default function ComparePillar() {
     "@type": "Article",
     headline: "Fitness & Health API Comparisons",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("compare", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

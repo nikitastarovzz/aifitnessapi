@@ -54,8 +54,8 @@ import { driftMirror, noticeMirror, pricingMirror, researchHubMirror } from "./r
  * Every non-cluster page with a markdown mirror, by page path. Each entry has
  * a route folder `src/app/<path>.md/route.ts` that serves it, a
  * `<link rel="alternate" type="text/markdown">` on the page (via
- * `pageMirrorAlternates`), a Link header rule in next.config.ts
- * (PAGE_MIRRORS) and a line in /llms.txt and /llms-index.txt. qa's
+ * `pageMirrorAlternates`), a Link header rule that next.config.ts derives
+ * from that route folder, and a line in /llms.txt and /llms-index.txt. qa's
  * GEO-PAGE-MD-* gates check all four from the build output.
  */
 export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {

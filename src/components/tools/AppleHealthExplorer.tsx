@@ -259,7 +259,6 @@ export default function AppleHealthExplorer({ lookup }: { lookup: HkLookup }) {
         setStatus("error");
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [run],
   );
 

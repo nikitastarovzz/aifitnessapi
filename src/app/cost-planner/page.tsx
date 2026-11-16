@@ -7,7 +7,7 @@ import CostPlanner from "@/components/CostPlanner";
 import ClusterCta from "@/components/ClusterCta";
 import { Mdx } from "@/components/mdx";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 
 const PLANNER_PATH = "/cost-planner";
 const UPDATED = "2026-08-11";
@@ -105,19 +105,11 @@ export default function CostPlannerPage() {
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     publisher: orgRef(),
-    datePublished: UPDATED,
+    datePublished: publishedDate("cost-planner", UPDATED),
     dateModified: UPDATED,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
 
   return (
     <Container className="py-14">

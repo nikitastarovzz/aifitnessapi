@@ -368,6 +368,3 @@ export default function SeeAlsoCallout({ path }: { path: string }) {
     </aside>
   );
 }
-
-/** Paths this component covers, for the qa gate. */
-export const SEE_ALSO_PATHS = Object.keys(MAP);

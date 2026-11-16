@@ -335,10 +335,6 @@ export function studies(): Study[] {
   return [driftStudy(), noticeStudy(), pricingStudy()];
 }
 
-export function studyById(id: StudyId): Study {
-  return studies().find((s) => s.id === id)!;
-}
-
 export const HUB = {
   metaTitle: "Fitness API Research: Original Studies From Our Data",
   h1: PAGE_H1[RESEARCH_PATH],

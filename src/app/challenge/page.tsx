@@ -16,7 +16,7 @@ import {
   describeZone,
 } from "@/lib/repCounter.mjs";
 import { absoluteUrl, site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 import { CHALLENGE_FAQS as FAQS, JACK, KEYPOINT_COUNT, LITE, SQUAT } from "@/lib/challengePage";
 
@@ -66,7 +66,7 @@ export default function ChallengePage() {
     name: TITLE,
     alternativeHeadline: "webcam squat and jumping jack counter game",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("challenge", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

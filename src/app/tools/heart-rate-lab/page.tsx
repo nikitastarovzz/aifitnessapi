@@ -14,7 +14,7 @@ import {
   compileHrmLayout,
 } from "@/lib/hrMeasurement.mjs";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -77,7 +77,7 @@ export default function HeartRateLabPage() {
     name: TITLE,
     alternativeHeadline: "Web Bluetooth heart rate monitor and RR-interval decoder",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/heart-rate-lab", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

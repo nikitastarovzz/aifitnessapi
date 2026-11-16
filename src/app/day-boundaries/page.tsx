@@ -6,7 +6,7 @@ import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import DayBoundaryDemo from "@/components/DayBoundaryDemo";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 
 const PATH = "/day-boundaries";
@@ -44,15 +44,7 @@ const FAQS = [
 
 export default function DayBoundariesPage() {
   const url = absoluteUrl(PATH);
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
   const appJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",

@@ -17,11 +17,12 @@ The owner wants planning and implementation on different model tiers:
 
 ## Verification pipeline — the gate is the approval
 
-`npx tsc --noEmit` → `npm run build` → `npm run qa` must all be green before
-any commit. Never weaken `scripts/qa.mjs` to make a build pass.
+`npx tsc --noEmit` → `npm test` → `npm run build` → `npm run qa` must all be
+green before any commit. Never weaken `scripts/qa.mjs` to make a build pass.
 
 Since 2026-10-04 a machine enforces this instead of memory.
-`.github/workflows/ci.yml` runs the same three commands on every pull request
+`.github/workflows/ci.yml` runs the same four commands, plus the API client
+tests after the build (`npm run test:api-client`), on every pull request
 and every push to `main`, and **`main` is protected**: direct pushes are
 rejected and the `gates` check must pass before a merge. So the flow is
 
@@ -58,8 +59,8 @@ silently reverts it.
 | `src/data/healthkitMetadataKeys.ts` | `node scripts/fetch-healthkit-metadata-keys.mjs` (Apple's metadata-keys docs JSON + Workout Metadata Keys sub-collection + one JSON per key; `--offline` reparses `.cache/healthkit-metadata-keys`) |
 | `src/data/healthServicesDataTypes.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-health-services-data-types.mjs` (Jetpack DataType Kotlin reference + Health Services permissions guide, `?hl=en`; `--offline` reparses `.cache/health-services`) |
 | `src/data/poseKeypoints.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-pose-keypoints.mjs` (MediaPipe, TF.js, MMPose, Ultralytics and OpenPose source files on raw.githubusercontent.com, ML Kit's PoseLandmark reference, Apple's Vision docs JSON; `--offline` reparses `.cache/pose-keypoints`) |
-| `src/data/googleHealthApi.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-google-health-api.mjs` (Google Health API discovery documents v4 + v4beta and 12 developers.google.com/health pages, `?hl=en`; `--offline` reparses `.cache/google-health-api`; a cached file is reused, so delete the cache to re-read; `.github/workflows/google-health-api.yml`, weekly once its schedule is uncommented) |
-| `src/data/mcpHealthServers.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-mcp-health-servers.mjs` (every page of the official MCP Registry's v0.1 listing, plus npm and PyPI for the packages it names; `--offline` reparses `.cache/mcp-registry`; `.github/workflows/mcp-health-servers.yml`, schedule paused like `libraries.yml`) |
+| `src/data/googleHealthApi.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-google-health-api.mjs` (Google Health API discovery documents v4 + v4beta and 12 developers.google.com/health pages, `?hl=en`; `--offline` reparses `.cache/google-health-api`; a cached file is reused, so delete the cache to re-read; `.github/workflows/google-health-api.yml`, weekly) |
+| `src/data/mcpHealthServers.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-mcp-health-servers.mjs` (every page of the official MCP Registry's v0.1 listing, plus npm and PyPI for the packages it names; `--offline` reparses `.cache/mcp-registry`; `.github/workflows/mcp-health-servers.yml`, weekly) |
 | `src/data/bluetoothGatt.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-bluetooth-gatt.mjs` (the Bluetooth SIG's public Bitbucket repository: head of `main` via the API, then one archive of that commit — assigned-number UUID lists, units, permitted-characteristics lists, `gss/` structures; `--offline` reparses `.cache/bluetooth-gatt`). Then `npm run datasets`. |
 | `src/data/workoutTypes.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-workout-types.mjs` (Apple's HKWorkoutActivityType index and per-case docs JSON; Google's ExerciseSessionRecord, ExerciseSegment, ExerciseSessionType and Health Services ExerciseType references and the Health Connect data-types guide, `?hl=en`; the androidx source those references link as View Source, on `androidx-main`; and `src/data/healthkitIdentifiers.ts` and `src/data/googleHealthApi.ts`, so regenerate those first; `--offline` reparses `.cache/workout-types`). Then `npm run datasets`. |
 | `src/data/formRules.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-form-rules.mjs` (licensed open-source exercise trackers on raw.githubusercontent.com, every value captured from a quoted line; `--offline` reparses the cache). Then `npm run datasets`. |
@@ -70,7 +71,7 @@ silently reverts it.
 | `ops/social/posts-<date>.md` | `npm run build && node scripts/social-posts.mjs --date <date>` (one X and one LinkedIn post per change of the last 30 days and per page published in the last 14, from the built pages' own titles and descriptions; not served; see ops/LAUNCH-KIT.md) |
 | `src/data/deprecationRules.json`, `actions/fitness-api-deprecation-check/dist/*`, `ops/sources/evidence/tools-deprecation-scanner.json` | `node scripts/build-deprecation-rules.mjs` (reads `src/data/graveyard.ts`, `src/lib/fitbitGoogleMap.ts` and so `fitbitWebApi.ts` + `googleHealthApi.ts`, `src/data/libraries.ts`, the hand-sourced `src/data/deprecationSignatures.ts`, and copies `src/lib/deprecationScan.mjs` into the Action; rerun after any of those changes, including a new graveyard entry, which needs a signature or a `NOT_SCANNED` reason; qa's DEPRECATION-RULES-STALE runs `--check`; tests `npm run test:deprecation-scan`) |
 | `src/data/researchStudies.ts` | `node scripts/build-research.mjs` (the commit history of `ops/sources/evidence/*.json`, so not from a shallow clone — `git fetch --unshallow origin`; `ops/research/*.json` for drift annotations, shutdown announcements and pricing classes, each checked against commit messages or evidence files; `src/data/graveyard.ts` and `changes.ts`). Then `npm run datasets`. qa's RESEARCH-DRIFT recomputes the /research figures from the published files; RESEARCH-STALE fails when the graveyard or a quoted pricing line moves under it. |
-| `src/data/published.ts` | `node scripts/backfill-published.mjs` |
+| `src/data/published.ts`, `src/data/publishedStamped.ts` | `node scripts/backfill-published.mjs` (the second file dates hubs, tools and standalone pages that pass their own review stamp to `publishedDate()`, for JSON-LD `datePublished` only; it stays out of `published.ts` because the index governor, the weekly roundup, the indexing queue and the social posts count that file's rows; rerun after adding such a page) |
 | `data/gsc/first-seen.json`, `data/gsc/index-state.json`, `ops/INDEX.md` | `NODE_USE_ENV_PROXY=1 node scripts/index-governor.mjs --sitemap-url https://aifitnessapi.com/sitemap.xml` (the index governor: the day each page was first shown in Google, read from Search Console in the aifitnessapi environment, against `src/data/published.ts`, so run the backfill first and not from a shallow clone; `--offline` recomputes from the ledger; `first-seen.json` is a ledger, so never delete it; the verdict sets how many new pages the daily loop may add, see ops/AUTOMATION.md; tests `npm run test:governor`) |
 | `src/data/apiDemand.ts` | `node scripts/build-api-demand.mjs` (reads the live pull: `NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs` in the aifitnessapi environment) |
 | `src/data/indexDemand.ts` | `npm run build && node scripts/build-index-demand.mjs`, then build again (after every pull: reads `data/gsc/snapshots/*.json` and the build's page list; noindexes generated per-item pages with zero Google and Bing impressions across their pulls once 60 days old; its dates are a ledger, so never delete the file — see the script header) |
@@ -134,8 +135,10 @@ inglês)", and translating never moves an English stamp.
   disclosure and name KinesteX exactly as often as English does.
 - **Removing an English page** that has a translation: delete the translation
   in the same change (PTBR-ORPHAN). **Translating a page in a new cluster:**
-  add `languageAlternates` to that cluster's `[slug]/page.tsx` and a label to
-  `HUB_LABELS_PT` in `src/lib/translations.ts`, or PTBR-HREFLANG fails.
+  add a label to `HUB_LABELS_PT` in `src/lib/translations.ts`, or
+  PTBR-HREFLANG fails. The hreflang itself comes from the shared
+  `clusterMetadata` helper in `src/lib/clusterRoute.ts`, which every cluster
+  route calls.
 
 ## Binding documents
 

@@ -51,7 +51,6 @@ export default function SchemaConverter({ samples, mappingsUrl, schemaUrl }: { s
   // Convert the first sample as soon as the mappings arrive, so the page shows a result.
   useEffect(() => {
     if (spec && !out) setOut(convert(text, spec));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spec]);
 
   const detected = useMemo(() => (spec ? detectFormat(text, spec) : null), [text, spec]);

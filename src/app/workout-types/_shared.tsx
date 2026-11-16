@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Code from "@/components/Code";
 import type { WtCounterpart, WtFlag, WtSource } from "@/data/workoutTypes";
 import {
   activityPageForKey,
@@ -26,9 +27,7 @@ export const CAPSULE =
 export const PILL =
   "inline-block rounded-full border border-[var(--border)] px-3 py-1 text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]";
 
-export function Code({ children }: { children: string }) {
-  return <code className="break-all font-mono text-[13px] text-[var(--fg)]">{children}</code>;
-}
+export { Code };
 
 /** A source's sentence with its `code` spans rendered as code. */
 export function SourceText({ text }: { text: string }) {

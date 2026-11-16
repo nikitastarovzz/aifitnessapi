@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Code from "@/components/Code";
 import { notFound } from "next/navigation";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -92,10 +93,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 }
 
 const LINK = "font-medium text-brand-600 hover:text-brand-500";
-
-function Code({ children }: { children: string }) {
-  return <code className="break-all font-mono text-[13px] text-[var(--fg)]">{children}</code>;
-}
 
 function Evidence({ fact, children }: { fact: string; children: string }) {
   return (

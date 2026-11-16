@@ -1,4 +1,5 @@
 import { site, absoluteUrl } from "@/lib/site";
+import { escapeXml } from "@/lib/xml";
 
 /**
  * OpenSearch description document — lets a browser add this site as a search
@@ -14,25 +15,6 @@ import { site, absoluteUrl } from "@/lib/site";
  * points.
  */
 export const dynamic = "force-static";
-
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) => {
-    switch (c) {
-      case "<":
-        return "&lt;";
-      case ">":
-        return "&gt;";
-      case "&":
-        return "&amp;";
-      case "'":
-        return "&apos;";
-      case '"':
-        return "&quot;";
-      default:
-        return c;
-    }
-  });
-}
 
 export function GET(): Response {
   // OpenSearch caps ShortName at 16 characters; "AIFitnessAPI" is 12, so the

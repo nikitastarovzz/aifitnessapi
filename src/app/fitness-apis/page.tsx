@@ -12,7 +12,7 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
 import { hubQaJsonLd } from "@/data/hubGlance";
 import { site, absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getEntry, releasedEntries, PILLAR_PATH, FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
@@ -135,7 +135,7 @@ export default function FitnessApisPillar() {
     "@type": "Article",
     headline: "Fitness and Workout APIs Compared by Job (2026)",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("fitness-apis", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

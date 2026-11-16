@@ -1,4 +1,6 @@
 import type { NextConfig } from "next";
+import fs from "node:fs";
+import path from "node:path";
 
 /**
  * Cluster base paths that have markdown mirrors. Kept as a literal because
@@ -40,70 +42,30 @@ const SITE = "https://aifitnessapi.com";
  * Non-cluster pages with a markdown mirror at `<page>.md`
  * (src/lib/pageMirrors, ops/MORE-30-2026-11-05.md item 20). The mirrors are
  * route folders, so they need no rewrite; this list only gives each page the
- * same Link header a cluster spoke sends. A literal for the same reason as
- * CLUSTERS; qa's GEO-PAGE-MD-HEADER fails for any built mirror whose page is
- * missing here.
+ * same Link header a cluster spoke sends. It is read from those folders:
+ * every `<name>.md/route.ts` folder under src/app, outside a dynamic segment, is one
+ * mirror, so adding a mirror's route folder is all it takes. (A page whose
+ * address has a dynamic segment, /digest/[month]/digest.md, has no fixed
+ * path to list.) qa's GEO-PAGE-MD-HEADER still checks the served header of
+ * every built mirror.
  */
-const PAGE_MIRRORS = [
-  "/tools",
-  "/tools/aggregation-checker",
-  "/tools/error-diagnoser",
-  "/tools/heart-rate-lab",
-  "/tools/identifier-translator",
-  "/tools/keypoint-playground",
-  "/tools/permission-builder",
-  "/tools/pose-benchmark",
-  "/tools/query-generator",
-  "/tools/sample-data",
-  "/tools/stack-generator",
-  "/tools/step-lab",
-  "/tools/webhook-verifier",
-  "/tools/starter-scaffold",
-  "/tools/apple-health-explorer",
-  "/tools/ble-gatt-explorer",
-  "/tools/cycling-power-lab",
-  "/tools/exercise-form-rules",
-  "/tools/ftms-lab",
-  "/tools/rep-counter-playground",
-  "/tools/build-plan",
-  "/tools/store-submission-checklist",
-  "/tools/compliance-wizard",
-  "/tools/api-coverage-matrix",
-  "/tools/rate-limit-calculator",
-  "/tools/exercise-taxonomy-crosswalk",
-  "/tools/gym-software-api-matrix",
-  "/tools/research-platform-chooser",
-  "/tools/aggregator-chooser",
-  "/atlas",
-  "/weekly",
-  "/history",
-  "/awesome",
-  "/collections",
-  "/cheat-sheets",
-  "/tools/oauth-playground",
-  "/tools/schema-converter",
-  "/tools/fitbit-to-google-health",
-  "/tools/deprecation-scanner",
-  "/schema",
-  "/graveyard",
-  "/webhooks",
-  "/datasets",
-  "/changes",
-  "/market-map",
-  "/fitness-api-index",
-  "/2026",
-  "/daily",
-  "/play/ship-it",
-  "/challenge",
-  "/my-stack",
-  "/answers-search",
-  "/quiz/which-wearable-api",
-  "/openness-index",
-  "/research",
-  "/research/docs-drift",
-  "/research/shutdown-notice",
-  "/research/pricing-transparency",
-];
+function pageMirrors(): string[] {
+  const out: string[] = [];
+  const walk = (dir: string, route: string) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!e.isDirectory() || /^[[_(]/.test(e.name)) continue;
+      const child = path.join(dir, e.name);
+      if (e.name.endsWith(".md")) {
+        if (fs.existsSync(path.join(child, "route.ts"))) out.push(`${route}/${e.name.slice(0, -3)}`);
+      } else {
+        walk(child, `${route}/${e.name}`);
+      }
+    }
+  };
+  walk(path.join(process.cwd(), "src", "app"), "");
+  return out.sort();
+}
+const PAGE_MIRRORS = pageMirrors();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,

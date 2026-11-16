@@ -11,7 +11,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getWatchApp, releasedWatchApps, WATCH_PATH, WATCH_CONFIG } from "@/data/watchApps";
 
@@ -96,7 +96,7 @@ export default function WatchAppsPillar() {
     "@type": "Article",
     headline: "Building watchOS & Wear OS Fitness Apps",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("watch-apps", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

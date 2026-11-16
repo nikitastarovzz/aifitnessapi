@@ -27,7 +27,12 @@
  *   the writing environment; each such entry has a row in
  *   ops/sources/evidence/graveyard.json whose quote is a substring of
  *   `source.quote` (GRAVEYARD-EVIDENCE), and source-quotes.yml re-reads it.
- * - `summary` is our sentence and states nothing the quoted page does not.
+ * - `httpStatus` marks the one kind of source that is not a page: a retired
+ *   endpoint whose own error body is the notice. Its evidence row carries the
+ *   same number as `expectStatus` (GRAVEYARD-EVIDENCE), so source-quotes.yml
+ *   passes only while the endpoint still answers with that status and text.
+ * - `summary` is our sentence and states nothing the entry's quoted sources
+ *   do not.
  *
  * Changing an entry means re-reading its source. Bumping `checkedOn` without
  * that read falsifies the date the reader is trusting (CLAUDE.md, Freshness).
@@ -46,6 +51,9 @@ export type GraveSource = {
   via: "direct" | "snapshot";
   /** For an Internet Archive capture: the capture's own date. */
   capturedOn?: string;
+  /** Only when the notice is the body of an error response (a retired
+   *  endpoint's own 410): the status it answers with. */
+  httpStatus?: number;
 };
 
 export type GraveEntry = {
@@ -78,30 +86,32 @@ export const GRAVEYARD: GraveEntry[] = [
     name: "Fitbit Web API",
     vendor: "Google (Fitbit)",
     kind: "API",
-    status: "dying",
+    status: "dead",
     end: "2026-11-02",
-    // Google's heading is "November 2, 2026 (API turn-off)" and, read again on
-    // 2026-11-02 and on 2026-11-14 (page last updated 2026-10-30), still words
-    // it as future ("will be turned off"); so do the migration guide (last
-    // updated 2026-10-28), the dev.fitbit.com banner (which still says October
-    // 30) and Google's Health Status Dashboard. So the stone names the
-    // scheduled event, not a completed one, and stays dying until a Google page
-    // says the endpoints are off. Not a page, and not quotable here because it
-    // answers 410: on 2026-11-14 api.fitbit.com/oauth2/token answered "The
-    // legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on
-    // October 30, 2026." (source-snapshot run 43591822938, our own request).
+    // Dead on the endpoint's own words (the owner's sourcing decision,
+    // 2026-11-16). No Google page says it yet: developers.google.com/health
+    // /about (last updated 2026-10-30), /migration (2026-10-28) and seven more
+    // pages of that site, re-read 2026-11-16, still say the endpoints "will be
+    // turned off" on November 2, 2026. The only past-tense statement is the
+    // body of the token endpoint's 410, read 2026-11-16 through source-snapshot
+    // run 43817231854 (logs deleted), and it names October 30. `end` stays the
+    // date Google published, which every page here uses; the summary gives
+    // both, and `endLabel` stays Google's name for the November 2 event ("API
+    // turn-off") because no source says the endpoints went off that day. If a
+    // Google page states the turn-off in the past tense, move `source` to it
+    // and drop `httpStatus`.
     endLabel: "Turn-off",
     launched: null,
     replacedBy: [{ label: "Google Health API", href: "/google-health-api" }],
     summary:
-      "The legacy Fitbit Web API and the Fitbit OAuth endpoints. Google says requests fail with HTTP 410 Gone after the turn-off, and that integrations must move their users to the Google Health API and Google OAuth 2.0.",
+      "The legacy Fitbit Web API and the Fitbit OAuth endpoints. The token endpoint answers HTTP 410 Gone and says the endpoints were decommissioned on October 30, 2026; Google's developer pages gave November 2, 2026 as the turn-off date. The message tells integrations to migrate to the Google Health APIs.",
     source: {
-      url: "https://developers.google.com/health/about",
-      publisher: "Google for Developers",
-      checkedOn: "2026-11-14",
-      quote:
-        "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP 410 Gone status code.",
-      via: "direct",
+      url: "https://api.fitbit.com/oauth2/token",
+      publisher: "Fitbit API (the endpoint's own 410 response)",
+      checkedOn: "2026-11-16",
+      quote: "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026. Please migrate your integration to the Google Health APIs: https://developers.google.com/health.",
+      via: "snapshot",
+      httpStatus: 410,
     },
     milestones: [
       {

@@ -43,6 +43,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { googleLastUpdated } from "./lib/html.mjs";
 import { createHash } from "node:crypto";
 
 const CACHE = ".cache/pose-keypoints";
@@ -184,7 +185,6 @@ const mdText = (md) =>
 /** Source code with line-comment markers removed, so a comment that wraps
  *  across lines reads as the sentence it is. */
 const uncomment = (code) => code.replace(/^[ \t]*(\/\/|#)[ \t]?/gm, "");
-const googleLastUpdated = (html) => /Last updated (\d{4}-\d{2}-\d{2}) UTC/.exec(html)?.[1] ?? null;
 
 /** The crosswalk key: lowercase, every character outside a-z0-9 removed. */
 const keyOf = (name) => name.toLowerCase().replace(/[^a-z0-9]/g, "");

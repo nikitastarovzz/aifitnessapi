@@ -52,7 +52,6 @@ export default function ShareCard<S = ShareCardSpec>({
       setCanShare(false);
     }
     // spec is compared by value through `key`.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, filename]);
 
   async function copy() {
@@ -85,7 +84,6 @@ export default function ShareCard<S = ShareCardSpec>({
       <canvas ref={canvasRef} className="hidden" aria-hidden="true" />
       {src && (
         // A data: URL drawn on this device; next/image has nothing to optimise.
-        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}
           alt={alt ?? defaultAlt(spec as unknown as ShareCardSpec)}

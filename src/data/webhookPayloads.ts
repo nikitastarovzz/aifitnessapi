@@ -844,7 +844,3 @@ export const WEBHOOKS_NOT_COVERED: { name: string; reason: string; guide: string
   { name: "Dexcom", guide: "/integrate/dexcom-api", reason: "Dexcom's webhook documentation was not read for this library, so nothing is reproduced." },
   { name: "Fitbit Web API", guide: "/fitbit-api-shutdown", reason: "Google says the legacy Fitbit Web API is turned off on November 2, 2026; its successor's notifications are under the Google Health API above." },
 ];
-
-export function webhookVendor(id: string): WebhookVendorDoc | undefined {
-  return WEBHOOK_VENDORS.find((v) => v.id === id);
-}

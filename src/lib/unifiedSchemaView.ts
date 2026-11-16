@@ -9,7 +9,6 @@ import {
   UNIFIED_SCHEMA_FILES,
   UNIFIED_READ_ON,
   UNIFIED_STAGES,
-  UNIFIED_SOURCES,
   type UsPlatform,
 } from "@/data/unifiedSchema";
 
@@ -70,10 +69,5 @@ export const SCHEMA_FAQS: { q: string; a: string }[] = [
     a: "Yes, under CC BY 4.0, the same license as this site's datasets: attribute aifitnessapi.com. The vendor sentences quoted as evidence in mappings.json remain their publishers' text. The schema is versioned in its URL, so v1 stays where it is when a later version changes a shape.",
   },
 ];
-
-export const SCHEMA_SOURCES_LINE = (): string =>
-  Object.values(UNIFIED_SOURCES)
-    .map((s) => `${s.name} (read ${s.readOn})`)
-    .join(", ");
 
 export { UNIFIED_READ_ON };

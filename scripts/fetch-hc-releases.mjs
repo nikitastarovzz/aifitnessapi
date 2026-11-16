@@ -27,6 +27,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { textOf } from "./lib/html.mjs";
 
 const URL = "https://developer.android.com/jetpack/androidx/releases/health-connect";
 const ARTIFACT = "androidx.health.connect:connect-client";
@@ -53,18 +54,6 @@ async function getText(url, cacheFile) {
   return text;
 }
 
-function decodeEntities(s) {
-  return s
-    .replace(/&nbsp;/g, " ")
-    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&amp;/g, "&");
-}
-const textOf = (html) => decodeEntities(html.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 /** "October 08, 2025" → "2025-10-08"; null if the text holds no such date. */

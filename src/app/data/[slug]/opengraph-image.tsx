@@ -1,6 +1,7 @@
-import { ImageResponse } from "next/og";
-import { ogCard, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og-card";
+import { OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og-card";
 import { releasedData, getDataPage, DATA_CONFIG } from "@/data/healthData";
+import { clusterStaticParams } from "@/lib/clusterRoute";
+import { clusterOgImage } from "@/lib/clusterOgImage";
 
 export const dynamicParams = false;
 export const size = OG_SIZE;
@@ -8,18 +9,7 @@ export const contentType = OG_CONTENT_TYPE;
 export const alt = "AIFitnessAPI";
 
 export function generateStaticParams() {
-  return releasedData().map((e) => ({ slug: e.slug }));
+  return clusterStaticParams(releasedData);
 }
 
-export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const entry = getDataPage(slug);
-  return new ImageResponse(
-    ogCard({
-      eyebrow: DATA_CONFIG.hubLabel,
-      title: entry?.h1 ?? "AIFitnessAPI",
-      line: entry?.primaryQuery,
-    }),
-    { ...OG_SIZE },
-  );
-}
+export default clusterOgImage(DATA_CONFIG, getDataPage);

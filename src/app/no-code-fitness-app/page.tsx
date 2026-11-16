@@ -7,7 +7,7 @@ import ClusterCta from "@/components/ClusterCta";
 import KinestexNote from "@/components/KinestexNote";
 import { Mdx } from "@/components/mdx";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 
 /**
  * Flagship worked example: assembling a fitness app from APIs with (almost) no
@@ -182,7 +182,7 @@ export default function NoCodeFitnessAppPage() {
     "@type": "Article",
     headline: "Fitness App Builder Guide: Build an AI Fitness App With No Code, Just APIs",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("no-code-fitness-app", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
@@ -190,15 +190,7 @@ export default function NoCodeFitnessAppPage() {
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
 
   return (
     <Container className="py-14">

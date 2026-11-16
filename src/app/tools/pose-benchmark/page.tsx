@@ -10,7 +10,7 @@ import PoseLeaderboard from "@/components/tools/PoseLeaderboard";
 import { POSE_SCHEMES, POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -66,7 +66,7 @@ export default function PoseBenchmarkPage() {
     name: TITLE,
     alternativeHeadline: "pose estimation benchmark in the browser",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/pose-benchmark", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

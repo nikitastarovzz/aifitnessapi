@@ -8,7 +8,7 @@ import StepLab from "@/components/tools/StepLab";
 import { DEFAULT_PARAMS, REPLAY_TRUE_STEPS } from "@/lib/stepDetector.mjs";
 import { SOURCES_CHECKED_ON, STEP_LAB_SOURCES } from "@/lib/stepLab";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -67,7 +67,7 @@ export default function StepLabPage() {
     name: TITLE,
     alternativeHeadline: "why two step counters disagree",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/step-lab", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

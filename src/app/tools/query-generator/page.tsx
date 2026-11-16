@@ -7,7 +7,7 @@ import QueryGenerator, { type QueryOption } from "@/components/tools/QueryGenera
 import MoreTools from "@/components/tools/MoreTools";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -70,7 +70,7 @@ export default function QueryGeneratorPage() {
     name: TITLE,
     alternativeHeadline: "hkstatisticsquery example generator",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/query-generator", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

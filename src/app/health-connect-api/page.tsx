@@ -11,7 +11,7 @@ import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import {
   getHealthConnectApi,
@@ -120,7 +120,7 @@ export default function HealthConnectApiPillar() {
     "@type": "Article",
     headline: TITLE,
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("health-connect-api", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
