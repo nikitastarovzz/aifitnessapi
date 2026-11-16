@@ -11,7 +11,7 @@ import {
   formatDate,
 } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
-import { postGraph, markdownUrl } from "@/lib/schema";
+import { postGraph, markdownUrl, faqPageJsonLd } from "@/lib/schema";
 import { stringSeed, clampTitle } from "@/lib/cluster";
 import { OG_SIZE } from "@/lib/og-card";
 
@@ -113,17 +113,7 @@ export default async function PostPage({
 
   // FAQPage markup only when the post actually declares Q&A. An empty FAQPage
   // is a structured-data error, not a neutral omission.
-  const faqJsonLd = post.faqs.length
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: post.faqs.map((f) => ({
-          "@type": "Question",
-          name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: f.a },
-        })),
-      }
-    : null;
+  const faqJsonLd = post.faqs.length ? faqPageJsonLd(post.faqs) : null;
 
   // The one Article node for this URL (BlogPosting + TechArticle) and its
   // WebPage — see postGraph for why there is no separate BlogPosting script.

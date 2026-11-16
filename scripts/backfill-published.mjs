@@ -26,6 +26,14 @@
  *     first commit whose copy of the section's data file contains the item,
  *     because an item that arrived in a later regeneration was published
  *     then, not when the route was.
+ *   - Self-stamped page: a static page.tsx under src/app (a hub, a tool, a
+ *     standalone page) that keeps a hand-set review date and passes it to
+ *     `publishedDate("<its own route>", UPDATED)`. Dated by the commit that
+ *     first added its page.tsx, because the stamp moves on every re-check.
+ *     These rows go to a file of their own (src/data/publishedStamped.ts)
+ *     that only the structured data reads: published.ts is also the page
+ *     list of the index governor, the weekly roundup, the indexing queue and
+ *     the social post picker, and hubs and tools are not counted there.
  *
  * Keys are the page's URL path without the leading slash ("fix/<slug>",
  * "healthkit/<group>", "blog/<slug>"), so a lookup needs nothing but the
@@ -51,6 +59,7 @@ const POSTS = "content/posts";
 /** Translation stores and the URL prefix each is served under (src/lib/translationStore.mjs). */
 const TRANSLATIONS = [{ dir: "content/translations/pt-BR", prefix: "pt-br" }];
 const OUT = "src/data/published.ts";
+const OUT_STAMPED = "src/data/publishedStamped.ts";
 
 /**
  * Entries files whose importing module carries no `basePath:` config because
@@ -266,6 +275,38 @@ for (const s of GENERATED_SECTIONS) {
   }
 }
 
+// Self-stamped pages (see the header). The literal must be the page's own
+// route, or the page would be looking up some other URL's birthday; a key the
+// rules above already dated keeps that date and gets no second row.
+const stamped = new Map(); // key -> date
+const stampedMissing = [];
+const SELF_STAMP = /publishedDate\(\s*"([^"]*)"/g;
+(function walk(dir, segs) {
+  const page = path.join(dir, "page.tsx");
+  if (fs.existsSync(page)) {
+    const own = segs.join("/");
+    const literals = [...fs.readFileSync(page, "utf8").matchAll(SELF_STAMP)].map((m) => m[1]);
+    for (const literal of literals) {
+      if (literal !== own) {
+        console.error(`backfill-published: ${page} calls publishedDate("${literal}") but its route key is "${own}" — refusing to write.`);
+        process.exit(1);
+      }
+    }
+    if (literals.length && !rows.has(own)) {
+      const date = firstAdded(page);
+      if (date) stamped.set(own, date);
+      else stampedMissing.push(own);
+    }
+  }
+  for (const e of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+    if (e.isDirectory() && !/^[[_(]/.test(e.name)) walk(path.join(dir, e.name), [...segs, e.name]);
+  }
+})("src/app", []);
+if (stampedMissing.length) {
+  console.error(`backfill-published: no first-commit date for self-stamped pages — refusing to write:\n    ${stampedMissing.join("\n    ")}`);
+  process.exit(1);
+}
+
 if (missing.length || rows.size !== expected) {
   console.error(
     `backfill-published: dated ${rows.size} of ${expected} pages — refusing to write.` +
@@ -299,6 +340,30 @@ ${sorted.map(([k, d]) => `  ${JSON.stringify(k)}: ${JSON.stringify(d)},`).join("
 
 fs.writeFileSync(OUT, body);
 console.log(`backfill-published: wrote ${sorted.length} rows to ${OUT}.`);
+
+const stampedSorted = [...stamped.entries()].sort(([a], [b]) => a.localeCompare(b));
+fs.writeFileSync(
+  OUT_STAMPED,
+  `/**
+ * GENERATED — do not hand-edit. Rebuild with:
+ *   node scripts/backfill-published.mjs
+ *
+ * First-published date of every page that keeps a hand-set review date and
+ * passes it to publishedDate() (hubs, tools, standalone pages): the commit
+ * that first added its page.tsx. Keyed by URL path without the leading slash.
+ * ${stampedSorted.length} rows.
+ *
+ * Read only by publishedDate() in src/lib/schema.ts, for JSON-LD
+ * datePublished. Kept out of published.ts on purpose: that file is the page
+ * list the index governor, the weekly roundup, the indexing queue and the
+ * social post picker count, and these pages are not part of those counts.
+ */
+export const PUBLISHED_STAMPED: Record<string, string> = {
+${stampedSorted.map(([k, d]) => `  ${JSON.stringify(k)}: ${JSON.stringify(d)},`).join("\n")}
+};
+`,
+);
+console.log(`backfill-published: wrote ${stampedSorted.length} rows to ${OUT_STAMPED}.`);
 if (gateMoved.length) {
   console.log(`  ${gateMoved.length} dated by their release gate, not their commit:\n    ${gateMoved.join("\n    ")}`);
 }

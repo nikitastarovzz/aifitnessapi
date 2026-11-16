@@ -36,7 +36,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       # The generator parses the SIG's YAML with the js-yaml gray-matter ships,
       # so it needs the locked dependencies.

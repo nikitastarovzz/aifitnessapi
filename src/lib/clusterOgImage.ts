@@ -22,3 +22,28 @@ export function clusterOgImage(
     );
   };
 }
+
+/** The default export of a cluster hub's `opengraph-image.tsx`. The supporting
+ *  line counts the released pages at build time, so it can never claim more
+ *  pages than the cluster ships. */
+export function clusterHubOgImage(
+  config: ClusterConfig,
+  released: () => ClusterEntry[],
+  title: string,
+) {
+  return function Image() {
+    const entries = released();
+    const dates = entries.map((e) => e.updated).sort();
+    const line = entries.length
+      ? `${entries.length} page${entries.length === 1 ? "" : "s"}, last reviewed ${dates[dates.length - 1]}`
+      : undefined;
+    return new ImageResponse(
+      ogCard({
+        eyebrow: config.hubLabel,
+        title,
+        line,
+      }),
+      { ...OG_SIZE },
+    );
+  };
+}

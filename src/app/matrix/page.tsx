@@ -9,7 +9,7 @@ import { ROWS } from "@/data/matrix";
 import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
 import { HK_BASE, GROUP_TO_SLUG, releasedHkGroups } from "@/data/hkGroupPages";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 import VendorHubMenu from "@/components/VendorHubMenu";
 import { PAGE_H1 } from "@/data/pageTitles";
@@ -84,20 +84,12 @@ export default function MatrixPage() {
     url,
     creator: orgRef(),
     publisher: orgRef(),
-    datePublished: UPDATED,
+    datePublished: publishedDate("matrix", UPDATED),
     dateModified: UPDATED,
     isAccessibleForFree: true,
     variableMeasured: ROWS.map((r) => r.label),
   };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
 
   return (
     <Container className="py-14">

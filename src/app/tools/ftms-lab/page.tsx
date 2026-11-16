@@ -13,7 +13,7 @@ import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { BLE_BROWSER_SUPPORT } from "@/lib/bleBrowserSupport";
 import { BYTE_ORDER_SOURCE } from "@/lib/gattDecode.mjs";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * A Web Bluetooth lab for the Fitness Machine Service (FTMS, 0x1826).
@@ -64,7 +64,7 @@ export default function FtmsLabPage() {
     name: TITLE,
     alternativeHeadline: "Web Bluetooth Fitness Machine Service (FTMS) decoder with paste and replay modes",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/ftms-lab", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

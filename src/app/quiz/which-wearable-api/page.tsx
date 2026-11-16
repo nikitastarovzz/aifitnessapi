@@ -7,7 +7,7 @@ import ToolNextStep from "@/components/ToolNextStep";
 import WearableQuiz from "@/components/WearableQuiz";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { site, absoluteUrl } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import { SCORES } from "@/lib/wearableQuiz.mjs";
 import {
   QUESTIONS,
@@ -57,7 +57,7 @@ export default function QuizPage() {
     name: QUIZ_H1,
     alternativeHeadline: "a quiz that decides how your app should get wearable and health data",
     description: QUIZ_DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("quiz/which-wearable-api", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

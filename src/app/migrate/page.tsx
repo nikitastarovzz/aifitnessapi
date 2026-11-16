@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getMigration, releasedMigrate, MIGRATE_PATH, MIGRATE_CONFIG } from "@/data/migrate";
 
@@ -89,7 +89,7 @@ export default function MigratePillar() {
     "@type": "Article",
     headline: "Fitness & Health API Migration Guides",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("migrate", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
@@ -97,15 +97,7 @@ export default function MigratePillar() {
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",

@@ -20,7 +20,7 @@ import {
 } from "@/data/hcPages";
 import { buildAndroidReference, SOURCES as XRAY_SOURCES } from "@/lib/permissionXray.mjs";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -108,7 +108,7 @@ export default function PermissionBuilderPage() {
     name: TITLE,
     alternativeHeadline: "healthkit permission request generator",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/permission-builder", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

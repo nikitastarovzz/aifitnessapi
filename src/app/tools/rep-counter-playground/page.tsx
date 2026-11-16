@@ -12,7 +12,7 @@ import { LANDMARKS } from "@/lib/repCounter.mjs";
 import { DEFAULT_CONFIG, JOINTS } from "@/lib/repPlayground.mjs";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * A rep-counting playground: a local video (or the webcam) through MediaPipe
@@ -73,7 +73,7 @@ export default function RepCounterPlaygroundPage() {
     name: TITLE,
     alternativeHeadline: "rep counting from video with pose estimation",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/rep-counter-playground", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

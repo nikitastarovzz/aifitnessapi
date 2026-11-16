@@ -11,7 +11,7 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
 import { hubQaJsonLd } from "@/data/hubGlance";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getPricing, releasedPricing, PRICING_PATH, PRICING_CONFIG } from "@/data/pricing";
 
@@ -111,7 +111,7 @@ export default function PricingPillar() {
     "@type": "Article",
     headline: "Fitness & Health API Pricing",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("pricing", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

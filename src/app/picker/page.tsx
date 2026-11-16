@@ -7,7 +7,7 @@ import ClusterHero from "@/components/ClusterHero";
 import ApiPicker from "@/components/ApiPicker";
 import ClusterCta from "@/components/ClusterCta";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 
 const PICKER_PATH = "/picker";
@@ -58,7 +58,7 @@ export default function PickerPage() {
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     publisher: orgRef(),
-    datePublished: UPDATED,
+    datePublished: publishedDate("picker", UPDATED),
     dateModified: UPDATED,
   };
 

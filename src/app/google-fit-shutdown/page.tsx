@@ -10,7 +10,7 @@ import VendorHubMenu from "@/components/VendorHubMenu";
 import CountdownEmbed from "@/components/CountdownEmbed";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd } from "@/lib/schema";
 import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 const PATH = "/google-fit-shutdown";
@@ -163,15 +163,7 @@ export default function GoogleFitShutdownPage() {
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
 
   return (
     <Container className="py-14">

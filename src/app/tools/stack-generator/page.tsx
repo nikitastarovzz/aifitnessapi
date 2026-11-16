@@ -17,7 +17,7 @@ import { API_ENTRIES, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
 import { allBuilds, RELEASED_BUILD, BUILD_PATH } from "@/data/build";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -148,7 +148,7 @@ export default function StackGeneratorPage() {
     path: PATH,
     name: "Fitness app stack generator",
     description: String(metadata.description),
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/stack-generator", UPDATED),
     dateModified: UPDATED,
   });
 
