@@ -149,6 +149,23 @@ export function breadcrumbNode(trail: { name: string; path: string }[]) {
 }
 
 /**
+ * Standalone FAQPage from an ordered list of {q, a}: one Question per entry,
+ * name and answer text passed through unchanged. Pages whose FAQ nodes carry
+ * an @id or url, or sit inside an @graph, build their own.
+ */
+export function faqPageJsonLd(faqs: readonly { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+/**
  * Vendor and standards documentation: when an entry links one of these, the
  * link is evidence for a claim, so it is emitted as `citation`.
  */

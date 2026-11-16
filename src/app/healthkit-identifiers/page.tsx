@@ -20,7 +20,7 @@ import {
 import { PAGE_H1 } from "@/data/pageTitles";
 import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd } from "@/lib/schema";
 import {
   HK_PAGE_FAMILIES,
   hkPageIdentifiers,
@@ -215,15 +215,7 @@ export default function HealthKitIdentifiersPage() {
     dateModified: HK_FETCHED_ON,
     variableMeasured: ["identifier", "unit family", "aggregation style", "iOS availability"],
   };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
 
   const topUnits = Object.entries(
     QUANTITY.reduce<Record<string, number>>((acc, r) => {

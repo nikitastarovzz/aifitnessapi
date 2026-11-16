@@ -12,7 +12,7 @@ import { HK_ERRORS, HK_FETCHED_ON, type HkError } from "@/data/healthkitIdentifi
 import { PAGE_H1 } from "@/data/pageTitles";
 import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd } from "@/lib/schema";
 
 /**
  * The HKError.Code reference.
@@ -78,15 +78,7 @@ const FAQS = [
 export default function HealthKitErrorsPage() {
   const url = absoluteUrl(PATH);
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",

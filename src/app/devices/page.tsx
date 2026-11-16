@@ -10,7 +10,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, faqPageJsonLd } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getDevice, releasedDevices, DEVICES_PATH, DEVICES_CONFIG } from "@/data/devices";
 import { BT_BASE, BT_PAGES, btPath, btTotals, relatedGuides } from "@/data/btPages";
@@ -99,15 +99,7 @@ export default function DevicesPillar() {
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const faqJsonLd = faqPageJsonLd(FAQS);
 
   return (
     <Container className="py-14">
