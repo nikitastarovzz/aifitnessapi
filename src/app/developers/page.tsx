@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PageSummary from "@/components/PageSummary";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { formatDate } from "@/lib/posts";
 import { PAGE_H1 } from "@/data/pageTitles";
 import {
@@ -127,7 +127,7 @@ export default function DevelopersPage() {
     headline: "The AIFitnessAPI data API and MCP server",
     description: DESCRIPTION,
     url,
-    datePublished: UPDATED,
+    datePublished: publishedDate("developers", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

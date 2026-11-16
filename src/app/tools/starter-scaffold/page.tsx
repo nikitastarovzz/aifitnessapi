@@ -9,7 +9,7 @@ import ToolNextStep from "@/components/ToolNextStep";
 import StarterScaffold from "@/components/tools/StarterScaffold";
 import { SCAFFOLD_CHECKED_ON, SCAFFOLD_EXCLUDED, SCAFFOLD_STACKS, SCAFFOLD_VENDORS } from "@/lib/starterScaffold.mjs";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * "Give me a project that already does OAuth and webhooks for these
@@ -51,7 +51,7 @@ export default function StarterScaffoldPage() {
     path: PATH,
     name: TITLE,
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/starter-scaffold", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

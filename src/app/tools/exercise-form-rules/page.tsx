@@ -13,7 +13,7 @@ import {
 import { formRuleSource as src, formRuleValueText as valueText, formRulesCapsule } from "@/lib/formRulesView";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * The open exercise form-rules dataset, rendered.
@@ -62,7 +62,7 @@ export default function ExerciseFormRulesPage() {
     name: TITLE,
     alternativeHeadline: "joint angle thresholds for exercise form and rep counting",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/exercise-form-rules", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

@@ -10,7 +10,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getIntegration, releasedIntegrations, INTEGRATE_PATH, INTEGRATE_CONFIG } from "@/data/integrate";
 
@@ -106,7 +106,7 @@ export default function IntegratePillar() {
     "@type": "Article",
     headline: "How to Integrate a Fitness or Health API (2026)",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("integrate", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

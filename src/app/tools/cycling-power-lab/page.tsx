@@ -20,7 +20,7 @@ import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { BLE_BROWSER_SUPPORT } from "@/lib/bleBrowserSupport";
 import { BYTE_ORDER_SOURCE } from "@/lib/gattDecode.mjs";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * A Web Bluetooth lab for cycling power meters and speed/cadence sensors.
@@ -72,7 +72,7 @@ export default function CyclingPowerLabPage() {
     name: TITLE,
     alternativeHeadline: "Web Bluetooth cycling power and speed/cadence decoder: cadence and speed from cumulative revolutions",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/cycling-power-lab", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

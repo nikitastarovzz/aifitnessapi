@@ -12,7 +12,7 @@ import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { BLE_BROWSER_SUPPORT, WEB_BLUETOOTH_SERVICES_RULE } from "@/lib/bleBrowserSupport";
 import { BYTE_ORDER_SOURCE, encode, toHex } from "@/lib/gattDecode.mjs";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * A Web Bluetooth GATT explorer for any device.
@@ -68,7 +68,7 @@ export default function BleGattExplorerPage() {
     name: TITLE,
     alternativeHeadline: "Web Bluetooth GATT explorer with Bluetooth SIG structure decoding",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/ble-gatt-explorer", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

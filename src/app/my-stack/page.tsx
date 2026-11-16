@@ -8,7 +8,7 @@ import MyStack from "@/components/tools/MyStack";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { stackData } from "@/lib/myStack";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * /my-stack — the products your app depends on, with their tracked changes,
@@ -51,7 +51,7 @@ export default function MyStackPage() {
     name: TITLE,
     alternativeHeadline: "a dashboard of the fitness APIs you depend on",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("my-stack", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

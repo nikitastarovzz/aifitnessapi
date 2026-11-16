@@ -8,7 +8,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getRecipe, releasedCookbook, COOKBOOK_PATH, COOKBOOK_CONFIG } from "@/data/cookbook";
 
@@ -87,7 +87,7 @@ export default function CookbookPillar() {
     "@type": "Article",
     headline: "Fitness API Cookbook: CI-Tested Reference Code",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("cookbook", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

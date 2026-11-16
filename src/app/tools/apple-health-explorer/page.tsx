@@ -8,7 +8,7 @@ import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { hkGroupRowHref, hkIdentifierPagePath } from "@/data/hkIdentifierPages";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * /tools/apple-health-explorer — open an iPhone Health export in the browser
@@ -67,7 +67,7 @@ export default function AppleHealthExplorerPage() {
     name: TITLE,
     alternativeHeadline: "read an iPhone Health export without uploading it",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/apple-health-explorer", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

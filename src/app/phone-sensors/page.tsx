@@ -10,7 +10,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import {
   getPhoneSensor,
@@ -111,7 +111,7 @@ export default function PhoneSensorsPillar() {
     "@type": "Article",
     headline: TITLE,
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("phone-sensors", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

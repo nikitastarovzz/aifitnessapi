@@ -12,7 +12,7 @@ import * as gh from "@/data/googleHealthApi";
 import { MAX_DAYS, type SampleSpec } from "@/lib/sampleData.mjs";
 import { ANSWER, PLATFORM_META, SKIPPED, SOURCES, SPECS } from "@/lib/sampleDataPage";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -103,7 +103,7 @@ export default function SampleDataPage() {
     name: TITLE,
     alternativeHeadline: "healthkit health connect google health api test data generator",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/sample-data", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

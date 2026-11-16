@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getFix, releasedFixes, FIX_PATH, FIX_CONFIG } from "@/data/fix";
 
@@ -125,7 +125,7 @@ export default function FixPillar() {
     "@type": "Article",
     headline: "Fitness & Health API Troubleshooting (2026)",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("fix", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

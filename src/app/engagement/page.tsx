@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getEngagement, releasedEngagement, ENGAGEMENT_PATH, ENGAGEMENT_CONFIG } from "@/data/engagement";
 
@@ -95,7 +95,7 @@ export default function EngagementPillar() {
     "@type": "Article",
     headline: "Fitness App Engagement & Retention",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("engagement", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

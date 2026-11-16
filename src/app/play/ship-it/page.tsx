@@ -7,7 +7,7 @@ import ClusterHero from "@/components/ClusterHero";
 import ShipIt from "@/components/play/ShipIt";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl, site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 import {
   EVENTS,
@@ -63,7 +63,7 @@ export default function ShipItPage() {
     name: H1,
     alternativeHeadline: "fitness API deprecation game",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("play/ship-it", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

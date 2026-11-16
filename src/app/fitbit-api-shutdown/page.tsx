@@ -11,7 +11,7 @@ import CountdownEmbed from "@/components/CountdownEmbed";
 import { Mdx } from "@/components/mdx";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 
 /**
  * Event hub: the Fitbit Web API retirement. Deliberately separate from
@@ -214,7 +214,7 @@ export default function FitbitApiShutdownPage() {
     "@type": "Article",
     headline: "Fitbit Web API Retirement: Deadlines and the Migration Path",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("fitbit-api-shutdown", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getAi, releasedAi, AI_PATH, AI_CONFIG } from "@/data/ai";
 
@@ -90,7 +90,7 @@ export default function AiPillar() {
     "@type": "Article",
     headline: "AI & LLM Features for Fitness Apps",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("ai", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

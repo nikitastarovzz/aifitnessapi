@@ -10,7 +10,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getDevice, releasedDevices, DEVICES_PATH, DEVICES_CONFIG } from "@/data/devices";
 import { BT_BASE, BT_PAGES, btPath, btTotals, relatedGuides } from "@/data/btPages";
@@ -91,7 +91,7 @@ export default function DevicesPillar() {
     "@type": "Article",
     headline: "Connected Fitness Devices: BLE, FTMS & Watch Data",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("devices", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

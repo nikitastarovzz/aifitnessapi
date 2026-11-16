@@ -7,7 +7,7 @@ import CostPlanner from "@/components/CostPlanner";
 import ClusterCta from "@/components/ClusterCta";
 import { Mdx } from "@/components/mdx";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 
 const PLANNER_PATH = "/cost-planner";
 const UPDATED = "2026-08-11";
@@ -105,7 +105,7 @@ export default function CostPlannerPage() {
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     publisher: orgRef(),
-    datePublished: UPDATED,
+    datePublished: publishedDate("cost-planner", UPDATED),
     dateModified: UPDATED,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };

@@ -11,7 +11,7 @@ import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/
 import { CROSSWALK_RULE, POSE_BASE, schemePath, sideMismatches } from "@/data/poseKeypointPages";
 import { mappingBetween, totalPairs, type KRow, type KScheme } from "@/lib/keypointMapping.mjs";
 import { absoluteUrl, site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -82,7 +82,7 @@ export default function KeypointPlaygroundPage() {
     name: TITLE,
     alternativeHeadline: "pose keypoint index converter between COCO, BlazePose, OpenPose, ML Kit and Apple Vision",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/keypoint-playground", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: POSE_KEYPOINTS_FETCHED_ON },
   });

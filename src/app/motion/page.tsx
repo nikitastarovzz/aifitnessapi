@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getMotion, releasedMotion, MOTION_PATH, MOTION_CONFIG } from "@/data/motion";
 import type { ClusterEntry } from "@/data/motion";
@@ -115,7 +115,7 @@ export default function MotionPillar() {
     "@type": "Article",
     headline: "AI Motion & Pose Estimation for Fitness Apps",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("motion", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

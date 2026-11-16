@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getTesting, releasedTesting, TEST_PATH, TEST_CONFIG } from "@/data/testing";
 
@@ -80,7 +80,7 @@ export default function TestPillar() {
     "@type": "Article",
     headline: "Testing Health & Fitness Apps",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("test", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

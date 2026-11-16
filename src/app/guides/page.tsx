@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getGuide, releasedGuides, GUIDES_PATH, GUIDES_CONFIG } from "@/data/guides";
 
@@ -92,7 +92,7 @@ export default function GuidesPillar() {
     "@type": "Article",
     headline: "How to Add AI Workout Tracking to Your App (2026)",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("guides", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

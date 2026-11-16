@@ -10,7 +10,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getDataPage, releasedData, DATA_PATH, DATA_CONFIG } from "@/data/healthData";
 
@@ -119,7 +119,7 @@ export default function DataPillar() {
     "@type": "Article",
     headline: "Health Data by Metric: Which API for Each",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("data", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

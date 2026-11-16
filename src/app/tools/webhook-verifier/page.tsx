@@ -8,7 +8,7 @@ import MoreTools from "@/components/tools/MoreTools";
 import WebhookVerifier from "@/components/tools/WebhookVerifier";
 import { WEBHOOK_VENDORS } from "@/lib/webhookVerifier.mjs";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
 
 /**
@@ -58,7 +58,7 @@ export default function WebhookVerifierPage() {
     path: PATH,
     name: TITLE,
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("tools/webhook-verifier", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

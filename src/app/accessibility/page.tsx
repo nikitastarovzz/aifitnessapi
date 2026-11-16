@@ -10,7 +10,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getAccessibility, releasedAccessibility, A11Y_PATH, A11Y_CONFIG } from "@/data/accessibility";
 
@@ -100,7 +100,7 @@ export default function AccessibilityPillar() {
     "@type": "Article",
     headline: TITLE,
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("accessibility", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

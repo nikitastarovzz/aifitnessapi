@@ -7,7 +7,7 @@ import ClusterCta from "@/components/ClusterCta";
 import KinestexNote from "@/components/KinestexNote";
 import { Mdx } from "@/components/mdx";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 
 /**
  * Flagship hub: the decision map for building an AI fitness app. Targets the
@@ -298,7 +298,7 @@ export default function AiFitnessAppPage() {
     "@type": "Article",
     headline: "How to Build an AI Fitness App",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("ai-fitness-app", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

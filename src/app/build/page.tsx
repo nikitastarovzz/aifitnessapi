@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getBuild, releasedBuilds, BUILD_PATH, BUILD_CONFIG } from "@/data/build";
 
@@ -107,7 +107,7 @@ export default function BuildPillar() {
     "@type": "Article",
     headline: "How to Build a Workout App (2026): The Builder's Playbook",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("build", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

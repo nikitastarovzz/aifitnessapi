@@ -8,7 +8,7 @@ import AnswerSearch from "@/components/tools/AnswerSearch";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { answerSearchSections } from "@/lib/answerSearchSections";
 import { site } from "@/lib/site";
-import { toolGraph } from "@/lib/schema";
+import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
  * /answers-search — full-text search over every answer this site publishes
@@ -49,7 +49,7 @@ export default function AnswersSearchPage() {
     name: TITLE,
     alternativeHeadline: "search the full text of every answer on AIFitnessAPI",
     description: DESCRIPTION,
-    datePublished: UPDATED,
+    datePublished: publishedDate("answers-search", UPDATED),
     dateModified: UPDATED,
     webPage: { lastReviewed: UPDATED },
   });

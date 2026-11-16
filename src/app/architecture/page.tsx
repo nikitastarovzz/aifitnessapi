@@ -9,7 +9,7 @@ import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef, faqPageJsonLd } from "@/lib/schema";
+import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getArchitecture, releasedArchitecture, ARCHITECTURE_PATH, ARCHITECTURE_CONFIG } from "@/data/architecture";
 
@@ -91,7 +91,7 @@ export default function ArchitecturePillar() {
     "@type": "Article",
     headline: "Health Data Architecture for Fitness Apps",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("architecture", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),

@@ -12,7 +12,7 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
 import { hubQaJsonLd } from "@/data/hubGlance";
 import { absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getAlternative, releasedAlternatives, ALTERNATIVES_PATH, ALTERNATIVES_CONFIG } from "@/data/alternatives";
 
@@ -108,7 +108,7 @@ export default function AlternativesPillar() {
     "@type": "Article",
     headline: "Fitness & Health API Alternatives (2026)",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: publishedDate("alternatives", UPDATED),
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
