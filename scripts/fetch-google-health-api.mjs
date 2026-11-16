@@ -74,6 +74,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { trimPage } from "./lib/html.mjs";
 
 const DOCS = "https://developers.google.com/health";
 const DISCOVERY = "https://health.googleapis.com/$discovery/rest";
@@ -137,13 +138,6 @@ const SOURCES = [
 mkdirSync(CACHE, { recursive: true });
 const meta = existsSync(META) ? JSON.parse(readFileSync(META, "utf8")) : {};
 const problems = [];
-
-function trimPage(html) {
-  const a = html.indexOf("<article");
-  const footEnd = html.indexOf("</devsite-content-footer>");
-  if (a < 0 || footEnd < 0) return html;
-  return html.slice(a, footEnd + "</devsite-content-footer>".length);
-}
 
 async function getSource(src) {
   const path = join(CACHE, src.file);

@@ -387,7 +387,6 @@ export default function RepCounterPlayground() {
       lmRef.current?.lm.close();
       streamRef.current?.getTracks().forEach((t) => t.stop());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

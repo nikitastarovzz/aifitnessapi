@@ -191,7 +191,3 @@ export const READING_PATHS: ReadingPath[] = [
     ],
   },
 ];
-
-export function getReadingPath(slug: string): ReadingPath | undefined {
-  return READING_PATHS.find((p) => p.slug === slug);
-}

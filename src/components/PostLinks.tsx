@@ -61,11 +61,6 @@ for (const [slug, paths] of Object.entries(PLACEMENTS)) {
   for (const p of paths) (BY_PATH[p] ??= []).push(slug);
 }
 
-/** Every referenced post slug and path, for the qa gate. */
-export function allPostPlacements(): { slug: string; paths: string[] }[] {
-  return Object.entries(PLACEMENTS).map(([slug, paths]) => ({ slug, paths }));
-}
-
 export default function PostLinks({ path }: { path: string }) {
   const slugs = BY_PATH[path];
   if (!slugs || slugs.length === 0) return null;

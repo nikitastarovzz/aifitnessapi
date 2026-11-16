@@ -17,11 +17,12 @@ The owner wants planning and implementation on different model tiers:
 
 ## Verification pipeline — the gate is the approval
 
-`npx tsc --noEmit` → `npm run build` → `npm run qa` must all be green before
-any commit. Never weaken `scripts/qa.mjs` to make a build pass.
+`npx tsc --noEmit` → `npm test` → `npm run build` → `npm run qa` must all be
+green before any commit. Never weaken `scripts/qa.mjs` to make a build pass.
 
 Since 2026-10-04 a machine enforces this instead of memory.
-`.github/workflows/ci.yml` runs the same three commands on every pull request
+`.github/workflows/ci.yml` runs the same four commands, plus the API client
+tests after the build (`npm run test:api-client`), on every pull request
 and every push to `main`, and **`main` is protected**: direct pushes are
 rejected and the `gates` check must pass before a merge. So the flow is
 
@@ -58,8 +59,8 @@ silently reverts it.
 | `src/data/healthkitMetadataKeys.ts` | `node scripts/fetch-healthkit-metadata-keys.mjs` (Apple's metadata-keys docs JSON + Workout Metadata Keys sub-collection + one JSON per key; `--offline` reparses `.cache/healthkit-metadata-keys`) |
 | `src/data/healthServicesDataTypes.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-health-services-data-types.mjs` (Jetpack DataType Kotlin reference + Health Services permissions guide, `?hl=en`; `--offline` reparses `.cache/health-services`) |
 | `src/data/poseKeypoints.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-pose-keypoints.mjs` (MediaPipe, TF.js, MMPose, Ultralytics and OpenPose source files on raw.githubusercontent.com, ML Kit's PoseLandmark reference, Apple's Vision docs JSON; `--offline` reparses `.cache/pose-keypoints`) |
-| `src/data/googleHealthApi.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-google-health-api.mjs` (Google Health API discovery documents v4 + v4beta and 12 developers.google.com/health pages, `?hl=en`; `--offline` reparses `.cache/google-health-api`; a cached file is reused, so delete the cache to re-read; `.github/workflows/google-health-api.yml`, weekly once its schedule is uncommented) |
-| `src/data/mcpHealthServers.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-mcp-health-servers.mjs` (every page of the official MCP Registry's v0.1 listing, plus npm and PyPI for the packages it names; `--offline` reparses `.cache/mcp-registry`; `.github/workflows/mcp-health-servers.yml`, schedule paused like `libraries.yml`) |
+| `src/data/googleHealthApi.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-google-health-api.mjs` (Google Health API discovery documents v4 + v4beta and 12 developers.google.com/health pages, `?hl=en`; `--offline` reparses `.cache/google-health-api`; a cached file is reused, so delete the cache to re-read; `.github/workflows/google-health-api.yml`, weekly) |
+| `src/data/mcpHealthServers.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-mcp-health-servers.mjs` (every page of the official MCP Registry's v0.1 listing, plus npm and PyPI for the packages it names; `--offline` reparses `.cache/mcp-registry`; `.github/workflows/mcp-health-servers.yml`, weekly) |
 | `src/data/bluetoothGatt.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-bluetooth-gatt.mjs` (the Bluetooth SIG's public Bitbucket repository: head of `main` via the API, then one archive of that commit — assigned-number UUID lists, units, permitted-characteristics lists, `gss/` structures; `--offline` reparses `.cache/bluetooth-gatt`). Then `npm run datasets`. |
 | `src/data/workoutTypes.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-workout-types.mjs` (Apple's HKWorkoutActivityType index and per-case docs JSON; Google's ExerciseSessionRecord, ExerciseSegment, ExerciseSessionType and Health Services ExerciseType references and the Health Connect data-types guide, `?hl=en`; the androidx source those references link as View Source, on `androidx-main`; and `src/data/healthkitIdentifiers.ts` and `src/data/googleHealthApi.ts`, so regenerate those first; `--offline` reparses `.cache/workout-types`). Then `npm run datasets`. |
 | `src/data/formRules.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-form-rules.mjs` (licensed open-source exercise trackers on raw.githubusercontent.com, every value captured from a quoted line; `--offline` reparses the cache). Then `npm run datasets`. |
@@ -134,8 +135,10 @@ inglês)", and translating never moves an English stamp.
   disclosure and name KinesteX exactly as often as English does.
 - **Removing an English page** that has a translation: delete the translation
   in the same change (PTBR-ORPHAN). **Translating a page in a new cluster:**
-  add `languageAlternates` to that cluster's `[slug]/page.tsx` and a label to
-  `HUB_LABELS_PT` in `src/lib/translations.ts`, or PTBR-HREFLANG fails.
+  add a label to `HUB_LABELS_PT` in `src/lib/translations.ts`, or
+  PTBR-HREFLANG fails. The hreflang itself comes from the shared
+  `clusterMetadata` helper in `src/lib/clusterRoute.ts`, which every cluster
+  route calls.
 
 ## Binding documents
 

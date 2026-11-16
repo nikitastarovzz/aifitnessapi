@@ -25,7 +25,6 @@ import { sentences } from "./hubGlance";
  * ONE_LINE_MIN characters — so it says nothing the page does not.
  */
 
-export const MONEY_CLUSTERS = ["/pricing", "/alternatives", "/compare", "/integrate"] as const;
 export const RECENT_WINDOW_DAYS = 0;
 export const ONE_LINE_MIN = 80;
 

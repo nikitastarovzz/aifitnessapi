@@ -596,7 +596,6 @@ export default function HeartRateLab({ layout, bsl }: { layout: HrmLayout; bsl: 
             <p className="mt-2 font-mono text-xs text-[var(--muted)]">{shareText}</p>
             {cardUrl ? (
               <div className="mt-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={cardUrl} alt={`Share card: my ${deviceName} sends RR intervals: ${yesNo}`} className="w-full rounded-xl border border-[var(--border)]" />
                 <a href={cardUrl} download="rr-intervals-card.png" className="mt-2 inline-block text-sm font-medium text-brand-600 hover:text-brand-500">
                   Save the PNG

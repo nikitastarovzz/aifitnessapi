@@ -43,6 +43,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { linkedText } from "./lib/html.mjs";
 
 const ORIGIN = "https://developer.apple.com";
 const DATA = `${ORIGIN}/tutorials/data`;
@@ -95,18 +96,6 @@ async function getJson(url, cacheFile) {
 
 const problems = [];
 
-/** Apple inline content → text, resolving symbol links to their titles. */
-function linkedText(nodes, refs) {
-  let out = "";
-  for (const n of nodes || []) {
-    if (!n || typeof n !== "object") continue;
-    if (n.type === "text") out += n.text ?? "";
-    else if (n.type === "codeVoice") out += n.code ?? "";
-    else if (n.type === "reference") out += refs?.[n.identifier]?.title ?? String(n.identifier).split("/").pop();
-    else if (n.inlineContent) out += linkedText(n.inlineContent, refs);
-  }
-  return out;
-}
 const clean = (s) => s.replace(/\s+/g, " ").trim();
 
 /** Discussion paragraphs (asides prefixed with their name). An unhandled node

@@ -130,7 +130,6 @@ export function useUrlState<T>(initial: T, decode: (search: string) => T, encode
     if (window.location.search) setValue(decode(window.location.search));
     ready.current = true;
     // decode is stable for the page's lifetime
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return [value, setValue];
 }

@@ -280,9 +280,6 @@ export function dataPointMethods() {
   return GHAPI_METHODS.filter((m) => m.resource === "users.dataTypes.dataPoints");
 }
 
-/** The users.dataTypes.dataPoints method a table operation names. */
-export const methodOf = (name: string | null) => (name ? (dataPointMethods().find((m) => m.name === name) ?? null) : null);
-
 // ---------------------------------------------------------------------------
 // This site's metric pages, linked only when released.
 //

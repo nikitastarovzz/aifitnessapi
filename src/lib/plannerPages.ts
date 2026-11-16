@@ -208,8 +208,6 @@ export const COMPLIANCE_WIZARD_PAGE: PlannerPage = {
   ],
 };
 
-export const PLANNER_PAGES = [BUILD_PLAN_PAGE, STORE_CHECKLIST_PAGE, COMPLIANCE_WIZARD_PAGE];
-
 /** The three tools as /llms-full.txt and /llms-index.txt list them. */
 export const PLANNER_LLMS = [
   { label: "Fitness app build plan and PRD generator", path: BUILD_PLAN_PAGE.path, primaryQuery: "fitness app prd template", text: BUILD_PLAN_PAGE.capsule },

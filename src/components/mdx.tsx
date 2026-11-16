@@ -159,7 +159,6 @@ export function Mdx({
           remarkPlugins: [remarkGfm],
           // The unified plugin tuple types do not survive being built up as
           // an array; the entries are the same plugins as before.
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           rehypePlugins: rehypePlugins as any,
         },
       }}

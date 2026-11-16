@@ -1,6 +1,7 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { changesSorted } from "@/data/changes";
 import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
+import { escapeXml } from "@/lib/xml";
 
 /**
  * RSS feed for the changes & deadlines tracker.
@@ -12,12 +13,6 @@ import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
  * consumer that only ever reads the feed still inherits the honesty rule.
  */
 export const dynamic = "force-static";
-
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) =>
-    c === "<" ? "&lt;" : c === ">" ? "&gt;" : c === "&" ? "&amp;" : c === "'" ? "&apos;" : "&quot;",
-  );
-}
 
 export function GET(): Response {
   const events = changesSorted();

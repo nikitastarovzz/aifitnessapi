@@ -19,7 +19,7 @@ CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse and redistribute
 
 ## Source and method
 
-- https://developers.google.com/health/about
+- https://api.fitbit.com/oauth2/token
 - https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget
 - https://developer.android.com/health-and-fitness/health-connect/migration/fit
 - https://developers.strava.com/docs/changelog/

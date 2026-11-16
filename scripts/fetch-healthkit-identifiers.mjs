@@ -40,6 +40,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { linkedText } from "./lib/html.mjs";
 
 const DOC = "https://developer.apple.com/tutorials/data/documentation/healthkit";
 
@@ -97,24 +98,13 @@ function inlineText(nodes) {
 }
 
 /**
- * Like inlineText, but resolves `reference` nodes to the symbol they link to,
+ * linkedText (scripts/lib/html.mjs) is like inlineText, but resolves `reference` nodes to the symbol they link to,
  * using the page's own references table. Deprecation notes are mostly links
  * ("Use <cardioDance> or <socialDance> instead."), so dropping references —
  * which inlineText does — would leave "Use  or  instead." Kept separate so
  * the abstracts and discussions published before this existed do not change
  * underneath their readers.
  */
-function linkedText(nodes, refs) {
-  let out = "";
-  for (const n of nodes || []) {
-    if (!n || typeof n !== "object") continue;
-    if (n.type === "text") out += n.text ?? "";
-    else if (n.type === "codeVoice") out += n.code ?? "";
-    else if (n.type === "reference") out += refs?.[n.identifier]?.title ?? String(n.identifier).split("/").pop();
-    else if (n.inlineContent) out += linkedText(n.inlineContent, refs);
-  }
-  return out;
-}
 
 /** The symbol names a run of inline content links to, in order, de-duplicated. */
 function linkedSymbols(nodes, refs, acc = []) {

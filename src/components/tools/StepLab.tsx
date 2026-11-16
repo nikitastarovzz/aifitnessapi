@@ -631,7 +631,6 @@ export default function StepLab() {
           )}
         </div>
         {cardUrl && (
-          // eslint-disable-next-line @next/next/no-img-element
           <img src={cardUrl} alt="Share card: steps counted, settings and the trace" className="mt-3 w-full rounded-lg border border-[var(--border)]" data-step-card />
         )}
       </div>

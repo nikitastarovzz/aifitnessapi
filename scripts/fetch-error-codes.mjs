@@ -37,6 +37,7 @@
  */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { googleLastUpdated, linkedText, textOf } from "./lib/html.mjs";
 
 const APPLE = "https://developer.apple.com/tutorials/data/documentation/healthkit";
 const HC_EXCEPTION_URL = "https://developer.android.com/reference/android/health/connect/HealthConnectException";
@@ -69,18 +70,6 @@ const getJson = async (url, cacheFile) => JSON.parse(await getText(url, cacheFil
 const problems = [];
 
 // ── HTML helpers (Google's reference pages are server-rendered HTML) ────────
-function decodeEntities(s) {
-  return s
-    .replace(/&nbsp;/g, " ")
-    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&amp;/g, "&");
-}
-const textOf = (html) => decodeEntities(html.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
 /** Split an HTML fragment into its paragraphs' text. Tolerates Google's
  *  nested <p><p></p></p> markup by treating every <p> or </p> as a break. */
 const paragraphsOf = (html) =>
@@ -88,23 +77,8 @@ const paragraphsOf = (html) =>
     .split(/<\/?p\b[^>]*>/i)
     .map(textOf)
     .filter(Boolean);
-/** The "Last updated YYYY-MM-DD UTC." stamp Google prints in the page footer. */
-const googleLastUpdated = (html) => /Last updated (\d{4}-\d{2}-\d{2}) UTC/.exec(html)?.[1] ?? null;
 
 // ── 1. HKError.Code ────────────────────────────────────────────────────────
-/** Apple inline content → text, resolving symbol links to their titles. */
-function linkedText(nodes, refs) {
-  let out = "";
-  for (const n of nodes || []) {
-    if (!n || typeof n !== "object") continue;
-    if (n.type === "text") out += n.text ?? "";
-    else if (n.type === "codeVoice") out += n.code ?? "";
-    else if (n.type === "reference") out += refs?.[n.identifier]?.title ?? String(n.identifier).split("/").pop();
-    else if (n.inlineContent) out += linkedText(n.inlineContent, refs);
-  }
-  return out;
-}
-
 /** Discussion paragraphs (and asides, prefixed with their name). */
 function discussionOf(doc, label) {
   const refs = doc.references || {};

@@ -1,56 +1,18 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ClusterPage from "@/components/ClusterPage";
 import InlineSignup from "@/components/InlineSignup";
-import {
-  releasedAlternatives,
-  getAlternative,
-  clampTitle,
-  clampDescription,
-  ALTERNATIVES_PATH,
-  ALTERNATIVES_CONFIG,
-} from "@/data/alternatives";
-import { robotsFor } from "@/data/noindex";
-import { languageAlternates } from "@/lib/translations";
+import { releasedAlternatives, getAlternative, ALTERNATIVES_PATH, ALTERNATIVES_CONFIG } from "@/data/alternatives";
+import { clusterMetadata, clusterStaticParams, type SlugParams } from "@/lib/clusterRoute";
 
 export const dynamicParams = false;
 
-type Params = { slug: string };
-
-export function generateStaticParams(): Params[] {
-  return releasedAlternatives().map((e) => ({ slug: e.slug }));
+export function generateStaticParams(): SlugParams[] {
+  return clusterStaticParams(releasedAlternatives);
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const entry = getAlternative(slug);
-  if (!entry) return {};
-  const canonical = `${ALTERNATIVES_PATH}/${entry.slug}`;
-  const title = clampTitle(entry.metaTitle);
-  const description = clampDescription(entry.metaDescription);
-  return {
-    title: { absolute: title },
-    description,
-    // hreflang to the Portuguese edition, only while it is current.
-    alternates: { canonical, ...languageAlternates(canonical) },
-    ...robotsFor(canonical),
-    openGraph: {
-      type: "article",
-      title,
-      description,
-      url: canonical,
-      publishedTime: entry.updated,
-      modifiedTime: entry.updated,
-    },
-    twitter: { card: "summary_large_image", title, description },
-  };
-}
+export const generateMetadata = clusterMetadata(ALTERNATIVES_PATH, getAlternative);
 
-export default async function Page({ params }: { params: Promise<Params> }) {
+export default async function Page({ params }: { params: Promise<SlugParams> }) {
   const { slug } = await params;
   const entry = getAlternative(slug);
   if (!entry) notFound();

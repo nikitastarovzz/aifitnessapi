@@ -922,6 +922,22 @@ if (fs.existsSync(matrixPath)) {
       if (!rows.some((r) => String(r.quote ?? "").trim() && norm(s.quote).includes(norm(r.quote)))) {
         problems.push(`GRAVEYARD-EVIDENCE  ${id} is snapshot-sourced but ${GY_EVIDENCE} has no row for ${s.url} whose quote is part of the entry's quote`);
       }
+      // A source that is an error body (httpStatus) and its evidence rows
+      // (expectStatus) must say the same status, in both directions: without
+      // the row's number source-quotes.yml fails on the non-2xx answer, and
+      // with a number the entry does not declare it would pass on an error
+      // page nobody decided to cite.
+      const declared = s.httpStatus;
+      if (declared !== undefined && !(Number.isInteger(declared) && declared >= 400 && declared <= 599)) {
+        problems.push(`GRAVEYARD-EVIDENCE  ${id} has httpStatus ${JSON.stringify(declared)}; it is for an error response a source answers with (400 to 599)`);
+      }
+      for (const r of rows) {
+        if (r.expectStatus !== declared) {
+          problems.push(`GRAVEYARD-EVIDENCE  ${id}: ${GY_EVIDENCE} has a row for ${s.url} with expectStatus ${JSON.stringify(r.expectStatus)} but the entry's source has httpStatus ${JSON.stringify(declared)}`);
+        }
+      }
+    } else if (s.httpStatus !== undefined) {
+      problems.push(`GRAVEYARD-EVIDENCE  ${id} has httpStatus but is not snapshot-sourced; an error body is read through source-snapshot.yml and needs its evidence row`);
     } else if (s.via !== "direct") {
       problems.push(`GRAVEYARD-SOURCE  ${id} has via ${JSON.stringify(s.via)}; it must say direct or snapshot`);
     }

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14",
+  "generated": "2026-11-16",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -51,15 +51,15 @@
     },
     {
       "file": "fitness-api-docs-drift-2026.csv",
-      "bytes": 163824,
-      "rows": 1335,
-      "sha256": "64d78c0a6e301d9b6934fa3b6617a4c088dda350d188f0fbef9f5deee56ca2bb"
+      "bytes": 163893,
+      "rows": 1336,
+      "sha256": "d322ddb671c90504ee2eafa8befbb6cc732132b3306bd3f773581f395eefa764"
     },
     {
       "file": "fitness-api-docs-drift-2026.json",
-      "bytes": 472010,
-      "rows": 1335,
-      "sha256": "8a089c7fb45154ca8dafd781ad03c76477aa513aec34e34bb56d5674b1d152ad"
+      "bytes": 472313,
+      "rows": 1336,
+      "sha256": "b784e4688108d873ab4bbf8cd354f3c59091aafadcbf2cb43fff537a9cfefdf9"
     },
     {
       "file": "fitness-api-glossary-2026.csv",
@@ -87,15 +87,15 @@
     },
     {
       "file": "fitness-api-shutdown-notice-2026.csv",
-      "bytes": 8048,
+      "bytes": 8018,
       "rows": 15,
-      "sha256": "3882e4f61dc03b46042641c5a1d76eacf3a1ed471275a540e05e65d1025a1905"
+      "sha256": "376e33a462e603d3704a0a6fba0219279d07c3504a1b8977b23c03de371ed9af"
     },
     {
       "file": "fitness-api-shutdown-notice-2026.json",
-      "bytes": 16945,
+      "bytes": 16908,
       "rows": 15,
-      "sha256": "e7793b7b77269d321d45db2dca6b87a439ad41b5fd2b745992c7e132d65a3f89"
+      "sha256": "cc493311b8c7f629f45c2bf2d7256741dffd5b0cdf3b02b6d07591a03a4da045"
     },
     {
       "file": "fitness-apis-2026.csv",

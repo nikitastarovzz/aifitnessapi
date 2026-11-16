@@ -54,6 +54,11 @@ jobs:
       - name: Typecheck
         run: npx tsc --noEmit
 
+      # Every scripts/*.test.mjs suite. They need no build, so they run early
+      # and a failing test stops the job before the slow step.
+      - name: Unit tests
+        run: npm test
+
       - name: Build
         run: npm run build
 
@@ -62,3 +67,8 @@ jobs:
       # lengths, sitemap/noindex contradictions, GEO surfaces, query ownership.
       - name: QA gates
         run: npm run qa
+
+      # The packages/api-client tests read the built /api/v1/openapi.json, so
+      # they also have to follow the build.
+      - name: API client tests
+        run: npm run test:api-client

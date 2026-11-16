@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Code from "@/components/Code";
 import { notFound } from "next/navigation";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -116,10 +117,6 @@ function near(permission: string): { value: string; where: string | null }[] {
     }
   }
   return out;
-}
-
-function Code({ children }: { children: string }) {
-  return <code className="break-all font-mono text-[13px] text-[var(--fg)]">{children}</code>;
 }
 
 function Snippet({ code, label }: { code: string; label: string }) {

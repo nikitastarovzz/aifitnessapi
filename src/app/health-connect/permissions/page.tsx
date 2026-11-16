@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Code from "@/components/Code";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
@@ -79,10 +80,6 @@ function toRow(p: (typeof HC_FRAMEWORK_PERMISSIONS)[number]): PermissionRow {
     protectionLevel: p.protectionLevel,
     description: p.description,
   };
-}
-
-function Code({ children }: { children: string }) {
-  return <code className="break-all font-mono text-[13px] text-[var(--fg)]">{children}</code>;
 }
 
 export default function HcPermissionsPage() {

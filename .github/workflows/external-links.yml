@@ -10,8 +10,8 @@ name: External link audit
 # Runs from GitHub's runners because the dev environment's proxy blocks most
 # vendor hosts.
 on:
-  # PAUSED like the other trackers (see libraries.yml): a failure here emails
-  # the owner, so the schedule stays off until they turn it on.
+  # PAUSED: a failure here emails the owner, so the schedule stays off until
+  # they turn it on.
   # Manual runs work (Actions tab, Run workflow).
   # schedule:
   #   # 05:13 UTC every Wednesday. Off the hour and on a day no other

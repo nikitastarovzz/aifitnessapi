@@ -1,55 +1,17 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ClusterPage from "@/components/ClusterPage";
-import {
-  releasedFixes,
-  getFix,
-  clampTitle,
-  clampDescription,
-  FIX_PATH,
-  FIX_CONFIG,
-} from "@/data/fix";
-import { robotsFor } from "@/data/noindex";
-import { languageAlternates } from "@/lib/translations";
+import { releasedFixes, getFix, FIX_PATH, FIX_CONFIG } from "@/data/fix";
+import { clusterMetadata, clusterStaticParams, type SlugParams } from "@/lib/clusterRoute";
 
 export const dynamicParams = false;
 
-type Params = { slug: string };
-
-export function generateStaticParams(): Params[] {
-  return releasedFixes().map((e) => ({ slug: e.slug }));
+export function generateStaticParams(): SlugParams[] {
+  return clusterStaticParams(releasedFixes);
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const entry = getFix(slug);
-  if (!entry) return {};
-  const canonical = `${FIX_PATH}/${entry.slug}`;
-  const title = clampTitle(entry.metaTitle);
-  const description = clampDescription(entry.metaDescription);
-  return {
-    title: { absolute: title },
-    description,
-    // hreflang to the Portuguese edition, only while it is current.
-    alternates: { canonical, ...languageAlternates(canonical) },
-    ...robotsFor(canonical),
-    openGraph: {
-      type: "article",
-      title,
-      description,
-      url: canonical,
-      publishedTime: entry.updated,
-      modifiedTime: entry.updated,
-    },
-    twitter: { card: "summary_large_image", title, description },
-  };
-}
+export const generateMetadata = clusterMetadata(FIX_PATH, getFix);
 
-export default async function Page({ params }: { params: Promise<Params> }) {
+export default async function Page({ params }: { params: Promise<SlugParams> }) {
   const { slug } = await params;
   const entry = getFix(slug);
   if (!entry) notFound();

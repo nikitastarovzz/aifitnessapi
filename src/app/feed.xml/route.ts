@@ -1,27 +1,9 @@
 import { getAllPosts } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
+import { escapeXml } from "@/lib/xml";
 
 export const dynamic = "force-static";
-
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) => {
-    switch (c) {
-      case "<":
-        return "&lt;";
-      case ">":
-        return "&gt;";
-      case "&":
-        return "&amp;";
-      case "'":
-        return "&apos;";
-      case '"':
-        return "&quot;";
-      default:
-        return c;
-    }
-  });
-}
 
 export function GET(): Response {
   const posts = getAllPosts();

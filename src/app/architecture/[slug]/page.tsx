@@ -1,53 +1,17 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ClusterPage from "@/components/ClusterPage";
-import {
-  releasedArchitecture,
-  getArchitecture,
-  clampTitle,
-  clampDescription,
-  ARCHITECTURE_PATH,
-  ARCHITECTURE_CONFIG,
-} from "@/data/architecture";
-import { robotsFor } from "@/data/noindex";
+import { releasedArchitecture, getArchitecture, ARCHITECTURE_PATH, ARCHITECTURE_CONFIG } from "@/data/architecture";
+import { clusterMetadata, clusterStaticParams, type SlugParams } from "@/lib/clusterRoute";
 
 export const dynamicParams = false;
 
-type Params = { slug: string };
-
-export function generateStaticParams(): Params[] {
-  return releasedArchitecture().map((e) => ({ slug: e.slug }));
+export function generateStaticParams(): SlugParams[] {
+  return clusterStaticParams(releasedArchitecture);
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const entry = getArchitecture(slug);
-  if (!entry) return {};
-  const canonical = `${ARCHITECTURE_PATH}/${entry.slug}`;
-  const title = clampTitle(entry.metaTitle);
-  const description = clampDescription(entry.metaDescription);
-  return {
-    title: { absolute: title },
-    description,
-    alternates: { canonical },
-    ...robotsFor(canonical),
-    openGraph: {
-      type: "article",
-      title,
-      description,
-      url: canonical,
-      publishedTime: entry.updated,
-      modifiedTime: entry.updated,
-    },
-    twitter: { card: "summary_large_image", title, description },
-  };
-}
+export const generateMetadata = clusterMetadata(ARCHITECTURE_PATH, getArchitecture);
 
-export default async function Page({ params }: { params: Promise<Params> }) {
+export default async function Page({ params }: { params: Promise<SlugParams> }) {
   const { slug } = await params;
   const entry = getArchitecture(slug);
   if (!entry) notFound();

@@ -1,7 +1,7 @@
 import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS, type ApiEntry } from "@/data/apis";
 import { CATEGORY_ORDER, type CostCategory, type DevCost } from "@/data/costModel";
 import { LIBRARIES, LIBRARIES_FETCHED_ON, type LibraryGroup } from "@/data/libraries";
-import { LIBRARIES_BASE, LIBRARY_GROUPS } from "@/data/librariesEditorial";
+import { LIBRARIES_BASE } from "@/data/librariesEditorial";
 import { SDK_REPOS, SDK_CHECKED_ON } from "@/data/sdkReleases";
 import { HC_RELEASES, HC_RELEASES_FETCHED_ON, HC_RELEASES_SOURCE } from "@/data/hcReleases";
 import { CHANGE_EVENTS } from "@/data/changes";
@@ -53,10 +53,6 @@ export type MapItem = {
   pages: number;
   firstParty: boolean;
 };
-
-export const GROUP_LABELS: Record<LibraryGroup, string> = Object.fromEntries(
-  LIBRARY_GROUPS.map((g) => [g.id, g.label]),
-) as Record<LibraryGroup, string>;
 
 export const CATEGORIES: { id: CostCategory; label: string }[] = CATEGORY_ORDER.filter((c) =>
   API_ENTRIES.some((a) => a.category === c),

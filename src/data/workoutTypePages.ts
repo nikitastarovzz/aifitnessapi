@@ -164,7 +164,6 @@ export function source(id: string): WtSource {
   if (!s) throw new Error(`workout types: unknown source ${id}`);
   return s;
 }
-export const sourcesFor = (slug: WtPlatformSlug) => WT_SOURCES.filter((s) => s.platform === slug);
 
 // ── Crosswalk numbers ───────────────────────────────────────────────────────
 

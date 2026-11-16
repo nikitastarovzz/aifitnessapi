@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ROWS, type Row } from "@/data/matrix";
-import { HK_IDENTIFIERS, HK_FETCHED_ON, type HkIdentifier } from "@/data/healthkitIdentifiers";
+import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { HC_FETCHED_ON } from "@/data/healthConnectRecords";
 import { metricMapForGuide } from "@/data/metricTypeMap";
 import { resolveMetricType } from "@/data/metricTypePages";
@@ -68,11 +68,6 @@ export function allReferencedCases(): { source: string; cases: string[] }[] {
 function mappedHealthConnect(path: string) {
   const slug = path.replace(/^\/data\//, "");
   return (metricMapForGuide(slug)?.types ?? []).filter((t) => t.family === "health-connect").map(resolveMetricType);
-}
-
-/** Resolved identifier records for a matrix row — the join this page renders. */
-export function resolvedIdentifiers(row: Row): { name: string; record: HkIdentifier | undefined }[] {
-  return appleCases(row.apple).map((name) => ({ name, record: byCase.get(name) }));
 }
 
 export default function MetricFacts({ path }: { path: string }) {

@@ -90,7 +90,6 @@ export default function AtlasPage() {
         </div>
 
         <figure className="mt-8 overflow-hidden rounded-xl border border-[var(--border)] bg-white">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={ATLAS_SVG} alt={`The Fitness API Atlas poster, data as of ${asOf}`} width={1191} height={1684} className="h-auto w-full" />
         </figure>
 
