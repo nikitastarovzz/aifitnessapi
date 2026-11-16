@@ -18,6 +18,10 @@ if git diff --quiet "$base" HEAD --; then
 fi
 # ops/sources/evidence/*.json is a build input: the key facts on money pages
 # are rows of it (src/lib/keyFacts.ts), so only the snapshot lists skip.
+# ops/content-log.jsonl is rendered too (/changelog) and is skipped on purpose:
+# the weekly distribution run writes only under ops/ and must not cost a build
+# (ops/WEEKLY-DISTRIBUTION.md, section 4). A line added by a skipped commit
+# reaches /changelog with the next commit that does build.
 if git diff --quiet --no-renames "$base" HEAD -- . ':(exclude)README.md' ':(exclude)CLAUDE.md' ':(exclude)AGENTS.md' ':(exclude)ops/**/*.md' ':(exclude)ops/*.md' ':(exclude)ops/content-log.jsonl' ':(exclude)ops/sources/*.txt'; then
   echo "Only non-site documentation or source assets changed; skip."
   exit 0

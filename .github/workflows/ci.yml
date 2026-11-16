@@ -5,7 +5,7 @@ name: CI
 # CLAUDE.md requires `npx tsc --noEmit` → `npm run build` → `npm run qa` green
 # before any commit, and until now nothing enforced it. There is no `prebuild`
 # script, so Vercel runs a plain `next build`; responsive.yml runs build plus
-# the responsive and perf audits but neither the typecheck nor qa. So the 132
+# the responsive and perf audits but neither the typecheck nor qa. So the
 # refusals in scripts/qa.mjs only ever fired when a person or an agent
 # remembered to type the command.
 #
@@ -63,7 +63,7 @@ jobs:
         run: npm run build
 
       # qa reads the built output in .next, so it has to follow the build.
-      # This is the 132-gate check: banned claims, citation anchors, metadata
+      # The gate check (the full list is /gates): banned claims, citation anchors, metadata
       # lengths, sitemap/noindex contradictions, GEO surfaces, query ownership.
       - name: QA gates
         run: npm run qa
