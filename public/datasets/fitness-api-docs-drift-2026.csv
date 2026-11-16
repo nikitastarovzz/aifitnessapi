@@ -1305,6 +1305,7 @@ file,source,writtenOn,writtenCommit,endedOn,endedCommit,endKind,cause,kind,state
 "fix-garmin-api-approval.json","docs.tryterra.co","2026-11-14","5b095e4",,,,,,,"1"
 "fix-wearable-data-delayed.json","docs.tryterra.co","2026-11-14","5b095e4",,,,,,,"3"
 "fix-wearable-data-delayed.json","raw.githubusercontent.com/tryterra","2026-11-14","5b095e4",,,,,,,"1"
+"graveyard.json","docs.tryterra.co","2026-11-14","0395a85",,,,,,,"2"
 "integrate-coros-api.json","support.coros.com","2026-11-14","5b095e4",,,,,,,"2"
 "integrate-terra-api.json","docs.tryterra.co","2026-11-14","5b095e4",,,,,,,"54"
 "integrate-terra-api.json","raw.githubusercontent.com/tryterra","2026-11-14","5b095e4",,,,,,,"1"

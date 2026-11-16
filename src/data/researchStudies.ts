@@ -12,9 +12,9 @@ import type { DriftGroup, NoticeRow, PricingRow } from "@/lib/researchStats.mjs"
 
 export const DRIFT_HISTORY_FROM = "2026-10-17";
 export const DRIFT_HISTORY_THROUGH = "2026-11-14";
-export const DRIFT_HISTORY_COMMIT = "e9c4f6e";
-export const DRIFT_COMMITS_READ = 29;
-export const DRIFT_ROWS_READ = 9548;
+export const DRIFT_HISTORY_COMMIT = "0395a85";
+export const DRIFT_COMMITS_READ = 30;
+export const DRIFT_ROWS_READ = 9550;
 
 export const DRIFT_GROUPS: DriftGroup[] = [
   {
@@ -16996,6 +16996,19 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "rows": 1
   },
   {
+    "file": "graveyard.json",
+    "source": "docs.tryterra.co",
+    "writtenOn": "2026-11-14",
+    "writtenCommit": "0395a85",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 2
+  },
+  {
     "file": "integrate-coros-api.json",
     "source": "support.coros.com",
     "writtenOn": "2026-11-14",
@@ -17382,7 +17395,7 @@ export const NOTICE_ROWS: NoticeRow[] = [
     "id": "fitbit-web-api",
     "name": "Fitbit Web API",
     "vendor": "Google (Fitbit)",
-    "status": "dying",
+    "status": "dead",
     "end": "2026-11-02",
     "endPrecision": "day",
     "endLabel": "Turn-off",
@@ -17393,8 +17406,8 @@ export const NOTICE_ROWS: NoticeRow[] = [
     "how": null,
     "announcementUrl": null,
     "announcementQuote": null,
-    "endUrl": "https://developers.google.com/health/about",
-    "endQuote": "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP 410 Gone status code.",
+    "endUrl": "https://api.fitbit.com/oauth2/token",
+    "endQuote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026. Please migrate your integration to the Google Health APIs: https://developers.google.com/health.",
     "changesEntries": "Fitbit Web API turn-off moves to November 2, 2026",
     "page": "/graveyard#fitbit-web-api"
   },

@@ -58,5 +58,16 @@
     "claim": "Existing apps on the legacy endpoint keep working, and Terra says it will give notice before any breaking change.",
     "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
     "quote": "Existing apps keep working, and we will give notice well before any breaking change."
+  },
+  {
+    "claim": "The Fitbit token endpoint answers HTTP 410 and says the legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026 (read 2026-11-16 through source-snapshot run 43817231854).",
+    "url": "https://api.fitbit.com/oauth2/token",
+    "quote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026. Please migrate your integration to the Google Health APIs: https://developers.google.com/health.",
+    "expectStatus": 410
+  },
+  {
+    "claim": "Google's Google Health API page gives November 2, 2026 as the day the legacy Fitbit Web API and Fitbit OAuth endpoints are turned off (read 2026-11-16).",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
   }
 ]

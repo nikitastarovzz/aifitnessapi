@@ -128,6 +128,28 @@ for (const h of htmls) {
   }
 }
 
+// A source that is an error response by nature (a retired endpoint whose own
+// 410 body is the notice the page quotes) is declared in its evidence row
+// with `expectStatus`, which scripts/check-source-quotes.mjs enforces.
+// Answering with exactly that status is the link working, not a dead link.
+/** @type {Map<string, number>} url -> the status its evidence row expects */
+const expectedStatus = new Map();
+const EVIDENCE_DIR = "ops/sources/evidence";
+if (fs.existsSync(EVIDENCE_DIR)) {
+  for (const f of fs.readdirSync(EVIDENCE_DIR).filter((x) => x.endsWith(".json"))) {
+    let rows;
+    try {
+      rows = JSON.parse(fs.readFileSync(path.join(EVIDENCE_DIR, f), "utf8"));
+    } catch {
+      continue; // check-source-quotes reports an unreadable evidence file
+    }
+    for (const r of Array.isArray(rows) ? rows : []) {
+      const url = Number.isInteger(r?.expectStatus) && typeof r.url === "string" ? canonicalize(r.url) : null;
+      if (url) expectedStatus.set(url, r.expectStatus);
+    }
+  }
+}
+
 let urls = [...refs.keys()].sort();
 if (LIMIT) urls = urls.slice(0, LIMIT);
 console.log(`${urls.length} distinct external URLs across ${htmls.length} built pages`);
@@ -196,7 +218,7 @@ async function probe(url) {
   out.status = r.status;
   out.finalUrl = r.finalUrl;
   out.error = r.error ? errorName(r.error) : null;
-  out.verdict = classify(r.status, r.error);
+  out.verdict = !r.error && expectedStatus.get(url) === r.status ? "ok" : classify(r.status, r.error);
   return out;
 }
 

@@ -13,7 +13,9 @@
  * scripts/source-snapshot.mjs does, normalises whitespace, quote marks and
  * case, and fails when a quote is not found — so a claim cannot ship on a
  * passage its source does not contain, and a source that changes after
- * publication shows up on the next run.
+ * publication shows up on the next run. A source must answer 2xx, unless its
+ * row declares `expectStatus` (400 to 599): then it must answer exactly that
+ * status, with the quote in the error body.
  *
  * It runs on a GitHub runner (.github/workflows/source-quotes.yml) because the
  * hosts are blocked where pages are written. It checks presence, not meaning:
@@ -119,10 +121,22 @@ for (const file of files) {
       problems.push(`${where}: quote too short to be evidence (${JSON.stringify(r.quote)})`);
       continue;
     }
+    // `expectStatus` is for the one kind of source that is not a page: a
+    // retired endpoint whose own error body is the notice (the Fitbit token
+    // endpoint's 410). The row then passes only on exactly that status with
+    // the quote in the body, so an endpoint that starts answering anything
+    // else, a 200 included, fails here and gets re-read.
+    const want = r.expectStatus;
+    if (want !== undefined && !(Number.isInteger(want) && want >= 400 && want <= 599)) {
+      problems.push(`${where}: expectStatus must be an HTTP error status from 400 to 599 (got ${JSON.stringify(want)})`);
+      continue;
+    }
     const page = await textOf(r.url);
     checked++;
-    if (!page.ok) {
-      problems.push(`${where}: ${r.url} answered ${page.status}${page.error ? ` (${page.error})` : ""}`);
+    if (want !== undefined ? page.status !== want : !page.ok) {
+      problems.push(
+        `${where}: ${r.url} answered ${page.status}${want !== undefined ? `, and the row expects ${want}` : ""}${page.error ? ` (${page.error})` : ""}`,
+      );
     } else if (!page.text.includes(norm(r.quote))) {
       problems.push(`${where}: quote not found at ${r.url}: ${JSON.stringify(r.quote.slice(0, 160))}`);
     }
