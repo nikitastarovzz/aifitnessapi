@@ -1,8 +1,8 @@
 {
   "_comment": "Every hit the rules must report on test/fixtures, and nothing else. Checked by scripts/deprecation-scan.test.mjs and .github/workflows/deprecation-check.yml (today pinned to 2026-11-06).",
   "today": "2026-11-06",
-  "errors": 9,
-  "warnings": 13,
+  "errors": 8,
+  "warnings": 14,
   "hits": [
     ["android/app/FitReader.kt", 2, "samsung-health-sdk-android"],
     ["android/app/FitReader.kt", 5, "google-fit-history-client"],

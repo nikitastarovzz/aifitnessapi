@@ -36,10 +36,6 @@ export function opennessVendors(): OpennessVendor[] {
   return CACHE;
 }
 
-export function opennessVendor(id: string): OpennessVendor | undefined {
-  return opennessVendors().find((v) => v.id === id);
-}
-
 /** The PNG card for one vendor, built at `next build`. */
 export const opennessCardPath = (id: string) => `/og/openness/${id}.png`;
 

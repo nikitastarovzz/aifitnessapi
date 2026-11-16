@@ -93,24 +93,8 @@ export function getAllPosts(): Post[] {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getPostSlugs(): string[] {
-  return getAllPosts().map((p) => p.slug);
-}
-
 export function getPostBySlug(slug: string): Post | undefined {
   return getAllPosts().find((p) => p.slug === slug);
-}
-
-export function getAllTags(): { tag: string; count: number }[] {
-  const counts = new Map<string, number>();
-  for (const post of getAllPosts()) {
-    for (const tag of post.tags) {
-      counts.set(tag, (counts.get(tag) ?? 0) + 1);
-    }
-  }
-  return [...counts.entries()]
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => b.count - a.count);
 }
 
 export function formatDate(iso: string): string {

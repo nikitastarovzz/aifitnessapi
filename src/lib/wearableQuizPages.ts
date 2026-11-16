@@ -29,7 +29,6 @@ export const QUIZ_TITLE = "Which Wearable API Should You Use? The 8-Question Qui
 export const QUIZ_H1 = "Which wearable API should you use?";
 export const QUIZ_DESCRIPTION =
   "Eight questions on platform, devices, data depth, webhooks, budget, compliance and team decide how your app should get wearable data. One sourced result.";
-export const QUIZ_PRIMARY_QUERY = "which wearable API should I use";
 
 export type QuizProduct = {
   name: string;

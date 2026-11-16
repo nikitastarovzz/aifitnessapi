@@ -262,7 +262,6 @@ export default async function BadgesPage() {
           <p className="mt-4">
             {/* A route-served SVG, not an optimizable raster — next/image would
                 add a loader for no benefit. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/badges/badge.svg"
               alt="Listed on AIFitnessAPI"
@@ -374,7 +373,6 @@ export default async function BadgesPage() {
             {LIVE_BADGES.map((b) => (
               <div key={b.file}>
                 <p className="flex flex-wrap items-center gap-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={`/badges/${b.file}`} alt={b.alt} width={b.width} height={20} />
                   <span className="text-sm text-[var(--muted)]">{b.note}</span>
                 </p>
@@ -408,7 +406,6 @@ export default async function BadgesPage() {
               return (
                 <div key={g.id} data-badge={stoneBadgePath(g.id)} data-badge-alt={badgeAlt(b)}>
                   <p className="flex flex-wrap items-center gap-3">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={stoneBadgePath(g.id)} alt={badgeAlt(b)} height={20} loading="lazy" />
                   </p>
                   <Snippet
@@ -435,7 +432,6 @@ export default async function BadgesPage() {
               return (
                 <div key={v.id} data-badge={opennessBadgePath(v.id)} data-badge-alt={badgeAlt(b)}>
                   <p className="flex flex-wrap items-center gap-3">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={opennessBadgePath(v.id)} alt={badgeAlt(b)} height={20} loading="lazy" />
                   </p>
                   <Snippet

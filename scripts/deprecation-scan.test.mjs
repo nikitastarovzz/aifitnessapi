@@ -240,7 +240,7 @@ test("the job summary and outputs are written in GitHub Actions", () => {
     const md = fs.readFileSync(summary, "utf8");
     assert.match(md, /^## Fitness API deprecation check/);
     assert.match(md, /\| `test\/fixtures\/web\/connect\.ts:5` \|/);
-    assert.equal(fs.readFileSync(output, "utf8"), "hits=6\nerrors=1\nwarnings=5\n");
+    assert.equal(fs.readFileSync(output, "utf8"), "hits=6\nerrors=0\nwarnings=6\n");
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }

@@ -304,7 +304,6 @@ export default function OpennessIndexPage() {
                   </div>
                   <p className="mt-4 text-sm text-[var(--muted)]">README badge:</p>
                   <p className="mt-2">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={opennessBadgePath(v.id)} alt={opennessBadgeAlt(v)} height={20} loading="lazy" />
                   </p>
                   <pre

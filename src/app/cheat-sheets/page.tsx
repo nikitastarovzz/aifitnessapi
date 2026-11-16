@@ -95,7 +95,6 @@ export default function CheatSheetsPage() {
               <section key={s.slug} id={s.slug} className="scroll-mt-24" data-cheat-sheet={s.slug}>
                 <h2 className="text-xl font-bold tracking-tight text-[var(--fg)]">{s.title}</h2>
                 <a href={s.png} className="mt-3 block overflow-hidden rounded-lg border border-[var(--border)] bg-white">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={s.png} alt={`${s.title}, one A4 page, data as of ${s.asOf}`} width={s.pngWidth} height={s.pngHeight} loading="lazy" className="h-auto w-full" />
                 </a>
                 <div className="mt-3 flex flex-wrap gap-2 text-sm">
