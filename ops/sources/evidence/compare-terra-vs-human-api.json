@@ -1,0 +1,177 @@
+[
+  {
+    "claim": "humanapi.co lands on Health Intelligence, formerly Human API Health Intelligence.",
+    "url": "https://humanapi.co/",
+    "quote": "LexisNexis® Health Intelligence, formerly Human API Health Intelligence"
+  },
+  {
+    "claim": "30,000 US data sources, 270 million lives.",
+    "url": "https://humanapi.co/",
+    "quote": "Our platform connects to over 30,000 data sources in the U.S. to provide unified health data access for over 270 million lives."
+  },
+  {
+    "claim": "HIPAA-enabled EHR networks.",
+    "url": "https://humanapi.co/",
+    "quote": "HIPAA-enabled EHR networks, including Health Information Exchanges (HIEs)"
+  },
+  {
+    "claim": "Consumer-mediated EHR networks.",
+    "url": "https://humanapi.co/",
+    "quote": "Consumer-mediated EHR networks, including Qualified Health Information Networks (QHINs) and patient portals"
+  },
+  {
+    "claim": "Both consent paths.",
+    "url": "https://humanapi.co/",
+    "quote": "We can leverage both HIPAA-authorized and consumer-mediated consent paths."
+  },
+  {
+    "claim": "APS through affiliate Human API, Inc.",
+    "url": "https://humanapi.co/",
+    "quote": "Our solution automatically fulfills the request for an APS through our affiliate, Human API, Inc."
+  },
+  {
+    "claim": "LexisNexis Human API consumer-permission network.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "LexisNexis® Human API™ combines a vast consumer-permission health data network with next-generation digital capabilities"
+  },
+  {
+    "claim": "Consumer Access Wizard counts.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Consumer Access Wizard: 30K+ unique data connections; 270M+ people; medical records, labs, 300+ wearables and apps."
+  },
+  {
+    "claim": "Delivery.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Flexible and Integrated Data Delivery Integrate directly into customer source systems."
+  },
+  {
+    "claim": "Enterprise portal.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Enterprise Portal Hosted web portal to view and manage consumer data."
+  },
+  {
+    "claim": "Demo form.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "To schedule a demo of the powerful Human API capabilities from LexisNexis Risk Solutions, please fill out the form below:"
+  },
+  {
+    "claim": "Audience: healthcare and life science organizations.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Healthcare and life science organizations need secure, user-friendly methods for patients to share their data"
+  },
+  {
+    "claim": "Health Intelligence Platform docs.",
+    "url": "https://reference.humanapi.co/docs/overview",
+    "quote": "Health Intelligence Platform converts data into actionable intelligence to accelerate underwriting and create better customer and distribution experiences."
+  },
+  {
+    "claim": "Docs index: orders and reports API.",
+    "url": "https://reference.humanapi.co/llms.txt",
+    "quote": "Get available order types for the logged in Client App"
+  },
+  {
+    "claim": "Docs index: subscriptions.",
+    "url": "https://reference.humanapi.co/llms.txt",
+    "quote": "Create and manage subscriptions."
+  },
+  {
+    "claim": "Wellness sources page date.",
+    "url": "https://reference.humanapi.co/page/wellness-sources.md",
+    "quote": "updatedAt: 2026-02-13T11:17:33.000Z"
+  },
+  {
+    "claim": "Wellness sources include Google Fit.",
+    "url": "https://reference.humanapi.co/page/wellness-sources.md",
+    "quote": "**Google Fit**"
+  },
+  {
+    "claim": "Wellness sources include Runkeeper.",
+    "url": "https://reference.humanapi.co/page/wellness-sources.md",
+    "quote": "**Runkeeper**"
+  },
+  {
+    "claim": "Apple Health through Human API iOS app.",
+    "url": "https://reference.humanapi.co/page/apple-health-data.md",
+    "quote": "To share this data with Human API, we have created a Human API iOS app that users will use in conjunction with Human Connect."
+  },
+  {
+    "claim": "Terra coverage.",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Terra sources list.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra connects to 500+ health data sources including wearables (Garmin, Fitbit, Apple Watch, Oura Ring, WHOOP, Polar, Samsung Health, Withings, Suunto, Wahoo), fitness apps (Strava, MyFitnessPal, Cronometer), blood testing providers, CGM devices, medical devices, and sensors."
+  },
+  {
+    "claim": "Terra compliance.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra is HIPAA compliant, GDPR compliant, and SOC 2 Type II certified."
+  },
+  {
+    "claim": "Terra destinations.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Terra subscription prices.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "start from $399 per month billed annually, or $499 per month billed monthly"
+  },
+  {
+    "claim": "Terra integrate in 30 minutes.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Integrate in 30 minutes."
+  },
+  {
+    "claim": "Terra money-back guarantee.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "30-day money-back guarantee"
+  },
+  {
+    "claim": "Terra Enterprise BAA.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Terra credits per active authentication.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "200 Unified API credits per active authentication per month"
+  },
+  {
+    "claim": "Terra 100,000 credits.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "100,000 included Unified API credits that reset monthly."
+  },
+  {
+    "claim": "Terra lab geography.",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "Terra collection methods.",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Home kits, mobile phlebotomy, and lab walk-ins through a single integration."
+  },
+  {
+    "claim": "Spike coverage.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to 500+ wearables & IoT sensors, extract nutrition insights from food photos, and add lab report data via single API."
+  },
+  {
+    "claim": "Spike clinical data.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to top providers and access clinical data — all through a single integration."
+  },
+  {
+    "claim": "Spike Sandbox price.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Starts from $450 /month"
+  },
+  {
+    "claim": "Spike acquisition banner.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  }
+]
