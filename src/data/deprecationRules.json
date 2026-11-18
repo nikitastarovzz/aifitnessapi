@@ -1,12 +1,12 @@
 {
   "generatedBy": "scripts/build-deprecation-rules.mjs",
   "site": "https://aifitnessapi.com",
-  "updated": "2026-11-16",
+  "updated": "2026-11-18",
   "inputs": {
     "graveyard": "2026-11-16",
     "fitbitWebApi": "2026-11-05",
     "googleHealthApi": "2026-10-31",
-    "libraries": "2026-10-03",
+    "libraries": "2026-11-18",
     "signatures": "2026-11-14"
   },
   "counts": {
@@ -5851,7 +5851,7 @@
           "publisher": "npm registry",
           "quote": "registry description: \"A React Native bridge module for interacting with Google Fit\"",
           "literal": "react-native-google-fit",
-          "checkedOn": "2026-10-03",
+          "checkedOn": "2026-11-18",
           "via": "direct"
         }
       ],
@@ -5890,7 +5890,7 @@
           "publisher": "PyPI",
           "quote": "registry description: \"Fitbit API Wrapper.\"",
           "literal": "fitbit",
-          "checkedOn": "2026-10-03",
+          "checkedOn": "2026-11-18",
           "via": "direct"
         }
       ],

@@ -88,5 +88,45 @@
     "claim": "FAQ, which gate is harder: each tier above it needs a reviewed request.",
     "url": "https://developer.whoop.com/docs/developing/app-approval/",
     "quote": "Requests are reviewed manually, in the order they are received."
+  },
+  {
+    "claim": "How WHOOP works and the trade-off: WHOOP's developer overview says you must have a WHOOP membership to develop an app.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform."
+  },
+  {
+    "claim": "How WHOOP works: the people whose data you read are WHOOP members who grant consent with their own WHOOP accounts.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "Pricing note and FAQ: WHOOP's developer site publishes no membership price; its trial includes Peak membership and 5.0 hardware.",
+    "url": "https://developer.whoop.com/",
+    "quote": "Try WHOOP free for 1 month. Trial includes Peak membership, 5.0 hardware, Onyx SuperKnit band, battery pack, and more."
+  },
+  {
+    "claim": "Table, auth: a refresh token comes only with the offline scope.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "You must request the offline scope to receive a refresh token."
+  },
+  {
+    "claim": "Table and trade-off: each refresh invalidates the prior refresh token.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "Similarly, the refresh token from the refresh response is now the valid refresh token, and your app must use the new refresh token on the subsequent refresh request."
+  },
+  {
+    "claim": "Trade-off: of two simultaneous refresh requests, the second fails.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "The second request would fail because the first request invalidates the refresh token."
+  },
+  {
+    "claim": "v2 webhooks are the default model.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "v2 webhooks use UUID identifiers instead of integer IDs, providing better alignment with the v2 API endpoints."
+  },
+  {
+    "claim": "Webhook event types are sleep, recovery and workout, each updated or deleted.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "Enum : \"workout.updated\" \"workout.deleted\" \"sleep.updated\" \"sleep.deleted\" \"recovery.updated\" \"recovery.deleted\""
   }
 ]

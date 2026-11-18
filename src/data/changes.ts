@@ -43,6 +43,26 @@ export type ChangeEvent = {
 export const CHANGE_EVENTS: ChangeEvent[] = [
   {
     date: "2026-11",
+    sortDate: "2026-11-18",
+    title: "Sahha marks its Garmin, Oura and WHOOP cloud integrations GA",
+    summary:
+      "Sahha gives no date for the change: first seen on 2026-11-18. As of November 18, 2026, its docs list three direct cloud integrations as GA, Garmin, Oura and WHOOP, each on an app you register with the provider.",
+    status: "confirmed",
+    page: { href: "/compare/terra-vs-sahha", label: "Terra vs Sahha" },
+    verifiedOn: "2026-11-18",
+  },
+  {
+    date: "2026-11",
+    sortDate: "2026-11-18",
+    title: "Open Wearables drops its Pro plan",
+    summary:
+      "Open Wearables gives no date for the change: first seen on 2026-11-18, when the Pro plan its pricing page listed on October 27, 2026 was no longer listed. It now lists Core \"$0 Forever\" and Enterprise \"Custom\", a license, with add-on modules for Core and a one-time Deployment service \"From $4,800\".",
+    status: "confirmed",
+    page: { href: "/compare/terra-vs-open-wearables", label: "Terra vs Open Wearables" },
+    verifiedOn: "2026-11-18",
+  },
+  {
+    date: "2026-11",
     sortDate: "2026-11-14",
     title: "Thryve removes its Fitbit data source",
     summary:
@@ -50,6 +70,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     status: "confirmed",
     page: { href: "/pricing/thryve-api-pricing", label: "Thryve API pricing" },
     verifiedOn: "2026-11-14",
+  },
+  {
+    date: "2026-11",
+    sortDate: "2026-11-14",
+    title: "Terra documents its legacy widget session endpoint as deprecated",
+    summary:
+      "Terra gives no date for the wording; we first read it on 2026-11-14 and again on 2026-11-18. The Legacy endpoint section of its widget documentation now says \"POST /auth/generateWidgetSession is deprecated, with deprecation planned for 3 November 2026\", adding \"Existing apps keep working, and we will give notice well before any breaking change.\" Accounts created after 3 September 2026 cannot use it. The replacement is POST access.tryterra.co/api/widget/session.",
+    status: "confirmed",
+    page: { href: "/graveyard", label: "The Fitness API Graveyard" },
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2026-11-03",
@@ -66,10 +96,20 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     sortDate: "2026-11-02",
     title: "Fitbit Web API turn-off moves to November 2, 2026",
     summary:
-      "Google's Google Health API page, last updated October 23, 2026, now gives November 2, 2026 as the turn-off: \"The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP `410 Gone` status code.\" When we read the page on October 12 it gave October 30. A 410 from a Fitbit endpoint after that date means the turn-off, not a fault in your integration.",
+      "In an update dated October 23, 2026, Google's Google Health API page moved the turn-off to November 2, 2026: \"The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP `410 Gone` status code.\" When we read the page on October 12 it gave October 30. A 410 from a Fitbit endpoint after that date means the turn-off, not a fault in your integration.",
     status: "confirmed",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-10-31",
+    verifiedOn: "2026-11-18",
+  },
+  {
+    date: "2026-10-30",
+    sortDate: "2026-10-30",
+    title: "Fitbit Web API decommissioned: its endpoints answer 410 Gone",
+    summary:
+      "Fitbit's token endpoint, api.fitbit.com/oauth2/token, answers HTTP 410 Gone with \"The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.\" We saw it on 2026-11-14 and again on 2026-11-18. Google's Google Health help article says Google Health Support \"can’t restore or fix your broken connection once Fitbit connections retired on October 30, 2026.\" Google's Google Health API page (last updated October 30, 2026) still gives November 2, 2026 as the turn-off, in the future tense, and the Health Status Dashboard names October 30 for the turn-down and November 2 for the traffic. A 410 from a Fitbit endpoint is the turn-off, not a fault in your integration.",
+    status: "confirmed",
+    page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2026-10-29",
@@ -119,7 +159,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
       "Google's Google Health API page states that on September 30, 2026 \"support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support.\" The turn-off follows on November 2, 2026. Third-party guides had named September 30 before Google published the timeline; it is the end-of-support date, not the switch-off.",
     status: "confirmed",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-10-12",
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2026-09-27",
@@ -169,7 +209,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
       "Users on legacy Fitbit-only logins are reported to need consolidation into a Google Account by roughly mid-May 2026. Google's migration guide confirms the gate itself but gives no date: a user must sign in to the Google Health mobile app to link Google Health to their Google Account before an app can sync their data, and calls made before that fail with ACCOUNT_NOT_LINKED. A gate on your migration, not a detail inside it.",
     status: "reported",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-10-12",
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2026",
@@ -224,12 +264,12 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
   {
     date: "2025-06-30",
     sortDate: "2025-06-30",
-    title: "ANT+ membership and certification programs discontinued (reported)",
+    title: "ANT+ membership and certification programs end; Garmin calls ANT+ deprecated",
     summary:
-      "Per widely-quoted announcements from the ANT+ organization — the official page was unreachable in our research pass, so this stays reported — the ANT+ membership and certification programs were discontinued on June 30, 2025, with certification applications accepted only until March 31, 2025. Device profiles and documentation reportedly remain available and existing devices are unaffected; coverage cites the EU Radio Equipment Directive as a driver. For new fitness apps, BLE is the practical default radio.",
-    status: "reported",
+      "thisisant.com now redirects to Garmin Developer, whose ANT program pages say \"Content from thisisant.com has now been moved to Garmin Developer\" and that the ANT+ membership and certification programs, with engineering support, \"ended on June 30, 2025.\" Garmin's ANT FAQ adds that \"ANT+ has been deprecated and is no longer supported\", that there will be no new ANT+ profiles, and that existing ANT and ANT+ devices \"will continue to operate as before\". For new fitness apps, BLE is the practical default radio.",
+    status: "confirmed",
     page: { href: "/devices/ant-plus-vs-bluetooth", label: "ANT+ vs Bluetooth for fitness sensors" },
-    verifiedOn: "2026-08-14",
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2024-05-01",

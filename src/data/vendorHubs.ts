@@ -310,6 +310,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/compare/terra-vs-spike",
       "/compare/terra-vs-thryve",
       "/compare/terra-vs-sahha",
+      "/compare/terra-vs-human-api",
       "/compare/terra-vs-open-wearables",
       "/apis/terra",
     ],
@@ -325,6 +326,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/pricing/health-data-aggregator-pricing",
       // Vital is Junction's former name, and the page's H1 says so.
       "/fitness-apis/terra-vs-vital",
+      "/alternatives/junction-alternatives",
     ],
   },
   {

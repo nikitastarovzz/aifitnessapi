@@ -42,6 +42,7 @@ export const RELEASED_COMPARE = new Set<string>([
   "terra-vs-thryve",
   "terra-vs-open-wearables",
   "terra-vs-sahha",
+  "terra-vs-human-api",
   "quickpose-vs-sency",
   "mediapipe-vs-movenet",
   "mediapipe-vs-yolo-pose",

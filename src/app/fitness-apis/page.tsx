@@ -11,7 +11,7 @@ import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
 import { hubQaJsonLd } from "@/data/hubGlance";
-import { site, absoluteUrl } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site";
 import { orgRef, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getEntry, releasedEntries, PILLAR_PATH, FITNESS_APIS_CONFIG } from "@/data/fitnessApis";

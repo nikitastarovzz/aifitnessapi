@@ -53,5 +53,91 @@
     "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
     "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
+  },
+  {
+    "claim": "Terra lists Oura, Apple, Garmin, Health Connect, WHOOP, Polar and Withings among its integrations.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Every integration you can connect through the Unified API."
+  },
+  {
+    "claim": "Terra's managed integrations run on Terra's credentials.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration."
+  },
+  {
+    "claim": "Terra lists Oura as a managed integration.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Oura OURA Event-Driven Managed"
+  },
+  {
+    "claim": "Terra lists WHOOP among the integrations that need your own credentials from the integration's developer portal.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Required integrations need your own credentials, created in the integration's developer portal and added to your Terra dashboard before end users can connect."
+  },
+  {
+    "claim": "Terra's table marks Garmin as Required.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Garmin GARMIN Event-Driven Required"
+  },
+  {
+    "claim": "Terra's table marks WHOOP as Required.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Whoop WHOOP Event-Driven Required"
+  },
+  {
+    "claim": "Junction normalizes 300+ devices through one API.",
+    "url": "https://docs.junction.com/wearables/providers/introduction",
+    "quote": "We currently support 300+ devices."
+  },
+  {
+    "claim": "Junction's own Oura app is enabled by default; your own Oura app needs Oura's review to pass 10 users.",
+    "url": "https://docs.junction.com/wearables/providers/introduction",
+    "quote": "To connect more than 10 Oura users, you must submit your app to Oura for review ."
+  },
+  {
+    "claim": "Junction calls WHOOP a bring-your-own-OAuth-only provider: you need your own app in WHOOP's developer dashboard.",
+    "url": "https://docs.junction.com/wearables/guides/whoop",
+    "quote": "WHOOP is a BYOO only provider, so you will need your own app in WHOOP’s developer dashboard"
+  },
+  {
+    "claim": "The Series A was $18M.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Meet Junction: $18M to Power the Future of Personalized Care"
+  },
+  {
+    "claim": "Vital announced the Junction name alongside its Series A on March 11, 2025.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Mar 11, 2025"
+  },
+  {
+    "claim": "Junction is the new name of Vital.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Alongside this milestone, we’re unveiling our new brand: Junction"
+  },
+  {
+    "claim": "Junction's pricing page puts lab testing on its Enterprise plan.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Move to Enterprise when you need lab testing, unlimited users, uptime SLAs, or a signed BAA."
+  },
+  {
+    "claim": "The legacy token endpoint now answers that the endpoints were decommissioned on October 30, 2026 (HTTP 410, read 2026-11-18 through source-snapshot).",
+    "url": "https://api.fitbit.com/oauth2/token",
+    "quote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.",
+    "expectStatus": 410
+  },
+  {
+    "claim": "Google's pages give November 2, 2026 as the legacy Fitbit Web API's turn-off.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Google says existing access and refresh tokens cannot be transferred, so users re-consent.",
+    "url": "https://developers.google.com/health/migration",
+    "quote": "existing access and refresh tokens cannot be transferred, requiring users to re-consent to your updated integration."
+  },
+  {
+    "claim": "WHOOP requires a membership to develop an app.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform."
   }
 ]

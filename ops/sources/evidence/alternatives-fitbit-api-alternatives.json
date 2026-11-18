@@ -38,5 +38,16 @@
     "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
     "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
+  },
+  {
+    "claim": "Sahha's integrations page names Fitbit among the apps that write to Health Connect (read 2026-11-18 through source-snapshot).",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Samsung Health, Fitbit, Garmin, and hundreds of Android apps write to Health Connect — the same SDK reads it all on Android."
+  },
+  {
+    "claim": "On November 18, 2026 Fitbit's token endpoint answered 410 Gone (source-snapshot run 44408817217, logs deleted).",
+    "url": "https://api.fitbit.com/oauth2/token",
+    "quote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.",
+    "expectStatus": 410
   }
 ]

@@ -215,29 +215,29 @@
     "quote": "You must register for the Polar API program"
   },
   {
-    "claim": "Open Wearables: paid Pro and Enterprise plans on top of the free software.",
+    "claim": "Open Wearables: a paid Enterprise plan on top of the free software.",
     "url": "https://openwearables.io/compare",
-    "quote": "Free to self-host, with paid Pro and Enterprise plans"
+    "quote": "Free to self-host, with a paid Enterprise plan"
   },
   {
     "claim": "Open Wearables: Core \"$0 Forever\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "For teams building their first wearable features. You run the open-source platform yourself. $0 Forever"
+    "quote": "For engineering teams that set up and run Open Wearables themselves, with community support. $0 Forever"
   },
   {
-    "claim": "Open Wearables: Pro \"From $999 a month, per deployment\".",
+    "claim": "Open Wearables: a one-time Deployment service \"From $4,800\" (2026-11-18); no Pro plan listed.",
     "url": "https://openwearables.io/pricing",
-    "quote": "For products in production. Licensed modules, with our engineers behind your deployment. From $999 a month, per deployment"
+    "quote": "From $4,800, one-time. Production and staging in your cloud and region, providers onboarded under your credentials."
   },
   {
-    "claim": "Open Wearables: Enterprise \"Custom\", on an annual agreement.",
+    "claim": "Open Wearables: Enterprise \"Custom\", a license.",
     "url": "https://openwearables.io/pricing",
-    "quote": "Enterprise Annual agreement"
+    "quote": "Enterprise License For organisations that need Open Wearables built around their use case, with the security and support a production product requires. Custom"
   },
   {
     "claim": "Open Wearables: Enterprise \"Custom\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "under an SLA. Custom"
+    "quote": "Enterprise Run at scale, fully supported. Custom License"
   },
   {
     "claim": "Open Wearables Dexcom: \"Not in the open-source project today\"; continuous glucose on its roadmap.",
@@ -260,9 +260,9 @@
     "quote": "Open Wearables pushes each event to your endpoint once it is saved in your deployment, signed, retried if your service was down, with every attempt there to inspect."
   },
   {
-    "claim": "Open Wearables: health scores are part of Pro, computed inside your deployment.",
+    "claim": "Open Wearables: health scores are an add-on to Core and included in Enterprise, computed inside your deployment.",
     "url": "https://openwearables.io/faq",
-    "quote": "Ours are designed and validated by our science team and computed inside your deployment. Health scores come with Pro."
+    "quote": "Ours are designed and validated by our science team and computed inside your deployment. Health scores are an add-on to Core and included in Enterprise."
   },
   {
     "claim": "Open Wearables: BAA on Enterprise, where your cloud provider and scope support it.",
@@ -290,9 +290,9 @@
     "quote": "Deployment starts at $4,800 and Integration at $9,600, both one-time."
   },
   {
-    "claim": "Enterprise: \"We run and secure it in your cloud, under an SLA.\"",
+    "claim": "Enterprise adds \"SLA production support from a named team\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "We run and secure it in your cloud, under an SLA."
+    "quote": "SLA production support from a named team"
   },
   {
     "claim": "FAQ: \"Do we need our own developer account with each provider?\" \"Yes. The app is registered in your name\".",
@@ -320,14 +320,14 @@
     "quote": "Do you hold SOC 2 or ISO 27001? No. The deployment runs inside your certified environment"
   },
   {
-    "claim": "\"Is the free version really free?\" \"Yes. MIT license, full source, no trial window.\"",
+    "claim": "\"Is Core really free?\" \"Yes. MIT license, full source, no trial window.\"",
     "url": "https://openwearables.io/pricing",
-    "quote": "Is the free version really free? Yes. MIT license, full source, no trial window."
+    "quote": "Is Core really free? Yes. MIT license, full source, no trial window."
   },
   {
-    "claim": "\"Pro is priced per deployment rather than per user\".",
+    "claim": "\"Enterprise is a license rather than a per-user price\".",
     "url": "https://openwearables.io/faq",
-    "quote": "Pro is priced per deployment rather than per user"
+    "quote": "Enterprise is a license rather than a per-user price"
   },
   {
     "claim": "\"Where you self-host on Core, there is no processing for us to agree to, because we never touch it.\"",
@@ -345,9 +345,9 @@
     "quote": "point the MCP server at your deployment so an assistant can look things up in plain language without you writing the retrieval layer."
   },
   {
-    "claim": "Open Wearables says \"Health scores come with Pro\", \"computed inside your deployment\".",
+    "claim": "Open Wearables says \"Health scores are an add-on to Core and included in Enterprise\", \"computed inside your deployment\".",
     "url": "https://openwearables.io/faq",
-    "quote": "Health scores come with Pro."
+    "quote": "Health scores are an add-on to Core and included in Enterprise."
   },
   {
     "claim": "FAQ: \"Yes, in both directions. Incoming webhooks receive provider pushes, and outgoing webhooks notify your systems with full delivery history\".",
@@ -385,9 +385,9 @@
     "quote": "Several of them hold certifications we do not."
   },
   {
-    "claim": "Open Wearables Enterprise lists \"GDPR tooling, signed DPA and BAA\".",
+    "claim": "Open Wearables Enterprise lists \"Full security support, with a signed DPA and BAA\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "GDPR tooling, signed DPA and BAA"
+    "quote": "Full security support, with a signed DPA and BAA"
   },
   {
     "claim": "Open Wearables holds neither SOC 2 nor ISO 27001.",
@@ -400,9 +400,9 @@
     "quote": "It deploys with Docker Compose to start and infrastructure as code for production."
   },
   {
-    "claim": "FAQ: Pro adds health scores and other licensed modules.",
+    "claim": "Health scores and other modules are add-ons to Core; Enterprise includes all of them.",
     "url": "https://openwearables.io/pricing",
-    "quote": "The Pro modules, in your deployment Health scores Health agent Medical-grade integrations Observability"
+    "quote": "Health scores, the health agent, the care panel and the other modules can each be added to Core on their own. Enterprise includes all of them."
   },
   {
     "claim": "FAQ: Momentum maintains it.",

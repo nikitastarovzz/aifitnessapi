@@ -1,0 +1,197 @@
+[
+  {
+    "claim": "Nutritionix's database page counts 1,266,570 food items.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "1,266,570 food items and growing!"
+  },
+  {
+    "claim": "1,053,256 grocery items from 48,317 brands.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "1,053,256 items from 48,317 grocery brands"
+  },
+  {
+    "claim": "Coverage Nutritionix puts at over 92% of grocery items in the US and Canada.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "coverage for over 92% of grocery items in the U.S. and Canada"
+  },
+  {
+    "claim": "202,837 restaurant items from 860 restaurants.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "202,837 items from 860 restaurants"
+  },
+  {
+    "claim": "Common foods its dietitians started from the USDA database.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Our registered dietitian team started with the USDA database and supercharged it!"
+  },
+  {
+    "claim": "A free Business Trial, then Starter at $499 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "FREE Business Trial $ 499 /Month* Starter"
+  },
+  {
+    "claim": "MVP at $999 a month and Unicorn from $1,850 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "$ 999 /Month* MVP starting at $ 1850 /Month* Unicorn"
+  },
+  {
+    "claim": "Up to 2, 200 and 1,000 monthly active users, then customizable.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Active Users (MAU) up to 2 up to 200 up to 1000 Customizable"
+  },
+  {
+    "claim": "Nutritionix bills its API plans annually.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "API plans are billed annually."
+  },
+  {
+    "claim": "Attribution is required on every plan except Unicorn, where it is removable.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Attribution Requirement Required Required Required Removable Option"
+  },
+  {
+    "claim": "Upgrades start with a scheduled call.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "To get started with upgraded API access, please schedule a call with a team member using the form below."
+  },
+  {
+    "claim": "Freemium apps, hardware products and apps over 100K monthly active users are asked to contact Nutritionix for a custom plan.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "If you have a freemium app business model, sell a hardware product, or have more than 100K monthly active users, please contact us to discuss a customized pricing plan"
+  },
+  {
+    "claim": "Over 1M grocery foods with barcodes.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "We have the largest branded food database in existence with over 1M grocery foods with barcodes and 203K restaurant foods."
+  },
+  {
+    "claim": "The site footer reads 2026 Syndigo LLC.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "2026 Syndigo LLC All rights reserved."
+  },
+  {
+    "claim": "Nutritionix's developer portal says it no longer keeps a public free-access tier.",
+    "url": "https://developer.nutritionix.com/",
+    "quote": "due to increased misuse of free trial accounts, we are no longer able to maintain a public free-access tier."
+  },
+  {
+    "claim": "A limited trial comes through its sales team.",
+    "url": "https://developer.nutritionix.com/",
+    "quote": "our team would be happy to provide a limited trial account tailored to your use case."
+  },
+  {
+    "claim": "Nutritionix's homepage says the full website is temporarily offline.",
+    "url": "https://www.nutritionix.com/",
+    "quote": "Our full website is temporarily offline while we roll out major upgrades."
+  },
+  {
+    "claim": "The database and API remain available to registered partners.",
+    "url": "https://www.nutritionix.com/",
+    "quote": "is still available in the Nutritionix database and API to registered partners."
+  },
+  {
+    "claim": "Nutritionix's natural-language endpoint v2/natural/nutrients parses requests like 1 cup flour, 1 pinch of salt, and 1 cup butter.",
+    "url": "https://docx.syndigo.com/developers/docs/nutritionix-api-guide",
+    "quote": "Parse natural language requests like \"1 cup flour, 1 pinch of salt, and 1 cup butter\""
+  },
+  {
+    "claim": "v2/search/instant serves autocomplete.",
+    "url": "https://docx.syndigo.com/developers/docs/nutritionix-api-guide",
+    "quote": "Provides fast results for autocomplete text box interfaces."
+  },
+  {
+    "claim": "v2/natural/exercise parses workouts like 30 minutes yoga.",
+    "url": "https://docx.syndigo.com/developers/docs/nutritionix-api-guide",
+    "quote": "Parse requests like \"30 minutes yoga\" and calculate the calories burned."
+  },
+  {
+    "claim": "v2/search/item powers UPC lookup.",
+    "url": "https://docx.syndigo.com/developers/docs/nutritionix-api-guide",
+    "quote": "Powers UPC Lookup"
+  },
+  {
+    "claim": "Its API guide says every endpoint requires authentication.",
+    "url": "https://docx.syndigo.com/developers/docs/nutritionix-api-guide",
+    "quote": "All the endpoints such as GET and POST require authentication."
+  },
+  {
+    "claim": "Edamam's Food Database API: close to 900,000 basic foods, restaurant items and packaged foods.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Edamam provides access to a food and grocery database with close to 900,000 basic foods, restaurant items and consumer packaged foods"
+  },
+  {
+    "claim": "Over 700,000 unique UPC, ITN and EAN codes.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Power your barcode scanning solution with the Food Database API's access to over 700,000 unique UPC, ITN, and EAN codes."
+  },
+  {
+    "claim": "Food Logging mode for food logging chatbots.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "In Food Logging mode the API allows for development of food logging chatbots."
+  },
+  {
+    "claim": "Food Database API from $14 a month with a 30-day trial.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Enterprise Basic Vision $14 per month Prepaid Subscribe now 30 days Trial period"
+  },
+  {
+    "claim": "100,000 calls a month on the entry Food Database plan.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "100,000 calls/month"
+  },
+  {
+    "claim": "Only human, end-user-driven requests are allowed.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "All plans allow only human, end user driven requests."
+  },
+  {
+    "claim": "Caching is limited to the four basic macronutrients plus ID, label and image, and only where a plan allows it.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "API customers can cache only the four basic macro nutrient datapoints - protein, total fat, net carbs and calories as well as the fooId, food label and food image."
+  },
+  {
+    "claim": "Attribution is required on all Edamam plans.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Not providing attribution is considered breach of contract and is followed by immediate service suspension."
+  },
+  {
+    "claim": "Edamam's Nutrition Analysis API takes the full text of any recipe or ingredient list.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Submit the full text of any recipe or ingredient list."
+  },
+  {
+    "claim": "Nutrition Analysis from $29 a month with a 10-day trial.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Enterprise Basic Multilingual $29 per month Prepaid Subscribe now 10 days Trial period"
+  },
+  {
+    "claim": "2,500 recipes a month on the entry Nutrition Analysis plan.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "2,500 recipes/month"
+  },
+  {
+    "claim": "The cheapest Nutrition Analysis plan allows no caching.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Data caching allowed? No"
+  },
+  {
+    "claim": "Recipe Search from $9 a month with a 10-day trial.",
+    "url": "https://developer.edamam.com/edamam-recipe-api",
+    "quote": "Enterprise Basic $9 per month Prepaid Subscribe now 10 days Trial period"
+  },
+  {
+    "claim": "Over 2 million web recipes in Recipe Search.",
+    "url": "https://developer.edamam.com/edamam-recipe-api",
+    "quote": "Recipe content includes over 2 million recipes obtained from the public web"
+  },
+  {
+    "claim": "The Meal Planner API has a free Developer plan.",
+    "url": "https://developer.edamam.com/meal-planner-api",
+    "quote": "Developer FREE Get Started Unlimited Trial period"
+  },
+  {
+    "claim": "Edamam's docs refer to your app_id.",
+    "url": "https://developer.edamam.com/edamam-docs-recipe-api",
+    "quote": "In order to have Active User tracking, your app_id should be configured with this feature."
+  }
+]

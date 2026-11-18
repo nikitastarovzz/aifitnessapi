@@ -220,9 +220,9 @@
     "quote": "Start free with 25 development users and every product unlocked in sandbox. Production plans start at $299 a month billed annually, with 1,000 users included and per-user pricing as you grow."
   },
   {
-    "claim": "Direct cloud integrations for Garmin, Oura and WHOOP \"are in public beta and are Sandbox only\".",
+    "claim": "Sahha: direct cloud integrations cover three providers, Garmin, Oura and WHOOP, marked \"GA\" on November 18, 2026.",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Integrations are in public beta and are Sandbox only"
+    "quote": "Garmin garmin Watch Cloud OAuth GA Garmin approval required Oura oura Ring Cloud OAuth GA self sign-up WHOOP whoop Band Cloud OAuth GA self sign-up"
   },
   {
     "claim": "Validic is now owned by ChartSpan.",
@@ -262,7 +262,7 @@
   {
     "claim": "Open Wearables: MIT-licensed and self-hosted; the Core is \"$0 Forever\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "For teams building their first wearable features. You run the open-source platform yourself. $0 Forever"
+    "quote": "For engineering teams that set up and run Open Wearables themselves, with community support. $0 Forever"
   },
   {
     "claim": "From Momentum.",
@@ -315,8 +315,23 @@
     "quote": "You must register for the Polar API program"
   },
   {
-    "claim": "Open Wearables: a Pro plan with health scores starts \"From $999 a month, per deployment\".",
+    "claim": "Open Wearables: health scores and other modules are add-ons (November 18, 2026).",
     "url": "https://openwearables.io/pricing",
-    "quote": "For products in production. Licensed modules, with our engineers behind your deployment. From $999 a month, per deployment"
+    "quote": "Health scores, the health agent, the care panel and the other modules can each be added to Core on their own. Enterprise includes all of them."
+  },
+  {
+    "claim": "Open Wearables: Enterprise is \"Custom\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise License For organisations that need Open Wearables built around their use case, with the security and support a production product requires. Custom"
+  },
+  {
+    "claim": "Open Wearables: a one-time Deployment service is \"From $4,800\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "From $4,800, one-time. Production and staging in your cloud and region, providers onboarded under your credentials."
+  },
+  {
+    "claim": "Sahha: each cloud integration runs on an app you register with the provider.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Create an app with the provider"
   }
 ]
