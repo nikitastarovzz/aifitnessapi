@@ -113,3 +113,5 @@
 /pricing/fitbit-api-pricing
 /alternatives/fitbit-api-alternatives
 /integrate/fitbit-api
+# 2026-11-18: re-verified, metaDescription rewritten with the published plans; title unchanged.
+/compare/edamam-vs-spoonacular
