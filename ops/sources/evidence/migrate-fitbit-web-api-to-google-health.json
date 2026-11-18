@@ -38,5 +38,21 @@
     "claim": "Thryve's page says \"Removed Fitbit from the available sources following the shutdown from Google.\" (November 14, 2026).",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
     "quote": "Removed Fitbit from the available sources following the shutdown from Google."
+  },
+  {
+    "claim": "Terra's supported-integrations page says Fitbit is retired (read 2026-11-18 through source-snapshot).",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Fitbit is retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and end users can't connect through Fitbit."
+  },
+  {
+    "claim": "Terra moves those users to its Google Health source.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
+  },
+  {
+    "claim": "On November 18, 2026 Fitbit's token endpoint answered 410 Gone (source-snapshot run 44408817217, logs deleted).",
+    "url": "https://api.fitbit.com/oauth2/token",
+    "quote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.",
+    "expectStatus": 410
   }
 ]

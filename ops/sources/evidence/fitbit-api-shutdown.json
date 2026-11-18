@@ -53,5 +53,21 @@
     "claim": "Google's Health Status Dashboard says \"we will turn down legacy Fitbit Web API and Fitbit OAuth traffic on Monday, November 2, 2026.\" (read November 14, 2026).",
     "url": "https://status.healthapp.google.com/",
     "quote": "we will turn down legacy Fitbit Web API and Fitbit OAuth traffic on Monday, November 2, 2026."
+  },
+  {
+    "claim": "On November 14 and November 18, 2026 Fitbit's token endpoint answered 410 Gone with a message dating the decommissioning to October 30, 2026 (2026-11-18 read through source-snapshot run 44408817217, logs deleted).",
+    "url": "https://api.fitbit.com/oauth2/token",
+    "quote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.",
+    "expectStatus": 410
+  },
+  {
+    "claim": "Google's Google Health help article says Fitbit connections retired on October 30, 2026 (read 2026-11-18).",
+    "url": "https://support.google.com/googlehealth/answer/14236613?hl=en",
+    "quote": "Google Health Support can’t restore or fix your broken connection once Fitbit connections retired on October 30, 2026."
+  },
+  {
+    "claim": "The same article: starting October 30, 2026, Fitbit Web APIs are no longer supported.",
+    "url": "https://support.google.com/googlehealth/answer/14236613?hl=en",
+    "quote": "Starting October 30, 2026, Fitbit Web APIs will no longer be supported."
   }
 ]

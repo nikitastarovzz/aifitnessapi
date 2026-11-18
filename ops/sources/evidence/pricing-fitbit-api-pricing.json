@@ -1,0 +1,33 @@
+[
+  {
+    "claim": "On November 18, 2026 Fitbit's token endpoint answered 410 Gone (read through source-snapshot run 44408817217, logs deleted).",
+    "url": "https://api.fitbit.com/oauth2/token",
+    "quote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.",
+    "expectStatus": 410
+  },
+  {
+    "claim": "Google's Google Health API page gives November 2, 2026 as the turn-off (read 2026-11-18).",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Serving more than 100 users needs a third-party security review (read 2026-11-18).",
+    "url": "https://developers.google.com/health/setup?hl=en",
+    "quote": "Supporting more than 100 users with the Google Health API requires completion of a third party security review."
+  },
+  {
+    "claim": "The legacy limit was 150 requests per hour per consented user, per Fitbit's developer guide (read 2026-11-18 through source-snapshot).",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/application-design/",
+    "quote": "An application’s rate limit is 150 API requests per hour for each user who has consented to share their data; and it resets, approximately, at the top of each hour."
+  },
+  {
+    "claim": "OAuth verification can take several days and includes a third-party security review.",
+    "url": "https://developers.google.com/health/developer-checklist?hl=en",
+    "quote": "process can take several days and includes a third-party security review"
+  },
+  {
+    "claim": "Google publishes the Cloud Healthcare API's per-request pricing, a different product.",
+    "url": "https://cloud.google.com/healthcare-api/pricing?hl=en",
+    "quote": "After the free tier is exhausted, the next tiers are priced per 100,000 requests per month"
+  }
+]

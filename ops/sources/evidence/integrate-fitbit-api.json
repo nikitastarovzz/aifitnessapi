@@ -1,0 +1,78 @@
+[
+  {
+    "claim": "On November 18, 2026 Fitbit's token endpoint answered HTTP 410 Gone with a message that the legacy endpoints were decommissioned on October 30, 2026 (read through source-snapshot run 44408817217, logs deleted).",
+    "url": "https://api.fitbit.com/oauth2/token",
+    "quote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.",
+    "expectStatus": 410
+  },
+  {
+    "claim": "Google's Google Health API page gives November 2, 2026 as the turn-off, still in the future tense (read 2026-11-18).",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Google's Google Health help article says Fitbit connections retired on October 30, 2026 (read 2026-11-18).",
+    "url": "https://support.google.com/googlehealth/answer/14236613?hl=en",
+    "quote": "Google Health Support can’t restore or fix your broken connection once Fitbit connections retired on October 30, 2026."
+  },
+  {
+    "claim": "Rate limit: 150 API requests per hour per consented user, resetting approximately at the top of each hour.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/application-design/",
+    "quote": "An application’s rate limit is 150 API requests per hour for each user who has consented to share their data; and it resets, approximately, at the top of each hour."
+  },
+  {
+    "claim": "Each re-consent counts toward the Google Cloud project's OAuth token grant rate limit; more than 10,000 in a 24-hour window needs a higher quota requested in advance.",
+    "url": "https://developers.google.com/health/migration?hl=en",
+    "quote": "If you expect to exceed 10,000 user sign-ups or re-authentications within a 24-hour sliding window during your migration"
+  },
+  {
+    "claim": "The rate-limit headers, including Fitbit-Rate-Limit-Reset, the seconds until the reset.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/application-design/",
+    "quote": "Fitbit-Rate-Limit-Reset : The number of seconds until the rate limit resets."
+  },
+  {
+    "claim": "A Google account registered as a Fitbit developer account is required.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/getting-started/",
+    "quote": "To use the Fitbit APIs, you need to have a Google account registered as a Fitbit developer account."
+  },
+  {
+    "claim": "Google Workspace accounts are not supported.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/getting-started/",
+    "quote": "Google Workspace accounts are not supported with Fitbit."
+  },
+  {
+    "claim": "The code verifier is a cryptographically random value of 43 to 128 characters.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/authorization/",
+    "quote": "A cryptographically random value between 43-128 characters long called a code verifier"
+  },
+  {
+    "claim": "Only server apps may omit PKCE.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/authorization/",
+    "quote": "Only server application types may omit PKCE."
+  },
+  {
+    "claim": "An app may not force a user to grant every scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/authorization/",
+    "quote": "The application is not allowed to enable all scopes by default or force a user to enable all scopes."
+  },
+  {
+    "claim": "Fitbit's example token response shows expires_in of 28800 seconds.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/authorization/",
+    "quote": "\"expires_in\": 28800,"
+  },
+  {
+    "claim": "A developer's own intraday data is available automatically through the Personal app type.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/",
+    "quote": "A Fitbit developer’s personal Intraday data is automatically available through the “Personal” application type."
+  },
+  {
+    "claim": "Commercial applications asking for intraday data are subject to thorough review.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/",
+    "quote": "Commercial applications require thorough review and are subject to additional requirements."
+  },
+  {
+    "claim": "Activity time series support 1d, 7d and 30d periods.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "Supported: 1d | 7d | 30d"
+  }
+]
