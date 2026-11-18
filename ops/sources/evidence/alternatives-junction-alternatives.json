@@ -32,7 +32,7 @@
   {
     "claim": "Launch price.",
     "url": "https://www.junction.com/pricing",
-    "quote": "$300 /mo"
+    "quote": "Launch $300 /mo Billed monthly"
   },
   {
     "claim": "Launch for up to 500 users at a flat $300.",
@@ -292,7 +292,7 @@
   {
     "claim": "Open Wearables Core free.",
     "url": "https://openwearables.io/pricing",
-    "quote": "$0 Forever"
+    "quote": "For engineering teams that set up and run Open Wearables themselves, with community support. $0 Forever"
   },
   {
     "claim": "Open Wearables MIT.",
