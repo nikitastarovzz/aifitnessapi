@@ -577,6 +577,18 @@ export const entries: ClusterEntry[] =
         "label": "Terra alternatives"
       },
       {
+        "href": "/alternatives/thryve-alternatives",
+        "label": "Thryve alternatives"
+      },
+      {
+        "href": "/alternatives/junction-alternatives",
+        "label": "Junction (formerly Vital) alternatives"
+      },
+      {
+        "href": "/compare/terra-vs-human-api",
+        "label": "Terra vs Human API"
+      },
+      {
         "href": "/fitness-apis/wearable-data-apis",
         "label": "Best wearable fitness APIs"
       },

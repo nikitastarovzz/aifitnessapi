@@ -26,13 +26,17 @@ export const metadata: Metadata = {
   // Intent first rather than another "Fitness & Health API …" title: Google
   // tested every hub for "fitness api" and ranked none of them
   // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
-  title: { absolute: "Alternatives to Fitbit, Garmin, Strava & Other Fitness APIs" },
+  // Retitled 2026-11-18: the hub ranked 1.1 for "api fitness alternatives"
+  // (105 impressions) and "ai fitness api alternatives" (36) with no clicks
+  // (Google, 2026-10-15 to 2026-11-11), so the title names both searches and
+  // the description names vendors that have a page here.
+  title: { absolute: `Fitness & AI Fitness API Alternatives: ${releasedAlternatives().length} Switching Guides` },
   // The count is the release set's (ops/SERP-30-2026-10-12.md #11).
-  description: `${releasedAlternatives().length} switching guides, including alternatives to Fitbit, Google Fit, Garmin, Strava, Oura, WHOOP, HealthKit, Terra and ExerciseDB.`,
+  description: `${releasedAlternatives().length} switching guides on why teams leave Fitbit, Garmin, Oura, WHOOP, Terra, ROOK, Thryve or Junction, and AI motion SDKs such as MediaPipe and QuickPose.`,
   alternates: { canonical: ALTERNATIVES_PATH },
   openGraph: {
     type: "website",
-    title: "Alternatives to Fitbit, Garmin, Strava & Other Fitness APIs",
+    title: `Fitness & AI Fitness API Alternatives: ${releasedAlternatives().length} Switching Guides`,
     description:
       "Why teams replace a given fitness/health API and the realistic alternatives — for wearables, platforms, aggregators, and content APIs.",
     url: ALTERNATIVES_PATH,
@@ -67,6 +71,8 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "terra-alternatives",
       "rook-alternatives",
       "sahha-alternatives",
+      "thryve-alternatives",
+      "junction-alternatives",
       "spike-api-alternatives",
       "human-api-alternatives",
     ],

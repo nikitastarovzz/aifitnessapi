@@ -390,7 +390,7 @@ export const alternativesEntries: ClusterEntry[] =
     "metaDescription": "Terra alternatives, Oct 2026: Junction flat $300/mo to 500 users, Rook from $399, Sahha from $299, Thryve EU hosting, Open Wearables free to self-host.",
     "updated": "2026-10-17",
     "answer": "The main Terra (tryterra.co) alternatives, from their own pages on October 17, 2026, are Junction (formerly Vital) for US lab ordering and a flat $300 a month up to 500 users, Rook for active-user tiers from $399 a month, Spike for medical IoT, lab-report OCR and food-photo nutrition, Thryve for EU hosting in Germany, Sahha for phone-first data and scores, Validic for enterprise remote monitoring, and Open Wearables if you want MIT-licensed software you host yourself. You can also drop the aggregator for direct per-provider integrations or on-device HealthKit and Health Connect. Pick by what is pushing you off Terra: its per-connected-source credits, hosting, or a data source it does not fit; lab testing alone is no longer a reason, since Terra now sells it in the US and UK.",
-    "body": "Terra is a strong aggregator: broad provider coverage, a rich normalized schema, many delivery destinations and, now, lab testing. Most teams that shop around are not unhappy with the product; they have hit a billing unit, a hosting requirement or a data source that another vendor fits better. Everything below is from the vendors' own pages as we read them on October 17, 2026. For what this site has verified about Terra access in one place, see the [Terra API overview](/apis/terra).\n\n## Why teams look for a Terra alternative\n\nTerra prices on **credits**. Its pricing page says subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", including 100,000 credits a month; \"An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month\", the first 400 events per active authentication each month are free, and unused credits do not roll over. By our arithmetic that is about $899 a month at 1,000 connected sources on annual billing, and the bill grows with every source a user connects, not with every person.\n\nThat model is fine at steady scale, but three things send teams looking:\n\n- **The unit.** If your users connect several devices each, a per-person price can come out lower than a per-source one.\n- **Where the data lives.** Some buyers need EU hosting or need health data never to leave their own servers.\n- **What else they need.** Phone-only users with no wearable, remote-monitoring programs inside an EHR, or a contract with fixed tiers.\n\nLabs used to be on that list. They are not any more for most teams: Terra's homepage now offers blood tests \"through home kits, mobile phlebotomy, or lab walk-ins\", and its lab page says \"Nationwide US, plus the UK\".\n\n## The alternatives\n\n**Junction (formerly Vital).** Wearables plus lab ordering across all 50 US states, through \"a nationwide network of labs (NY, NJ, and RI included)\". Its Launch plan is \"a flat $300 a month\" for up to 500 connected users; labs, unlimited users and the signed BAA are on custom Enterprise. *Trade-off:* the lab side is US-only on the pages we read, and past 500 users you need a quote. See [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n**Rook (tryrook.io).** Active-user plans with published ceilings: Core $399 a month for up to 750 active users, Core+ $999 for 5,000, Business $1,999 for 15,000. It now adds a Medical Device API and a Lab Data API that parses lab reports. *Trade-off:* a 12-month standard contract, and Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts. See [Terra vs ROOK](/compare/terra-vs-rook), or [ROOK alternatives](/alternatives/rook-alternatives) if ROOK is the vendor you are leaving.\n\n**Spike (spikeapi.com).** Wearables plus medical IoT, lab-report OCR with LOINC codes, food-photo nutrition and an MCP server, with a dedicated implementation engineer from the Sandbox plan, which \"Starts from $450 /month\". *Trade-off:* pricing past the starting point is not itemized, and its site announces \"Raintree Systems Acquires Spike Technologies\". See [Terra vs Spike](/compare/terra-vs-spike).\n\n**Thryve (thryve.health).** \"Developed and hosted entirely in Europe\", with data \"hosted in Germany\"; Start Up starts at 499 euros a month for 500 users plus 0.50 euros per extra user, and its certifications page says \"Business Associate Agreements and Data Processing Agreements are standard on every plan\". *Trade-off:* Start Up stores data for two weeks, and providers without a shared OAuth client, such as Dexcom and WHOOP, need your own. See [Terra vs Thryve](/compare/terra-vs-thryve).\n\n**Sahha (sahha.ai).** Phone-first: it \"turns the smartphone itself into a passive sensor\", reads Apple Health and Health Connect, and returns biomarkers, scores and archetypes. Starter is $299 a month billed annually with 1,000 users included. *Trade-off:* direct cloud integrations for Garmin, Oura and WHOOP \"are in public beta and are Sandbox only\". See [Terra vs Sahha](/compare/terra-vs-sahha), or [Sahha alternatives](/alternatives/sahha-alternatives) if Sahha is the vendor you are leaving.\n\n**Validic (validic.com).** The enterprise remote-monitoring option, now owned by ChartSpan, with \"700+ devices\" and programs that write into the EHR; its Inform API has a free Developer plan for 5 users. *Trade-off:* production use means a negotiated Enterprise contract, and its device list shows some vendors closed to new applications.\n\n**Open Wearables (openwearables.io).** MIT-licensed and self-hosted, from Momentum: the Core is \"$0 Forever\", and a Pro plan with health scores starts \"From $999 a month, per deployment\" (October 27, 2026). *Trade-off:* you register with every provider yourself (\"You must apply for Garmin Developer Program\"), and you upgrade it yourself (its backend declared version 1.0.0 when we read it on November 14, 2026). See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n**Direct per-provider integrations** (Garmin, Oura, WHOOP, Strava, Polar, the Google Health API). Best for owning the pipeline and paying no aggregator fee. *Trade-off:* you build and maintain every connector, OAuth flow and token refresh yourself, and clear each provider's approval.\n\n**On-device stores via SDK: HealthKit (iOS) and Health Connect (Android).** Best for reading data already on the user's phone with no per-user API cost. *Trade-off:* no server-side pull, one platform each. See [Apple HealthKit vs Google Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect).\n\n| Alternative | Best for | Watch out |\n| --- | --- | --- |\n| Junction (formerly Vital) | US lab ordering in all 50 states; flat price up to 500 users | Labs and BAA are Enterprise-only |\n| Rook | Active-user tiers that stay flat to 5,000 or 15,000 users | 12-month standard contract |\n| Spike | Medical IoT, lab-report OCR, food photos, MCP | Unitemized pricing; announced acquisition |\n| Thryve | EU hosting and a BAA on every plan | Two weeks of storage on Start Up |\n| Sahha | Users without wearables; scores out of the box | Cloud integrations still beta |\n| Validic | Enterprise RPM inside the EHR | Negotiated contracts for production |\n| Open Wearables | Data that never leaves your servers | You hold every provider registration |\n| Direct integrations | Owning the pipe, no aggregator fee | You build every connector |\n| HealthKit / Health Connect | Mobile-first, no per-user cost | No server-side pull |\n\n## Which should you pick?\n\n- **Labs for US users across every state** → Junction; for UK users too, Terra itself already does it.\n- **Many users, one device each, and a flat tiered bill** → Rook or Sahha.\n- **EU hosting** → Thryve.\n- **Medical IoT, lab reports and food photos in one contract** → Spike.\n- **Hospital or payer remote-monitoring programs** → Validic.\n- **Self-hosting or open source** → Open Wearables.\n- **One or two providers only** → go direct and own the pipe.\n\nIf you are still deciding between aggregators in general, the [health-data aggregator API comparison](/fitness-apis/health-data-aggregator-apis) covers the whole field, and [aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each price sheet.\n\n## Is switching easy?\n\nUsually it is a real re-integration, not a config flip: new app registrations with the new vendor (and with any provider that needs your own credentials), re-mapping fields to a different normalized schema, and having **every existing user reconnect** through the new vendor's flow. Budget for the reconnect campaign, not just the code.\n\nSwitching between aggregators is still one re-integration rather than many, because each new vendor covers many providers behind one API. If you land on staying with an aggregator, the [Terra API integration guide](/integrate/terra-api) shows the shape of the work you would be re-doing against whichever vendor you pick.\n\n*Prices, plans and coverage above are from October 17, 2026 and change often; re-verify each vendor's live pricing and integrations pages before you commit.*",
+    "body": "Terra is a strong aggregator: broad provider coverage, a rich normalized schema, many delivery destinations and, now, lab testing. Most teams that shop around are not unhappy with the product; they have hit a billing unit, a hosting requirement or a data source that another vendor fits better. Everything below is from the vendors' own pages as we read them on October 17, 2026. For what this site has verified about Terra access in one place, see the [Terra API overview](/apis/terra).\n\nHere for ROOK, Sahha, Thryve or Junction rather than Terra? Each has its own page: [ROOK alternatives](/alternatives/rook-alternatives), [Sahha alternatives](/alternatives/sahha-alternatives), [Thryve alternatives](/alternatives/thryve-alternatives) and [Junction (formerly Vital) alternatives](/alternatives/junction-alternatives).\n\n## Why teams look for a Terra alternative\n\nTerra prices on **credits**. Its pricing page says subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", including 100,000 credits a month; \"An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month\", the first 400 events per active authentication each month are free, and unused credits do not roll over. By our arithmetic that is about $899 a month at 1,000 connected sources on annual billing, and the bill grows with every source a user connects, not with every person.\n\nThat model is fine at steady scale, but three things send teams looking:\n\n- **The unit.** If your users connect several devices each, a per-person price can come out lower than a per-source one.\n- **Where the data lives.** Some buyers need EU hosting or need health data never to leave their own servers.\n- **What else they need.** Phone-only users with no wearable, remote-monitoring programs inside an EHR, or a contract with fixed tiers.\n\nLabs used to be on that list. They are not any more for most teams: Terra's homepage now offers blood tests \"through home kits, mobile phlebotomy, or lab walk-ins\", and its lab page says \"Nationwide US, plus the UK\".\n\n## The alternatives\n\n**Junction (formerly Vital).** Wearables plus lab ordering across all 50 US states, through \"a nationwide network of labs (NY, NJ, and RI included)\". Its Launch plan is \"a flat $300 a month\" for up to 500 connected users; labs, unlimited users and the signed BAA are on custom Enterprise. *Trade-off:* the lab side is US-only on the pages we read, and past 500 users you need a quote. See [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n**Rook (tryrook.io).** Active-user plans with published ceilings: Core $399 a month for up to 750 active users, Core+ $999 for 5,000, Business $1,999 for 15,000. It now adds a Medical Device API and a Lab Data API that parses lab reports. *Trade-off:* a 12-month standard contract, and Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts. See [Terra vs ROOK](/compare/terra-vs-rook), or [ROOK alternatives](/alternatives/rook-alternatives) if ROOK is the vendor you are leaving.\n\n**Spike (spikeapi.com).** Wearables plus medical IoT, lab-report OCR with LOINC codes, food-photo nutrition and an MCP server, with a dedicated implementation engineer from the Sandbox plan, which \"Starts from $450 /month\". *Trade-off:* pricing past the starting point is not itemized, and its site announces \"Raintree Systems Acquires Spike Technologies\". See [Terra vs Spike](/compare/terra-vs-spike).\n\n**Thryve (thryve.health).** \"Developed and hosted entirely in Europe\", with data \"hosted in Germany\"; Start Up starts at 499 euros a month for 500 users plus 0.50 euros per extra user, and its certifications page says \"Business Associate Agreements and Data Processing Agreements are standard on every plan\". *Trade-off:* Start Up stores data for two weeks, and providers without a shared OAuth client, such as Dexcom and WHOOP, need your own. See [Terra vs Thryve](/compare/terra-vs-thryve).\n\n**Sahha (sahha.ai).** Phone-first: it \"turns the smartphone itself into a passive sensor\", reads Apple Health and Health Connect, and returns biomarkers, scores and archetypes. Starter is $299 a month billed annually with 1,000 users included. *Trade-off:* direct cloud integrations for Garmin, Oura and WHOOP \"are in public beta and are Sandbox only\". See [Terra vs Sahha](/compare/terra-vs-sahha), or [Sahha alternatives](/alternatives/sahha-alternatives) if Sahha is the vendor you are leaving.\n\n**Validic (validic.com).** The enterprise remote-monitoring option, now owned by ChartSpan, with \"700+ devices\" and programs that write into the EHR; its Inform API has a free Developer plan for 5 users. *Trade-off:* production use means a negotiated Enterprise contract, and its device list shows some vendors closed to new applications.\n\n**Open Wearables (openwearables.io).** MIT-licensed and self-hosted, from Momentum: the Core is \"$0 Forever\", and a Pro plan with health scores starts \"From $999 a month, per deployment\" (October 27, 2026). *Trade-off:* you register with every provider yourself (\"You must apply for Garmin Developer Program\"), and you upgrade it yourself (its backend declared version 1.0.0 when we read it on November 14, 2026). See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n**Direct per-provider integrations** (Garmin, Oura, WHOOP, Strava, Polar, the Google Health API). Best for owning the pipeline and paying no aggregator fee. *Trade-off:* you build and maintain every connector, OAuth flow and token refresh yourself, and clear each provider's approval.\n\n**On-device stores via SDK: HealthKit (iOS) and Health Connect (Android).** Best for reading data already on the user's phone with no per-user API cost. *Trade-off:* no server-side pull, one platform each. See [Apple HealthKit vs Google Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect).\n\n| Alternative | Best for | Watch out |\n| --- | --- | --- |\n| Junction (formerly Vital) | US lab ordering in all 50 states; flat price up to 500 users | Labs and BAA are Enterprise-only |\n| Rook | Active-user tiers that stay flat to 5,000 or 15,000 users | 12-month standard contract |\n| Spike | Medical IoT, lab-report OCR, food photos, MCP | Unitemized pricing; announced acquisition |\n| Thryve | EU hosting and a BAA on every plan | Two weeks of storage on Start Up |\n| Sahha | Users without wearables; scores out of the box | Cloud integrations still beta |\n| Validic | Enterprise RPM inside the EHR | Negotiated contracts for production |\n| Open Wearables | Data that never leaves your servers | You hold every provider registration |\n| Direct integrations | Owning the pipe, no aggregator fee | You build every connector |\n| HealthKit / Health Connect | Mobile-first, no per-user cost | No server-side pull |\n\n## Which should you pick?\n\n- **Labs for US users across every state** → Junction; for UK users too, Terra itself already does it.\n- **Many users, one device each, and a flat tiered bill** → Rook or Sahha.\n- **EU hosting** → Thryve.\n- **Medical IoT, lab reports and food photos in one contract** → Spike.\n- **Hospital or payer remote-monitoring programs** → Validic.\n- **Self-hosting or open source** → Open Wearables.\n- **One or two providers only** → go direct and own the pipe.\n\nIf you are still deciding between aggregators in general, the [health-data aggregator API comparison](/fitness-apis/health-data-aggregator-apis) covers the whole field, and [aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each price sheet.\n\n## Is switching easy?\n\nUsually it is a real re-integration, not a config flip: new app registrations with the new vendor (and with any provider that needs your own credentials), re-mapping fields to a different normalized schema, and having **every existing user reconnect** through the new vendor's flow. Budget for the reconnect campaign, not just the code.\n\nSwitching between aggregators is still one re-integration rather than many, because each new vendor covers many providers behind one API. If you land on staying with an aggregator, the [Terra API integration guide](/integrate/terra-api) shows the shape of the work you would be re-doing against whichever vendor you pick.\n\n*Prices, plans and coverage above are from October 17, 2026 and change often; re-verify each vendor's live pricing and integrations pages before you commit.*",
     "faqs": [
       {
         "q": "Why do teams look for a Terra alternative?",
@@ -1409,6 +1409,10 @@ export const alternativesEntries: ClusterEntry[] =
       {
         "href": "/alternatives/terra-alternatives",
         "label": "Terra alternatives"
+      },
+      {
+        "href": "/compare/terra-vs-human-api",
+        "label": "Terra vs Human API"
       },
       {
         "href": "/compliance/hipaa-compliance-fitness-app",
@@ -3147,6 +3151,349 @@ export const alternativesEntries: ClusterEntry[] =
       {
         "url": "https://openwearables.io/docs/providers/supported",
         "checked": "2026-11-02",
+        "note": "Open Wearables provider registration (snapshot)"
+      }
+    ]
+  },
+  {
+    "slug": "thryve-alternatives",
+    "primaryQuery": "Thryve alternatives",
+    "h1": "The Best Thryve (thryve.health) Alternatives (2026)",
+    "metaTitle": "Thryve API Alternatives (2026): 6 Health-Data Options",
+    "metaDescription": "Thryve (thryve.health) alternatives as of November 2026: Terra, ROOK, Junction, Sahha, Spike and Open Wearables, with prices, hosting and when to stay.",
+    "updated": "2026-11-18",
+    "answer": "The main Thryve (thryve.health) alternatives, from the vendors' own pages on November 18, 2026, are Terra for lab ordering in the US and UK and delivery into your own database, ROOK for published active-user tiers from $399 a month for 750 users plus medical-device and lab-report APIs, Junction (formerly Vital) for a flat $300 a month up to 500 users, Sahha for phone-first scores, Spike for an implementation engineer from $450 a month, and Open Wearables for MIT-licensed software you run in your own cloud and region. Teams usually leave over what Thryve's plans hold back: Start Up keeps data for 2 weeks, custom OAuth credentials are listed from Scale Up, and sources without a shared OAuth client, among them WHOOP, Strava and Dexcom, need your own. Stay with Thryve if you need data hosted in Germany and a BAA and DPA on every plan, which none of the hosted alternatives here offers on its entry plan.",
+    "body": "Thryve is a European health-data aggregator: one API and mobile SDKs for wearables, the phone health stores and some medical devices, sold to insurers, digital health products and researchers. Teams that shop around rarely leave over the hosting, which is why many chose Thryve; they have hit a storage window, a provider that needs their own OAuth client, plans priced in euros, or something Thryve does not sell. Everything below is from the vendors' own pages as we read them on November 18, 2026. For Thryve's full price sheet, see [Thryve API pricing](/pricing/thryve-api-pricing), and for a head-to-head with the best-known aggregator, [Terra vs Thryve](/compare/terra-vs-thryve).\n\n## First, what Thryve is and what it costs\n\nThryve's homepage pitch is \"Connect and analyze data from 500+ Wearables & Health Data Sources with One API\".\n\n- **Hosting.** \"Developed and hosted entirely in Europe\", and its pricing FAQ says \"All data processed and stored by Thryve is hosted in Germany.\"\n- **Certifications.** Its certifications page lists ISO/IEC 27001, ISO 9001, GDPR, HIPAA and approval under Germany's DiGA framework, and says \"Business Associate Agreements and Data Processing Agreements are standard on every plan\".\n- **Price.** Start Up starts at 499 euros a month for \"Up to 500 users\", with \"€0.50 per additional user\", one connected app and a 14-day free trial. Scale Up starts at 1,000 euros a month for up to 5,000 users and is a \"Special plan for startups with growth-stage needs (less than 10 years of founding)\", with \"additional €999 per 10,000 users\". Enterprise is bespoke.\n- **What each plan keeps.** The plan table lists data storage of 1 day on the free trial, 2 weeks on Start Up, 1 month on Scale Up and flexible on Enterprise. Scale Up's card adds \"Up to 14 days of Fetching historical data\" and \"Own data source tenant / Custom Auth credentials\", which Start Up's card does not list.\n\n## Why teams look for a Thryve alternative\n\n- **Storage.** Two weeks on Start Up and a month on Scale Up means your own backend keeps the history, whichever plan you are on.\n- **Your own OAuth clients.** Thryve's docs say \"When no shared oAuth-client is available, you must bring your own oAuth-client\", and its data-sources table marks Strava, Dexcom, WHOOP, iHealth, Decathlon, Komoot, FreeStyle Libre and Google Health as having none. The pricing page lists custom credentials on Scale Up and Enterprise.\n- **Former Fitbit users.** The docs say: \"Removed Fitbit from the available sources following the shutdown from Google.\" Google Health is listed as a source, without a shared OAuth client.\n- **Euros and eligibility.** The plans are priced in euros, and Scale Up is limited to companies founded less than 10 years ago.\n- **Something Thryve does not sell.** We found no lab-test ordering, no lab-report parsing and no self-hosted option on the Thryve pages we read.\n\n## The alternatives\n\n### Terra (tryterra.co)\n\n**What it is.** The best-known aggregator, billed in credits. Terra's pricing page says subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", with 100,000 Unified API credits a month, and its docs charge \"200 Unified API credits per active authentication per month\" (one connected source for one user); \"The first 400 events per active authentication are free.\" It orders lab tests (\"Nationwide US, plus the UK\") and delivers to webhooks, SQL databases, cloud storage, queues, MongoDB and Firestore.\n\n**Best for.** Lab ordering in the US or UK, and data pushed straight into your own database or bucket.\n\n**Trade-off.** The bill counts each source a user connects, the signed BAA is on Enterprise, and the pages we read name no hosting region for Quick Start; Enterprise lists a \"Dedicated instance to localised area\". See [Terra vs Thryve](/compare/terra-vs-thryve).\n\n### ROOK (tryrook.io)\n\n**What it is.** An aggregator priced by active users: Core is $399 a month for up to 750, Core+ $999 for up to 5,000 and Business $1,999 for up to 15,000. Beyond wearables it sells a Medical Device API that delivers readings \"with the device that recorded each one\" and a Lab Data API that turns PDF and image lab reports into LOINC-coded biomarkers. Its compliance page says ROOK \"processes EU personal data under GDPR as a data processor\".\n\n**Best for.** Published US-dollar tiers into the thousands of users, and medical-device or lab-report data.\n\n**Trade-off.** \"ROOK's standard contract term is 12 months\", Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, and dedicated servers are an Enterprise item; we found no statement of where data is hosted. See [ROOK alternatives](/alternatives/rook-alternatives).\n\n### Junction (formerly Vital)\n\n**What it is.** Wearables plus US lab testing. Launch is \"$300 /mo\", billed monthly, for 1 to 500 connected users and 300+ devices; Enterprise adds lab testing, unlimited users and the signed BAA.\n\n**Best for.** A small app that wants a flat monthly bill in dollars, or a care product that orders lab tests in the US.\n\n**Trade-off.** Junction's pricing FAQ says \"The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys are part of Enterprise.\" Thryve includes the BAA on every plan. See [Junction alternatives](/alternatives/junction-alternatives).\n\n### Sahha (sahha.ai)\n\n**What it is.** Phone-first health data: Sahha \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\" and returns biomarkers, scores and archetypes. Starter is $299 a month billed annually with \"1,000 users included, then $0.40/user\" and 30-day data retention. Its docs list direct Garmin, Oura and WHOOP cloud integrations as generally available, each through an app you register with the provider.\n\n**Best for.** Users without a wearable, and ready-made scores.\n\n**Trade-off.** The BAA starts at Pro, $1,499 a month billed annually, and the product is the scoring layer rather than raw device payloads. See [Sahha alternatives](/alternatives/sahha-alternatives).\n\n### Spike (spikeapi.com)\n\n**What it is.** Wearables, medical IoT devices, lab reports, EMR connections and food-photo nutrition. Its Sandbox \"Starts from $450 /month\" and lists \"Access 40+ providers and 500+ devices via single SDK\" and \"Full GDPR, HIPAA, CCPA compliance\"; Spike says \"Every organization gets a dedicated implementation engineer from the sandbox level\".\n\n**Best for.** Teams that want help building, or nutrition and EMR data next to wearables.\n\n**Trade-off.** Pricing past the starting point is not itemized, and the site carries the banner \"Raintree Systems Acquires Spike Technologies\". See [Spike API alternatives](/alternatives/spike-api-alternatives).\n\n### Open Wearables (openwearables.io)\n\n**What it is.** Open-source software you run in your own cloud. Core is \"$0 Forever\" under the MIT license; a paid deployment service sets up \"Production and staging in your cloud and region\" from $4,800, one-time.\n\n**Best for.** Teams whose health data must stay in their own cloud account and region, with no per-user fee.\n\n**Trade-off.** You register with each provider yourself (\"You must apply for Garmin Developer Program\") and run the platform, and to \"Do you hold SOC 2 or ISO 27001?\" its FAQ answers \"No.\" See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n| Alternative | Best for | Entry price (Nov 18, 2026) | Watch out |\n| --- | --- | --- | --- |\n| Terra | Lab ordering in the US and UK; delivery into your own storage | $399 a month billed annually, $499 monthly | Billed per connected source; BAA on Enterprise |\n| ROOK | Published tiers; medical devices and lab reports | $399 a month, 750 active users | 12-month standard contract |\n| Junction | A flat bill up to 500 users; US labs | $300 a month, billed monthly | BAA, labs and more users need Enterprise |\n| Sahha | Users without wearables; ready-made scores | $299 a month billed annually, 1,000 users | BAA from Pro; 30-day retention on Starter |\n| Spike | An implementation engineer; nutrition and EMR | From $450 a month | Pricing not itemized; announced acquisition |\n| Open Wearables | Data in your own cloud and region | $0 to self-host | You hold every provider registration |\n\nGoing direct to each provider, or reading HealthKit and Health Connect on the phone yourself, is the other way out of an aggregator; the [health-data aggregator comparison](/fitness-apis/health-data-aggregator-apis) covers when that pays.\n\n## Which should you pick?\n\n- **Your data must stay in the EU and you will not run the platform yourself** → stay with Thryve; none of the hosted alternatives' pages we read names an EU region for its standard plans.\n- **Your data must stay in your own cloud account** → Open Wearables.\n- **You need lab tests ordered** → Terra for the US and the UK, Junction for the US on its Enterprise plan.\n- **You need medical-device readings or lab reports parsed** → ROOK.\n- **You want a flat bill at a few hundred users** → Junction's Launch plan.\n- **Many of your users have no wearable** → Sahha.\n- **You want a person on your implementation** → Spike.\n\n[Aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each vendor's price sheet.\n\n## When to stay with Thryve\n\n- **Hosting in Germany is a requirement.** No hosted alternative here states an EU hosting region on the pages we read.\n- **You want the paperwork without an upgrade.** Thryve includes the BAA and DPA on every plan; Sahha starts the BAA at Pro, and Terra and Junction at Enterprise.\n- **You sell into German digital health.** Thryve's certifications page says it is approved under Germany's DiGA framework.\n- **Your users' devices have a shared OAuth client.** Garmin, Polar, Withings, Oura, Suunto, Huawei Health, Omron and Beurer do, per Thryve's table, along with the SDK-based Apple Health, Samsung Health and Health Connect.\n- **Your company qualifies for Scale Up.** By our arithmetic, Start Up costs 1,249 euros a month at 2,000 users, against 1,000 euros for up to 5,000 on Scale Up, so Scale Up is cheaper above about 1,500 users for companies founded less than 10 years ago.\n\n## Is switching easy?\n\nIt is a re-integration. Users reconnect through the new vendor's flow, since Thryve's FAQ says the user authorizes access at the data source and \"the connection and technical integration in the background are powered by Thryve\". Thryve also says data \"is anonymized with de-identified token\", so keep your own mapping from those tokens to your user IDs, and export the history you need first, because Start Up stores 2 weeks. A move to a vendor that does not state EU hosting reopens your data-protection review. The [guide to migrating between health-data aggregators](/migrate/between-health-data-aggregators) covers the order of work.\n\n## What we could not verify\n\n- Whether Start Up can connect providers that need your own OAuth client, such as WHOOP, Strava or Dexcom: the pricing page lists custom credentials on Scale Up and Enterprise only.\n- Whether Start Up fetches any history when a user connects: only Scale Up's card states a figure, up to 14 days.\n- Where Terra, ROOK, Junction, Sahha and Spike store data on their standard plans: none of the pages we read names a region.\n\n*Prices, plans and coverage above are from November 18, 2026 and change often; re-check each vendor's live pricing and integrations pages before you sign.*",
+    "faqs": [
+      {
+        "q": "Why do teams look for a Thryve alternative?",
+        "a": "Mostly for what its plans hold back. As of November 18, 2026, Thryve's Start Up plan stores data for 2 weeks, custom OAuth credentials are listed on Scale Up and Enterprise, and sources without a shared OAuth client, such as WHOOP, Strava and Dexcom, need your own. Others want US-dollar pricing, lab-test ordering, lab-report parsing or software they host themselves, none of which we found on Thryve's pages."
+      },
+      {
+        "q": "Is there a Thryve alternative hosted in the EU?",
+        "a": "Not among the hosted aggregators we read on November 18, 2026: Terra, ROOK, Junction, Sahha and Spike state GDPR compliance, but none of their pages names an EU hosting region for standard plans. Terra lists a dedicated instance in a localized area on Enterprise, and ROOK dedicated servers on Enterprise. Open Wearables runs in your own cloud and region, so the region is yours to choose."
+      },
+      {
+        "q": "Which Thryve alternative is cheapest for a small app?",
+        "a": "On list prices as of November 18, 2026, Junction's Launch plan is $300 a month, billed monthly, for up to 500 connected users, and Sahha's Starter is $299 a month billed annually for 1,000 users. Terra and ROOK start at $399 a month, Terra billed annually. Thryve's Start Up is 499 euros a month for 500 users. Open Wearables costs nothing to self-host, but you pay for hosting and the work."
+      },
+      {
+        "q": "Which Thryve alternatives include a BAA?",
+        "a": "Thryve includes the BAA on every plan, which none of the hosted alternatives does on its entry plan. As of November 18, 2026, Sahha includes it from Pro at $1,499 a month billed annually, Terra and Junction list it under Enterprise, and ROOK signs one when the customer is a covered entity or business associate, reviewed during contracting. Open Wearables signs one while its team can reach your deployment."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/thryve-api-pricing",
+        "label": "Thryve API pricing"
+      },
+      {
+        "href": "/compare/terra-vs-thryve",
+        "label": "Terra vs Thryve"
+      },
+      {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
+      },
+      {
+        "href": "/alternatives/junction-alternatives",
+        "label": "Junction alternatives"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We re-read aggregator price sheets, hosting statements and OAuth requirements as they change. Subscribe and choose your next vendor on what the pages say today."
+    },
+    "sources": [
+      {
+        "url": "https://www.thryve.health/",
+        "checked": "2026-11-18",
+        "note": "Thryve coverage and hosting (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-11-18",
+        "note": "Thryve plans, storage, custom credentials, hosting FAQ (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/certifications-compliance",
+        "checked": "2026-11-18",
+        "note": "Thryve certifications, BAA and DPA (snapshot)"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-11-18",
+        "note": "Thryve data sources and shared OAuth clients (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-18",
+        "note": "Terra plans, BAA, dedicated instance (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-11-18",
+        "note": "Terra credits (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-11-18",
+        "note": "Terra destinations (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-11-18",
+        "note": "Terra lab testing geography (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-18",
+        "note": "ROOK plans and contract (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/compliance/",
+        "checked": "2026-11-18",
+        "note": "ROOK GDPR and BAA (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-11-18",
+        "note": "ROOK own developer accounts (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/medical-device-api/",
+        "checked": "2026-11-18",
+        "note": "ROOK Medical Device API (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/lab-data-api/",
+        "checked": "2026-11-18",
+        "note": "ROOK Lab Data API (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-18",
+        "note": "Junction Launch, Enterprise, BAA (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-11-18",
+        "note": "Sahha positioning (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-11-18",
+        "note": "Sahha plans, retention, BAA (snapshot)"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/integrations",
+        "checked": "2026-11-18",
+        "note": "Sahha cloud integrations (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-11-18",
+        "note": "Spike Sandbox, acquisition banner (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-11-18",
+        "note": "Spike implementation engineer (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/pricing",
+        "checked": "2026-11-18",
+        "note": "Open Wearables Core, deployment, certifications (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-11-18",
+        "note": "Open Wearables provider registration (snapshot)"
+      }
+    ]
+  },
+  {
+    "slug": "junction-alternatives",
+    "primaryQuery": "Junction alternatives",
+    "h1": "The Best Junction (formerly Vital) API Alternatives (2026)",
+    "metaTitle": "Junction (Vital) API Alternatives (2026): 6 Options",
+    "metaDescription": "Alternatives to Junction (formerly Vital) as of November 2026: Terra, ROOK, Thryve, Sahha, Spike and Open Wearables, with prices, labs and BAAs.",
+    "updated": "2026-11-18",
+    "answer": "Junction is the name Vital now trades under: as of November 18, 2026, tryvital.io redirects to junction.com, which sells wearable data and US lab testing through one API, with a Launch plan at $300 a month, billed monthly, for 1 to 500 connected users and everything else on a custom Enterprise plan. The main alternatives, from the vendors' own pages that day, are Terra for lab ordering in the US and UK and delivery into your own database, ROOK for published active-user tiers up to 15,000 users, Thryve for hosting in Germany with a BAA on every plan, Sahha for phone-first scores, Spike for an implementation engineer from $450 a month, and Open Wearables for MIT-licensed software you run yourself. Teams usually leave over what Junction keeps on Enterprise: more than 500 users, lab testing, custom OAuth credentials and the signed BAA.",
+    "body": "Junction (formerly Vital) is a health-data API with two halves: wearables and devices through one integration, and lab testing that ships kits, books phlebotomists and returns results. As of November 18, 2026, tryvital.io redirects to junction.com. Teams that look elsewhere usually like the data and the flat entry price; they have outgrown the 500-user plan, need a document that only Enterprise carries, or want labs outside the US. Everything below is from the vendors' own pages as we read them on November 18, 2026. For Junction's price sheet, see [Junction API pricing](/pricing/junction-api-pricing), and for the head-to-head with the category's best-known name, [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n## First, what Junction is and what it costs\n\nJunction's homepage headline: \"Integrate 300+ wearables, streamline lab operations, and build your own lab testing experience spanning all 50 states – with a single API.\" Its docs add Junction Sense, which \"Automatically transforms raw activity and biometric data from 300+ connected devices into structured, aggregated datasets that update as new data arrives\", mobile SDKs for Apple HealthKit and Android Health Connect, and webhooks with ETL pipeline options.\n\n- **Launch.** \"$300 /mo\", billed monthly, for 1 to 500 connected users and 300+ device integrations, with the Link widget, usage analytics and community Slack support. Junction's FAQ: \"Launch is billed monthly, so there is no annual contract to get started.\"\n- **Enterprise.** Custom, billed annually: unlimited users, premium and Bluetooth integrations, custom OAuth credentials, the Junction iOS app, the lab testing API and ETL pipelines to your warehouse.\n- **Labs.** \"Lab testing is part of Enterprise.\" Junction provides the doctor's order, works only with CLIA and CAP certified labs, and its FAQ gives a minimum of 250 kits and 4 to 6 weeks to set up the kit process.\n- **Compliance.** Every plan is listed as HIPAA compliant and GDPR ready; \"The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys are part of Enterprise.\"\n\n## Why teams look for a Junction alternative\n\n- **The 500-user ceiling.** \"Launch covers 1-500 connected users.\" Past that the only published option is a sales call for Enterprise.\n- **The BAA and the audit reports.** A HIPAA product that needs a signed BAA, or a security review that asks for the SOC 2 report, is on Enterprise from day one.\n- **Your own OAuth apps.** Custom OAuth credentials are an Enterprise line on the pricing page, and Junction's docs say \"Some OAuth providers are unavailable unless you can Bring Your Own OAuth (BYOO)\".\n- **Labs outside the US, or in small batches.** Junction's lab network covers the 50 US states, and its FAQ says \"Our current minimum order quantity is 250 kits\".\n- **Hosting.** We found no statement of where Junction stores data on the pages we read; EU buyers who need a named region look elsewhere.\n\n## The alternatives\n\n### Terra (tryterra.co)\n\n**What it is.** The best-known aggregator, billed in credits. Terra's pricing page says subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", with 100,000 Unified API credits a month; its docs charge \"200 Unified API credits per active authentication per month\" (one connected source for one user) and say \"The included credits cover 500 active authentications a month, each with up to 400 events.\" It orders lab tests (\"Nationwide US, plus the UK\") and delivers to webhooks, SQL databases, cloud storage, queues, MongoDB and Firestore.\n\n**Best for.** Lab ordering that includes UK users, data pushed straight into your own storage, and growth past 500 users on the same plan: credits from 100,001 to 1,000,000 cost $0.005 each.\n\n**Trade-off.** The bill counts each source a user connects, not each person, and the signed BAA is on Enterprise. See [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n### ROOK (tryrook.io)\n\n**What it is.** An aggregator priced by active users with every self-serve ceiling published: Core $399 a month for up to 750, Core+ $999 for up to 5,000, Business $1,999 for up to 15,000. It adds a Medical Device API that delivers readings \"with the device that recorded each one\" and a Lab Data API that turns PDF and image lab reports into LOINC-coded biomarkers.\n\n**Best for.** Growing past 500 users on a published price, and reading lab reports users already have.\n\n**Trade-off.** \"ROOK's standard contract term is 12 months\", it parses lab reports rather than ordering tests, and Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts. See [ROOK alternatives](/alternatives/rook-alternatives).\n\n### Thryve (thryve.health)\n\n**What it is.** A European aggregator, \"Developed and hosted entirely in Europe\"; its pricing FAQ says \"All data processed and stored by Thryve is hosted in Germany.\" Start Up starts at 499 euros a month for up to 500 users plus \"€0.50 per additional user\", and its certifications page says \"Business Associate Agreements and Data Processing Agreements are standard on every plan\".\n\n**Best for.** EU hosting, and a BAA without an enterprise contract.\n\n**Trade-off.** Start Up stores data for 2 weeks, and sources without a shared OAuth client, among them WHOOP, Strava and Dexcom, need your own. See [Thryve alternatives](/alternatives/thryve-alternatives).\n\n### Sahha (sahha.ai)\n\n**What it is.** Phone-first health data: Sahha \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\" and returns biomarkers, scores and archetypes. Starter is $299 a month billed annually with \"1,000 users included, then $0.40/user\"; Pro is $1,499 a month billed annually with 10,000 users and the BAA.\n\n**Best for.** Users without a wearable, ready-made scores, and a BAA below enterprise pricing.\n\n**Trade-off.** Starter keeps 30 days of data, we found no lab products on its pages, and its direct Garmin, Oura and WHOOP cloud integrations each use an app you register with the provider. See [Sahha alternatives](/alternatives/sahha-alternatives).\n\n### Spike (spikeapi.com)\n\n**What it is.** Wearables, medical IoT devices, lab reports, EMR connections and food-photo nutrition. Its Sandbox \"Starts from $450 /month\" and lists \"Access 40+ providers and 500+ devices via single SDK\"; Spike says \"Every organization gets a dedicated implementation engineer from the sandbox level\".\n\n**Best for.** Hands-on implementation help, and EMR or nutrition data next to wearables.\n\n**Trade-off.** Pricing past the starting point is not itemized, and the site carries the banner \"Raintree Systems Acquires Spike Technologies\". See [Spike API alternatives](/alternatives/spike-api-alternatives).\n\n### Open Wearables (openwearables.io)\n\n**What it is.** Open-source software you run in your own cloud: Core is \"$0 Forever\" under the MIT license, with SDKs for iOS, Android, Flutter and React Native.\n\n**Best for.** Health data that never leaves your infrastructure, and no per-user fee at any scale.\n\n**Trade-off.** You register with each provider yourself (\"You must apply for Garmin Developer Program\") and run the platform, and we found no lab products on its pages. See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n| Alternative | Best for | Entry price (Nov 18, 2026) | Watch out |\n| --- | --- | --- | --- |\n| Terra | UK and US labs; delivery into your own storage | $399 a month billed annually, $499 monthly | Billed per connected source; BAA on Enterprise |\n| ROOK | Published tiers to 15,000 users; lab reports | $399 a month, 750 active users | 12-month standard contract |\n| Thryve | Hosting in Germany; BAA on every plan | 499 euros a month, 500 users | 2-week storage on Start Up |\n| Sahha | Users without wearables; scores | $299 a month billed annually, 1,000 users | 30-day retention on Starter |\n| Spike | An implementation engineer; EMR and nutrition | From $450 a month | Pricing not itemized; announced acquisition |\n| Open Wearables | Data on your own servers | $0 to self-host | You hold every provider registration |\n\n## Which should you pick?\n\n- **You are past 500 users and want a published price** → ROOK's Core+ or Business, or Terra's credits.\n- **You need lab tests for users in the UK as well as the US** → Terra.\n- **You need a BAA without an enterprise contract** → Thryve, where it is on every plan, or Sahha from Pro.\n- **Your data must be hosted in the EU** → Thryve, or Open Wearables in your own cloud.\n- **Many of your users have no wearable** → Sahha.\n- **You want a person on your implementation** → Spike.\n\n[Aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each vendor's price sheet.\n\n## When to stay with Junction\n\n- **You are under 500 users and want a flat bill.** $300 a month, billed monthly, is the lowest monthly-billed price among the hosted options here; Sahha's $299 is billed annually.\n- **You want to build before you pay.** Junction's FAQ says \"The sandbox and developer docs are free\", and device data \"is typically flowing within days of picking up the API keys\".\n- **You order lab tests in the US.** Walk-in, at-home kit and mobile phlebotomy across all 50 states, with \"a nationwide network of labs (NY, NJ, and RI included)\", CLIA and CAP certified labs, and, its FAQ says, \"There are no upcharges on the tests themselves.\"\n- **You want labs and wearables in one contract.** Of the alternatives here, only Terra also orders tests.\n\n## Is switching easy?\n\nIt is a re-integration. Every user reconnects through the new vendor's flow, and providers you reached through your own OAuth apps need those apps registered with the new vendor. Expect to map Junction's schemas and Junction Sense datasets onto the new vendor's, and keep your own copy of the history you need. Lab orders are a separate migration: kit logistics, test panels and the physician-order arrangement all move. The [guide to migrating between health-data aggregators](/migrate/between-health-data-aggregators) covers the order of work.\n\n## What we could not verify\n\n- Which plan names Junction's BYOO docs mean: they say \"Bring Your Own OAuth (BYOO) is available for the Grow and Scale plans\" and that \"WHOOP BYOO is available for the Launch, Grow and Scale plans\", while the pricing page lists only Launch and Enterprise.\n- Where Junction hosts data, and whether any region can be chosen.\n- What Junction or Terra charges per lab test: neither pricing page we read lists test prices.\n\n*Prices, plans and coverage above are from November 18, 2026 and change often; re-check each vendor's live pricing and integrations pages before you sign.*",
+    "faqs": [
+      {
+        "q": "Is Vital (tryvital.io) still available?",
+        "a": "Yes, under the Junction name. As of November 18, 2026, tryvital.io redirects to junction.com, which sells wearable and device data through one API and lab testing across all 50 US states. Its Launch plan is $300 a month, billed monthly, for 1 to 500 connected users; lab testing, unlimited users and the signed BAA are on a custom Enterprise plan billed annually."
+      },
+      {
+        "q": "Which Junction alternative works past 500 users without a sales call?",
+        "a": "On the pages we read on November 18, 2026, ROOK publishes Core+ at $999 a month for up to 5,000 active users and Business at $1,999 for up to 15,000. Terra sells extra credits from $0.005 each past the 100,000 included, Sahha charges $0.40 a user past 1,000 on Starter, and Thryve 0.50 euros a user past 500 on Start Up. Junction's Launch plan stops at 500 connected users."
+      },
+      {
+        "q": "Is there a Junction alternative that orders lab tests outside the US?",
+        "a": "Terra. As of November 18, 2026, Terra's lab-testing page says it orders tests nationwide in the US plus the UK, through home kits, mobile phlebotomy or lab walk-ins. Junction's lab network covers the 50 US states, on its Enterprise plan. ROOK and Spike parse lab reports your users already have rather than ordering tests."
+      },
+      {
+        "q": "When should I stay with Junction instead of switching?",
+        "a": "When you are under 500 connected users and want a flat $300 a month, billed monthly with no annual contract, or when you order lab tests in the US and want them in the same API as wearables. As of November 18, 2026, Junction's sandbox and docs are free, and it works only with CLIA and CAP certified labs. A switch also means every user reconnects."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/junction-api-pricing",
+        "label": "Junction API pricing"
+      },
+      {
+        "href": "/fitness-apis/terra-vs-vital",
+        "label": "Terra vs Vital (Junction)"
+      },
+      {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
+      },
+      {
+        "href": "/alternatives/thryve-alternatives",
+        "label": "Thryve alternatives"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We re-read aggregator price sheets and lab-testing terms as they change. Subscribe and pick your next vendor on current numbers."
+    },
+    "sources": [
+      {
+        "url": "https://www.junction.com/",
+        "checked": "2026-11-18",
+        "note": "Junction devices, lab network, certifications (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-18",
+        "note": "Junction Launch, Enterprise, lab and BAA FAQ (snapshot)"
+      },
+      {
+        "url": "https://tryvital.io/",
+        "checked": "2026-11-18",
+        "note": "tryvital.io redirects to junction.com (snapshot)"
+      },
+      {
+        "url": "https://docs.junction.com/",
+        "checked": "2026-11-18",
+        "note": "Junction Sense, SDKs, webhooks (snapshot)"
+      },
+      {
+        "url": "https://docs.junction.com/wearables/connecting-providers/bring-your-own-oauth/overview",
+        "checked": "2026-11-18",
+        "note": "Junction BYOO plans and providers (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-18",
+        "note": "Terra plans and BAA (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-11-18",
+        "note": "Terra credits and overage (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-11-18",
+        "note": "Terra destinations (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-11-18",
+        "note": "Terra lab testing geography and collection (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-18",
+        "note": "ROOK plans and contract (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-11-18",
+        "note": "ROOK own developer accounts (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/medical-device-api/",
+        "checked": "2026-11-18",
+        "note": "ROOK Medical Device API (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/lab-data-api/",
+        "checked": "2026-11-18",
+        "note": "ROOK Lab Data API (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/",
+        "checked": "2026-11-18",
+        "note": "Thryve hosting (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-11-18",
+        "note": "Thryve plans and hosting FAQ (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/certifications-compliance",
+        "checked": "2026-11-18",
+        "note": "Thryve BAA and DPA (snapshot)"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-11-18",
+        "note": "Thryve shared OAuth clients (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-11-18",
+        "note": "Sahha positioning (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-11-18",
+        "note": "Sahha plans and BAA (snapshot)"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/integrations",
+        "checked": "2026-11-18",
+        "note": "Sahha cloud integrations (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-11-18",
+        "note": "Spike Sandbox, acquisition banner (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-11-18",
+        "note": "Spike implementation engineer (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/pricing",
+        "checked": "2026-11-18",
+        "note": "Open Wearables Core (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-11-18",
         "note": "Open Wearables provider registration (snapshot)"
       }
     ]

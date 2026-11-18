@@ -107,3 +107,5 @@
 /fitness-apis/exercise-database-apis
 # 2026-11-15: daily search loop, ops/QUEUE.md #17 (CTR anomaly, queries withheld); title only.
 /health-connect-api/read-health-data-history
+# 2026-11-18: hub retitled for "api fitness alternatives" (105 impressions at 1.1) and "ai fitness api alternatives" (36), Google 2026-10-15 to 2026-11-11, 0 clicks.
+/alternatives

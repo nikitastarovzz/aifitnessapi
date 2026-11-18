@@ -2154,6 +2154,125 @@ export const compareEntries: ClusterEntry[] =
     ]
   },
   {
+    "slug": "terra-vs-human-api",
+    "primaryQuery": "terra vs human api",
+    "h1": "Terra vs Human API: Wearable Aggregator or Health-Records Network?",
+    "metaTitle": "Terra vs Human API (2026): Wearables vs Health Records",
+    "metaDescription": "Terra sells self-serve wearable data from $399 a month; Human API is now a LexisNexis health-records network sold by demo. Coverage, price, buyers.",
+    "updated": "2026-11-18",
+    "answer": "Terra and Human API both promise one connection to many health sources, but as of November 18, 2026 they sell to different buyers. Terra is a self-serve developer API for wearable, app and device data from \"500+ providers\", from $399 a month billed annually or $499 monthly, with lab-test ordering in the US and UK. Human API is now a LexisNexis Risk Solutions product: a consumer-consented network of medical records, labs and 300+ wearables and apps for healthcare and life science organizations, sold through a demo form with no public price, while humanapi.co itself redirects to an EHR product for life insurers. Pick Terra to put wearable data in an app this month; talk to LexisNexis if what you need is patients' medical records in the US.",
+    "body": "Both vendors connect an app to many health data sources through one integration, so the question is not which has an API; it is what data you need and whether you can buy it without a sales cycle. Everything below is from Terra's and Human API's own pages as we read them on November 18, 2026. For every other option a Human API buyer has, see [Human API alternatives](/alternatives/human-api-alternatives).\n\n## What Human API is now\n\n- **humanapi.co** redirects to LexisNexis Health Intelligence, an EHR product for life insurance underwriting, which the page calls \"LexisNexis® Health Intelligence, formerly Human API Health Intelligence\". It says \"Our platform connects to over 30,000 data sources in the U.S. to provide unified health data access for over 270 million lives\", through \"HIPAA-enabled EHR networks, including Health Information Exchanges (HIEs)\" and \"Consumer-mediated EHR networks, including Qualified Health Information Networks (QHINs) and patient portals\".\n- **LexisNexis Human API** is pitched to healthcare and life science organizations: it \"combines a vast consumer-permission health data network with next-generation digital capabilities\", and its Consumer Access Wizard lists \"30K+ unique data connections; 270M+ people; medical records, labs, 300+ wearables and apps.\" The page ends in a demo request form.\n- **The developer docs** at reference.humanapi.co describe the Health Intelligence Platform, which \"converts data into actionable intelligence to accelerate underwriting\", with API endpoints for orders, reports and subscriptions. A Wellness Sources page, dated February 13, 2026 in its own front matter, lists eight services: Fitbit, Garmin, Withings, Runkeeper, MapMyFitness, MyFitnessPal, Google Fit and Strava. Apple Health reaches Human API through \"a Human API iOS app\".\n\n## At a glance\n\n| Dimension | Terra | Human API (LexisNexis) |\n|---|---|---|\n| Who buys it | Developers, self-serve: \"Integrate in 30 minutes.\" | Healthcare and life science organizations; life insurers through Health Intelligence |\n| What it connects | \"500+ providers\": wearables, fitness apps, blood testing providers, CGM and medical devices | Medical records, labs and \"300+ wearables and apps\"; EHR networks, QHINs and patient portals in the U.S. |\n| Medical records | None on the pages we read | The core of the product |\n| Labs | Orders tests: \"Nationwide US, plus the UK\" | Lab results within the records it retrieves |\n| Price | $399 a month billed annually, $499 monthly, with 100,000 credits | Not published; demo form |\n| Billing unit | 200 credits a month per connected data source | Not published |\n| Delivery | Webhooks, SQL databases, cloud storage, queues, MongoDB and Firestore | \"Flexible and Integrated Data Delivery\", plus a hosted \"Enterprise Portal\" |\n| Apple Health | Mobile SDK | The Human API iOS app |\n| Compliance | \"HIPAA compliant, GDPR compliant, and SOC 2 Type II certified\"; signed BAA on Enterprise | HIPAA-authorized and consumer-mediated consent paths for EHRs |\n\n## Where Terra wins\n\n**You can buy it today.** Terra publishes its price: subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", with 100,000 Unified API credits a month, a \"30-day money-back guarantee\", and \"200 Unified API credits per active authentication per month\" (one connected source for one user). Human API publishes no price.\n\n**Wearable breadth and delivery.** Terra's homepage names Garmin, Fitbit, Apple Watch, Oura Ring, WHOOP, Polar, Samsung Health, Withings, Suunto and Wahoo among its sources and delivers payloads straight into your database, bucket or queue. Human API's own wellness-source list names eight services.\n\n**Ordering lab tests.** Terra orders blood tests through home kits, mobile phlebotomy and lab walk-ins, in the US and the UK. Human API retrieves lab results that are already in a person's records.\n\n**The trade-off.** Terra's unit is the connected source, not the person, so a user with a watch and a ring costs twice, and we found no medical-record access on its pages. See the [Terra integration guide](/integrate/terra-api).\n\n## Where Human API wins\n\n**Medical records at US scale.** Its network reaches EHRs through HIEs, QHINs and patient portals, with \"over 30,000 data sources in the U.S.\" and \"over 270 million lives\" by LexisNexis's count. Terra's pages describe no EHR access.\n\n**Consent built for records.** The Health Intelligence page says it can \"leverage both HIPAA-authorized and consumer-mediated consent paths\", and the Human API page describes a consumer consent interface for sharing records, labs and device data.\n\n**Life insurance workflows.** For carriers, \"Our solution automatically fulfills the request for an APS through our affiliate, Human API, Inc.\" when an EHR is not available.\n\n**The trade-off.** No public price, a demo before access, and a product shaped for enterprises in research, care and insurance rather than for a consumer app. If you need records but are not a large healthcare buyer, the [Human API alternatives](/alternatives/human-api-alternatives) page covers Metriport and others.\n\n## Which should you pick?\n\n- **A fitness, wellness or coaching app that needs wearable data** → Terra.\n- **A clinical-research, care or digital health program that needs patients' medical records in the US, with their consent** → ask LexisNexis about Human API.\n- **A life insurer underwriting from EHRs** → LexisNexis Health Intelligence, the product humanapi.co now leads to.\n- **Both wearables and records** → plan for two vendors and two consent flows; neither page we read sells both at Terra's self-serve price.\n\n## And Spike?\n\nSearches for this comparison often add Spike. Spike says it connects \"500+ wearables & IoT sensors\", and to \"Connect to top providers and access clinical data — all through a single integration\"; its Sandbox \"Starts from $450 /month\". Its site also carries the banner \"Raintree Systems Acquires Spike Technologies\". See [Terra vs Spike](/compare/terra-vs-spike).\n\n## What we could not verify\n\n- Human API's price, contract terms and minimum volume: neither LexisNexis page shows them.\n- Whether LexisNexis sells wearable-only access to a new consumer app: the product page lists 300+ wearables and apps, the docs' wellness page lists eight services, and both lead to a demo.\n- How current the docs' wellness list is: it carries a February 13, 2026 date and still names Fitbit and Google Fit; this site tracks both in its [Fitbit API deprecation status](/fitbit-api-shutdown) and [Google Fit shutdown](/google-fit-shutdown) pages.\n\n*Prices and products above are from November 18, 2026; re-check both vendors' live pages before you commit.*",
+    "faqs": [
+      {
+        "q": "Can you still sign up for Human API as a developer?",
+        "a": "Not self-serve. As of November 18, 2026, humanapi.co redirects to LexisNexis Health Intelligence, an EHR product for life insurers, and LexisNexis Human API for healthcare and life science organizations ends in a demo request form, with no public price or sign-up. Its developer docs at reference.humanapi.co still describe an API for orders, reports and subscriptions."
+      },
+      {
+        "q": "Does Terra give access to medical records like Human API?",
+        "a": "Not on the pages we read on November 18, 2026. Terra connects wearables, fitness apps, blood testing providers, CGM and medical devices, and orders lab tests in the US and UK, but describes no EHR access. Human API's network reaches medical records through HIEs, QHINs and patient portals in the U.S., which LexisNexis says covers over 30,000 data sources."
+      },
+      {
+        "q": "Which costs less, Terra or Human API?",
+        "a": "Only Terra publishes a price. As of November 18, 2026, Terra starts at $399 a month billed annually or $499 monthly, with 100,000 credits and 200 credits a month per connected data source. LexisNexis shows no price for Human API on either product page; you get one after a demo, so the two cannot be compared on list price."
+      },
+      {
+        "q": "Is Terra or Human API better for a health app in the United States?",
+        "a": "It depends on the data. For wearable and app data, Terra is self-serve, lists 500+ providers and orders lab tests nationwide in the US and in the UK. For patients' medical records, Human API's network is built on US EHR networks and patient portals, sold to healthcare and life science organizations. This reflects both vendors' pages on November 18, 2026."
+      }
+    ],
+    "related": [
+      {
+        "href": "/alternatives/human-api-alternatives",
+        "label": "Human API alternatives"
+      },
+      {
+        "href": "/compare/terra-vs-spike",
+        "label": "Terra vs Spike"
+      },
+      {
+        "href": "/integrate/terra-api",
+        "label": "Integrate Terra"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/compliance/hipaa-compliance-fitness-app",
+        "label": "HIPAA compliance for fitness apps"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Health-data vendors change hands and drop their price pages. Subscribe and hear when Terra, Human API or the rest move."
+    },
+    "sources": [
+      {
+        "url": "https://humanapi.co/",
+        "checked": "2026-11-18",
+        "note": "Redirects to LexisNexis Health Intelligence (snapshot)"
+      },
+      {
+        "url": "https://risk.lexisnexis.com/products/humanapi",
+        "checked": "2026-11-18",
+        "note": "LexisNexis Human API network and demo form (snapshot)"
+      },
+      {
+        "url": "https://reference.humanapi.co/docs/overview",
+        "checked": "2026-11-18",
+        "note": "Human API Health Intelligence Platform docs (snapshot)"
+      },
+      {
+        "url": "https://reference.humanapi.co/llms.txt",
+        "checked": "2026-11-18",
+        "note": "Human API docs index (snapshot)"
+      },
+      {
+        "url": "https://reference.humanapi.co/page/wellness-sources.md",
+        "checked": "2026-11-18",
+        "note": "Human API wellness sources (snapshot)"
+      },
+      {
+        "url": "https://reference.humanapi.co/page/apple-health-data.md",
+        "checked": "2026-11-18",
+        "note": "Human API Apple Health app (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-11-18",
+        "note": "Terra coverage, destinations, compliance (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-18",
+        "note": "Terra plans, guarantee, BAA (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-11-18",
+        "note": "Terra credits (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-11-18",
+        "note": "Terra lab testing (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-11-18",
+        "note": "Spike coverage and clinical data (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-11-18",
+        "note": "Spike Sandbox and acquisition banner (snapshot)"
+      }
+    ]
+  },
+  {
     "slug": "quickpose-vs-sency",
     "primaryQuery": "quickpose vs sency",
     "h1": "QuickPose vs Sency: Pose Toolkit or Motion Product?",

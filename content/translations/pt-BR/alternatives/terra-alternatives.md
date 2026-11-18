@@ -1,8 +1,8 @@
 ---
 path: "/alternatives/terra-alternatives"
-translatedOn: "2026-11-14"
+translatedOn: "2026-11-18"
 sourceUpdated: "2026-10-17"
-sourceHash: "379020867e41e580"
+sourceHash: "9f6900977d05ade8"
 metaTitle: "Alternativas à API do Terra 2026: Junction, ROOK, Sahha e +6"
 metaDescription: >-
   Alternativas ao Terra, out. 2026: Junction a US$ 300/mês fixos até 500 usuários, Rook e Sahha desde US$ 399 e US$ 299, Thryve na UE, Open Wearables grátis.
@@ -40,6 +40,8 @@ related:
     label: "Todas as alternativas a APIs de fitness e saúde"
 ---
 O Terra é um agregador forte: ampla cobertura de fornecedores, um esquema normalizado rico, muitos destinos de entrega e, agora, exames laboratoriais. A maioria das equipes que pesquisa o mercado não está insatisfeita com o produto; elas esbarraram em uma unidade de cobrança, em uma exigência de hospedagem ou em uma fonte de dados que outro fornecedor atende melhor. Tudo abaixo vem das páginas dos próprios fornecedores, como as lemos em 17 de outubro de 2026. Para o que este site verificou sobre o acesso ao Terra em um só lugar, veja a [visão geral da API do Terra](/apis/terra).
+
+Está saindo do ROOK, do Sahha, do Thryve ou do Junction, e não do Terra? Cada um tem a sua página: [alternativas ao ROOK](/alternatives/rook-alternatives), [alternativas ao Sahha](/alternatives/sahha-alternatives), [alternativas ao Thryve](/alternatives/thryve-alternatives) e [alternativas ao Junction (antigo Vital)](/alternatives/junction-alternatives).
 
 ## Por que as equipes procuram uma alternativa ao Terra
 
