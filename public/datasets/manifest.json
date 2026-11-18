@@ -1,17 +1,17 @@
 {
-  "generated": "2026-11-16",
+  "generated": "2026-11-18",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
       "bytes": 203249,
       "rows": 378,
-      "sha256": "1ba7221e63d7a46fab84c2f8c5ff67ef36200810072895f08450f3df7e627362"
+      "sha256": "0877eaad9b9294fba4ef5e2117d1d41870c2673d386945dcf7db26356d39a9ff"
     },
     {
       "file": "bluetooth-fitness-gatt-2026.json",
       "bytes": 384778,
       "rows": 378,
-      "sha256": "d0e0d5a6d6394b61b98d561d6324c318d3276727f91d12321796e67383adc345"
+      "sha256": "e57b0b1cf85eb2796b5e43caafd4662d95f463ed8bf10439755d577ceabefa2a"
     },
     {
       "file": "exercise-form-rules-2026.csv",

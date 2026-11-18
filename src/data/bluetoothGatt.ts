@@ -6,13 +6,13 @@
  * GENERATED — do not hand-edit; regenerate with NODE_USE_ENV_PROXY=1 node scripts/fetch-bluetooth-gatt.mjs
  *
  * Source: https://bitbucket.org/bluetooth-SIG/public (branch main)
- *   commit 408f4a0305d87ea75d9f700e3c8f85aa1d3a74fd (committed 2026-10-14), read as https://bitbucket.org/bluetooth-SIG/public/get/408f4a0305d87ea75d9f700e3c8f85aa1d3a74fd.tar.gz
+ *   commit aafc70f0bb888059b878d3eb446e23c05426de9f (committed 2026-11-16), read as https://bitbucket.org/bluetooth-SIG/public/get/aafc70f0bb888059b878d3eb446e23c05426de9f.tar.gz
  *   assigned_numbers/uuids/service_uuids.yaml, assigned_numbers/uuids/characteristic_uuids.yaml, assigned_numbers/uuids/units.yaml,
  *   assigned_numbers/profiles_and_services/<x>/<x>_permitted_characteristics.yaml, gss/*.yaml
- * Fetched: 2026-10-17
+ * Fetched: 2026-11-18
  *
  * Terms. The repository has no README or licence file. Every file read
- * (285) carries the same notice, kept verbatim in BT_GATT_TERMS. It says:
+ * (286) carries the same notice, kept verbatim in BT_GATT_TERMS. It says:
  *   "This document is proprietary to Bluetooth SIG."
  *   "The furnishing of this document does not grant any license to any intellectual property of Bluetooth SIG or its members."
  *   "This document is subject to change without notice."
@@ -29,15 +29,15 @@
  */
 
 /** The date the generator last read the repository. */
-export const BT_GATT_FETCHED_ON = "2026-10-17";
+export const BT_GATT_FETCHED_ON = "2026-11-18";
 
 /** Where this file was read from: repository, branch, the commit at its head, and the archive. */
 export const BT_GATT_SOURCE = {
   "repository": "https://bitbucket.org/bluetooth-SIG/public",
   "branch": "main",
-  "commit": "408f4a0305d87ea75d9f700e3c8f85aa1d3a74fd",
-  "commitDate": "2026-10-14",
-  "archive": "https://bitbucket.org/bluetooth-SIG/public/get/408f4a0305d87ea75d9f700e3c8f85aa1d3a74fd.tar.gz",
+  "commit": "aafc70f0bb888059b878d3eb446e23c05426de9f",
+  "commitDate": "2026-11-16",
+  "archive": "https://bitbucket.org/bluetooth-SIG/public/get/aafc70f0bb888059b878d3eb446e23c05426de9f.tar.gz",
   "description": "Public YAML files for Bluetooth SIG Assigned Numbers, GATT Specification Supplement, and Device Properties",
   "files": {
     "serviceUuids": "assigned_numbers/uuids/service_uuids.yaml",
@@ -47,7 +47,7 @@ export const BT_GATT_SOURCE = {
   }
 } as const;
 
-/** The notice at the top of every file read (all 285 identical), verbatim. */
+/** The notice at the top of every file read (all 286 identical), verbatim. */
 export const BT_GATT_TERMS = "This document, regardless of its title or content, is not a Bluetooth\nSpecification as defined in the Bluetooth Patent/Copyright License Agreement\n(“PCLA”) and Bluetooth Trademark License Agreement. Use of this document by\nmembers of Bluetooth SIG is governed by the membership and other related\nagreements between Bluetooth SIG Inc. (“Bluetooth SIG”) and its members,\nincluding the PCLA and other agreements posted on Bluetooth SIG’s website\nlocated at www.bluetooth.com.\n\nTHIS DOCUMENT IS PROVIDED “AS IS” AND BLUETOOTH SIG, ITS MEMBERS, AND THEIR\nAFFILIATES MAKE NO REPRESENTATIONS OR WARRANTIES AND DISCLAIM ALL WARRANTIES,\nEXPRESS OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY, TITLE,\nNON-INFRINGEMENT, FITNESS FOR ANY PARTICULAR PURPOSE, THAT THE CONTENT OF THIS\nDOCUMENT IS FREE OF ERRORS.\n\nTO THE EXTENT NOT PROHIBITED BY LAW, BLUETOOTH SIG, ITS MEMBERS, AND THEIR\nAFFILIATES DISCLAIM ALL LIABILITY ARISING OUT OF OR RELATING TO USE OF THIS\nDOCUMENT AND ANY INFORMATION CONTAINED IN THIS DOCUMENT, INCLUDING LOST REVENUE,\nPROFITS, DATA OR PROGRAMS, OR BUSINESS INTERRUPTION, OR FOR SPECIAL, INDIRECT,\nCONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF\nTHE THEORY OF LIABILITY, AND EVEN IF BLUETOOTH SIG, ITS MEMBERS, OR THEIR\nAFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.\n\nThis document is proprietary to Bluetooth SIG. This document may contain or\ncover subject matter that is intellectual property of Bluetooth SIG and its\nmembers. The furnishing of this document does not grant any license to any\nintellectual property of Bluetooth SIG or its members.\n\nThis document is subject to change without notice.\n\nCopyright © 2020–2026 by Bluetooth SIG, Inc. The Bluetooth word mark and logos\nare owned by Bluetooth SIG, Inc. Other third-party brands and names are the\nproperty of their respective owners.";
 
 /** Totals across the whole repository at this commit, for context. */
@@ -56,8 +56,8 @@ export const BT_GATT_TOTALS = {
   "characteristicUuids": 512,
   "units": 127,
   "gssFiles": 278,
-  "permittedFiles": 4,
-  "filesRead": 285
+  "permittedFiles": 5,
+  "filesRead": 286
 };
 
 /** The js-yaml version the files were parsed with. */
@@ -71,6 +71,13 @@ export const BT_GATT_PERMITTED_LISTS: { service: string; name: string | null; uu
     "uuid": "0x185D",
     "characteristics": 3,
     "source": "assigned_numbers/profiles_and_services/cws/cws_permitted_characteristics.yaml"
+  },
+  {
+    "service": "org.bluetooth.service.cooking_zone",
+    "name": null,
+    "uuid": null,
+    "characteristics": 3,
+    "source": "assigned_numbers/profiles_and_services/czs/czs_permitted_characteristics.yaml"
   },
   {
     "service": "org.bluetooth.service.environmental_sensing",
