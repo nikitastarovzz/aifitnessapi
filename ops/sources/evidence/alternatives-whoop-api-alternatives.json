@@ -107,7 +107,7 @@
   {
     "claim": "Terra's Quick Start plan starts at $499 a month.",
     "url": "https://tryterra.co/pricing",
-    "quote": "$499"
+    "quote": "From $499 / month"
   },
   {
     "claim": "Terra's Quick Start plan includes 100,000 API credits.",
@@ -152,7 +152,7 @@
   },
   {
     "claim": "Google says existing access and refresh tokens cannot be transferred, so users re-consent.",
-    "url": "https://developers.google.com/health/migration",
+    "url": "https://developers.google.com/health/migration?hl=en",
     "quote": "existing access and refresh tokens cannot be transferred, requiring users to re-consent to your updated integration."
   },
   {

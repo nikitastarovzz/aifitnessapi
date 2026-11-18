@@ -132,7 +132,7 @@
   },
   {
     "claim": "Google says existing access and refresh tokens cannot be transferred, so users re-consent.",
-    "url": "https://developers.google.com/health/migration",
+    "url": "https://developers.google.com/health/migration?hl=en",
     "quote": "existing access and refresh tokens cannot be transferred, requiring users to re-consent to your updated integration."
   },
   {
