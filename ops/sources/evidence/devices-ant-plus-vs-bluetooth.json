@@ -1,0 +1,82 @@
+[
+  {
+    "claim": "The ANT program's pages have moved from thisisant.com to Garmin's developer site.",
+    "url": "https://developer.garmin.com/ant-program/overview/",
+    "quote": "Content from thisisant.com has now been moved to Garmin Developer"
+  },
+  {
+    "claim": "The ANT+ membership and certification programs, with engineering support, ended on June 30, 2025.",
+    "url": "https://developer.garmin.com/ant-program/downloads/",
+    "quote": "The ANT+ membership program and ANT+ product certification programs, along with associated engineering support ended on June 30, 2025."
+  },
+  {
+    "claim": "ANT+ documentation, device profiles and design tools are available to ANT+ Adopters under the ANT+ Adopter Agreement.",
+    "url": "https://developer.garmin.com/ant-program/downloads/",
+    "quote": "You will enter into this legally binding Agreement and become an ANT+ Adopter and You will have access to the ANT+ Documents, the ANT+ Device Profiles, and the ANT+ Design Tools subject to the terms and conditions of this Agreement."
+  },
+  {
+    "claim": "The downloads page still carries an Android ANT+ SDK.",
+    "url": "https://developer.garmin.com/ant-program/downloads/",
+    "quote": "Android ANT+ SDK"
+  },
+  {
+    "claim": "The ANT+ Adopter Agreement was updated on January 3, 2024 to remove certification as a requirement (FAQ, ANT+ Changes; the answers are served in this script bundle of developer.garmin.com/ant-program/faq/).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "The ANT+ Adopter Agreement was updated on January 3, 2024 to remove ANT+ Certification as a requirement, and ANT+ Product Certification is no longer offered."
+  },
+  {
+    "claim": "Adopters are responsible for meeting the interoperability requirements with the documentation and design tools.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ Adopters developing ANT+ products are responsible for meeting the minimum requirements for interoperability by using the ANT+ documentation and ANT+ design tools."
+  },
+  {
+    "claim": "ANT+ has been deprecated and is no longer supported.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ has been deprecated and is no longer supported."
+  },
+  {
+    "claim": "No new ANT+ device profiles will be introduced.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ has been deprecated so there will be no new ANT+ profiles."
+  },
+  {
+    "claim": "The ecosystem is transitioning to maintaining existing profiles.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "The ecosystem is transitioning to maintaining existing profiles rather than introducing new ones"
+  },
+  {
+    "claim": "Existing ANT and ANT+ devices continue to operate as before.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "existing ANT and ANT+ devices and products will continue to operate as before, and no changes were made that impact interoperability or functionality of deployed devices."
+  },
+  {
+    "claim": "ANT+ documentation and tools remain accessible under the ANT+ Adopter Agreement.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ documentation and tools remain accessible here and are subject to the ANT+ Adopter Agreement."
+  },
+  {
+    "claim": "Garmin gives evolving regulatory requirements around security and authentication as the reason.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "These programs were discontinued in response to evolving regulatory requirements, particularly around security and authentication"
+  },
+  {
+    "claim": "Garmin tells developers to evaluate Bluetooth LE for new feature development.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "Developers should continue supporting existing ANT-based products and leverage ANT where appropriate, while evaluating complementary technologies such as Bluetooth LE for new feature development and broader ecosystem integration."
+  },
+  {
+    "claim": "Garmin's FAQ describes the Android route for ANT reception: an ANT USB stick, an OTG cable and two ANT service apps.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "Any ANT USB2 stick or newer (such as the ANTUSB-m) can be used with any Android device (phone or tablet) using a USB OTG cable by installing the ANT Radio Service and ANT USB Service from the Google Play Store if the device supports the Android USB Host Mode API."
+  },
+  {
+    "claim": "Garmin's ANT FAQ describes ANT running alongside Bluetooth LE on shared radio infrastructure.",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT supports multiprotocol operation alongside Bluetooth LE using shared radio infrastructure"
+  },
+  {
+    "claim": "Android documents built-in platform support for BLE in the central role.",
+    "url": "https://developer.android.com/develop/connectivity/bluetooth/ble/ble-overview",
+    "quote": "Android provides built-in platform support for Bluetooth Low Energy (BLE) in the central role"
+  }
+]

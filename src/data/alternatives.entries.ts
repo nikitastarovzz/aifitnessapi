@@ -229,9 +229,9 @@ export const alternativesEntries: ClusterEntry[] =
     "h1": "The Best Oura API Alternatives (2026)",
     "metaTitle": "Oura API Alternatives (2026): Top Picks Compared",
     "metaDescription": "The top Oura API alternatives for developers: WHOOP, the Terra and Junction aggregators, and Fitbit or Garmin. Compared by use-case, with the trade-offs.",
-    "updated": "2026-07-09",
-    "answer": "The top Oura API alternatives are WHOOP (the closest recovery-and-readiness peer), the aggregators Terra and Junction (formerly Vital), which cover Oura plus many other wearables through one integration, and Fitbit or Garmin for a broader, cheaper install base. Pick by use-case: WHOOP to stay in the sleep-and-readiness niche, an aggregator to cover many devices at once, or Fitbit/Garmin to reach more users. Oura itself is still excellent at sleep and readiness quality, so teams switch mainly when they need a broader user base or multi-device coverage that a single ring vendor cannot provide.",
-    "body": "For the full landscape of device and platform options, see the [wearable data APIs comparison](/fitness-apis/wearable-data-apis). If you decide to stay with Oura, the [Oura API integration guide](/integrate/oura-api) covers the OAuth setup and endpoints, and the [Oura API overview](/apis/oura) collects what this site has verified about Oura access in one place. If you work in Python, [oura-ring vs oura](/libraries/compare/oura-ring-vs-oura-python) compares the two third-party clients for the Oura API.\n\n## Why teams look for an Oura API alternative\n\nNothing here is a defect — these are structural facts about how the Oura developer platform works, and they push some teams to look wider:\n\n- **It is single-vendor.** Every user has to own an Oura ring before your app can read anything, and Oura's API returns 403 when a user's Oura subscription has expired. If your audience is broad or you cannot assume everyone owns the same device, that is a hard coverage ceiling.\n- **The 10-user cap until approval.** Oura's API documentation limits an application to **10 users** before requiring approval from Oura, with no limit once approved. That is fine for a prototype but means a real launch depends on clearing Oura's review first.\n- **OAuth2 only.** Personal Access Tokens have been deprecated in favor of `OAuth2`, so quick single-user token flows are no longer the path; plan for a full per-user consent flow.\n\nNone of this makes Oura a poor choice. Where Oura genuinely shines is sleep-stage and readiness quality — if that specific signal is your product, Oura is often the right pick and the alternatives below are worse, not better, at it. Teams look elsewhere mainly when they need a **broader user base** or **multi-device coverage** that a single ring vendor cannot give them.\n\n## The alternatives\n\n**WHOOP** — the nearest peer in the same recovery, readiness, and sleep niche, delivered via a strap instead of a ring. Best for keeping the same product concept while reaching a different device base. The trade-off: it carries its own single-vendor constraints — a required **paid WHOOP membership** and member tiers that start a new app at 10 members and rise only through WHOOP's reviews — so you are swapping one gated single vendor for another, not escaping the pattern.\n\n**Terra** — an aggregator that normalizes Oura plus 400–500 other sources (Garmin, Apple Health, Health Connect, WHOOP, Polar, Withings, and more) behind one schema; its supported-integrations page, read November 14, 2026, says \"Fitbit is retired\". Best for covering many rings and wearables at once without wiring up each vendor and its approval gates yourself. The trade-off: you take on a middle-layer dependency and its cost, and you may not see every Oura-specific field the raw API exposes.\n\n**Junction (formerly Vital)** — the same aggregator model, normalizing many wearables through one API, with lab-ordering bundled in after its 2025 rebrand and raise. Best for teams that want wearable data *and* diagnostic/lab data behind a single integration. The trade-off: like any aggregator, it is a layer between you and the device, so confirm it surfaces the exact Oura metrics you need.\n\n**Fitbit / Google Health API** — a broader, more mainstream consumer install base at a lower device price point than a ring. Best for reaching a large number of everyday users rather than the readiness-focused ring crowd. The trade-off: Fitbit's legacy Web API is mid-migration to the Google Health API (tokens do not transfer, users re-consent), so you are stepping into a moving integration, and Google lists the legacy API's turn-off for November 2, 2026.\n\n**Garmin** — multi-sport watches that also surface ring-like sleep and recovery metrics. Best for athletic users who want GPS and workout depth alongside recovery data. The trade-off: Garmin's Connect Developer Program needs Garmin's approval, and some features, enhanced beat-to-beat interval among them, are marked as supported with Enterprise Access only, so confirm you can onboard at the level you need before designing around it.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| WHOOP | Same recovery/readiness niche, different device | Requires paid membership; member tiers start at 10 until reviewed |\n| Terra | Covering Oura + many wearables via one schema | Middle-layer cost; may not expose every Oura-specific field |\n| Junction (formerly Vital) | Wearables plus lab/diagnostic data in one API | Aggregator layer; confirm exact Oura metrics are surfaced |\n| Fitbit / Google Health | Broad, lower-cost consumer install base | Mid-migration to Google Health API; legacy API off Nov 2, 2026; users must re-consent |\n| Garmin | Multi-sport users wanting sleep/recovery from a watch | Approval required; some features are Enterprise-only |\n\n## Which should you pick?\n\nMatch the alternative to what actually triggered your search, not to a single winner:\n\n- **You want the same readiness/recovery product, just off the ring** → WHOOP. Closest data-model peer, but plan for its membership requirement and approval cap.\n- **You need many devices covered without per-vendor gates** → an aggregator (Terra or Junction). One integration spans Oura, WHOOP, Garmin, Fitbit, Apple Health, and more, and you skip managing Oura's 10-user cap yourself.\n- **You also need labs or diagnostics** → Junction (formerly Vital), which bundles lab ordering with wearable data.\n- **You want the broadest, cheapest user base** → Fitbit / Google Health, accepting the ongoing Google migration.\n- **Your users are athletes who want GPS plus recovery** → Garmin, if you can clear partner approval.\n- **Sleep-stage and readiness quality is the whole point of your product** → reconsider staying on Oura. Its strength is exactly this signal, and the alternatives trade it away.\n\n## Is switching easy?\n\nUsually not trivially. Moving off Oura is a real re-integration, not a config change: a new `OAuth` client and consent flow, re-mapping fields to a different schema, and — because health-data authorization is per-user — every user has to reconnect their account under the new provider. Budget for that reconnect churn, since you cannot silently migrate existing user grants.\n\nThe one place this gets easier is an aggregator. If you route through Terra or Junction, you integrate once and reach Oura *plus* many other wearables behind a stable interface — and if you later add or drop a vendor, you avoid redoing OAuth and schema work each time. That is the main reason multi-device teams reach for an aggregator instead of stacking direct integrations. If you are only ever going to support one device, a direct integration stays simpler and avoids the middle-layer cost. Compare the two paths in the [wearable data APIs guide](/fitness-apis/wearable-data-apis).",
+    "updated": "2026-11-18",
+    "answer": "The top Oura API alternatives are WHOOP (the closest recovery-and-readiness peer), the aggregators Terra and Junction (formerly Vital), which cover Oura plus many other wearables through one integration, and Fitbit or Garmin for a broader install base. Pick by use-case: WHOOP to stay in the sleep-and-readiness niche, an aggregator to cover many devices at once, or Fitbit/Garmin to reach more users. Oura itself is still excellent at sleep and readiness quality, so teams switch mainly when they need a broader user base or multi-device coverage that a single ring vendor cannot provide.",
+    "body": "For the full landscape of device and platform options, see the [wearable data APIs comparison](/fitness-apis/wearable-data-apis). If you decide to stay with Oura, the [Oura API integration guide](/integrate/oura-api) covers the OAuth setup and endpoints, and the [Oura API overview](/apis/oura) collects what this site has verified about Oura access in one place. If you work in Python, [oura-ring vs oura](/libraries/compare/oura-ring-vs-oura-python) compares the two third-party clients for the Oura API.\n\n## Why teams look for an Oura API alternative\n\nNothing here is a defect — these are structural facts about how the Oura developer platform works, and they push some teams to look wider:\n\n- **It is single-vendor.** Every user has to own an Oura ring before your app can read anything, and Oura's API returns 403 when a user's Oura subscription has expired. If your audience is broad or you cannot assume everyone owns the same device, that is a hard coverage ceiling.\n- **The 10-user cap until approval.** Oura's API documentation limits an application to **10 users** before requiring approval from Oura, with no limit once approved. That is fine for a prototype but means a real launch depends on clearing Oura's review first.\n- **OAuth2 only.** Personal Access Tokens have been deprecated in favor of `OAuth2`, so quick single-user token flows are no longer the path; plan for a full per-user consent flow.\n\nNone of this makes Oura a poor choice. Where Oura genuinely shines is sleep-stage and readiness quality — if that specific signal is your product, Oura is often the right pick and the alternatives below are worse, not better, at it. Teams look elsewhere mainly when they need a **broader user base** or **multi-device coverage** that a single ring vendor cannot give them.\n\n## The alternatives\n\n**WHOOP** — the nearest peer in the same recovery, readiness, and sleep niche, delivered via a strap instead of a ring. Best for keeping the same product concept while reaching a different device base. The trade-off: it carries its own single-vendor constraints — a required **paid WHOOP membership** and member tiers that start a new app at 10 members and rise only through WHOOP's reviews — so you are swapping one gated single vendor for another, not escaping the pattern.\n\n**Terra** — an aggregator that normalizes Oura and many other sources behind one schema. Its supported-integrations page, read November 18, 2026, lists 81 integrations, among them Apple, Garmin, Health Connect, WHOOP, Polar and Withings, and says \"Fitbit is retired\". Best for covering many rings and wearables at once without wiring up each vendor yourself: Terra lists Oura as a managed integration that runs on Terra's credentials, so Oura's 10-user cap on your own app does not come into it. Not every source works that way: the same page lists Garmin and WHOOP among the integrations that need your own credentials from the vendor's developer portal, so their approval gates are still yours. The trade-off: you take on a middle-layer dependency and its cost, and you may not see every Oura-specific field the raw API exposes.\n\n**Junction (formerly Vital)** — the same aggregator model, normalizing 300+ devices through one API, with lab testing in the same API; Vital announced the Junction name alongside an $18M Series A on March 11, 2025, and Junction's pricing page puts lab testing on its Enterprise plan. Junction's own Oura app is enabled by default, and it notes that your own Oura app would need Oura's review to pass 10 users. Best for teams that want wearable data *and* diagnostic/lab data behind a single integration. The trade-off: like any aggregator, it is a layer between you and the device, so confirm it surfaces the exact Oura metrics you need.\n\n**Fitbit / Google Health API** — a broad, mainstream consumer install base. Best for reaching a large number of everyday users rather than the readiness-focused ring crowd. The trade-off: Fitbit data now comes only through the Google Health API. Google's pages give November 2, 2026 as the legacy Fitbit Web API's turn-off, the legacy token endpoint now answers that the endpoints \"were decommissioned on October 30, 2026\", and Google says existing access and refresh tokens cannot be transferred, so every user re-consents.\n\n**Garmin** — multi-sport watches that also surface ring-like sleep and recovery metrics. Best for athletic users who want workout depth alongside recovery data. The trade-off: Garmin's Connect Developer Program needs Garmin's approval, and some features, enhanced beat-to-beat interval among them, are marked as supported with Enterprise Access only, so confirm you can onboard at the level you need before designing around it.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| WHOOP | Same recovery/readiness niche, different device | Requires paid membership; member tiers start at 10 until reviewed |\n| Terra | Covering Oura + many wearables via one schema | Middle-layer cost; may not expose every Oura-specific field |\n| Junction (formerly Vital) | Wearables plus lab/diagnostic data in one API | Aggregator layer; confirm exact Oura metrics are surfaced |\n| Fitbit / Google Health | Broad consumer install base | Legacy Web API decommissioned; Google Health API only; users must re-consent |\n| Garmin | Multi-sport users wanting sleep/recovery from a watch | Approval required; some features are Enterprise-only |\n\n## Which should you pick?\n\nMatch the alternative to what actually triggered your search, not to a single winner:\n\n- **You want the same readiness/recovery product, just off the ring** → WHOOP. Closest data-model peer, but plan for its membership requirement and approval cap.\n- **You need many devices covered with fewer per-vendor gates** → an aggregator (Terra or Junction). One integration spans Oura, WHOOP, Garmin, Google Health, Apple Health, and more, and Oura runs on the aggregator's own app, so you skip managing Oura's 10-user cap yourself (WHOOP, and on Terra Garmin, still need your own developer credentials).\n- **You also need labs or diagnostics** → Junction (formerly Vital), which bundles lab ordering with wearable data.\n- **You want a broad, mainstream user base** → Fitbit through the Google Health API, accepting that every user re-consents there.\n- **Your users are athletes who want workout detail plus recovery** → Garmin, if you can clear partner approval.\n- **Sleep-stage and readiness quality is the whole point of your product** → reconsider staying on Oura. Its strength is exactly this signal, and the alternatives trade it away.\n\n## Is switching easy?\n\nUsually not trivially. Moving off Oura is a real re-integration, not a config change: a new `OAuth` client and consent flow, re-mapping fields to a different schema, and — because health-data authorization is per-user — every user has to reconnect their account under the new provider. Budget for that reconnect churn, since you cannot silently migrate existing user grants.\n\nThe one place this gets easier is an aggregator. If you route through Terra or Junction, you integrate once and reach Oura *plus* many other wearables behind a stable interface — and if you later add or drop a vendor, you avoid redoing OAuth and schema work each time. That is the main reason multi-device teams reach for an aggregator instead of stacking direct integrations. If you are only ever going to support one device, a direct integration stays simpler and avoids the middle-layer cost. Compare the two paths in the [wearable data APIs guide](/fitness-apis/wearable-data-apis).",
     "faqs": [
       {
         "q": "Why do developers look for an Oura API alternative?",
@@ -243,7 +243,7 @@ export const alternativesEntries: ClusterEntry[] =
       },
       {
         "q": "Can an aggregator replace the Oura API?",
-        "a": "Yes, for coverage. Terra and Junction (formerly Vital) normalize Oura alongside many other rings and wearables behind one schema, so a single integration reaches Oura plus WHOOP, Garmin, Apple Health, and more. The trade-off is a middle-layer dependency and cost, and you may not see every Oura-specific field the raw API exposes. Confirm each aggregator surfaces the exact metrics you need."
+        "a": "Yes, for coverage. Terra and Junction (formerly Vital) normalize Oura alongside many other rings and wearables behind one schema, so a single integration reaches Oura plus WHOOP, Garmin, Apple Health, and more, and both connect Oura through their own Oura app by default. The trade-off is a middle-layer dependency and cost, and you may not see every Oura-specific field the raw API exposes. Confirm each aggregator surfaces the exact metrics you need."
       },
       {
         "q": "What is Oura actually best at?",
@@ -274,7 +274,79 @@ export const alternativesEntries: ClusterEntry[] =
     ],
     "cta": {
       "pitch": "We break down a new fitness and wearable API every week, approval gates, user caps, and migration gotchas included, so subscribe and switch with your eyes open."
-    }
+    },
+    "sources": [
+      {
+        "url": "https://cloud.ouraring.com/docs/",
+        "checked": "2026-11-18",
+        "note": "ten-user limit until approval (snapshot)"
+      },
+      {
+        "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+        "checked": "2026-11-18",
+        "note": "10 users before approval, no limit once approved, 403 on expired subscription, personal access tokens deprecated December 2025 (snapshot)"
+      },
+      {
+        "url": "https://developer.whoop.com/docs/developing/app-approval/",
+        "checked": "2026-11-18",
+        "note": "Sandbox 10 and the tiers above it (snapshot)"
+      },
+      {
+        "url": "https://developer.whoop.com/docs/developing/overview/",
+        "checked": "2026-11-18",
+        "note": "membership required to develop (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+        "checked": "2026-11-18",
+        "note": "81 integrations; Oura Managed, Garmin and WHOOP Required; Fitbit retired (snapshot)"
+      },
+      {
+        "url": "https://docs.junction.com/wearables/providers/introduction",
+        "checked": "2026-11-18",
+        "note": "300+ devices; Oura default app enabled, own app needs Oura review past 10 users (snapshot)"
+      },
+      {
+        "url": "https://docs.junction.com/wearables/guides/whoop",
+        "checked": "2026-11-18",
+        "note": "WHOOP bring-your-own-OAuth only (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/post/series-a",
+        "checked": "2026-11-18",
+        "note": "$18M Series A and the Junction name, March 11, 2025 (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-18",
+        "note": "lab testing on Enterprise (snapshot)"
+      },
+      {
+        "url": "https://developers.google.com/health/about",
+        "checked": "2026-11-18",
+        "note": "November 2, 2026 given as the legacy API turn-off"
+      },
+      {
+        "url": "https://developers.google.com/health/migration",
+        "checked": "2026-11-18",
+        "note": "existing access and refresh tokens cannot be transferred; users re-consent"
+      },
+      {
+        "url": "https://api.fitbit.com/oauth2/token",
+        "checked": "2026-11-18",
+        "note": "HTTP 410: decommissioned on October 30, 2026 (snapshot)"
+      },
+      {
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+        "checked": "2026-11-18",
+        "note": "approval required (snapshot)"
+      },
+      {
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+        "checked": "2026-11-18",
+        "note": "Enhanced Beat-To-Beat Interval, Supported with Enterprise Access only (snapshot)"
+      }
+    ]
   },
   {
     "slug": "whoop-api-alternatives",
@@ -282,13 +354,13 @@ export const alternativesEntries: ClusterEntry[] =
     "h1": "The Best WHOOP API Alternatives (2026)",
     "metaTitle": "Best WHOOP API Alternatives (2026): 4 Compared",
     "metaDescription": "The top WHOOP API alternatives for 2026: Oura for recovery, aggregators like Terra and Junction for many devices, and Fitbit or Garmin for broader reach.",
-    "updated": "2026-07-09",
+    "updated": "2026-11-18",
     "answer": "The top alternatives to the WHOOP API are Oura (the closest recovery and sleep peer), health-data aggregators like Terra and Junction (formerly Vital) that cover WHOOP plus many other wearables through one integration, and broader-base devices like Fitbit and Garmin. Pick by what is blocking you: Oura for a like-for-like recovery signal without the strap, an aggregator when you need many devices behind one integration, and Fitbit or Garmin for reach without a mandatory paid membership. WHOOP itself remains strong at recovery and strain for its committed, subscribed users.",
-    "body": "If you are building on the WHOOP API and running into the paid-membership requirement, the member tiers that start new apps at 10 members, or the fact that it is a single-vendor feed, the alternatives worth a look are Oura (the closest recovery peer), aggregators like Terra and Junction (formerly Vital) that cover WHOOP plus many other wearables at once, and broader-base devices like Fitbit and Garmin. Pick by what is blocking you: Oura for a like-for-like recovery signal without the strap, an aggregator when you need many devices behind one integration, and Fitbit or Garmin when you want reach without a mandatory subscription.\n\nWHOOP is genuinely good at what it does — for committed users who wear the strap daily, its recovery and strain metrics are a strong, opinionated signal. The question on this page is not whether WHOOP is good, but when a different data source fits your product better. For what this site has verified about WHOOP access in one place, see the [WHOOP API overview](/apis/whoop).\n\n## Why teams look for a WHOOP API alternative\n\nThree factual constraints send builders looking:\n\n- **It requires a paid WHOOP membership.** To produce data at all, each user needs an active WHOOP membership — the device plus a subscription. If your audience does not already own and pay for WHOOP, that is a hard prerequisite you cannot integrate around.\n- **Member tiers cap your reach.** Every new app starts on WHOOP's Sandbox tier of 10 members, then moves up one reviewed tier at a time through 100, 1,000 and 5,000 members to unlimited Production, and from the 100-member tier onward you need half your current limit connected before you can ask for the next. Each request needs testing with at least one real member, complete app details and adherence to WHOOP's brand guidelines. That is a reasonable gate, but it is a gate — you cannot ship to an unbounded audience on day one.\n- **It is single-vendor.** The WHOOP API gives you WHOOP data and only WHOOP data. If your users are on a mix of rings, watches, and straps, one direct WHOOP integration covers a slice of them.\n\nNone of these make WHOOP a poor API. They are simply the reasons a team whose users are not all WHOOP subscribers, or who needs broader device coverage, starts evaluating other sources.\n\n## The alternatives\n\n**Oura.** A finger-worn ring in the same recovery, readiness, and sleep niche as WHOOP. Best for: teams that want a like-for-like recovery signal from a device some users may prefer over a strap. The trade-off: Oura is also single-vendor and requires each user to own the ring, and its developer API has its own 10-user cap until Oura approves your app — so you are swapping one committed-hardware dependency for another, not escaping the pattern.\n\n**Terra / Junction (formerly Vital) / Rook.** Health-data aggregators that connect to WHOOP plus hundreds of other wearables and normalize everything into one schema behind a single integration. Best for: covering WHOOP as one of several recovery sources — and sidestepping WHOOP's member tiers on your own app — without building a separate integration per device. The trade-off: you pay a recurring vendor fee (often per connected user), and the normalized schema may not surface every WHOOP-specific field you would get from the raw API.\n\n**Fitbit / Garmin.** Broad-install-base wearables that reach far more users than WHOOP and do not require a separate paid membership tier the way WHOOP does. Best for: maximizing the share of your users who already own a compatible device. The trade-off: each has its own friction — Fitbit's legacy Web API is being consolidated into the Google Health API (with user re-consent required and a turn-off Google lists for November 2, 2026), and Garmin's developer program needs Garmin's approval, now as Starter and Enterprise Access, with some features marked Enterprise-only.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Oura | Like-for-like recovery/sleep from a ring | Single-vendor too; users must own the ring; its own 10-user cap until approval |\n| Terra / Junction / Rook | Many wearables (incl. WHOOP) behind one integration | Recurring per-user fee; schema may omit WHOOP-specific fields |\n| Fitbit | Broad consumer install base, no separate membership | Legacy Web API consolidating into Google Health API; turn-off Nov 2, 2026; re-consent |\n| Garmin | Multi-sport users, broad device base | Approval required; some features are Enterprise-only |\n\n## Which should you pick?\n\nThere is no single winner — it depends on why you left WHOOP:\n\n- **You need the same recovery/readiness signal, strap not required.** Oura is the closest peer. Expect a similar single-vendor, committed-hardware model, just with a ring.\n- **Your users are on many different devices.** An aggregator (Terra, Junction, or Rook) is the right call. You integrate once, WHOOP becomes one connectable source among many, and WHOOP's member tiers on your own direct app stop being the constraint.\n- **You want the widest reach and no mandatory subscription.** Fitbit or Garmin give you a much larger install base — accepting Fitbit's Google migration or Garmin's approval gate as the cost.\n- **You want to keep WHOOP but reach more of your users.** Keep the direct integration for your WHOOP subscribers and add an aggregator or a second device for everyone else. These are not mutually exclusive.\n\nFor the full side-by-side of device APIs and aggregators on coverage, access friction, and data depth, see the [wearable data APIs comparison](/fitness-apis/wearable-data-apis). If you decide WHOOP still fits and you just needed the lay of the land, the [WHOOP API integration guide](/integrate/whoop-api) walks through the direct build; the [Oura API guide](/integrate/oura-api) covers the closest peer.\n\n## Is switching easy?\n\nUsually not trivial — plan for a real re-integration, not a config flip. Moving off WHOOP means a new OAuth setup with the new provider, re-mapping fields (a WHOOP recovery score is not shaped the same as an Oura readiness score or a Fitbit metric), and — the part teams underestimate — asking every user to reconnect their device through the new flow. User reconnect is churn; budget for it. If what you want is a score you control rather than a vendor's, [building a recovery app](/build/recovery-app) covers computing one from HRV and resting heart rate against each user's own baseline.\n\nThe one place you avoid doing this repeatedly is an aggregator. Integrate once with Terra, Junction, or Rook and additional devices become connect-flow options rather than fresh engineering projects each time — which is exactly why teams supporting a mix of wearables tend to land there instead of stitching direct integrations one by one.\n\n*Product details, caps, and migration timelines above are current as of 2026 and change often — verify each provider's requirements against its live developer docs before you build.*",
+    "body": "If you are building on the WHOOP API and running into the paid-membership requirement, the member tiers that start new apps at 10 members, or the fact that it is a single-vendor feed, the alternatives worth a look are Oura (the closest recovery peer), aggregators like Terra and Junction (formerly Vital) that put WHOOP and many other wearables behind one integration, and broader-base devices like Fitbit and Garmin. Pick by what is blocking you: Oura for a like-for-like recovery signal without the strap, an aggregator when you need many devices behind one integration, and Fitbit or Garmin when you want reach without a mandatory subscription.\n\nWHOOP is genuinely good at what it does — for committed users who wear the strap daily, its recovery and strain metrics are a strong, opinionated signal. The question on this page is not whether WHOOP is good, but when a different data source fits your product better. For what this site has verified about WHOOP access in one place, see the [WHOOP API overview](/apis/whoop).\n\n## Why teams look for a WHOOP API alternative\n\nThree factual constraints send builders looking:\n\n- **It requires a paid WHOOP membership.** WHOOP's developer overview says \"You must have a WHOOP membership to develop an app on the Developer Platform,\" and the people you read data from are WHOOP members who grant consent with their own WHOOP accounts; WHOOP's developer site bundles the strap with the membership (its one-month trial \"includes Peak membership, 5.0 hardware\"). If your audience does not already own and pay for WHOOP, that is a hard prerequisite you cannot integrate around.\n- **Member tiers cap your reach.** Every new app starts on WHOOP's Sandbox tier of 10 members, then moves up one reviewed tier at a time through 100, 1,000 and 5,000 members to unlimited Production, and from the 100-member tier onward you need half your current limit connected before you can ask for the next. Each request needs testing with at least one real member, complete app details and adherence to WHOOP's brand guidelines. That is a reasonable gate, but it is a gate — you cannot ship to an unbounded audience on day one.\n- **It is single-vendor.** The WHOOP API gives you WHOOP data and only WHOOP data. If your users are on a mix of rings, watches, and straps, one direct WHOOP integration covers a slice of them.\n\nNone of these make WHOOP a poor API. They are simply the reasons a team whose users are not all WHOOP subscribers, or who needs broader device coverage, starts evaluating other sources.\n\n## The alternatives\n\n**Oura.** A finger-worn ring in the same recovery, readiness, and sleep niche as WHOOP. Best for: teams that want a like-for-like recovery signal from a device some users may prefer over a strap. The trade-off: Oura is also single-vendor and requires each user to own the ring, and its developer API has its own 10-user cap until Oura approves your app — so you are swapping one committed-hardware dependency for another, not escaping the pattern.\n\n**Terra / Junction (formerly Vital) / Rook.** Health-data aggregators that connect to WHOOP and many other sources and normalize everything into one schema behind a single integration: Junction says it supports 300+ devices, ROOK says 400+ wearables and health data sources, and Terra's supported-integrations page lists 81 integrations. Best for: covering WHOOP as one of several recovery sources without building a separate integration per device. What they do not do is sidestep WHOOP's member tiers. Read on November 18, 2026, Terra lists WHOOP among the integrations that need your own credentials from the integration's developer portal, Junction calls WHOOP a bring-your-own-OAuth-only provider (\"you will need your own app in WHOOP's developer dashboard\") and repeats WHOOP's 10-member limit, and ROOK says clients must create their own WHOOP developer accounts. The WHOOP app, and so its tier, is still yours. The trade-off: you pay a recurring vendor fee (on November 18, 2026, Terra's Quick Start plan started at $499 a month with 100,000 API credits, Junction's Launch plan was $300 a month for 1 to 500 connected users, and ROOK's Core plan was $399 a month for up to 750 active users), and the normalized schema may not surface every WHOOP-specific field you would get from the raw API.\n\n**Fitbit / Garmin.** Mainstream wearable brands whose developer pages, unlike WHOOP's, do not make a paid membership the condition for building or for a user's data. Best for: maximizing the share of your users who already own a compatible device. The trade-off: each has its own friction — Fitbit data now comes only through the Google Health API (Google's pages give November 2, 2026 as the legacy Fitbit Web API's turn-off, the legacy token endpoint now answers that the endpoints \"were decommissioned on October 30, 2026\", and Google says existing tokens cannot be transferred, so users re-consent), and Garmin's developer program needs Garmin's approval, now as Starter and Enterprise Access, with some features marked Enterprise-only.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Oura | Like-for-like recovery/sleep from a ring | Single-vendor too; users must own the ring; its own 10-user cap until approval |\n| Terra / Junction / Rook | Many wearables (incl. WHOOP) behind one integration | Recurring fee; WHOOP still needs your own WHOOP app, so its tiers still apply; schema may omit WHOOP-specific fields |\n| Fitbit | Broad consumer install base, no membership condition | Legacy Web API decommissioned; Google Health API only; users re-consent |\n| Garmin | Multi-sport users, broad device base | Approval required; some features are Enterprise-only |\n\n## Which should you pick?\n\nThere is no single winner — it depends on why you left WHOOP:\n\n- **You need the same recovery/readiness signal, strap not required.** Oura is the closest peer. Expect a similar single-vendor, committed-hardware model, just with a ring.\n- **Your users are on many different devices.** An aggregator (Terra, Junction, or Rook) is the right call. You integrate once and WHOOP becomes one connectable source among many, though all three connect WHOOP through a WHOOP app you register, so WHOOP's member tiers still govern how many WHOOP users you reach.\n- **You want broad reach without a membership condition.** Fitbit or Garmin — accepting the Google Health API's re-consent for Fitbit users or Garmin's approval gate as the cost.\n- **You want to keep WHOOP but reach more of your users.** Keep the direct integration for your WHOOP subscribers and add an aggregator or a second device for everyone else. These are not mutually exclusive.\n\nFor the full side-by-side of device APIs and aggregators on coverage, access friction, and data depth, see the [wearable data APIs comparison](/fitness-apis/wearable-data-apis). If you decide WHOOP still fits and you just needed the lay of the land, the [WHOOP API integration guide](/integrate/whoop-api) walks through the direct build; the [Oura API guide](/integrate/oura-api) covers the closest peer.\n\n## Is switching easy?\n\nUsually not trivial — plan for a real re-integration, not a config flip. Moving off WHOOP means a new OAuth setup with the new provider, re-mapping fields (a WHOOP recovery score is not shaped the same as an Oura readiness score or a Fitbit metric), and — the part teams underestimate — asking every user to reconnect their device through the new flow. User reconnect is churn; budget for it. If what you want is a score you control rather than a vendor's, [building a recovery app](/build/recovery-app) covers computing one from HRV and resting heart rate against each user's own baseline.\n\nThe one place you avoid doing this repeatedly is an aggregator. Integrate once with Terra, Junction, or Rook and additional devices become connect-flow options rather than fresh engineering projects each time — which is exactly why teams supporting a mix of wearables tend to land there instead of stitching direct integrations one by one.\n\n*Product details, caps, prices and migration timelines above were re-read on November 18, 2026 and change often — verify each provider's requirements against its live developer docs before you build.*",
     "faqs": [
       {
         "q": "Why do teams look for a WHOOP API alternative?",
-        "a": "Three constraints, as of 2026: the WHOOP API requires each user to have an active paid WHOOP membership (device plus subscription); new apps start on a 10-member Sandbox tier and grow only through WHOOP's reviewed tiers; and it is single-vendor, returning WHOOP data only. Teams whose users are not all WHOOP subscribers, or who need broader device coverage, evaluate other sources. Verify current requirements against WHOOP's developer docs."
+        "a": "Three constraints, as of 2026: WHOOP requires a WHOOP membership to develop an app, and the users you read are WHOOP members; new apps start on a 10-member Sandbox tier and grow only through WHOOP's reviewed tiers; and it is single-vendor, returning WHOOP data only. Teams whose users are not all WHOOP subscribers, or who need broader device coverage, evaluate other sources. Verify current requirements against WHOOP's developer docs."
       },
       {
         "q": "What is the closest alternative to WHOOP for recovery data?",
@@ -296,7 +368,7 @@ export const alternativesEntries: ClusterEntry[] =
       },
       {
         "q": "Can an aggregator get me WHOOP data without the 10-member cap?",
-        "a": "Aggregators like Terra, Junction (formerly Vital), and Rook connect to WHOOP plus many other wearables and normalize the data into one schema, so WHOOP becomes one connectable source among many and WHOOP's member tiers on your own direct app stop being the constraint. The trade-offs are a recurring per-connected-user fee and a normalized schema that may not surface every WHOOP-specific field."
+        "a": "Not according to their own docs, read November 18, 2026. Terra lists WHOOP as an integration that needs your own credentials from WHOOP's developer portal, Junction calls WHOOP a bring-your-own-OAuth-only provider and repeats WHOOP's 10-member development limit, and ROOK says clients must create their own WHOOP developer accounts. The WHOOP app is yours, so its Sandbox tier and the reviewed tiers above it still apply. What an aggregator does save is a separate integration per device, at the cost of a recurring fee and a normalized schema that may not surface every WHOOP-specific field."
       },
       {
         "q": "Is WHOOP still a good choice for some apps?",
@@ -327,7 +399,89 @@ export const alternativesEntries: ClusterEntry[] =
     ],
     "cta": {
       "pitch": "We break down a wearable or health-data API every week — including WHOOP's approval gate, aggregator pricing traps, and which device actually fits your users. Subscribe and skip the surprises."
-    }
+    },
+    "sources": [
+      {
+        "url": "https://developer.whoop.com/docs/developing/overview/",
+        "checked": "2026-11-18",
+        "note": "membership required to develop; consent from WHOOP members (snapshot)"
+      },
+      {
+        "url": "https://developer.whoop.com/",
+        "checked": "2026-11-18",
+        "note": "trial offer naming Peak membership and 5.0 hardware (snapshot)"
+      },
+      {
+        "url": "https://developer.whoop.com/docs/developing/app-approval/",
+        "checked": "2026-11-18",
+        "note": "Sandbox 10, tiers to unlimited, 50% rule, review requirements (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+        "checked": "2026-11-18",
+        "note": "81 integrations; WHOOP and Garmin Required, Oura Managed; Fitbit retired (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-18",
+        "note": "Quick Start from $499 a month with 100,000 Unified API credits (snapshot)"
+      },
+      {
+        "url": "https://docs.junction.com/wearables/guides/whoop",
+        "checked": "2026-11-18",
+        "note": "WHOOP bring-your-own-OAuth only, 10-member limit (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-18",
+        "note": "Launch $300 a month, 1-500 connected users, 300+ devices (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/post/series-a",
+        "checked": "2026-11-18",
+        "note": "Vital renamed Junction, March 11, 2025 (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-11-18",
+        "note": "400+ sources; WHOOP requires the client's own developer account (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-18",
+        "note": "Core $399 a month, up to 750 active users (snapshot)"
+      },
+      {
+        "url": "https://developers.google.com/health/about",
+        "checked": "2026-11-18",
+        "note": "November 2, 2026 given as the legacy API turn-off"
+      },
+      {
+        "url": "https://developers.google.com/health/migration",
+        "checked": "2026-11-18",
+        "note": "existing access and refresh tokens cannot be transferred; users re-consent"
+      },
+      {
+        "url": "https://api.fitbit.com/oauth2/token",
+        "checked": "2026-11-18",
+        "note": "HTTP 410: decommissioned on October 30, 2026 (snapshot)"
+      },
+      {
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+        "checked": "2026-11-18",
+        "note": "approval, Starter and Enterprise Access (snapshot)"
+      },
+      {
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+        "checked": "2026-11-18",
+        "note": "Supported with Enterprise Access only (snapshot)"
+      },
+      {
+        "url": "https://cloud.ouraring.com/docs/",
+        "checked": "2026-11-18",
+        "note": "ten-user limit until approval (snapshot)"
+      }
+    ]
   },
   {
     "slug": "healthkit-alternatives",

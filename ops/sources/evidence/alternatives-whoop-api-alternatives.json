@@ -53,5 +53,111 @@
     "claim": "Fitbit / Garmin and table: some features are marked Supported with Enterprise Access only.",
     "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
     "quote": "Supported with Enterprise Access only"
+  },
+  {
+    "claim": "Why teams look: WHOOP's developer overview requires a WHOOP membership to develop an app.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform."
+  },
+  {
+    "claim": "Why teams look: the people you read data from are WHOOP members who grant consent with their own accounts.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "Why teams look: WHOOP's developer site bundles the strap with the membership; its one-month trial includes Peak membership and 5.0 hardware.",
+    "url": "https://developer.whoop.com/",
+    "quote": "Try WHOOP free for 1 month. Trial includes Peak membership, 5.0 hardware, Onyx SuperKnit band, battery pack, and more."
+  },
+  {
+    "claim": "Junction says it supports 300+ devices.",
+    "url": "https://docs.junction.com/wearables/providers/introduction",
+    "quote": "We currently support 300+ devices."
+  },
+  {
+    "claim": "ROOK says 400+ wearables and health data sources.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK is a single integration for 400+ wearables and health data sources that supports all major wearable providers, with more being added every day."
+  },
+  {
+    "claim": "Terra lists WHOOP among the integrations that need your own credentials from the integration's developer portal.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Required integrations need your own credentials, created in the integration's developer portal and added to your Terra dashboard before end users can connect."
+  },
+  {
+    "claim": "Terra's table marks WHOOP as Required.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Whoop WHOOP Event-Driven Required"
+  },
+  {
+    "claim": "Junction calls WHOOP a bring-your-own-OAuth-only provider: you need your own app in WHOOP's developer dashboard.",
+    "url": "https://docs.junction.com/wearables/guides/whoop",
+    "quote": "WHOOP is a BYOO only provider, so you will need your own app in WHOOP’s developer dashboard"
+  },
+  {
+    "claim": "Junction repeats WHOOP's 10-member development limit.",
+    "url": "https://docs.junction.com/wearables/guides/whoop",
+    "quote": "Apps can be used for development immediately with a limit of 10 WHOOP members."
+  },
+  {
+    "claim": "ROOK says clients must create their own WHOOP developer accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "To integrate with Dexcom , Samsung Health , Strava and Whoop , clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "Terra's Quick Start plan starts at $499 a month.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "$499"
+  },
+  {
+    "claim": "Terra's Quick Start plan includes 100,000 API credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Includes 100,000 Unified API credits"
+  },
+  {
+    "claim": "Junction's Launch plan is $300 a month for up to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Start on Launch if you are connecting wearables and devices for up to 500 users — it covers the Link widget, 300+ device integrations, and usage analytics for a flat $300 a month."
+  },
+  {
+    "claim": "Junction's Launch plan covers 1 to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "ROOK's Core plan is $399 a month.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "$399 USD per month"
+  },
+  {
+    "claim": "ROOK's Core plan covers up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 750 active users"
+  },
+  {
+    "claim": "Junction (formerly Vital): Vital renamed itself Junction.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Vital was always about helping healthcare systems operate more effectively."
+  },
+  {
+    "claim": "The legacy token endpoint now answers that the endpoints were decommissioned on October 30, 2026 (HTTP 410, read 2026-11-18 through source-snapshot).",
+    "url": "https://api.fitbit.com/oauth2/token",
+    "quote": "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.",
+    "expectStatus": 410
+  },
+  {
+    "claim": "Google's pages give November 2, 2026 as the legacy Fitbit Web API's turn-off.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Google says existing access and refresh tokens cannot be transferred, so users re-consent.",
+    "url": "https://developers.google.com/health/migration",
+    "quote": "existing access and refresh tokens cannot be transferred, requiring users to re-consent to your updated integration."
+  },
+  {
+    "claim": "Oura has its own 10-user cap until it approves your app.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "By default, API Applications have a ten user limit. If you want to release your application to a wider audience, your application needs to be approved."
   }
 ]
