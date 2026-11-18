@@ -212,21 +212,31 @@
   {
     "claim": "Open Wearables Core $0 Forever.",
     "url": "https://openwearables.io/pricing",
-    "quote": "You run the open-source platform yourself. $0 Forever"
+    "quote": "For engineering teams that set up and run Open Wearables themselves, with community support. $0 Forever"
   },
   {
     "claim": "Open Wearables MIT.",
     "url": "https://openwearables.io/pricing",
-    "quote": "Open source, MIT license, Discord support"
+    "quote": "Is Core really free? Yes. MIT license, full source, no trial window."
   },
   {
-    "claim": "Open Wearables Pro.",
+    "claim": "Open Wearables: health scores and other modules are add-ons to Core.",
     "url": "https://openwearables.io/pricing",
-    "quote": "From $999 a month, per deployment"
+    "quote": "Health scores, the health agent, the care panel and the other modules can each be added to Core on their own. Enterprise includes all of them."
   },
   {
     "claim": "Open Wearables Garmin registration.",
     "url": "https://openwearables.io/docs/providers/supported",
     "quote": "You must apply for Garmin Developer Program"
+  },
+  {
+    "claim": "Open Wearables Enterprise: medical-grade integrations on request.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Medical-grade integrations Certified medical devices in the same data model as consumer wearables, integrated on request."
+  },
+  {
+    "claim": "Open Wearables Enterprise is \"Custom\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise License For organisations that need Open Wearables built around their use case, with the security and support a production product requires. Custom"
   }
 ]

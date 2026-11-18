@@ -75,9 +75,9 @@
     "quote": "For select providers, Sahha also connects directly through their cloud API"
   },
   {
-    "claim": "Cloud integrations in public beta and Sandbox only.",
+    "claim": "Docs list three direct cloud integrations, Garmin, Oura and WHOOP, all marked \"GA\" as of 2026-11-18.",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Integrations are in public beta and are Sandbox only"
+    "quote": "Garmin garmin Watch Cloud OAuth GA Garmin approval required Oura oura Ring Cloud OAuth GA self sign-up WHOOP whoop Band Cloud OAuth GA self sign-up"
   },
   {
     "claim": "Cloud integrations are Garmin, Oura and WHOOP.",
@@ -292,22 +292,22 @@
   {
     "claim": "Core $0 Forever, self-hosted.",
     "url": "https://openwearables.io/pricing",
-    "quote": "You run the open-source platform yourself. $0 Forever"
+    "quote": "For engineering teams that set up and run Open Wearables themselves, with community support. $0 Forever"
   },
   {
-    "claim": "Open source, MIT license.",
+    "claim": "Open Wearables Core is under the MIT license.",
     "url": "https://openwearables.io/pricing",
-    "quote": "Open source, MIT license, Discord support"
+    "quote": "Is Core really free? Yes. MIT license, full source, no trial window."
   },
   {
     "claim": "Runs in your own cloud account.",
     "url": "https://openwearables.io/pricing",
-    "quote": "Everything runs in your own cloud account."
+    "quote": "Each path runs the same open-source core in your own cloud account."
   },
   {
-    "claim": "Pro from $999 a month per deployment, with health scores.",
-    "url": "https://openwearables.io/pricing",
-    "quote": "From $999 a month, per deployment"
+    "claim": "Health scores are \"an add-on to Core and included in Enterprise\".",
+    "url": "https://openwearables.io/faq",
+    "quote": "Health scores are an add-on to Core and included in Enterprise."
   },
   {
     "claim": "You must apply for Garmin Developer Program.",
@@ -323,5 +323,15 @@
     "claim": "SDK-based Apple Health, Health Connect, Samsung Health.",
     "url": "https://openwearables.io/docs/providers/supported",
     "quote": "Via Android, Flutter & React Native SDK"
+  },
+  {
+    "claim": "Open Wearables Enterprise is \"Custom\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise License For organisations that need Open Wearables built around their use case, with the security and support a production product requires. Custom"
+  },
+  {
+    "claim": "The docs' supported-providers table does not list Dexcom.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Provider Slug Device Connection Status Garmin garmin Watch Cloud OAuth GA Garmin approval required Oura oura Ring Cloud OAuth GA self sign-up WHOOP whoop Band Cloud OAuth GA self sign-up Samsung Health — Phone / watch On-device SDK Coming soon collected via the SDK"
   }
 ]
