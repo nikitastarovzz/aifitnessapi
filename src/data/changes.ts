@@ -52,6 +52,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     verifiedOn: "2026-11-14",
   },
   {
+    date: "2026-11",
+    sortDate: "2026-11-14",
+    title: "Terra documents its legacy widget session endpoint as deprecated",
+    summary:
+      "Terra gives no date for the wording; we first read it on 2026-11-14 and again on 2026-11-18. The Legacy endpoint section of its widget documentation now says \"POST /auth/generateWidgetSession is deprecated, with deprecation planned for 3 November 2026\", adding \"Existing apps keep working, and we will give notice well before any breaking change.\" Accounts created after 3 September 2026 cannot use it. The replacement is POST access.tryterra.co/api/widget/session.",
+    status: "confirmed",
+    page: { href: "/graveyard", label: "The Fitness API Graveyard" },
+    verifiedOn: "2026-11-18",
+  },
+  {
     date: "2026-11-03",
     sortDate: "2026-11-03",
     title: "Terra legacy widget endpoint deprecation",
@@ -66,10 +76,20 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     sortDate: "2026-11-02",
     title: "Fitbit Web API turn-off moves to November 2, 2026",
     summary:
-      "Google's Google Health API page, last updated October 23, 2026, now gives November 2, 2026 as the turn-off: \"The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP `410 Gone` status code.\" When we read the page on October 12 it gave October 30. A 410 from a Fitbit endpoint after that date means the turn-off, not a fault in your integration.",
+      "In an update dated October 23, 2026, Google's Google Health API page moved the turn-off to November 2, 2026: \"The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP `410 Gone` status code.\" When we read the page on October 12 it gave October 30. A 410 from a Fitbit endpoint after that date means the turn-off, not a fault in your integration.",
     status: "confirmed",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-10-31",
+    verifiedOn: "2026-11-18",
+  },
+  {
+    date: "2026-10-30",
+    sortDate: "2026-10-30",
+    title: "Fitbit Web API decommissioned: its endpoints answer 410 Gone",
+    summary:
+      "Fitbit's token endpoint, api.fitbit.com/oauth2/token, answers HTTP 410 Gone with \"The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026.\" We saw it on 2026-11-14 and again on 2026-11-18. Google's Google Health help article says Google Health Support \"can’t restore or fix your broken connection once Fitbit connections retired on October 30, 2026.\" Google's Google Health API page (last updated October 30, 2026) still gives November 2, 2026 as the turn-off, in the future tense, and the Health Status Dashboard names October 30 for the turn-down and November 2 for the traffic. A 410 from a Fitbit endpoint is the turn-off, not a fault in your integration.",
+    status: "confirmed",
+    page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2026-10-29",
@@ -119,7 +139,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
       "Google's Google Health API page states that on September 30, 2026 \"support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support.\" The turn-off follows on November 2, 2026. Third-party guides had named September 30 before Google published the timeline; it is the end-of-support date, not the switch-off.",
     status: "confirmed",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-10-12",
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2026-09-27",
@@ -169,7 +189,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
       "Users on legacy Fitbit-only logins are reported to need consolidation into a Google Account by roughly mid-May 2026. Google's migration guide confirms the gate itself but gives no date: a user must sign in to the Google Health mobile app to link Google Health to their Google Account before an app can sync their data, and calls made before that fail with ACCOUNT_NOT_LINKED. A gate on your migration, not a detail inside it.",
     status: "reported",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-10-12",
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2026",
