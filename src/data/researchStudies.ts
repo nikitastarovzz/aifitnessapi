@@ -12,9 +12,9 @@ import type { DriftGroup, NoticeRow, PricingRow } from "@/lib/researchStats.mjs"
 
 export const DRIFT_HISTORY_FROM = "2026-10-17";
 export const DRIFT_HISTORY_THROUGH = "2026-11-18";
-export const DRIFT_HISTORY_COMMIT = "f7236f2";
-export const DRIFT_COMMITS_READ = 38;
-export const DRIFT_ROWS_READ = 9972;
+export const DRIFT_HISTORY_COMMIT = "c099dba";
+export const DRIFT_COMMITS_READ = 42;
+export const DRIFT_ROWS_READ = 10056;
 
 export const DRIFT_GROUPS: DriftGroup[] = [
   {
@@ -191,12 +191,12 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "docs.sahha.ai",
     "writtenOn": "2026-10-18",
     "writtenCommit": "171e03f",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
     "rows": 1
   },
   {
@@ -1140,12 +1140,12 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "docs.sahha.ai",
     "writtenOn": "2026-10-18",
     "writtenCommit": "171e03f",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
     "rows": 1
   },
   {
@@ -2453,13 +2453,39 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "docs.sahha.ai",
     "writtenOn": "2026-10-18",
     "writtenCommit": "171e03f",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
+    "rows": 1
+  },
+  {
+    "file": "compare-terra-vs-sahha.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-10-18",
+    "writtenCommit": "171e03f",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
+    "rows": 1
+  },
+  {
+    "file": "compare-terra-vs-sahha.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-10-18",
+    "writtenCommit": "171e03f",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 9
+    "rows": 7
   },
   {
     "file": "compare-terra-vs-sahha.json",
@@ -3766,13 +3792,39 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "docs.sahha.ai",
     "writtenOn": "2026-10-18",
     "writtenCommit": "171e03f",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
-    "rows": 5
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "claim-reworded",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
+    "rows": 1
+  },
+  {
+    "file": "fitness-apis-health-data-aggregator-apis.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-10-18",
+    "writtenCommit": "171e03f",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
+    "rows": 1
+  },
+  {
+    "file": "fitness-apis-health-data-aggregator-apis.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-10-18",
+    "writtenCommit": "171e03f",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
+    "rows": 3
   },
   {
     "file": "fitness-apis-health-data-aggregator-apis.json",
@@ -6639,13 +6691,26 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "docs.sahha.ai",
     "writtenOn": "2026-10-18",
     "writtenCommit": "171e03f",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
+    "rows": 4
+  },
+  {
+    "file": "pricing-sahha-api-pricing.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-10-18",
+    "writtenCommit": "171e03f",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 9
+    "rows": 5
   },
   {
     "file": "pricing-sahha-api-pricing.json",
@@ -9226,12 +9291,12 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-10-28",
     "writtenCommit": "560d0d2",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
     "rows": 1
   },
   {
@@ -9486,13 +9551,26 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-10-28",
     "writtenCommit": "560d0d2",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
-    "rows": 2
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 1
+  },
+  {
+    "file": "alternatives-terra-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-10-28",
+    "writtenCommit": "560d0d2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 1
   },
   {
     "file": "alternatives-terra-alternatives.json",
@@ -9980,13 +10058,39 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-10-28",
     "writtenCommit": "560d0d2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 2
+  },
+  {
+    "file": "compare-terra-vs-open-wearables.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-10-28",
+    "writtenCommit": "560d0d2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 10
+  },
+  {
+    "file": "compare-terra-vs-open-wearables.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-10-28",
+    "writtenCommit": "560d0d2",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 38
+    "rows": 26
   },
   {
     "file": "compare-terra-vs-open-wearables.json",
@@ -10097,13 +10201,39 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-10-28",
     "writtenCommit": "560d0d2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 2
+  },
+  {
+    "file": "fitness-apis-health-data-aggregator-apis.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-10-28",
+    "writtenCommit": "560d0d2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 3
+  },
+  {
+    "file": "fitness-apis-health-data-aggregator-apis.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-10-28",
+    "writtenCommit": "560d0d2",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 6
+    "rows": 1
   },
   {
     "file": "fitness-apis-health-data-aggregator-apis.json",
@@ -10214,13 +10344,39 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-10-28",
     "writtenCommit": "560d0d2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 1
+  },
+  {
+    "file": "pricing-health-data-aggregator-pricing.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-10-28",
+    "writtenCommit": "560d0d2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 1
+  },
+  {
+    "file": "pricing-health-data-aggregator-pricing.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-10-28",
+    "writtenCommit": "560d0d2",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 3
+    "rows": 1
   },
   {
     "file": "pricing-health-data-aggregator-pricing.json",
@@ -11085,12 +11241,12 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "docs.sahha.ai",
     "writtenOn": "2026-11-02",
     "writtenCommit": "b92bce2",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
     "rows": 1
   },
   {
@@ -11150,13 +11306,39 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-11-02",
     "writtenCommit": "b92bce2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 1
+  },
+  {
+    "file": "alternatives-rook-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-02",
+    "writtenCommit": "b92bce2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 2
+  },
+  {
+    "file": "alternatives-rook-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-02",
+    "writtenCommit": "b92bce2",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 6
+    "rows": 3
   },
   {
     "file": "alternatives-rook-alternatives.json",
@@ -11254,13 +11436,26 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "docs.sahha.ai",
     "writtenOn": "2026-11-02",
     "writtenCommit": "b92bce2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Sahha: its docs now list the Garmin, Oura and WHOOP cloud integrations as GA.",
+    "rows": 1
+  },
+  {
+    "file": "alternatives-sahha-alternatives.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-11-02",
+    "writtenCommit": "b92bce2",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 3
+    "rows": 2
   },
   {
     "file": "alternatives-sahha-alternatives.json",
@@ -11319,13 +11514,39 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-11-02",
     "writtenCommit": "b92bce2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 1
+  },
+  {
+    "file": "alternatives-sahha-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-02",
+    "writtenCommit": "b92bce2",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 2
+  },
+  {
+    "file": "alternatives-sahha-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-02",
+    "writtenCommit": "b92bce2",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 6
+    "rows": 3
   },
   {
     "file": "alternatives-sahha-alternatives.json",
@@ -12008,13 +12229,39 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-11-04",
     "writtenCommit": "0d97c27",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 1
+  },
+  {
+    "file": "alternatives-spike-api-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-04",
+    "writtenCommit": "0d97c27",
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "removed",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
+    "rows": 1
+  },
+  {
+    "file": "alternatives-spike-api-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-04",
+    "writtenCommit": "0d97c27",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
     "cause": null,
     "kind": null,
     "statement": null,
-    "rows": 3
+    "rows": 1
   },
   {
     "file": "alternatives-spike-api-alternatives.json",
@@ -12528,12 +12775,12 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-11-05",
     "writtenCommit": "177ebfb",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
     "rows": 1
   },
   {
@@ -12554,12 +12801,12 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-11-05",
     "writtenCommit": "177ebfb",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
     "rows": 1
   },
   {
@@ -12567,12 +12814,12 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "openwearables.io",
     "writtenOn": "2026-11-05",
     "writtenCommit": "177ebfb",
-    "endedOn": null,
-    "endedCommit": null,
-    "endKind": null,
-    "cause": null,
-    "kind": null,
-    "statement": null,
+    "endedOn": "2026-11-18",
+    "endedCommit": "8934f35",
+    "endKind": "quote",
+    "cause": "source-changed",
+    "kind": "fact",
+    "statement": "Open Wearables: the pricing page dropped its Pro plan.",
     "rows": 1
   },
   {
@@ -17438,6 +17685,32 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "rows": 1
   },
   {
+    "file": "alternatives-human-api-alternatives.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 1
+  },
+  {
+    "file": "alternatives-human-api-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 1
+  },
+  {
     "file": "alternatives-junction-alternatives.json",
     "source": "docs.junction.com",
     "writtenOn": "2026-11-18",
@@ -17676,6 +17949,97 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "source": "www.junction.com",
     "writtenOn": "2026-11-18",
     "writtenCommit": "50f2ea1",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 4
+  },
+  {
+    "file": "alternatives-rook-alternatives.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 1
+  },
+  {
+    "file": "alternatives-rook-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 5
+  },
+  {
+    "file": "alternatives-sahha-alternatives.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 2
+  },
+  {
+    "file": "alternatives-sahha-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 5
+  },
+  {
+    "file": "alternatives-spike-api-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 5
+  },
+  {
+    "file": "alternatives-terra-alternatives.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 2
+  },
+  {
+    "file": "alternatives-terra-alternatives.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
     "endedOn": null,
     "endedCommit": null,
     "endKind": null,
@@ -17958,6 +18322,19 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "rows": 3
   },
   {
+    "file": "build-cycling-app.json",
+    "source": "developer.garmin.com",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "3a0d0c1",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 5
+  },
+  {
     "file": "compare-apple-watch-vs-whoop.json",
     "source": "developer.whoop.com",
     "writtenOn": "2026-11-18",
@@ -18127,6 +18504,32 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "rows": 4
   },
   {
+    "file": "compare-terra-vs-open-wearables.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 12
+  },
+  {
+    "file": "compare-terra-vs-sahha.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 2
+  },
+  {
     "file": "compare-usda-fooddata-central-vs-open-food-facts.json",
     "source": "fdc.nal.usda.gov",
     "writtenOn": "2026-11-18",
@@ -18205,6 +18608,19 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "rows": 15
   },
   {
+    "file": "devices-bluetooth-heart-rate-monitor.json",
+    "source": "developer.garmin.com",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "3a0d0c1",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 5
+  },
+  {
     "file": "devices-cycling-sensors-power-cadence.json",
     "source": "developer.garmin.com",
     "writtenOn": "2026-11-18",
@@ -18216,6 +18632,32 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "kind": null,
     "statement": null,
     "rows": 4
+  },
+  {
+    "file": "devices-indoor-bike-trainer-integration.json",
+    "source": "developer.garmin.com",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "3a0d0c1",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 5
+  },
+  {
+    "file": "devices.json",
+    "source": "developer.garmin.com",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "3a0d0c1",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 6
   },
   {
     "file": "fitbit-api-shutdown.json",
@@ -18242,6 +18684,32 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "kind": null,
     "statement": null,
     "rows": 2
+  },
+  {
+    "file": "fitness-apis-health-data-aggregator-apis.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 5
+  },
+  {
+    "file": "fitness-apis-health-data-aggregator-apis.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 8
   },
   {
     "file": "integrate-fitbit-api.json",
@@ -18593,11 +19061,37 @@ export const DRIFT_GROUPS: DriftGroup[] = [
     "kind": null,
     "statement": null,
     "rows": 3
+  },
+  {
+    "file": "pricing-health-data-aggregator-pricing.json",
+    "source": "openwearables.io",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 6
+  },
+  {
+    "file": "pricing-sahha-api-pricing.json",
+    "source": "docs.sahha.ai",
+    "writtenOn": "2026-11-18",
+    "writtenCommit": "8934f35",
+    "endedOn": null,
+    "endedCommit": null,
+    "endKind": null,
+    "cause": null,
+    "kind": null,
+    "statement": null,
+    "rows": 4
   }
 ];
 
 export const NOTICE_READ_ON = "2026-11-06";
-export const NOTICE_CHANGES_READ = 25;
+export const NOTICE_CHANGES_READ = 27;
 
 export const NOTICE_ROWS: NoticeRow[] = [
   {
@@ -19117,12 +19611,12 @@ export const PRICING_ROWS: PricingRow[] = [
     "vendor": "Open Wearables",
     "category": "aggregator",
     "categoryLabel": "Health-data aggregators",
-    "class": "published-price",
-    "classLabel": "Publishes a price",
-    "line": "From $999 a month, per deployment",
+    "class": "no-published-price",
+    "classLabel": "No published price",
+    "line": "Enterprise License For organisations that need Open Wearables built around their use case",
     "url": "https://openwearables.io/pricing",
     "evidenceFile": "ops/sources/evidence/pricing-health-data-aggregator-pricing.json",
-    "freeEntry": "You run the open-source platform yourself. $0 Forever",
+    "freeEntry": "Is Core really free? Yes. MIT license, full source, no trial window.",
     "unpricedTier": null,
     "excluded": null,
     "pricingPage": "/pricing/health-data-aggregator-pricing"

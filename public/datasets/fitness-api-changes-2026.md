@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | Version | 2026.1 |
-| Rows | 25 |
+| Rows | 27 |
 | Columns | 8 |
 | Publisher | AIFitnessAPI (aifitnessapi.com) |
 | License | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
@@ -25,14 +25,14 @@ One row per dated ecosystem event tracked on https://aifitnessapi.com/changes �
 
 | Field | Description | JSON types | Null in |
 |---|---|---|---|
-| `date` | Event date at the precision the source supports (YYYY, YYYY-MM or YYYY-MM-DD) | string | 0 of 25 rows |
-| `sortDate` | Full ISO date used only for ordering when `date` is fuzzy | string | 0 of 25 rows |
-| `title` | Short name of the event | string | 0 of 25 rows |
-| `summary` | What changed, in the words the linked page can support | string | 0 of 25 rows |
-| `status` | confirmed \| reported \| watch — the evidence grade, see methodology | string | 0 of 25 rows |
-| `source` | aifitnessapi.com page carrying the sourced claim | string | 0 of 25 rows |
-| `sourceLabel` | Title of that page | string | 0 of 25 rows |
-| `verifiedOn` | Date this entry was last checked against its source page | string | 0 of 25 rows |
+| `date` | Event date at the precision the source supports (YYYY, YYYY-MM or YYYY-MM-DD) | string | 0 of 27 rows |
+| `sortDate` | Full ISO date used only for ordering when `date` is fuzzy | string | 0 of 27 rows |
+| `title` | Short name of the event | string | 0 of 27 rows |
+| `summary` | What changed, in the words the linked page can support | string | 0 of 27 rows |
+| `status` | confirmed \| reported \| watch — the evidence grade, see methodology | string | 0 of 27 rows |
+| `source` | aifitnessapi.com page carrying the sourced claim | string | 0 of 27 rows |
+| `sourceLabel` | Title of that page | string | 0 of 27 rows |
+| `verifiedOn` | Date this entry was last checked against its source page | string | 0 of 27 rows |
 
 A null means the source does not state the value or it could not be verified. It never means zero, and it is never a guess. In the CSV a null is an empty unquoted field.
 

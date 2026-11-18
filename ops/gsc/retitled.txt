@@ -115,3 +115,5 @@
 /integrate/fitbit-api
 # 2026-11-18: re-verified, metaDescription rewritten with the published plans; title unchanged.
 /compare/edamam-vs-spoonacular
+# 2026-11-18: re-verified on Garmin's ANT program pages; metaDescription rewritten, title unchanged.
+/devices/ant-plus-vs-bluetooth

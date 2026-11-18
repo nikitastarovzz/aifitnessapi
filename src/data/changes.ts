@@ -43,6 +43,26 @@ export type ChangeEvent = {
 export const CHANGE_EVENTS: ChangeEvent[] = [
   {
     date: "2026-11",
+    sortDate: "2026-11-18",
+    title: "Sahha marks its Garmin, Oura and WHOOP cloud integrations GA",
+    summary:
+      "Sahha gives no date for the change: first seen on 2026-11-18. As of November 18, 2026, its docs list three direct cloud integrations as GA, Garmin, Oura and WHOOP, each on an app you register with the provider.",
+    status: "confirmed",
+    page: { href: "/compare/terra-vs-sahha", label: "Terra vs Sahha" },
+    verifiedOn: "2026-11-18",
+  },
+  {
+    date: "2026-11",
+    sortDate: "2026-11-18",
+    title: "Open Wearables drops its Pro plan",
+    summary:
+      "Open Wearables gives no date for the change: first seen on 2026-11-18, when the Pro plan its pricing page listed on October 27, 2026 was no longer listed. It now lists Core \"$0 Forever\" and Enterprise \"Custom\", a license, with add-on modules for Core and a one-time Deployment service \"From $4,800\".",
+    status: "confirmed",
+    page: { href: "/compare/terra-vs-open-wearables", label: "Terra vs Open Wearables" },
+    verifiedOn: "2026-11-18",
+  },
+  {
+    date: "2026-11",
     sortDate: "2026-11-14",
     title: "Thryve removes its Fitbit data source",
     summary:

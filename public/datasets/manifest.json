@@ -39,27 +39,27 @@
     },
     {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 16205,
-      "rows": 25,
-      "sha256": "94413abb097b28a2dedc1dae1f5d9ef625194fc4b29d099f9d47e27039d436dc"
+      "bytes": 17073,
+      "rows": 27,
+      "sha256": "aa4e6910e54d0eb715eace4f6803b04fd5851541cb63628d5fb2eb6ca8885ee8"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 21862,
-      "rows": 25,
-      "sha256": "90971e2825288e18bf45bc13d75a22501beb5dd791be3a726e9c17b5ffc7202a"
+      "bytes": 23044,
+      "rows": 27,
+      "sha256": "dcf74c525b7f6b0f3bcd4bdf48126b1324056ec1730c4875ddf8a626f4718f79"
     },
     {
       "file": "fitness-api-docs-drift-2026.csv",
-      "bytes": 172218,
-      "rows": 1429,
-      "sha256": "96856c81ddd255d8faf1d6204bf8cfad7bb6b9108c038bc735f127bb1a3935a5"
+      "bytes": 178917,
+      "rows": 1467,
+      "sha256": "ee2d07941cf870eb2a3ed19fc4a896602607fecc14be946e1ac4b28ad1a04d79"
     },
     {
       "file": "fitness-api-docs-drift-2026.json",
-      "bytes": 502400,
-      "rows": 1429,
-      "sha256": "4e203fa6b304f6312e36ab7a1fba9cab7b9d26eafcc45b49ac341d0ff5ca2530"
+      "bytes": 517320,
+      "rows": 1467,
+      "sha256": "0e1a6ee78430124395c45c8c909d33fcee39c4ecab0d67d0aa68242a9a2617d4"
     },
     {
       "file": "fitness-api-glossary-2026.csv",
@@ -75,15 +75,15 @@
     },
     {
       "file": "fitness-api-pricing-transparency-2026.csv",
-      "bytes": 9519,
+      "bytes": 9594,
       "rows": 32,
-      "sha256": "fce9ead21d4a679c2ade0036c3c6302f8b59afe82b28efb2264559047c5742fd"
+      "sha256": "2f2322d02c7b7294a4c663ab7bdaca261663ea92b971c6134380694610314f46"
     },
     {
       "file": "fitness-api-pricing-transparency-2026.json",
-      "bytes": 21406,
+      "bytes": 21481,
       "rows": 32,
-      "sha256": "a2335a264453f8c8af35740111286ee767ac78c17f52bef16ac3f5e0fc2747a0"
+      "sha256": "f1f1fa7926297b4aef3c05e97f76e2bad6ce5f7c881765571810fd78e67def65"
     },
     {
       "file": "fitness-api-shutdown-notice-2026.csv",

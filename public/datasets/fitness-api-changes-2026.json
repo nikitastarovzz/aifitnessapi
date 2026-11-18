@@ -16,12 +16,12 @@
     "verifiedOn": "Date this entry was last checked against its source page"
   },
   "stats": {
-    "totalItems": 25,
+    "totalItems": 27,
     "byStatus": {
-      "confirmed": 23,
+      "confirmed": 25,
       "reported": 2
     },
-    "confirmed": 23,
+    "confirmed": 25,
     "reported": 2,
     "watch": 0,
     "earliestSortDate": "2023-04-15",
@@ -37,6 +37,26 @@
       "source": "https://aifitnessapi.com/google-fit-shutdown",
       "sourceLabel": "Google Fit shutdown hub",
       "verifiedOn": "2026-10-02"
+    },
+    {
+      "date": "2026-11",
+      "sortDate": "2026-11-18",
+      "title": "Sahha marks its Garmin, Oura and WHOOP cloud integrations GA",
+      "summary": "Sahha gives no date for the change: first seen on 2026-11-18. As of November 18, 2026, its docs list three direct cloud integrations as GA, Garmin, Oura and WHOOP, each on an app you register with the provider.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/compare/terra-vs-sahha",
+      "sourceLabel": "Terra vs Sahha",
+      "verifiedOn": "2026-11-18"
+    },
+    {
+      "date": "2026-11",
+      "sortDate": "2026-11-18",
+      "title": "Open Wearables drops its Pro plan",
+      "summary": "Open Wearables gives no date for the change: first seen on 2026-11-18, when the Pro plan its pricing page listed on October 27, 2026 was no longer listed. It now lists Core \"$0 Forever\" and Enterprise \"Custom\", a license, with add-on modules for Core and a one-time Deployment service \"From $4,800\".",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/compare/terra-vs-open-wearables",
+      "sourceLabel": "Terra vs Open Wearables",
+      "verifiedOn": "2026-11-18"
     },
     {
       "date": "2026-11",
