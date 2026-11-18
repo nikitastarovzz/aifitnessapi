@@ -87,15 +87,15 @@
     },
     {
       "file": "fitness-api-shutdown-notice-2026.csv",
-      "bytes": 8020,
+      "bytes": 8018,
       "rows": 15,
-      "sha256": "ca049a79e1eef5ab3e495264f92acc1a4ec64c62c39cde4b810a6888cf9b7775"
+      "sha256": "376e33a462e603d3704a0a6fba0219279d07c3504a1b8977b23c03de371ed9af"
     },
     {
       "file": "fitness-api-shutdown-notice-2026.json",
-      "bytes": 16910,
+      "bytes": 16908,
       "rows": 15,
-      "sha256": "e1dfd1cf9d50ba133e23a0b1a24d8af2de0303f432bcb98032519699dbc32317"
+      "sha256": "cc493311b8c7f629f45c2bf2d7256741dffd5b0cdf3b02b6d07591a03a4da045"
     },
     {
       "file": "fitness-apis-2026.csv",
