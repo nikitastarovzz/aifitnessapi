@@ -109,3 +109,7 @@
 /health-connect-api/read-health-data-history
 # 2026-11-18: hub retitled for "api fitness alternatives" (105 impressions at 1.1) and "ai fitness api alternatives" (36), Google 2026-10-15 to 2026-11-11, 0 clicks.
 /alternatives
+# 2026-11-18: Fitbit pages re-verified after the turn-off (ops/GROWTH-20-2026-11-18.md); metaDescription rewritten, titles unchanged.
+/pricing/fitbit-api-pricing
+/alternatives/fitbit-api-alternatives
+/integrate/fitbit-api
