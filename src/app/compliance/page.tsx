@@ -154,6 +154,19 @@ export default function CompliancePillar() {
           engineering guidance, not legal advice.
         </div>
 
+        {/* 2026-11-18: Search Console (28 days to 2026-11-11) showed "gym gdpr
+            compliance" 92 times with only this hub ranking, at 61.8, while the
+            page that answers it had never been shown. One hand-off line, no
+            title change and no fact added. */}
+        <p className="mt-5 text-[var(--muted)]">
+          Running a gym or studio rather than building an app? Our{" "}
+          <Link href="/compliance/gym-gdpr-compliance" className="text-brand-600 underline hover:text-brand-500">
+            gym GDPR compliance guide
+          </Link>{" "}
+          covers member health records, wearable and fitness-tracker data, biometric entry, and your gym
+          software as processor.
+        </p>
+
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <p>
             Start with the rules that apply to your situation, then move to the
