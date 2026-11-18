@@ -262,7 +262,12 @@ export default function HcPermissionsPage() {
               ({a.label.toLowerCase()})
             </span>
           ))}
-          .
+          . To check the strings a manifest you already have declares, paste it into the{" "}
+          <Link href="/tools/permission-builder#xray" className="text-brand-600 hover:text-brand-500">
+            Permission X-ray
+          </Link>
+          : it looks up each <Code>android.permission.health.*</Code> string against this reference, lists any it does not
+          define as not in it, and runs in your browser.
         </p>
 
         {PERMISSION_GROUPS.map((g) => {
