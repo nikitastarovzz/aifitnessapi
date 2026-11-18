@@ -8,7 +8,7 @@ import { GHAPI_ERRORS, GHAPI_ERRORS_INTRO, GHAPI_FETCHED_ON } from "@/data/googl
 import { GHAPI_BASE, GHAPI_PATHS, fitDescription, fitTitle, joinList, quote, section, source } from "@/data/ghapiPages";
 import { absoluteUrl } from "@/lib/site";
 import { FaqSection, JsonLd, faqGraph, type Faq } from "../../error-codes/_shared";
-import { Blocks, CAPSULE, Code, FetchedLine, GoogleSection, H2, Inline, LINK, QuotedFrom, SourcesChecked, TH, TopicNav, ghapiGraph } from "../_shared";
+import { Blocks, CAPSULE, Code, FetchedLine, GoogleSection, H2, LINK, QuotedFrom, SourcesChecked, TH, TopicNav, ghapiGraph } from "../_shared";
 
 /**
  * Every reason in Google's Google Health API v4 error catalog, grouped by
