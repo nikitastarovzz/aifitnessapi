@@ -244,12 +244,12 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
   {
     date: "2025-06-30",
     sortDate: "2025-06-30",
-    title: "ANT+ membership and certification programs discontinued (reported)",
+    title: "ANT+ membership and certification programs end; Garmin calls ANT+ deprecated",
     summary:
-      "Per widely-quoted announcements from the ANT+ organization — the official page was unreachable in our research pass, so this stays reported — the ANT+ membership and certification programs were discontinued on June 30, 2025, with certification applications accepted only until March 31, 2025. Device profiles and documentation reportedly remain available and existing devices are unaffected; coverage cites the EU Radio Equipment Directive as a driver. For new fitness apps, BLE is the practical default radio.",
-    status: "reported",
+      "thisisant.com now redirects to Garmin Developer, whose ANT program pages say \"Content from thisisant.com has now been moved to Garmin Developer\" and that the ANT+ membership and certification programs, with engineering support, \"ended on June 30, 2025.\" Garmin's ANT FAQ adds that \"ANT+ has been deprecated and is no longer supported\", that there will be no new ANT+ profiles, and that existing ANT and ANT+ devices \"will continue to operate as before\". For new fitness apps, BLE is the practical default radio.",
+    status: "confirmed",
     page: { href: "/devices/ant-plus-vs-bluetooth", label: "ANT+ vs Bluetooth for fitness sensors" },
-    verifiedOn: "2026-08-14",
+    verifiedOn: "2026-11-18",
   },
   {
     date: "2024-05-01",
