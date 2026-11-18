@@ -40,9 +40,9 @@
     "quote": "For select providers, Sahha also connects directly through their cloud API"
   },
   {
-    "claim": "Those integrations \"are in public beta and are Sandbox only\".",
+    "claim": "Those integrations: Garmin, Oura and WHOOP, each marked \"GA\" in its docs (2026-11-18).",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Integrations are in public beta and are Sandbox only"
+    "quote": "Garmin garmin Watch Cloud OAuth GA Garmin approval required Oura oura Ring Cloud OAuth GA self sign-up WHOOP whoop Band Cloud OAuth GA self sign-up"
   },
   {
     "claim": "Terra entry: $399 a month billed annually, or $499 monthly, with 100,000 credits.",
@@ -292,7 +292,7 @@
   {
     "claim": "FAQ: Garmin's needs Garmin's approval.",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Beta Garmin approval required"
+    "quote": "GA Garmin approval required"
   },
   {
     "claim": "FAQ: Terra's integrations table marks Garmin as Required.",
