@@ -35,8 +35,24 @@ export const RESULT_SCHEMA = "https://aifitnessapi.com/tools/pose-benchmark#resu
  *  from the body and only the machine-readable block is sent. */
 export const MAX_URL_LENGTH = 7500;
 
-const MODELS = ["Pose Landmarker lite", "Pose Landmarker full", "Pose Landmarker heavy"];
+/**
+ * Every model the page can time, with the family that runs it. A v1 record
+ * written before 2026-11-19 has no `family` on its rows; every model it could
+ * name was a MediaPipe one, so such a row is read as `mediapipe` and nothing
+ * else changes. A MoveNet row must say `movenet`: only the newer page writes
+ * one, and it always does.
+ */
+export const MODEL_FAMILY = {
+  "Pose Landmarker lite": "mediapipe",
+  "Pose Landmarker full": "mediapipe",
+  "Pose Landmarker heavy": "mediapipe",
+  "MoveNet SinglePose Lightning": "movenet",
+  "MoveNet SinglePose Thunder": "movenet",
+};
+/** Display order: MediaPipe lite, full, heavy, then MoveNet Lightning, Thunder. */
+export const MODEL_ORDER = Object.keys(MODEL_FAMILY);
 const DELEGATES = ["GPU", "CPU"];
+const SEMVER = /^\d+\.\d+\.\d+/;
 const num = (v) => (typeof v === "number" && Number.isFinite(v) ? Math.round(v * 10) / 10 : null);
 const str = (v, max = 300) => (typeof v === "string" ? v.slice(0, max) : null);
 
@@ -44,10 +60,16 @@ const str = (v, max = 300) => (typeof v === "string" ? v.slice(0, max) : null);
  * The machine-readable record of one run. Only what the page measured and
  * what the browser reported; nothing is added.
  */
-export function resultRecord({ runtime, measuredAt, input, device, rows }) {
+/** @param {{ runtime: string, tfjs?: { tfjs: string, poseDetection: string } | null, measuredAt: string, input: string, device: any, rows: any[] }} run */
+export function resultRecord({ runtime, tfjs = null, measuredAt, input, device, rows }) {
+  const ok = rows.filter((r) => r.status === "ok");
+  const hasMoveNet = ok.some((r) => MODEL_FAMILY[r.model] === "movenet");
   return {
     $schema: RESULT_SCHEMA,
+    /** @mediapipe/tasks-vision version (the field every v1 record has). */
     runtime: str(runtime, 80),
+    /** TensorFlow.js and pose-detection versions; only when a MoveNet row is present. */
+    tfjs: hasMoveNet && tfjs ? { tfjs: str(tfjs.tfjs, 40), poseDetection: str(tfjs.poseDetection, 40) } : null,
     measuredAt: str(measuredAt, 40),
     input: str(input, 200),
     device: device
@@ -61,19 +83,18 @@ export function resultRecord({ runtime, measuredAt, input, device, rows }) {
           webgpu: str(device.webgpu, 20),
         }
       : null,
-    rows: rows
-      .filter((r) => r.status === "ok")
-      .map((r) => ({
-        model: r.model,
-        delegate: r.delegate,
-        frames: r.frames ?? null,
-        loadMs: num(r.loadMs),
-        medianMs: num(r.medianMs),
-        p95Ms: num(r.p95Ms),
-        meanMs: num(r.meanMs),
-        loopFps: num(r.loopFps),
-        poseFrames: r.poseFrames ?? null,
-      })),
+    rows: ok.map((r) => ({
+      model: r.model,
+      family: MODEL_FAMILY[r.model] ?? null,
+      delegate: r.delegate,
+      frames: r.frames ?? null,
+      loadMs: num(r.loadMs),
+      medianMs: num(r.medianMs),
+      p95Ms: num(r.p95Ms),
+      meanMs: num(r.meanMs),
+      loopFps: num(r.loopFps),
+      poseFrames: r.poseFrames ?? null,
+    })),
   };
 }
 
@@ -126,21 +147,29 @@ export function parseIssueBody(body) {
   const rows = [];
   for (const [i, r] of (data.rows ?? []).entries()) {
     const bad = [];
-    if (!MODELS.includes(r.model)) bad.push("model");
+    const fam = Object.hasOwn(MODEL_FAMILY, r.model) ? MODEL_FAMILY[r.model] : null;
+    if (!fam) bad.push("model");
+    // Absent family: a row from before families existed, which can only be MediaPipe.
+    const family = r.family === undefined && fam === "mediapipe" ? "mediapipe" : r.family;
+    if (fam && family !== fam) bad.push("family");
     if (!DELEGATES.includes(r.delegate)) bad.push("delegate");
     for (const k of ["loadMs", "medianMs", "p95Ms", "meanMs"]) if (typeof r[k] !== "number" || !(r[k] > 0) || r[k] > 600000) bad.push(k);
     if (typeof r.frames !== "number" || !Number.isInteger(r.frames) || r.frames < 10) bad.push("frames");
     if (r.loopFps !== null && (typeof r.loopFps !== "number" || r.loopFps <= 0 || r.loopFps > 1000)) bad.push("loopFps");
     if (typeof r.medianMs === "number" && typeof r.p95Ms === "number" && r.p95Ms < r.medianMs) bad.push("p95 below median");
     if (bad.length) errors.push(`row ${i}: ${bad.join(", ")}`);
-    else rows.push({ ...r, poseFrames: Number.isInteger(r.poseFrames) ? r.poseFrames : null });
+    else rows.push({ ...r, family, poseFrames: Number.isInteger(r.poseFrames) ? r.poseFrames : null });
   }
-  if (typeof data.runtime !== "string" || !/^\d+\.\d+\.\d+/.test(data.runtime)) errors.push("runtime version");
+  if (typeof data.runtime !== "string" || !SEMVER.test(data.runtime)) errors.push("runtime version");
+  const needsTfjs = rows.some((r) => r.family === "movenet");
+  const tfjsOk = data.tfjs && typeof data.tfjs.tfjs === "string" && SEMVER.test(data.tfjs.tfjs) && typeof data.tfjs.poseDetection === "string" && SEMVER.test(data.tfjs.poseDetection);
+  if (needsTfjs && !tfjsOk) errors.push("tfjs runtime version");
   if (errors.length) return { ok: false, errors };
   return {
     ok: true,
     record: {
       runtime: data.runtime,
+      tfjs: needsTfjs ? { tfjs: data.tfjs.tfjs, poseDetection: data.tfjs.poseDetection } : null,
       measuredAt: typeof data.measuredAt === "string" ? data.measuredAt : null,
       input: typeof data.input === "string" ? data.input : null,
       device: data.device ?? null,

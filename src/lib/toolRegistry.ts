@@ -197,7 +197,7 @@ export const TOOL_PLANNERS: Tool[] = [
     path: "/tools/pose-benchmark",
     name: "Pose model benchmark",
     blurb:
-      "Time MediaPipe Pose Landmarker lite, full and heavy on your own device, copy the latency table as markdown and submit it to the leaderboard.",
+      "Time MediaPipe Pose Landmarker lite, full and heavy, and MoveNet Lightning and Thunder, on your own device, copy the latency table as markdown and submit it to the leaderboard.",
   },
   {
     path: "/tools/rep-counter-playground",

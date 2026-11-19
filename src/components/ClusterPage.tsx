@@ -14,6 +14,7 @@ import FaqJump from "@/components/FaqJump";
 import NextSteps from "@/components/NextSteps";
 import MetricFacts from "@/components/MetricFacts";
 import MetricPlatforms from "@/components/MetricPlatforms";
+import PoseModelFiles from "@/components/PoseModelFiles";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
 import SeeAlsoCallout from "@/components/SeeAlsoCallout";
@@ -86,7 +87,7 @@ const TOOLS = {
   poseBenchmark: {
     href: "/tools/pose-benchmark",
     name: "Pose model benchmark",
-    does: "time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
+    does: "time MediaPipe Pose Landmarker lite, full and heavy, and MoveNet Lightning and Thunder, on your own device and copy the latency table as markdown.",
   },
   heartRate: {
     href: "/tools/heart-rate-lab",
@@ -732,6 +733,11 @@ export default function ClusterPage({
             from data/metricTypeMap.ts. Renders nothing off the /data guides
             the map covers. */}
         {!tr && <MetricPlatforms path={path} />}
+
+        {/* The Pose Landmarker .task files as a download measured them, from
+            data/poseModelFiles.ts. Renders nothing off that one page, and is
+            English-only: it is not part of the translatable body. */}
+        {!tr && <PoseModelFiles path={path} />}
 
         {entry.faqs.length > 0 && (
           <section className="mt-14">

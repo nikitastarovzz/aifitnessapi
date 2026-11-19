@@ -16,12 +16,9 @@
  *    downloads all three from that same path, and each answered HTTP 200 with
  *    `access-control-allow-origin: *` and the byte size recorded below.
  *
- * MoveNet is not here. @tensorflow-models/pose-detection 2.1.3 (the latest
- * release on the npm registry) loads its MoveNet weights from tfhub.dev by
- * default (the package's own constants, and the README's `modelUrl` option),
- * and tfhub.dev could not be reached to verify on VERIFIED_ON. TensorFlow's
- * hosted demo loads the same tfhub.dev URLs. No other weight URL is
- * documented, so the model is left out rather than pointed at a guessed one.
+ * MoveNet (added 2026-11-19, MOVENET_VERIFIED_ON) runs through TensorFlow.js
+ * and @tensorflow-models/pose-detection, loaded as pinned UMD scripts from
+ * the same CDN, only when the reader ticks a MoveNet row; see MOVENET_MODELS.
  */
 
 export const VERIFIED_ON = "2026-10-31";
@@ -80,3 +77,84 @@ export const BENCH_MODELS: BenchModel[] = [
 export function mib(bytes: number): string {
   return `${(bytes / 1048576).toFixed(1)} MiB`;
 }
+
+/* ── MoveNet, through TensorFlow.js ─────────────────────────────────────── */
+
+/**
+ * Checked on MOVENET_VERIFIED_ON:
+ *
+ *  - versions against the npm registry: @tensorflow-models/pose-detection
+ *    2.1.3 is its `latest` dist-tag (published 2023-08-29) and declares
+ *    peer dependencies @tensorflow/tfjs-core, -converter, -backend-webgl and
+ *    -backend-wasm `^4.10.0`; 4.22.0 is the `latest` of each of those
+ *    (published 2024-10-21);
+ *  - script paths against those versions' tarballs from the registry: each
+ *    ships the dist/*.min.js named below as its `unpkg`/`jsdelivr` entry, and
+ *    tfjs-backend-wasm ships its .wasm binaries in dist/, which is what
+ *    setWasmPaths() is pointed at;
+ *  - the weight URLs against TensorFlow's own source:
+ *    https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/constants.ts
+ *    declares MOVENET_SINGLEPOSE_LIGHTNING_URL =
+ *    'https://tfhub.dev/google/tfjs-model/movenet/singlepose/lightning/4' and
+ *    MOVENET_SINGLEPOSE_THUNDER_URL = '.../singlepose/thunder/4', the same
+ *    strings are in the 2.1.3 dist bundle, and the package's MoveNet README
+ *    (pose-detection/src/movenet/README.md) says that without `modelUrl` "it
+ *    will load the model specified by modelType from tf.hub". The page passes
+ *    these URLs as `modelUrl` so the address it times is the one written here.
+ *
+ * NOT verified on MOVENET_VERIFIED_ON: that tfhub.dev still serves those
+ * weights. tfhub.dev (and cdn.jsdelivr.net) were refused by the development
+ * environment's network policy that day, so the page was exercised with the
+ * CDN scripts served from the registry tarballs and could not download the
+ * weights; the component reports that failure as a row, never a number.
+ */
+export const MOVENET_VERIFIED_ON = "2026-11-19";
+
+export const TFJS_VERSION = "4.22.0";
+export const POSE_DETECTION_VERSION = "2.1.3";
+
+const JSD = "https://cdn.jsdelivr.net/npm";
+/** Loaded in this order: core, then what registers on it, then the detector. */
+export const TFJS_SCRIPTS = {
+  core: `${JSD}/@tensorflow/tfjs-core@${TFJS_VERSION}/dist/tf-core.min.js`,
+  converter: `${JSD}/@tensorflow/tfjs-converter@${TFJS_VERSION}/dist/tf-converter.min.js`,
+  webgl: `${JSD}/@tensorflow/tfjs-backend-webgl@${TFJS_VERSION}/dist/tf-backend-webgl.min.js`,
+  wasm: `${JSD}/@tensorflow/tfjs-backend-wasm@${TFJS_VERSION}/dist/tf-backend-wasm.min.js`,
+  poseDetection: `${JSD}/@tensorflow-models/pose-detection@${POSE_DETECTION_VERSION}/dist/pose-detection.min.js`,
+} as const;
+/** Where the WASM backend fetches its .wasm binaries (setWasmPaths prefix). */
+export const TFJS_WASM_PATH = `${JSD}/@tensorflow/tfjs-backend-wasm@${TFJS_VERSION}/dist/`;
+
+/**
+ * The delegate the reader ticks, mapped to the TF.js backend closest to it:
+ * MediaPipe's GPU delegate runs on WebGL, and its CPU delegate runs in
+ * WebAssembly, so GPU → webgl and CPU → wasm.
+ */
+export const TFJS_BACKEND = { GPU: "webgl", CPU: "wasm" } as const;
+
+export type MoveNetModel = {
+  id: "lightning" | "thunder";
+  name: string;
+  /** poseDetection.movenet.modelType value, as the 2.1.3 bundle defines it. */
+  modelType: "SinglePose.Lightning" | "SinglePose.Thunder";
+  url: string;
+  /** Input resolution, MOVENET_SINGLEPOSE_*_RESOLUTION in constants.ts. */
+  input: number;
+};
+
+export const MOVENET_MODELS: MoveNetModel[] = [
+  {
+    id: "lightning",
+    name: "MoveNet SinglePose Lightning",
+    modelType: "SinglePose.Lightning",
+    url: "https://tfhub.dev/google/tfjs-model/movenet/singlepose/lightning/4",
+    input: 192,
+  },
+  {
+    id: "thunder",
+    name: "MoveNet SinglePose Thunder",
+    modelType: "SinglePose.Thunder",
+    url: "https://tfhub.dev/google/tfjs-model/movenet/singlepose/thunder/4",
+    input: 256,
+  },
+];

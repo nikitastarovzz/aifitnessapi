@@ -1,6 +1,6 @@
 import { POSE_BENCHMARK_RESULTS_IMPORTED_ON } from "@/data/poseBenchmarkResults";
 import { ACCEPT_LABEL, REPO, TITLE_PREFIX } from "@/lib/poseBenchmarkSubmission.mjs";
-import { LEADERBOARD_TEMPLATE_URL, leaderboardGroups, leaderboardMs } from "@/lib/poseLeaderboard";
+import { LEADERBOARD_TEMPLATE_URL, leaderboardDelegate, leaderboardGroups, leaderboardMs, leaderboardRuntime } from "@/lib/poseLeaderboard";
 
 /**
  * The crowdsourced leaderboard for /tools/pose-benchmark, rendered at build
@@ -8,7 +8,8 @@ import { LEADERBOARD_TEMPLATE_URL, leaderboardGroups, leaderboardMs } from "@/li
  * scripts/import-pose-benchmark-results.mjs from accepted GitHub issues).
  *
  * Every row links the public issue it came from. Rows are grouped by model
- * and delegate and ordered by median latency within a group, because that is
+ * (MediaPipe Pose Landmarker or MoveNet) and delegate and ordered by median
+ * latency within a group, because that is
  * the only comparison the numbers support: one run on one device each, so
  * the order says which submitted device was faster on that run, not which
  * hardware is better. Nothing is averaged, filled in or invented, and when
@@ -54,7 +55,7 @@ export default function PoseLeaderboard() {
           {ordered.map((g) => (
             <div key={`${g.model}-${g.delegate}`}>
               <h3 className="text-lg font-semibold text-[var(--fg)]">
-                {g.model}, {g.delegate} delegate
+                {g.model}, {leaderboardDelegate(g.model, g.delegate)}
               </h3>
               <div className="mt-2 overflow-x-auto">
                 <table className="w-full min-w-[640px] text-left text-sm">
@@ -77,7 +78,7 @@ export default function PoseLeaderboard() {
                         <td className="py-2 pr-3 text-right font-mono">{ms(row.medianMs)}</td>
                         <td className="py-2 pr-3 text-right font-mono">{ms(row.p95Ms)}</td>
                         <td className="py-2 pr-3 text-right font-mono">{row.loopFps === null ? "—" : row.loopFps.toFixed(1)}</td>
-                        <td className="py-2 pr-3 font-mono text-xs">{sub.runtime}</td>
+                        <td className="py-2 pr-3 font-mono text-xs">{leaderboardRuntime(sub, row)}</td>
                         <td className="py-2">
                           <a href={sub.issueUrl} className={linkCls} rel="noopener">
                             #{sub.issue}
