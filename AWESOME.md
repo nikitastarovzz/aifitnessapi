@@ -1,6 +1,6 @@
 # Awesome Fitness APIs
 
-> A list of 25 fitness and health APIs and platforms, 20 open-source libraries, 176 MCP servers, 19 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
+> A list of 25 fitness and health APIs and platforms, 20 open-source libraries, 176 MCP servers, 20 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
 
 The same list is served at [aifitnessapi.com/awesome](https://aifitnessapi.com/awesome), with a markdown copy at [/awesome.md](https://aifitnessapi.com/awesome.md).
 
@@ -378,6 +378,7 @@ Datasets aifitnessapi.com publishes, each as JSON and CSV under the license it s
 - [Health Connect Permission Strings 2026](https://aifitnessapi.com/datasets#health-connect-permissions-2026) - JSON at https://aifitnessapi.com/datasets/health-connect-permissions-2026.json, CSV beside it; CC BY 4.0.
 - [Health Connect Record Types 2026](https://aifitnessapi.com/datasets#health-connect-records-2026) - JSON at https://aifitnessapi.com/datasets/health-connect-records-2026.json, CSV beside it; CC BY 4.0.
 - [Health Data Type Matrix 2026 (HealthKit ↔ Health Connect)](https://aifitnessapi.com/datasets#health-data-type-matrix-2026) - JSON at https://aifitnessapi.com/datasets/health-data-type-matrix-2026.json, CSV beside it; CC BY 4.0.
+- [Health Library Support 2026 (HealthKit and Health Connect types each wrapper library maps)](https://aifitnessapi.com/datasets#health-library-support-2026) - JSON at https://aifitnessapi.com/datasets/health-library-support-2026.json, CSV beside it; CC BY 4.0.
 - [Health and Fitness MCP Servers 2026](https://aifitnessapi.com/datasets#health-mcp-servers-2026) - JSON at https://aifitnessapi.com/datasets/health-mcp-servers-2026.json, CSV beside it; CC BY 4.0.
 - [HealthKit Metadata Keys 2026](https://aifitnessapi.com/datasets#healthkit-metadata-keys-2026) - JSON at https://aifitnessapi.com/datasets/healthkit-metadata-keys-2026.json, CSV beside it; CC BY 4.0.
 - [HealthKit Type Identifiers 2026](https://aifitnessapi.com/datasets#healthkit-type-identifiers-2026) - JSON at https://aifitnessapi.com/datasets/healthkit-type-identifiers-2026.json, CSV beside it; CC BY 4.0.

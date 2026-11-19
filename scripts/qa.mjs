@@ -358,6 +358,7 @@ if (fs.existsSync(matrixPath)) {
     "bluetooth-fitness-gatt-2026",
     "workout-types-crosswalk-2026",
     "exercise-form-rules-2026",
+    "health-library-support-2026",
     "exercise-taxonomy-crosswalk-2026",
     "fitness-api-docs-drift-2026",
     "fitness-api-shutdown-notice-2026",

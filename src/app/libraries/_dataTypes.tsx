@@ -1,0 +1,198 @@
+import Link from "next/link";
+import LibrarySupportTable from "@/components/LibrarySupportTable";
+import type { LibrarySupport, LibrarySupportExcluded } from "@/data/healthLibrarySupport";
+import {
+  LIBRARY_DATA_TYPES_DATASET,
+  STORE_LABEL,
+  supportDiff,
+  supportRows,
+  sitePathFor,
+  type StoreDiff,
+} from "@/data/libraryDataTypes";
+
+/**
+ * The "Supported data types" blocks of the /libraries routes, rendered from
+ * the generated src/data/healthLibrarySupport.ts. A private module (the
+ * leading underscore keeps it out of the route tree).
+ */
+
+const EXT = { rel: "nofollow noreferrer", target: "_blank" } as const;
+const LINK = "font-medium text-brand-600 hover:text-brand-500";
+
+function refLabel(s: LibrarySupport): string {
+  return s.ref.kind === "tag" ? `tag ${s.ref.tag} (commit ${s.ref.sha.slice(0, 12)})` : `default-branch head ${s.ref.sha.slice(0, 12)}`;
+}
+
+function countLine(s: LibrarySupport): string {
+  const parts: string[] = [];
+  if (s.stores.includes("healthkit")) parts.push(`${s.counts.healthkit} HealthKit identifier${s.counts.healthkit === 1 ? "" : "s"}`);
+  if (s.stores.includes("healthConnect"))
+    parts.push(`${s.counts.healthConnect} Health Connect record class${s.counts.healthConnect === 1 ? "" : "es"}`);
+  return parts.join(" and ");
+}
+
+export function LibraryDataTypes({ s }: { s: LibrarySupport }) {
+  const versionDiffers = s.sourceVersion !== null && s.sourceVersion !== s.registryVersion;
+  return (
+    <section id="data-types" className="mt-12 scroll-mt-24">
+      <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Supported data types</h2>
+      <p className="mt-3 text-[var(--fg)]">
+        <span className="font-mono">{s.name}</span> maps <strong>{countLine(s)}</strong> in the source read at{" "}
+        <a href={`${s.repoUrl}/tree/${s.ref.sha}`} className={LINK} {...EXT}>
+          {refLabel(s)}
+        </a>{" "}
+        on {s.ref.readOn}.
+      </p>
+      <p className="mt-2 text-sm text-[var(--muted)]">
+        {s.ref.kind === "head" && <>No tag in the repository names the registry&rsquo;s latest version, {s.registryVersion}, so the default branch was read. </>}
+        {s.sourceVersionEvidence && (
+          <>
+            The package manifest at that commit says{" "}
+            <a href={s.sourceVersionEvidence.url} className={LINK} {...EXT}>
+              <code className="font-mono text-[0.85em]">{s.sourceVersionEvidence.quote}</code>
+            </a>
+            {versionDiffers ? (
+              <>
+                , which is not the registry&rsquo;s latest ({s.registryVersion}): this list describes that commit, and a type in it may be missing
+                from the published package.
+              </>
+            ) : (
+              <>, the registry&rsquo;s latest.</>
+            )}{" "}
+          </>
+        )}
+        Files read: {s.method}
+      </p>
+      <p className="mt-2 text-sm text-[var(--muted)]">
+        A type counts only when the file names it, outside a comment, exactly as this site&rsquo;s{" "}
+        <Link href="/healthkit-identifiers" className={LINK}>
+          HealthKit identifier list
+        </Link>{" "}
+        or{" "}
+        <Link href="/health-connect" className={LINK}>
+          Health Connect record list
+        </Link>{" "}
+        spells it. Each row links to the line it was read from. This is what those files map, read by a script; it is not a
+        test of every call the library makes.
+      </p>
+
+      <LibrarySupportTable rows={supportRows(s)} />
+
+      {s.unmatched.length > 0 && (
+        <details className="mt-6 rounded-xl border border-[var(--border)] p-4 text-sm">
+          <summary className="cursor-pointer font-semibold text-[var(--fg)]">
+            {s.unmatched.length} more name{s.unmatched.length === 1 ? "" : "s"} the files use that are not in this site&rsquo;s lists
+          </summary>
+          <p className="mt-2 text-[var(--muted)]">
+            Correlation types (blood pressure, food) and types this site&rsquo;s lists do not hold are shown as the source writes
+            them, and left out of the counts above rather than matched to a neighbour.
+          </p>
+          <ul className="mt-3 space-y-2">
+            {s.unmatched.map((u) => (
+              <li key={`${u.store}-${u.token}`}>
+                <code className="break-all font-mono text-[12px] text-[var(--fg)]">{u.token}</code>{" "}
+                <a href={u.url} className="break-all font-mono text-[11px] text-brand-600 hover:text-brand-500" {...EXT}>
+                  {u.path}:{u.line}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+
+      <p className="mt-4 text-xs text-[var(--muted)]">
+        Every library&rsquo;s list, with each source line, is in the{" "}
+        <Link href={LIBRARY_DATA_TYPES_DATASET} className={LINK}>
+          wrapper-library data types dataset
+        </Link>{" "}
+        (JSON and CSV), regenerated by <code className="font-mono">scripts/fetch-health-library-support.mjs</code>.
+      </p>
+    </section>
+  );
+}
+
+export function LibraryDataTypesExcluded({ e }: { e: LibrarySupportExcluded }) {
+  return (
+    <section id="data-types" className="mt-12 scroll-mt-24">
+      <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Supported data types</h2>
+      <p className="mt-3 text-sm text-[var(--muted)]">
+        Not read for the{" "}
+        <Link href={LIBRARY_DATA_TYPES_DATASET} className={LINK}>
+          wrapper-library data types dataset
+        </Link>
+        : {e.reason}
+        {e.evidence && (
+          <>
+            {" "}
+            (
+            <a href={e.evidence.url} className={LINK} {...EXT}>
+              <code className="font-mono text-[0.85em]">{e.evidence.quote}</code>
+            </a>
+            )
+          </>
+        )}
+      </p>
+    </section>
+  );
+}
+
+function NameList({ items }: { items: { store: "healthkit" | "healthConnect"; id: string; name: string }[] }) {
+  if (items.length === 0) return <p className="mt-2 text-sm text-[var(--muted)]">None.</p>;
+  return (
+    <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+      {items.map((i) => (
+        <li key={i.id}>
+          <Link href={sitePathFor(i)} className="font-mono text-[12px] text-brand-600 hover:text-brand-500">
+            {i.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function DiffBlock({ label, items, total }: { label: string; items: { store: "healthkit" | "healthConnect"; id: string; name: string }[]; total: number }) {
+  return (
+    <details className="rounded-xl border border-[var(--border)] p-4">
+      <summary className="cursor-pointer text-sm font-semibold text-[var(--fg)]">
+        {label}: {items.length}
+        {total > 0 && <span className="font-normal text-[var(--muted)]"> of {total}</span>}
+      </summary>
+      <NameList items={items} />
+    </details>
+  );
+}
+
+/** The "only in A / only in B / both" summary on a /libraries/compare page. */
+export function LibraryDataTypesDiff({ a, b }: { a: LibrarySupport; b: LibrarySupport }) {
+  const diffs = supportDiff(a, b);
+  if (diffs.length === 0) return null;
+  const union = (d: StoreDiff) => d.onlyA.length + d.onlyB.length + d.both.length;
+  return (
+    <section id="data-types" className="mt-12 scroll-mt-24">
+      <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Data types each one maps</h2>
+      <p className="mt-2 text-sm text-[var(--muted)]">
+        Read by a script from each library&rsquo;s source ({a.name} at {refLabel(a)}, {b.name} at {refLabel(b)}) and matched exactly
+        against this site&rsquo;s identifier lists. The full lists, each row with its source line, are on{" "}
+        <Link href={`/libraries/${a.slug}#data-types`} className={LINK}>
+          {a.name}
+        </Link>{" "}
+        and{" "}
+        <Link href={`/libraries/${b.slug}#data-types`} className={LINK}>
+          {b.name}
+        </Link>
+        &rsquo;s pages. A type one library lacks here may still be reachable through a generic call the script does not read.
+      </p>
+      {diffs.map(({ store, diff }) => (
+        <div key={store} className="mt-6">
+          <h3 className="text-base font-semibold text-[var(--fg)]">{STORE_LABEL[store]}</h3>
+          <div className="mt-3 grid gap-3 md:grid-cols-3">
+            <DiffBlock label={`Only ${a.name}`} items={diff.onlyA} total={union(diff)} />
+            <DiffBlock label={`Only ${b.name}`} items={diff.onlyB} total={union(diff)} />
+            <DiffBlock label="Both" items={diff.both.map((x) => x.a)} total={union(diff)} />
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+}

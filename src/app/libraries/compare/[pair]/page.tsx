@@ -23,6 +23,8 @@ import { absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 import { NoteItem, githubUrl, sinceRead } from "../../_shared";
+import { librarySupport } from "@/data/libraryDataTypes";
+import { LibraryDataTypesDiff } from "../../_dataTypes";
 
 /**
  * Two packages that answer the same need on the same platform, side by side.
@@ -99,6 +101,9 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
   if (!c) notFound();
   const A = lib(c.a);
   const B = lib(c.b);
+  // Shown only when the support dataset read both libraries.
+  const supportA = librarySupport(c.a);
+  const supportB = librarySupport(c.b);
 
   const path = `${LIBRARIES_BASE}/compare/${c.slug}`;
   const url = absoluteUrl(path);
@@ -217,6 +222,8 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
             </table>
           </div>
         </section>
+
+        {supportA && supportB && <LibraryDataTypesDiff a={supportA} b={supportB} />}
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">What each README says</h2>
