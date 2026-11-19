@@ -178,6 +178,14 @@ stored signup record carries `source: money-<section>`. Before 2026-11-05 the
 same pages sent `cta-<slug>` / `spoke-inline` from a link to `/#subscribe`;
 compare the two ids across the change date, not within one range.
 
+Added 2026-11-19 (access reports). A plain link to a prefilled GitHub issue
+(`lib/accessReportSubmission.mjs` `buildIssueUrl`); the event carries only the
+fixed id, never anything the reader writes in the issue.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `access-report-<vendor>`: `access-report-garmin`, `access-report-whoop`, `access-report-oura`, `access-report-strava`, `access-report-polar`, `access-report-coros`, `access-report-suunto`, `access-report-withings`, `access-report-fitbit`, `access-report-samsung-health`, `access-report-dexcom`, `access-report-wahoo` | `access-reports` | The "Report your application" button in the access-reports section (`components/AccessReports`) on each vendor's English `/integrate/<vendor>-api` page, and `access-report-garmin` also on `/fix/garmin-api-approval` | opening a new GitHub issue in the site's repository with the `[access-report]` title and the vendor filled in |
+
 ## UTM on links to the funder
 
 Every placement link to kinestex.com is built by `funderHref(placement, path)`

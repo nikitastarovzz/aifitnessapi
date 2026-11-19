@@ -14,6 +14,8 @@ import FaqJump from "@/components/FaqJump";
 import NextSteps from "@/components/NextSteps";
 import MetricFacts from "@/components/MetricFacts";
 import MetricPlatforms from "@/components/MetricPlatforms";
+import AccessReports from "@/components/AccessReports";
+import { vendorForPath } from "@/lib/accessReportSubmission.mjs";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
 import SeeAlsoCallout from "@/components/SeeAlsoCallout";
@@ -407,6 +409,7 @@ export default function ClusterPage({
   // each one, without the reader having to search for the name.
   const products = apisOnPage(basePath, entry.slug);
   const toolKey = TOOL_FOR_PATH[path];
+  const accessVendor = tr ? null : vendorForPath(path);
   const tool = toolKey ? TOOLS[toolKey] : undefined;
   // /questions/<cluster> is generated for every populated cluster, and a spoke
   // rendering here means its cluster is populated. Counted exactly as that
@@ -732,6 +735,12 @@ export default function ClusterPage({
             from data/metricTypeMap.ts. Renders nothing off the /data guides
             the map covers. */}
         {!tr && <MetricPlatforms path={path} />}
+
+        {/* Developers' reports of applying for this vendor's API access, on the
+            vendor's English /integrate page and /fix/garmin-api-approval
+            (lib/accessReportSubmission VENDORS). Never on a translation: it is
+            English and outside the translated text. */}
+        {!tr && accessVendor && <AccessReports vendor={accessVendor} />}
 
         {entry.faqs.length > 0 && (
           <section className="mt-14">
