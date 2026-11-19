@@ -192,12 +192,12 @@
   {
     "claim": "Open Wearables Core: free; MIT-licensed software you host.",
     "url": "https://openwearables.io/pricing",
-    "quote": "For teams building their first wearable features. You run the open-source platform yourself. $0 Forever"
+    "quote": "For engineering teams that set up and run Open Wearables themselves, with community support. $0 Forever"
   },
   {
-    "claim": "Pro, from $999 a month per deployment, adds health scores and other licensed modules; Enterprise is a custom annual agreement.",
+    "claim": "Open Wearables: a one-time Deployment service starts \"From $4,800\" (2026-11-18).",
     "url": "https://openwearables.io/pricing",
-    "quote": "For products in production. Licensed modules, with our engineers behind your deployment. From $999 a month, per deployment"
+    "quote": "From $4,800, one-time. Production and staging in your cloud and region, providers onboarded under your credentials."
   },
   {
     "claim": "LexisNexis Human API offers a contact form.",
@@ -403,5 +403,25 @@
     "claim": "FAQ: Junction's sandbox is free.",
     "url": "https://www.junction.com/pricing",
     "quote": "The sandbox and developer docs are free, so your team can build and test a full integration before committing to a plan."
+  },
+  {
+    "claim": "Open Wearables: health scores and other modules are add-ons to Core.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Health scores, the health agent, the care panel and the other modules can each be added to Core on their own. Enterprise includes all of them."
+  },
+  {
+    "claim": "Open Wearables: Enterprise is a custom-priced license.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise License For organisations that need Open Wearables built around their use case, with the security and support a production product requires. Custom"
+  },
+  {
+    "claim": "Open Wearables: Enterprise is not a per-user price.",
+    "url": "https://openwearables.io/faq",
+    "quote": "Enterprise is a license rather than a per-user price"
+  },
+  {
+    "claim": "Open Wearables: Core is free under the MIT license.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Is Core really free? Yes. MIT license, full source, no trial window."
   }
 ]

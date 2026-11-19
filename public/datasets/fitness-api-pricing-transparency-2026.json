@@ -49,10 +49,10 @@
   "stats": {
     "totalItems": 32,
     "byClass": {
-      "no-published-price": 5,
+      "no-published-price": 6,
       "free": 6,
       "excluded": 7,
-      "published-price": 14
+      "published-price": 13
     }
   },
   "items": [
@@ -270,12 +270,12 @@
       "vendor": "Open Wearables",
       "category": "aggregator",
       "categoryLabel": "Health-data aggregators",
-      "class": "published-price",
-      "classLabel": "Publishes a price",
-      "line": "From $999 a month, per deployment",
+      "class": "no-published-price",
+      "classLabel": "No published price",
+      "line": "Enterprise License For organisations that need Open Wearables built around their use case",
       "url": "https://openwearables.io/pricing",
       "evidenceFile": "ops/sources/evidence/pricing-health-data-aggregator-pricing.json",
-      "freeEntry": "You run the open-source platform yourself. $0 Forever",
+      "freeEntry": "Is Core really free? Yes. MIT license, full source, no trial window.",
       "unpricedTier": null,
       "excluded": null,
       "pricingPage": "/pricing/health-data-aggregator-pricing"

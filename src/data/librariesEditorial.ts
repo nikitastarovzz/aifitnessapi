@@ -27,7 +27,7 @@ import { LIBRARIES, LIBRARIES_FETCHED_ON, type Library, type LibraryGroup } from
 export const LIBRARIES_BASE = "/libraries";
 
 /** The date the editorial notes below were checked against their sources. */
-export const LIBRARIES_VERIFIED_ON = "2026-10-03";
+export const LIBRARIES_VERIFIED_ON: string = "2026-10-03";
 
 /** First commit of these pages. datePublished for every /libraries route. */
 export const LIBRARIES_PUBLISHED = "2026-10-03";

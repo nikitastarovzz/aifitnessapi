@@ -130,9 +130,9 @@
     "quote": "For select providers, Sahha also connects directly through their cloud API"
   },
   {
-    "claim": "These integrations \"are in public beta and are Sandbox only\".",
+    "claim": "As of November 18, 2026, its docs list Garmin, Oura and WHOOP, each marked \"GA\".",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Integrations are in public beta and are Sandbox only"
+    "quote": "Garmin garmin Watch Cloud OAuth GA Garmin approval required Oura oura Ring Cloud OAuth GA self sign-up WHOOP whoop Band Cloud OAuth GA self sign-up"
   },
   {
     "claim": "Each uses an app you register with the provider (\"Create an app with the provider\").",
@@ -140,14 +140,14 @@
     "quote": "Create an app with the provider"
   },
   {
-    "claim": "Garmin's needs Garmin's approval.",
+    "claim": "Garmin's with \"Garmin approval required\".",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Beta Garmin approval required"
+    "quote": "GA Garmin approval required"
   },
   {
-    "claim": "Oura and WHOOP are self sign-up.",
+    "claim": "Oura's and WHOOP's with \"self sign-up\".",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Oura oura Ring Cloud OAuth Beta self sign-up WHOOP whoop Band Cloud OAuth Beta self sign-up"
+    "quote": "Oura oura Ring Cloud OAuth GA self sign-up WHOOP whoop Band Cloud OAuth GA self sign-up"
   },
   {
     "claim": "Data retention is 30 days on Starter and 120 days on Pro.",
@@ -205,9 +205,9 @@
     "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
-    "claim": "Sahha's direct cloud integrations are still in beta.",
+    "claim": "Sahha's direct cloud integrations cover Garmin, Oura and WHOOP; the FAQ says all three are GA.",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Integrations are in public beta and are Sandbox only"
+    "quote": "Garmin garmin Watch Cloud OAuth GA Garmin approval required Oura oura Ring Cloud OAuth GA self sign-up WHOOP whoop Band Cloud OAuth GA self sign-up"
   },
   {
     "claim": "FAQ: on October 27, 2026 the page says \"Every plan starts with a 30-day free trial\".",

@@ -94,7 +94,7 @@ Every product in the site's API directory, by category, with how it bills develo
 
 ## Libraries and SDK bridges
 
-Open-source packages for HealthKit, Health Connect and vendor web APIs, read from their registries on 2026-10-03. Each links its registry page; the license is the one the registry states.
+Open-source packages for HealthKit, Health Connect and vendor web APIs, read from their registries on 2026-11-18. Each links its registry page; the license is the one the registry states.
 
 ### React Native
 

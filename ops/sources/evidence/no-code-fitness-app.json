@@ -28,5 +28,255 @@
     "claim": "Managed means your own credentials are optional: the integration works with Terra's credentials, and some also let you use your own.",
     "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration. Some also let you use your own credentials"
+  },
+  {
+    "claim": "ABC Trainerize handles the end-to-end development of the custom branded app.",
+    "url": "https://www.trainerize.com/features/custom-branded-fitness-apps/",
+    "quote": "ABC Trainerize handles the end-to-end development of your custom branded app so that you can focus on what matters most"
+  },
+  {
+    "claim": "Three branding tiers.",
+    "url": "https://www.trainerize.com/features/custom-branded-fitness-apps/",
+    "quote": "With three branding tiers, we have something for everyone."
+  },
+  {
+    "claim": "Your own app name, icon and store listings.",
+    "url": "https://www.trainerize.com/features/custom-branded-fitness-apps/",
+    "quote": "Increase your discoverability with a custom app name, icon, and listings on the Apple and Google Play Stores."
+  },
+  {
+    "claim": "Trainerize lists API access for eligible Studio and Enterprise customers.",
+    "url": "https://www.trainerize.com/llm-info/",
+    "quote": "API access for eligible Studio and Enterprise customers."
+  },
+  {
+    "claim": "Trainerize automates through Zapier.",
+    "url": "https://www.trainerize.com/llm-info/",
+    "quote": "Workflow automation through Zapier."
+  },
+  {
+    "claim": "Trainerize integrates with Apple Health, Google Health, Garmin and Withings.",
+    "url": "https://www.trainerize.com/llm-info/",
+    "quote": "Integrations with wearable and fitness tracking platforms, including Apple Health, Google Health, Garmin, and Withings."
+  },
+  {
+    "claim": "Trainerize integrates with MyFitnessPal and Fitbit.",
+    "url": "https://www.trainerize.com/llm-info/",
+    "quote": "Integrations with nutrition and fitness applications, including MyFitnessPal and Fitbit."
+  },
+  {
+    "claim": "Exercise.com's custom-branded apps cover memberships, workouts, scheduling and payments.",
+    "url": "https://www.exercise.com/platform/custom-branded-apps/",
+    "quote": "launch a fully branded app for memberships, workouts, scheduling, and payments, all in one place."
+  },
+  {
+    "claim": "On iOS, Android and the web.",
+    "url": "https://www.exercise.com/platform/custom-branded-apps/",
+    "quote": "iOS, Android, and web"
+  },
+  {
+    "claim": "Exercise.com prices by quote.",
+    "url": "https://www.exercise.com/platform/pricing/",
+    "quote": "Get a quote today."
+  },
+  {
+    "claim": "Your Move submits the app under your brand.",
+    "url": "https://ymove.app/app/white-label-fitness-app",
+    "quote": "We submit the app under your Brand Name, Developer Name & Icon to the App Stores."
+  },
+  {
+    "claim": "A drag-and-drop editor.",
+    "url": "https://ymove.app/app/white-label-fitness-app",
+    "quote": "Customize style, screen, and app structure with our drag-and-drop editor"
+  },
+  {
+    "claim": "More than 2,200 exercises on video.",
+    "url": "https://ymove.app/",
+    "quote": "Your Move has 2,200 + exercises on video, filmed in our own studio."
+  },
+  {
+    "claim": "Its APIs work with one account and one API key.",
+    "url": "https://ymove.app/",
+    "quote": "All APIs work with one account and one API key."
+  },
+  {
+    "claim": "FitBudd: go live with your branded app on the Pro Plan.",
+    "url": "https://www.fitbudd.com/",
+    "quote": "Go live with your branded app with the Pro Plan in minutes."
+  },
+  {
+    "claim": "Glofox's branded member app: book, buy and manage the account.",
+    "url": "https://www.glofox.com/",
+    "quote": "Give members a seamless way to book, buy, and manage their account through a branded app"
+  },
+  {
+    "claim": "PushPress: a fully built out app with your branding.",
+    "url": "https://www.pushpress.com/",
+    "quote": "A fully built out app for your clients to use with your branding on it"
+  },
+  {
+    "claim": "PushPress delivers your workouts and programs in its app.",
+    "url": "https://www.pushpress.com/",
+    "quote": "You can create custom workouts, programs, benchmarks, videos and more, and deliver them to your members in one easy-to-use app."
+  },
+  {
+    "claim": "FlutterFlow ships one build to the App Store and Google Play.",
+    "url": "https://www.flutterflow.io/",
+    "quote": "One build for the App Store and Google Play"
+  },
+  {
+    "claim": "FlutterFlow: Drop in Dart where you need it.",
+    "url": "https://www.flutterflow.io/",
+    "quote": "Drop in Dart where you need it."
+  },
+  {
+    "claim": "FlutterFlow builds a first version from a description.",
+    "url": "https://www.flutterflow.io/",
+    "quote": "Describe it. A first version is built and checked."
+  },
+  {
+    "claim": "FlutterFlow's API calls take static auth tokens in headers.",
+    "url": "https://docs.flutterflow.io/resources/backend-logic/rest-api/",
+    "quote": "Some services provide you with a static auth token."
+  },
+  {
+    "claim": "FlutterFlow uses JSONPath to pull fields out of a response.",
+    "url": "https://docs.flutterflow.io/resources/backend-logic/rest-api/",
+    "quote": "Using the JSON path, you can retrieve specific data out of the whole JSON response."
+  },
+  {
+    "claim": "FlutterFlow custom code.",
+    "url": "https://docs.flutterflow.io/concepts/custom-code/",
+    "quote": "Custom Code lets you add app-specific logic, custom widget, and native configuration directly in FlutterFlow Studio."
+  },
+  {
+    "claim": "Bubble's API Connector connects to almost any external API.",
+    "url": "https://manual.bubble.io/help-guides/integrations/api/the-api-connector",
+    "quote": "The API Connector lets you connect your Bubble app to almost any external API."
+  },
+  {
+    "claim": "Headers, parameters, a call body; each call an action or a data source.",
+    "url": "https://manual.bubble.io/help-guides/integrations/api/the-api-connector",
+    "quote": "You can set up headers, parameters, and a call body, and each call can be used as an action or as a data source in your app."
+  },
+  {
+    "claim": "Adalo builds from a description.",
+    "url": "https://www.adalo.com/",
+    "quote": "Describe your app and Ada builds the screens, the database and the logic."
+  },
+  {
+    "claim": "Adalo's fitness page quotes $65 a month with unlimited users and records.",
+    "url": "https://www.adalo.com/solutions/fitness-app-builder/",
+    "quote": "Adalo costs $65/mo with unlimited users and records."
+  },
+  {
+    "claim": "Adalo publishes to the App Store, Google Play and the web from one build.",
+    "url": "https://www.adalo.com/solutions/fitness-app-builder/",
+    "quote": "Deploy your fitness app as a native iOS app on the Apple App Store, a native Android app on Google Play, and a web app: all from a single build."
+  },
+  {
+    "claim": "Adalo custom actions.",
+    "url": "https://www.adalo.com/solutions/fitness-app-builder/",
+    "quote": "Add custom actions for payment processing, email, and calendar sync."
+  },
+  {
+    "claim": "Adalo External Collections connect almost all JSON REST APIs that return an array.",
+    "url": "https://www.adalo.com/features/external-collections/",
+    "quote": "We support almost all JSON REST APIs via HTTP as long as it returns an array of results, records, items, etc."
+  },
+  {
+    "claim": "External Collections are on paid plans.",
+    "url": "https://www.adalo.com/features/external-collections/",
+    "quote": "External Database features are available on paid plans."
+  },
+  {
+    "claim": "Terra: 500+ providers.",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers"
+  },
+  {
+    "claim": "Terra's widget session uses dev-id and x-api-key headers.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "call POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key headers."
+  },
+  {
+    "claim": "Terra: do not use WebView or iFrame for the authentication flow.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "Do not use WebView or iFrame for the authentication flow."
+  },
+  {
+    "claim": "Terra webhooks carry an HMAC signature header.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra charges 200 credits a month per connected data source.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month."
+  },
+  {
+    "claim": "Nutritionix: every endpoint requires authentication.",
+    "url": "https://docx.syndigo.com/developers/docs/nutritionix-api-guide",
+    "quote": "All the endpoints such as GET and POST require authentication."
+  },
+  {
+    "claim": "Nutritionix natural-language nutrients.",
+    "url": "https://docx.syndigo.com/developers/docs/nutritionix-api-guide",
+    "quote": "Parse natural language requests like \"1 cup flour, 1 pinch of salt, and 1 cup butter\""
+  },
+  {
+    "claim": "Nutritionix keeps no public free-access tier.",
+    "url": "https://developer.nutritionix.com/",
+    "quote": "due to increased misuse of free trial accounts, we are no longer able to maintain a public free-access tier."
+  },
+  {
+    "claim": "Nutritionix Starter at $499 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "FREE Business Trial $ 499 /Month* Starter"
+  },
+  {
+    "claim": "Billed annually.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "API plans are billed annually."
+  },
+  {
+    "claim": "ExerciseDB V1 is the free version.",
+    "url": "https://exercisedb.dev/",
+    "quote": "ExerciseDB V1 API (Free Version)"
+  },
+  {
+    "claim": "1,500 exercises with GIFs.",
+    "url": "https://exercisedb.dev/",
+    "quote": "1,500 exercises with GIFs."
+  },
+  {
+    "claim": "No sign-up and no API key for V1.",
+    "url": "https://exercisedb.dev/",
+    "quote": "No sign-up, no API key"
+  },
+  {
+    "claim": "AscendAPI is accessed via RapidAPI.",
+    "url": "https://docs.exercisedb.dev/",
+    "quote": "Currently AscendAPI is accessed via RapidAPI"
+  },
+  {
+    "claim": "A RapidAPI account and subscription authenticate requests.",
+    "url": "https://docs.exercisedb.dev/",
+    "quote": "You will need a RapidAPI account and an active subscription to authenticate your requests."
+  },
+  {
+    "claim": "The success redirect carries the user's Terra user_id and your reference_id.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "is sent to your auth_success_redirect_url with their Terra user_id and your reference_id as query parameters."
+  },
+  {
+    "claim": "An authentication event goes to your destination.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "At the same time, an authentication event is sent to your destination"
+  },
+  {
+    "claim": "On mobile, Terra's docs say to open the widget URL in an in-app browser.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "an in-app browser , if using a mobile app,"
   }
 ]

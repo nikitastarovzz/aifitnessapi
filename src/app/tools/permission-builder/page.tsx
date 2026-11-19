@@ -144,7 +144,11 @@ export default function PermissionBuilderPage() {
           {ANSWER}
         </p>
 
-        <section data-tool="permission-builder" aria-label="HealthKit permission builder and Permission X-ray" className="mt-10">
+        {/* id="xray": the target of /tools/permission-builder#xray, which
+            PermissionTool reads to open the paste mode. With the id here the
+            fragment also lands the reader on the tool, and qa's FRAGMENT-DEAD
+            can resolve links that use it. */}
+        <section id="xray" data-tool="permission-builder" aria-label="HealthKit permission builder and Permission X-ray" className="mt-10 scroll-mt-24">
           <PermissionTool options={OPTIONS} androidRef={XRAY_REF} />
         </section>
 

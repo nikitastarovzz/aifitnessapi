@@ -1,0 +1,27 @@
+[
+  {
+    "claim": "Garmin, whose developer site now hosts the ANT program: content moved from thisisant.com.",
+    "url": "https://developer.garmin.com/ant-program/overview/",
+    "quote": "Content from thisisant.com has now been moved to Garmin Developer"
+  },
+  {
+    "claim": "ANT+ has been deprecated and is no longer supported (Garmin's ANT FAQ, ANT+ Changes; the answers are served in this script bundle of developer.garmin.com/ant-program/faq/).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ has been deprecated and is no longer supported."
+  },
+  {
+    "claim": "No new ANT+ device profiles will be introduced (Garmin's ANT FAQ, ANT+ Changes; the answers are served in this script bundle of developer.garmin.com/ant-program/faq/).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ has been deprecated so there will be no new ANT+ profiles."
+  },
+  {
+    "claim": "Existing ANT and ANT+ devices continue to operate as before (Garmin's ANT FAQ, ANT+ Changes; the answers are served in this script bundle of developer.garmin.com/ant-program/faq/).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "existing ANT and ANT+ devices and products will continue to operate as before, and no changes were made that impact interoperability or functionality of deployed devices."
+  },
+  {
+    "claim": "Garmin's ANT FAQ describes Android reception through an ANT USB stick on a USB OTG cable with two ANT service apps (ANT in Mobile Phones; served in the FAQ's script bundle).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "Any ANT USB2 stick or newer (such as the ANTUSB-m) can be used with any Android device (phone or tablet) using a USB OTG cable by installing the ANT Radio Service and ANT USB Service from the Google Play Store if the device supports the Android USB Host Mode API."
+  }
+]

@@ -63,7 +63,7 @@ export type Library = {
 };
 
 /** The date this file was last written from a successful run. */
-export const LIBRARIES_FETCHED_ON = "2026-10-03";
+export const LIBRARIES_FETCHED_ON = "2026-11-18";
 
 /** Rows the generator expects; it refuses to write fewer. */
 export const LIBRARIES_EXPECTED_ROWS = 20;
@@ -112,7 +112,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2024-10-15",
       "sha": "84d946aad6f2",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -123,10 +123,10 @@ export const LIBRARIES: Library[] = [
     "why": "The other React Native HealthKit binding, typed close to Apple's own identifiers — the usual alternative to react-native-health.",
     "registryUrl": "https://www.npmjs.com/package/@kingstinct/react-native-healthkit",
     "description": "React Native bindings for HealthKit",
-    "latestVersion": "16.0.0",
-    "latestPublished": "2026-09-18",
+    "latestVersion": "16.2.0",
+    "latestPublished": "2026-10-12",
     "firstPublished": "2019-02-19",
-    "versionCount": 101,
+    "versionCount": 103,
     "license": "MIT",
     "licenseEvidence": "package.json license",
     "repositoryUrl": "git+https://github.com/kingstinct/react-native-healthkit.git",
@@ -142,7 +142,7 @@ export const LIBRARIES: Library[] = [
     "deprecated": null,
     "registryStatus": null,
     "distTags": {
-      "latest": "16.0.0"
+      "latest": "16.2.0"
     },
     "wraps": [
       "Apple HealthKit"
@@ -158,9 +158,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-10-02",
-      "sha": "0a72f7c5159c",
-      "checkedOn": "2026-10-03"
+      "date": "2026-10-12",
+      "sha": "44e4de5e3cb6",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -212,7 +212,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-26",
       "sha": "8d72b6a07743",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -261,7 +261,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-01",
       "sha": "36856dff8cfc",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -306,9 +306,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-10-02",
-      "sha": "bf3dcb0e7635",
-      "checkedOn": "2026-10-03"
+      "date": "2026-11-13",
+      "sha": "244504d70390",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -358,7 +358,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-23",
       "sha": "7666a54bf3a2",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -369,10 +369,10 @@ export const LIBRARIES: Library[] = [
     "why": "Capgo's Capacitor plugin over HealthKit and Health Connect — the other cross-platform choice for Capacitor apps.",
     "registryUrl": "https://www.npmjs.com/package/@capgo/capacitor-health",
     "description": "Capacitor plugin to interact with data from Apple HealthKit and Health Connect",
-    "latestVersion": "8.11.4",
-    "latestPublished": "2026-09-22",
+    "latestVersion": "8.13.0",
+    "latestPublished": "2026-11-14",
     "firstPublished": "2025-09-24",
-    "versionCount": 99,
+    "versionCount": 115,
     "license": "MPL-2.0",
     "licenseEvidence": "package.json license",
     "repositoryUrl": "git+https://github.com/Cap-go/capacitor-health.git",
@@ -389,7 +389,7 @@ export const LIBRARIES: Library[] = [
     "deprecated": null,
     "registryStatus": null,
     "distTags": {
-      "latest": "8.11.4"
+      "latest": "8.13.0"
     },
     "wraps": [
       "Apple HealthKit",
@@ -406,9 +406,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-09-22",
-      "sha": "d4b4dbb7f237",
-      "checkedOn": "2026-10-03"
+      "date": "2026-11-18",
+      "sha": "f8a7ec19a5be",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -458,7 +458,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2025-02-13",
       "sha": "59a6dedd4158",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -469,10 +469,10 @@ export const LIBRARIES: Library[] = [
     "why": "The Cordova plugin over HealthKit and Health Connect, published since 2016 and documented for manual use under Capacitor.",
     "registryUrl": "https://www.npmjs.com/package/cordova-plugin-health",
     "description": "A plugin that abstracts fitness and health repositories like Apple HealthKit or Google Health Connect",
-    "latestVersion": "3.3.0",
-    "latestPublished": "2026-09-26",
+    "latestVersion": "3.3.2",
+    "latestPublished": "2026-10-27",
     "firstPublished": "2016-01-12",
-    "versionCount": 50,
+    "versionCount": 52,
     "license": "MIT",
     "licenseEvidence": "package.json license",
     "repositoryUrl": "git+https://github.com/dariosalvi78/cordova-plugin-health.git",
@@ -491,7 +491,7 @@ export const LIBRARIES: Library[] = [
     "deprecated": null,
     "registryStatus": null,
     "distTags": {
-      "latest": "3.3.0"
+      "latest": "3.3.2"
     },
     "wraps": [
       "Apple HealthKit",
@@ -508,9 +508,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-10-03",
-      "sha": "ed339de45bee",
-      "checkedOn": "2026-10-03"
+      "date": "2026-11-12",
+      "sha": "eb85a7a76be6",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -559,7 +559,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-14",
       "sha": "d90dbb717f04",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -570,10 +570,10 @@ export const LIBRARIES: Library[] = [
     "why": "A newer Flutter SDK over HealthKit and Health Connect, first published in November 2025 — the alternative to `health`.",
     "registryUrl": "https://pub.dev/packages/health_connector",
     "description": "The most comprehensive Flutter health SDK for seamless iOS HealthKit and Android Health Connect integration.",
-    "latestVersion": "3.11.1",
-    "latestPublished": "2026-09-16",
+    "latestVersion": "3.14.1",
+    "latestPublished": "2026-11-11",
     "firstPublished": "2025-11-23",
-    "versionCount": 38,
+    "versionCount": 43,
     "license": "MIT",
     "licenseEvidence": "pub.dev tags: license:mit",
     "repositoryUrl": "https://github.com/fam-tung-lam/health_connector/tree/main/packages/health_connector",
@@ -606,9 +606,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-09-16",
-      "sha": "1c26b1a922a3",
-      "checkedOn": "2026-10-03"
+      "date": "2026-11-11",
+      "sha": "d64e86600444",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -618,22 +618,22 @@ export const LIBRARIES: Library[] = [
     "group": "flutter",
     "why": "An iOS-only Flutter wrapper around the HealthKitReporter CocoaPods library.",
     "registryUrl": "https://pub.dev/packages/health_kit_reporter",
-    "description": "Helps to write or read data from Apple Health via HealthKit framework.",
-    "latestVersion": "2.3.1",
-    "latestPublished": "2024-12-12",
+    "description": "Reads, writes and observes Apple Health data on iOS through HealthKit, wrapping the Swift library HealthKitReporter.",
+    "latestVersion": "3.0.0",
+    "latestPublished": "2026-10-09",
     "firstPublished": "2020-11-20",
-    "versionCount": 30,
+    "versionCount": 31,
     "license": "MIT",
     "licenseEvidence": "pub.dev tags: license:mit",
-    "repositoryUrl": "https://github.com/VictorKachalov/health_kit_reporter",
-    "homepage": "https://github.com/VictorKachalov/health_kit_reporter",
+    "repositoryUrl": "https://github.com/kvs-coder/health_kit_reporter",
+    "homepage": "https://github.com/kvs-coder/health_kit_reporter",
     "platforms": [
       "ios"
     ],
     "platformsEvidence": "pubspec flutter.plugin.platforms: ios",
     "requires": {
-      "sdk": ">=2.12.0 <4.0.0",
-      "flutter": ">=1.20.0"
+      "sdk": ">=3.5.0 <4.0.0",
+      "flutter": ">=3.44.0"
     },
     "requiresSource": "pubspec environment",
     "deprecated": null,
@@ -642,8 +642,8 @@ export const LIBRARIES: Library[] = [
     "wraps": [
       "Apple HealthKit"
     ],
-    "wrapsEvidence": "registry description: \"Helps to write or read data from Apple Health via HealthKit framework.\"",
-    "repo": "VictorKachalov/health_kit_reporter",
+    "wrapsEvidence": "registry description: \"Reads, writes and observes Apple Health data on iOS through HealthKit, wrapping the Swift library HealthKitReporter.\"",
+    "repo": "kvs-coder/health_kit_reporter",
     "repoFullName": "kvs-coder/health_kit_reporter",
     "repoStats": {
       "stars": 37,
@@ -653,9 +653,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2024-12-12",
-      "sha": "af945db4a10a",
-      "checkedOn": "2026-10-03"
+      "date": "2026-10-10",
+      "sha": "6dba9c5af44e",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -703,7 +703,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2023-07-04",
       "sha": "d35ff4c4b0d6",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -714,10 +714,10 @@ export const LIBRARIES: Library[] = [
     "why": "The Python client most people reach for to read their own Garmin Connect data.",
     "registryUrl": "https://pypi.org/project/garminconnect/",
     "description": "Python 3 API wrapper for Garmin Connect",
-    "latestVersion": "0.3.17",
-    "latestPublished": "2026-09-29",
+    "latestVersion": "0.3.20",
+    "latestPublished": "2026-10-23",
     "firstPublished": "2020-01-04",
-    "versionCount": 110,
+    "versionCount": 113,
     "license": "MIT",
     "licenseEvidence": "PyPI license field",
     "repositoryUrl": "https://github.com/cyberjunky/python-garminconnect",
@@ -745,9 +745,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-09-29",
-      "sha": "218e72ca5459",
-      "checkedOn": "2026-10-03"
+      "date": "2026-10-31",
+      "sha": "82bc11073b59",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -791,7 +791,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2026-03-28",
       "sha": "f99159a15c4c",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -833,9 +833,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-09-22",
-      "sha": "1951f26e01b9",
-      "checkedOn": "2026-10-03"
+      "date": "2026-11-16",
+      "sha": "c2a3540bd89d",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -846,10 +846,10 @@ export const LIBRARIES: Library[] = [
     "why": "A Python client for the Oura API v2 with an OAuth2 helper.",
     "registryUrl": "https://pypi.org/project/oura-ring/",
     "description": "Python client for the Oura API v2 with OAuth2 support.",
-    "latestVersion": "1.0.1",
-    "latestPublished": "2026-06-22",
+    "latestVersion": "1.0.2",
+    "latestPublished": "2026-11-09",
     "firstPublished": "2022-09-02",
-    "versionCount": 5,
+    "versionCount": 6,
     "license": "MIT",
     "licenseEvidence": "PyPI license field",
     "repositoryUrl": "https://github.com/hedgertronic/oura-ring",
@@ -877,9 +877,9 @@ export const LIBRARIES: Library[] = [
       "checkedOn": "2026-10-03"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-07-07",
-      "sha": "691dc2e75e97",
-      "checkedOn": "2026-10-03"
+      "date": "2026-11-09",
+      "sha": "50ecd2499f6a",
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -923,7 +923,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2024-04-23",
       "sha": "35fd39c1b1ad",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -965,7 +965,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2019-08-12",
       "sha": "6a0a7cba26c2",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   },
   {
@@ -1009,7 +1009,7 @@ export const LIBRARIES: Library[] = [
     "lastCommitOnDefaultBranch": {
       "date": "2022-03-05",
       "sha": "69c21c32449b",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-18"
     }
   }
 ];

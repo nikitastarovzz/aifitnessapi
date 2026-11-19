@@ -1,0 +1,162 @@
+[
+  {
+    "claim": "Spoonacular lists five plans: Free, Cook $29, Culinarian $79, Chef $149 and Enterprise.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "We offer five plans: Free ($0/month), Cook ($29/month), Culinarian ($79/month), Chef ($149/month), and Enterprise (custom pricing for large clients)."
+  },
+  {
+    "claim": "Free: 50 points a day, then no more calls.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "Free $ 0 /mo 50 points/day then no more calls"
+  },
+  {
+    "claim": "Cook: 1,500 points a day, then $0.005 a point.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "Cook $ 29 /mo 1,500 points/day then $0.005 /point"
+  },
+  {
+    "claim": "Culinarian: 4,500 points a day, then $0.004 a point.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "Culinarian $ 79 /mo 4,500 points/day then $0.004 /point"
+  },
+  {
+    "claim": "Chef: 10,000 points a day, then $0.002 a point.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "Chef $ 149 /mo 10,000 points/day then $0.002 /point"
+  },
+  {
+    "claim": "Enterprise starts at $300.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "starting at $300"
+  },
+  {
+    "claim": "The free plan requires a backlink.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "No SLA Backlink Required"
+  },
+  {
+    "claim": "Every call costs usually 1 point per request plus 0.01 points per result.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "usually 1 point per request plus 0.01 points per result, with exceptions"
+  },
+  {
+    "claim": "On the free plan the API answers 402 once the daily quota is used.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "On the free plan, when daily quota is used up, the API responds with error code 402 until quota resets."
+  },
+  {
+    "claim": "The quota resets at midnight UTC.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "points used today (resets at midnight UTC)"
+  },
+  {
+    "claim": "All plans are month to month.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "All plans are month to month and can be cancelled at any time."
+  },
+  {
+    "claim": "Spoonacular allows caching user-requested data for at most an hour.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "You may cache user-requested data to improve performance (for a maximum of 1 hour)."
+  },
+  {
+    "claim": "Subscribing directly needs no credit card for the free plan.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "If you subscribe directly through our API platform, there is no credit card required for the free plan."
+  },
+  {
+    "claim": "Spoonacular's free plan on RapidAPI needs a credit card because overage charges apply.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "RapidAPI requires a credit card because overage charges apply if you exceed allotted requests."
+  },
+  {
+    "claim": "Meal plans for the week, from recipes or packaged foods.",
+    "url": "https://spoonacular.com/food-api",
+    "quote": "Let your users plan their meals for the week using recipes or even your own brand of packaged foods."
+  },
+  {
+    "claim": "Shopping lists from a meal plan.",
+    "url": "https://spoonacular.com/food-api",
+    "quote": "Once your users are done meal planning, they can get their shopping list in a click of the mouse."
+  },
+  {
+    "claim": "Menu items from over 800 American restaurant chains.",
+    "url": "https://spoonacular.com/food-api",
+    "quote": "over 800 American restaurant chains"
+  },
+  {
+    "claim": "UPC lookup of American grocery products.",
+    "url": "https://spoonacular.com/food-api",
+    "quote": "UPC lookup of American grocery products"
+  },
+  {
+    "claim": "A Spoonacular MCP server.",
+    "url": "https://spoonacular.com/food-api",
+    "quote": "build AI tools using the spoonacular MCP server"
+  },
+  {
+    "claim": "Edamam's Nutrition Analysis API takes the full text of any recipe or ingredient list.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Submit the full text of any recipe or ingredient list."
+  },
+  {
+    "claim": "Nutrition Analysis from $29 a month with a 10-day trial.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Enterprise Basic Multilingual $29 per month Prepaid Subscribe now 10 days Trial period"
+  },
+  {
+    "claim": "28 macro and micronutrients per food.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Edamam returns data for calories, fats, carbohydrates, protein, cholesterol, sodium, etc. for a total of 28 macro and micronutrients."
+  },
+  {
+    "claim": "Food Database API from $14 a month with a 30-day trial.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Enterprise Basic Vision $14 per month Prepaid Subscribe now 30 days Trial period"
+  },
+  {
+    "claim": "Over 700,000 unique UPC, ITN and EAN codes.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Power your barcode scanning solution with the Food Database API's access to over 700,000 unique UPC, ITN, and EAN codes."
+  },
+  {
+    "claim": "Only human, end-user-driven requests are allowed.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "All plans allow only human, end user driven requests."
+  },
+  {
+    "claim": "Attribution is required on all Edamam plans.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Not providing attribution is considered breach of contract and is followed by immediate service suspension."
+  },
+  {
+    "claim": "Recipe Search from $9 a month with a 10-day trial.",
+    "url": "https://developer.edamam.com/edamam-recipe-api",
+    "quote": "Enterprise Basic $9 per month Prepaid Subscribe now 10 days Trial period"
+  },
+  {
+    "claim": "Over 2 million web recipes, without cooking instructions.",
+    "url": "https://developer.edamam.com/edamam-recipe-api",
+    "quote": "Recipe content includes over 2 million recipes obtained from the public web"
+  },
+  {
+    "claim": "Web recipes come without cooking instructions.",
+    "url": "https://developer.edamam.com/edamam-recipe-api",
+    "quote": "Attribution to the content owner is required and no cooking instructions are provided."
+  },
+  {
+    "claim": "Over 20,000 Edamam-owned recipes with images and instructions.",
+    "url": "https://developer.edamam.com/edamam-recipe-api",
+    "quote": "Edamam owned recipe content includes over 20,000 recipes with images and cooking instructions."
+  },
+  {
+    "claim": "The Meal Planner API has a free Developer plan.",
+    "url": "https://developer.edamam.com/meal-planner-api",
+    "quote": "Developer FREE Get Started Unlimited Trial period"
+  },
+  {
+    "claim": "The free Developer plan allows 10,000 meal-plan calls a month.",
+    "url": "https://developer.edamam.com/meal-planner-api",
+    "quote": "Meal plan calls per month - 10,000"
+  }
+]

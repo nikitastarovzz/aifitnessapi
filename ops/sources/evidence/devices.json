@@ -1,0 +1,32 @@
+[
+  {
+    "claim": "Garmin, whose developer site now hosts the ANT program: content moved from thisisant.com.",
+    "url": "https://developer.garmin.com/ant-program/overview/",
+    "quote": "Content from thisisant.com has now been moved to Garmin Developer"
+  },
+  {
+    "claim": "The ANT+ membership and certification programs ended on June 30, 2025.",
+    "url": "https://developer.garmin.com/ant-program/downloads/",
+    "quote": "The ANT+ membership program and ANT+ product certification programs, along with associated engineering support ended on June 30, 2025."
+  },
+  {
+    "claim": "ANT+ has been deprecated and is no longer supported (Garmin's ANT FAQ, ANT+ Changes; the answers are served in this script bundle of developer.garmin.com/ant-program/faq/).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ has been deprecated and is no longer supported."
+  },
+  {
+    "claim": "No new ANT+ device profiles will be introduced (Garmin's ANT FAQ, ANT+ Changes; the answers are served in this script bundle of developer.garmin.com/ant-program/faq/).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ has been deprecated so there will be no new ANT+ profiles."
+  },
+  {
+    "claim": "Existing ANT and ANT+ devices continue to operate as before (Garmin's ANT FAQ, ANT+ Changes; the answers are served in this script bundle of developer.garmin.com/ant-program/faq/).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "existing ANT and ANT+ devices and products will continue to operate as before, and no changes were made that impact interoperability or functionality of deployed devices."
+  },
+  {
+    "claim": "ANT+ documentation and tools remain available under the ANT+ Adopter Agreement (Garmin's ANT FAQ, ANT+ Changes; the answers are served in this script bundle of developer.garmin.com/ant-program/faq/).",
+    "url": "https://developer.garmin.com/component---src-pages-ant-program-faq-js-51aa7abdb82d08700dc0.js",
+    "quote": "ANT+ documentation and tools remain accessible here and are subject to the ANT+ Adopter Agreement."
+  }
+]
