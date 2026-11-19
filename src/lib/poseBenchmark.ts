@@ -102,8 +102,14 @@ export function mib(bytes: number): string {
  *    will load the model specified by modelType from tf.hub". The page passes
  *    these URLs as `modelUrl` so the address it times is the one written here.
  *
- * NOT verified on MOVENET_VERIFIED_ON: that tfhub.dev still serves those
- * weights. tfhub.dev (and cdn.jsdelivr.net) were refused by the development
+ *  - that tfhub.dev still serves them: source-snapshot.yml run 44614793198
+ *    (2026-11-19) fetched <url>/model.json?tfjs-format=file for both, status
+ *    200 after a redirect to storage.googleapis.com/kagglesdsdata/models/…,
+ *    each a "graph-model" with input:0 of 1x192x192x3 (Lightning) and
+ *    1x256x256x3 (Thunder).
+ *
+ * NOT verified on MOVENET_VERIFIED_ON: a MoveNet row completing in a browser.
+ * tfhub.dev (and cdn.jsdelivr.net) were refused by the development
  * environment's network policy that day, so the page was exercised with the
  * CDN scripts served from the registry tarballs and could not download the
  * weights; the component reports that failure as a row, never a number.

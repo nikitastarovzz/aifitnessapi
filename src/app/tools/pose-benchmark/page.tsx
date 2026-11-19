@@ -193,10 +193,11 @@ export default function PoseBenchmarkPage() {
             .
           </p>
           <p className="mt-4 leading-relaxed text-[var(--muted)]">
-            One limit we state plainly: on {MOVENET_VERIFIED_ON}{" "}our development environment&rsquo;s network
-            refused tfhub.dev, so we could not download the MoveNet weights and have not seen a MoveNet row
-            complete on this page ourselves. If the download fails in your browser too, the row says so instead
-            of showing a number. The variants are covered in{" "}
+            One limit we state plainly: on {MOVENET_VERIFIED_ON}{" "}both tfhub.dev addresses answered with a
+            TensorFlow.js graph model (Lightning with a 192&times;192 input, Thunder with 256&times;256), served
+            through a redirect to Kaggle&rsquo;s model storage, but our development environment&rsquo;s network
+            refused tfhub.dev, so we have not watched a MoveNet row complete on this page ourselves. If the
+            download fails in your browser, the row says so instead of showing a number. The variants are covered in{" "}
             <Link href="/motion/movenet-models" className={linkCls}>
               MoveNet Lightning vs Thunder
             </Link>
