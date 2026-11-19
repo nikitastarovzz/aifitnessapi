@@ -119,7 +119,7 @@ export default function ContentLicenceTable({
       <div className="mt-3 overflow-x-auto rounded-xl border border-[var(--border)] bg-[var(--bg)]">
         <table className="w-full min-w-[920px] border-collapse text-left text-xs">
           <caption className="sr-only">
-            Free tier, starting price, commercial use, attribution, media, self-hosting and licence for each exercise and nutrition data source, with sources
+            Free tier, starting price, commercial use, attribution, media, self-hosting and license for each exercise and nutrition data source, with sources
           </caption>
           <thead>
             <tr className="bg-[var(--surface)] align-bottom">

@@ -25,7 +25,7 @@ export const COLUMNS = [
   { id: "attribution", label: "Attribution", values: ["required", "requested", "per entry", "not required", "sources disagree", NOT_STATED] },
   { id: "media", label: "Images or video", values: ["yes", "no", NOT_STATED] },
   { id: "copy", label: "Self-host or keep a copy", values: ["yes", "on some plans", "separate deal", "no", NOT_STATED] },
-  { id: "licence", label: "Licence or terms", values: ["stated", NOT_STATED] },
+  { id: "licence", label: "License or terms", values: ["stated", NOT_STATED] },
 ];
 
 export const KINDS = ["exercise", "nutrition"];

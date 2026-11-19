@@ -88,7 +88,7 @@ export function poseBenchmarkMirror(): MirrorDoc {
       "",
       `The two families output different keypoint sets: Pose Landmarker ${blazepose?.points.length ?? 33} landmarks, MoveNet the ${coco?.points.length ?? 17} COCO keypoints, so a faster row is not doing the same job; the indices are on ${link("pose keypoint maps", "/pose-keypoints")}.`,
       "",
-      `One limit we state plainly: on ${MOVENET_VERIFIED_ON} our development environment’s network refused tfhub.dev, so we could not download the MoveNet weights and have not seen a MoveNet row complete on this page ourselves. If the download fails in your browser too, the row says so instead of showing a number. The variants are covered in ${link("MoveNet Lightning vs Thunder", "/motion/movenet-models")}, and the head-to-head is ${link("MediaPipe vs MoveNet", "/compare/mediapipe-vs-movenet")}.`,
+      `One limit we state plainly: on ${MOVENET_VERIFIED_ON} both tfhub.dev addresses answered with a TensorFlow.js graph model (Lightning with a 192×192 input, Thunder with 256×256), served through a redirect to Kaggle’s model storage, but our development environment’s network refused tfhub.dev, so we have not watched a MoveNet row complete on this page ourselves. If the download fails in your browser, the row says so instead of showing a number. The variants are covered in ${link("MoveNet Lightning vs Thunder", "/motion/movenet-models")}, and the head-to-head is ${link("MediaPipe vs MoveNet", "/compare/mediapipe-vs-movenet")}.`,
       "",
       "## How to read the numbers",
       "",

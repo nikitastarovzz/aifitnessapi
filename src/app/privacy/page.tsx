@@ -110,7 +110,7 @@ export default function PrivacyPage() {
             that a visit came from here. Nothing about you is in the tags.
           </li>
           <li>
-            <strong>Which kind of page it happened on.</strong> The landing
+            <strong>Which kind of page it happened on.</strong>{" "}The landing
             event and both kinds of click also carry a one-word label for the
             section of the site the page belongs to: &ldquo;wearable&rdquo;,
             &ldquo;content&rdquo;, &ldquo;motion&rdquo;, &ldquo;platform&rdquo;,

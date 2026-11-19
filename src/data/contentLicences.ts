@@ -131,7 +131,7 @@ export const CONTENT_LICENCES: { rows: LicenceRow[]; notes: LicenceNote[] } = {
         media: { value: "yes", text: "An HD video per exercise as HLS and MP4; Starter videos are watermarked", ev: [XA(45, "HD video (HLS + MP4)"), XP(55, "small Your Move watermark")] },
         copy: {
           value: "separate deal",
-          text: "Self-hosting the files is a separate licence; Scale and Enterprise may cache videos on the user's device",
+          text: "Self-hosting the files is a separate license; Scale and Enterprise may cache videos on the user's device",
           ev: [XP(59, "separate self-hosting license"), XP(58, "cache videos on the user's device")],
         },
         licence: {
@@ -181,7 +181,7 @@ export const CONTENT_LICENCES: { rows: LicenceRow[]; notes: LicenceNote[] } = {
         },
         attribution: {
           value: "per entry",
-          text: "Each exercise, image and video carries its own licence and author fields, for TASL attribution",
+          text: "Each exercise, image and video carries its own license and author fields, for TASL attribution",
           ev: [XW(16, "see individual entries"), WA(25, "for proper attribution")],
         },
         media: {
@@ -224,7 +224,7 @@ export const CONTENT_LICENCES: { rows: LicenceRow[]; notes: LicenceNote[] } = {
         paid: U(),
         commercial: {
           value: "allowed with conditions",
-          text: "Its licence lists Android and iOS apps; no resale or redistribution, and no posting on or generating with AI tools (archived July 29, 2026)",
+          text: "Its license lists Android and iOS apps; no resale or redistribution, and no posting on or generating with AI tools (archived July 29, 2026)",
           ev: [XA(28, "Android or iOS mobile application"), XA(29, "to resell or redistribute"), XA(30, "Artificial Intelligence (AI) platform")],
         },
         attribution: U(),

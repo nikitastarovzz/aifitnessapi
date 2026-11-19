@@ -242,7 +242,7 @@ export const READING_PATHS: ReadingPath[] = [
     slug: "exercise-and-food-content",
     title: "License exercise and food data you can ship",
     blurb:
-      "The catalogue route: what each exercise and food database costs once you ship rather than try, which license comes with it, whether it has video, and how its categories line up with the health stores.",
+      "The catalog route: what each exercise and food database costs once you ship rather than try, which license comes with it, whether it has video, and how its categories line up with the health stores.",
     steps: [
       {
         href: "/fitness-apis/exercise-database-apis",
