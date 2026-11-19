@@ -43,6 +43,7 @@ import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 import { robotsFor } from "@/data/noindex";
 import SeeAlsoCallout from "@/components/SeeAlsoCallout";
+import WrappedBy from "@/components/WrappedBy";
 
 /**
  * One page per HealthKit identifier that clears the thin-page rule in
@@ -617,6 +618,7 @@ export default async function HkIdentifierPage({ params }: { params: Promise<Par
 
         <section id="related" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">{id.case} on this site</h2>
+          <WrappedBy store="healthkit" id={id.objc} name={id.case} />
           <ul className="mt-4 space-y-2 text-sm">
             {groupHref && group && (
               <li>
