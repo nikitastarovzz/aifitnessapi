@@ -5,13 +5,13 @@
       "file": "bluetooth-fitness-gatt-2026.csv",
       "bytes": 203249,
       "rows": 378,
-      "sha256": "1ba7221e63d7a46fab84c2f8c5ff67ef36200810072895f08450f3df7e627362"
+      "sha256": "0877eaad9b9294fba4ef5e2117d1d41870c2673d386945dcf7db26356d39a9ff"
     },
     {
       "file": "bluetooth-fitness-gatt-2026.json",
       "bytes": 384778,
       "rows": 378,
-      "sha256": "d0e0d5a6d6394b61b98d561d6324c318d3276727f91d12321796e67383adc345"
+      "sha256": "e57b0b1cf85eb2796b5e43caafd4662d95f463ed8bf10439755d577ceabefa2a"
     },
     {
       "file": "exercise-form-rules-2026.csv",
@@ -159,15 +159,15 @@
     },
     {
       "file": "health-mcp-servers-2026.csv",
-      "bytes": 111533,
-      "rows": 176,
-      "sha256": "117e9481089ea35533bf4b59b313bb407f67fdf0a3bca1525d9f7f8f4cb59888"
+      "bytes": 180355,
+      "rows": 283,
+      "sha256": "e9b707c110abe256c8d9c61a52fe559692e497cdc2e4ef7bbf839bd5cc609c29"
     },
     {
       "file": "health-mcp-servers-2026.json",
-      "bytes": 212821,
-      "rows": 176,
-      "sha256": "2104cc7e36fd045465adf834207cbd224ad5e636ab6b6ba1f15cf6c2d71cd2cc"
+      "bytes": 341594,
+      "rows": 283,
+      "sha256": "ff8c28186f5fc2a6beb3efde98b7fc72a0fd8a317c4c769b7c97aa89d747b637"
     },
     {
       "file": "healthkit-metadata-keys-2026.csv",
