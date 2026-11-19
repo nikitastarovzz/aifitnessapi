@@ -43,39 +43,18 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with:
-          # A pull request compares against its base, so it needs the history.
-          fetch-depth: ${{ github.event_name == 'pull_request' && 0 || 1 }}
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      # A pull request is held to the evidence files it adds or changes
-      # (ops/MORE-20-2026-11-14.md item 6). Drift in files it does not touch
-      # is the daily scheduled run's job, which still reads every file; before
-      # this, one vendor moving a page parked every evidence pull request.
-      # A change to the checker itself still reads every file.
       - name: Check every quoted passage against its source
         env:
           EVENT_NAME: ${{ github.event_name }}
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           set -o pipefail
           status=0
-          files=""
-          if [ "$EVENT_NAME" = "pull_request" ]; then
-            base=$(git merge-base "$BASE_SHA" HEAD)
-            if git diff --quiet "$base" HEAD -- scripts/check-source-quotes.mjs; then
-              files=$(git diff --name-only --diff-filter=ACMR "$base" HEAD -- 'ops/sources/evidence/*.json' | tr '\n' ' ')
-              echo "Checking the evidence files this pull request changes: ${files:-none}"
-              if [ -z "$files" ]; then
-                echo "every quote was found in its source (no evidence file added or changed)" | tee "$RUNNER_TEMP/quotes.txt"
-                exit 0
-              fi
-            fi
-          fi
-          node scripts/check-source-quotes.mjs $files | tee "$RUNNER_TEMP/quotes.txt" || status=$?
+          node scripts/check-source-quotes.mjs | tee "$RUNNER_TEMP/quotes.txt" || status=$?
           moved=$(grep -c '✗' "$RUNNER_TEMP/quotes.txt" || true)
           {
             echo "### Source quotes"
