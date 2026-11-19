@@ -24,8 +24,15 @@ import { orgRef } from "@/lib/schema";
 
 const PATH = "/paths";
 const TITLE = "Reading paths";
-const DESCRIPTION =
-  "Four ordered routes through this site: ship a HealthKit read, support every wearable, add camera coaching, or get off Google Fit — with a why per step.";
+
+/** The path count in words, so no sentence on the page states a stale number. */
+const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+const countWord = (n: number) => NUMBER_WORDS[n] ?? String(n);
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const COUNT = countWord(READING_PATHS.length);
+const NEXT = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth", "thirteenth"][READING_PATHS.length] ?? "next";
+
+const DESCRIPTION = `${capitalize(COUNT)} ordered routes through this site, one job each: HealthKit, wearables, camera coaching, Google Fit, one gated vendor, exercise and food data.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -34,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: ["/opengraph-image"],
     type: "website",
-    title: "Reading paths: four routes through the site",
+    title: `Reading paths: ${COUNT} routes through the site`,
     description: DESCRIPTION,
     url: PATH,
   },
@@ -91,7 +98,7 @@ export default function PathsPage() {
           className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6"
         >
           The rest of the site is filed by kind of page — integration guide,
-          fix, concept, architecture note. These four routes are filed by job
+          fix, concept, architecture note. These {COUNT} routes are filed by job
           instead: the pages one task needs, in the order the work lands, with
           a line on each saying why it comes there rather than later.
         </div>
@@ -121,7 +128,7 @@ export default function PathsPage() {
           <Link href="/signup" className="text-brand-600 hover:text-brand-500">
             tell us what you are building
           </Link>{" "}
-          and it may become the fifth.
+          and it may become the {NEXT}.
         </p>
       </div>
     </Container>

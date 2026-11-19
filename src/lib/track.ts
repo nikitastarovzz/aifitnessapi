@@ -1,5 +1,5 @@
 import { track as vercelTrack } from "@vercel/analytics";
-import { PICKER_KEY, parsePickerId, withPicker } from "@/lib/measure.mjs";
+import { PICKER_KEY, parsePickerId, withPersona, withPicker } from "@/lib/measure.mjs";
 
 /**
  * One tracking entry point. Fires to Vercel Web Analytics (the provider the
@@ -10,7 +10,7 @@ import { PICKER_KEY, parsePickerId, withPicker } from "@/lib/measure.mjs";
  *
  * Event names and properties are listed in ops/MEASUREMENT.md. Properties are
  * flat strings only, and never carry a person's data: page paths, fixed
- * labels, CTA ids.
+ * labels (persona among them), CTA ids.
  */
 const HANDLED = "__ctaTracked";
 
@@ -74,9 +74,18 @@ export function withPickerProp(props: EventProps): EventProps {
   return withPicker(props, raw);
 }
 
-/** A data-cta click: which CTA, from which placement, on which page, and the
- *  picker answer reached earlier in the session, if any. */
+/** Props plus `persona`, the fixed audience label of the page path
+ *  (personaOf() in src/lib/measure.mjs). Nothing is added under /embed. */
+export function withPersonaProp(props: EventProps, pathname: string): EventProps {
+  if (typeof window === "undefined" || inEmbed()) return props;
+  return withPersona(props, pathname);
+}
+
+/** A data-cta click: which CTA, from which placement, on which page, the
+ *  page's persona, and the picker answer reached earlier in the session, if
+ *  any. */
 export function track(id: string, source: string) {
   if (typeof window === "undefined") return;
-  trackEvent("cta_click", withPickerProp({ id, source, page: window.location.pathname }));
+  const page = window.location.pathname;
+  trackEvent("cta_click", withPickerProp(withPersonaProp({ id, source, page }, page)));
 }

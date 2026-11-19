@@ -25,6 +25,8 @@ import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 import { CommandItem, FactList, Inline, LANGUAGE, NoteItem, factRows, githubUrl, sinceRead, spdxUrl } from "../_shared";
 import { robotsFor } from "@/data/noindex";
+import { librarySupport, librarySupportExcluded } from "@/data/libraryDataTypes";
+import { LibraryDataTypes, LibraryDataTypesExcluded } from "../_dataTypes";
 
 /**
  * One page per open-source package. Every registry and repository fact on
@@ -77,6 +79,10 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
   const alternatives = libraryPages().filter((p) => p.lib.group === l.group && p.lib.slug !== slug);
   const comparisons = comparisonsFor(slug);
   const gh = githubUrl(l);
+  // Which HealthKit and Health Connect types the library's source maps, from
+  // the generated src/data/healthLibrarySupport.ts (mobile wrappers only).
+  const support = librarySupport(slug);
+  const supportExcluded = support ? undefined : librarySupportExcluded(slug);
   const faqId = (i: number) => `faq-${i + 1}`;
 
   // Documentation a note cites becomes `citation`; the package's own registry
@@ -195,6 +201,7 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
         <nav aria-label="On this page" className="mt-6 flex flex-wrap gap-2 text-sm">
           {[
             ["#install", ed.commandsHeading],
+            ...(support || supportExcluded ? [["#data-types", "Data types"]] : []),
             ["#facts", "Registry facts"],
             ["#caveats", "README caveats"],
             ["#native", "Native API"],
@@ -231,6 +238,9 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
             <p className="mt-3 text-[var(--muted)]">{ed.noCommandNote}</p>
           )}
         </section>
+
+        {support && <LibraryDataTypes s={support} />}
+        {supportExcluded && <LibraryDataTypesExcluded e={supportExcluded} />}
 
         <section id="facts" className="mt-12 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Registry and repository facts</h2>

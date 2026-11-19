@@ -1,6 +1,6 @@
 # Awesome Fitness APIs
 
-> A list of 25 fitness and health APIs and platforms, 20 open-source libraries, 283 MCP servers, 19 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
+> A list of 25 fitness and health APIs and platforms, 20 open-source libraries, 283 MCP servers, 20 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
 
 The same list is served at [aifitnessapi.com/awesome](https://aifitnessapi.com/awesome), with a markdown copy at [/awesome.md](https://aifitnessapi.com/awesome.md).
 
@@ -489,6 +489,7 @@ Datasets aifitnessapi.com publishes, each as JSON and CSV under the license it s
 - [Health Connect Permission Strings 2026](https://aifitnessapi.com/datasets#health-connect-permissions-2026) - JSON at https://aifitnessapi.com/datasets/health-connect-permissions-2026.json, CSV beside it; CC BY 4.0.
 - [Health Connect Record Types 2026](https://aifitnessapi.com/datasets#health-connect-records-2026) - JSON at https://aifitnessapi.com/datasets/health-connect-records-2026.json, CSV beside it; CC BY 4.0.
 - [Health Data Type Matrix 2026 (HealthKit ↔ Health Connect)](https://aifitnessapi.com/datasets#health-data-type-matrix-2026) - JSON at https://aifitnessapi.com/datasets/health-data-type-matrix-2026.json, CSV beside it; CC BY 4.0.
+- [Health Library Support 2026 (HealthKit and Health Connect types each wrapper library maps)](https://aifitnessapi.com/datasets#health-library-support-2026) - JSON at https://aifitnessapi.com/datasets/health-library-support-2026.json, CSV beside it; CC BY 4.0.
 - [Health and Fitness MCP Servers 2026](https://aifitnessapi.com/datasets#health-mcp-servers-2026) - JSON at https://aifitnessapi.com/datasets/health-mcp-servers-2026.json, CSV beside it; CC BY 4.0.
 - [HealthKit Metadata Keys 2026](https://aifitnessapi.com/datasets#healthkit-metadata-keys-2026) - JSON at https://aifitnessapi.com/datasets/healthkit-metadata-keys-2026.json, CSV beside it; CC BY 4.0.
 - [HealthKit Type Identifiers 2026](https://aifitnessapi.com/datasets#healthkit-type-identifiers-2026) - JSON at https://aifitnessapi.com/datasets/healthkit-type-identifiers-2026.json, CSV beside it; CC BY 4.0.
@@ -529,7 +530,7 @@ Browser tools on aifitnessapi.com built on the same data. They run on your devic
 - [Rate-limit and quota calculator](https://aifitnessapi.com/tools/rate-limit-calculator) - Users × syncs × endpoints against each fitness API's documented rate limits: which binds first, the most users it supports, and the vendor's own mitigations.
 - [Why “today’s steps” is a bug](https://aifitnessapi.com/day-boundaries) - Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.
 - [Ship It: a fitness-app survival game](https://aifitnessapi.com/play/ship-it) - Pick a product and a data stack, then live through the real, dated API events that hit it: Fitbit turn-off, Google Fit end of support, Garmin approval, Strava rules.
-- [Pose model benchmark](https://aifitnessapi.com/tools/pose-benchmark) - Time MediaPipe Pose Landmarker lite, full and heavy on your own device, copy the latency table as markdown and submit it to the leaderboard.
+- [Pose model benchmark](https://aifitnessapi.com/tools/pose-benchmark) - Time MediaPipe Pose Landmarker lite, full and heavy, and MoveNet Lightning and Thunder, on your own device, copy the latency table as markdown and submit it to the leaderboard.
 - [Rep counter playground](https://aifitnessapi.com/tools/rep-counter-playground) - Load a workout video, see joint angles over time, tune a hysteresis rep counter's thresholds and export the config as JSON. The video stays in your browser.
 - [Bluetooth heart-rate lab](https://aifitnessapi.com/tools/heart-rate-lab) - Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.
 - [FTMS lab](https://aifitnessapi.com/tools/ftms-lab) - Connect a treadmill, indoor bike, rower or cross trainer over Web Bluetooth, or paste hex: every FTMS flag bit and field decoded against the SIG structure.

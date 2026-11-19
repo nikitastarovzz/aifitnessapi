@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18",
+  "generated": "2026-11-19",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -156,6 +156,18 @@
       "bytes": 6549,
       "rows": 10,
       "sha256": "6a2f443d467451d978109f095e54747ca44c42dde3c830c216c5af7f0378fc4f"
+    },
+    {
+      "file": "health-library-support-2026.csv",
+      "bytes": 714784,
+      "rows": 1021,
+      "sha256": "076a1a6c82c114e17a514802457375a9588daf7dad3cdc2652673115708be434"
+    },
+    {
+      "file": "health-library-support-2026.json",
+      "bytes": 1099445,
+      "rows": 1021,
+      "sha256": "e8ec67d2327935f54e57a4e656d2a2ebd5c9120dfa3597ce5bc52223e2ee3b52"
     },
     {
       "file": "health-mcp-servers-2026.csv",

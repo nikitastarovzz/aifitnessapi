@@ -3,7 +3,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import { site } from "@/lib/site";
 
-const UPDATED = "2026-11-14";
+const UPDATED = "2026-11-19";
 
 const TITLE = "Privacy";
 const DESCRIPTION =
@@ -108,6 +108,16 @@ export default function PrivacyPage() {
             also carry <code>utm_</code>{" "}tags naming this site, the link&rsquo;s
             placement and the page, so KinesteX&rsquo;s own analytics can see
             that a visit came from here. Nothing about you is in the tags.
+          </li>
+          <li>
+            <strong>Which kind of page it happened on.</strong>{" "}The landing
+            event and both kinds of click also carry a one-word label for the
+            section of the site the page belongs to: &ldquo;wearable&rdquo;,
+            &ldquo;content&rdquo;, &ldquo;motion&rdquo;, &ldquo;platform&rdquo;,
+            &ldquo;aggregator&rdquo;, &ldquo;compliance&rdquo; or
+            &ldquo;explorer&rdquo;. It is worked out from the page&rsquo;s
+            address alone, by a fixed list of rules, and says nothing about
+            you or what you did.
           </li>
         </ul>
         <p>

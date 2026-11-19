@@ -1,5 +1,5 @@
 /**
- * Crowdsourced Pose Landmarker benchmark results, one entry per accepted
+ * Crowdsourced pose benchmark results (MediaPipe Pose Landmarker and MoveNet), one entry per accepted
  * GitHub issue in nikitastarovzz/aifitnessapi (title prefix "[pose-benchmark]", label
  * "pose-benchmark:accepted").
  *
@@ -15,7 +15,10 @@ export type PoseBenchmarkSubmission = {
   issueUrl: string;
   submittedBy: string | null;
   submittedOn: string | null;
+  /** @mediapipe/tasks-vision version. */
   runtime: string;
+  /** TensorFlow.js and pose-detection versions; null when the run has no MoveNet row. */
+  tfjs: { tfjs: string; poseDetection: string } | null;
   measuredAt: string | null;
   input: string | null;
   device: {
@@ -29,6 +32,9 @@ export type PoseBenchmarkSubmission = {
   } | null;
   rows: {
     model: string;
+    /** Rows submitted before families existed are MediaPipe and read as such. */
+    family: "mediapipe" | "movenet";
+    /** For MoveNet rows, GPU is the TF.js webgl backend and CPU the wasm backend. */
     delegate: "GPU" | "CPU";
     frames: number;
     loadMs: number;

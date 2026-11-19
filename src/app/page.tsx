@@ -134,6 +134,77 @@ const POPULAR: { href: string; name: string; tag: string; blurb: string }[] = [
   { href: "/fitness-apis/ai-workout-tracking-apis", name: "AI motion SDKs", tag: "KinesteX · Sency · QuickPose", blurb: "Camera-based rep counting and form feedback as a product decision: build on models or buy an SDK." },
 ];
 
+/**
+ * Four doors, one per search audience. Search Console and Bing, 8 Jul – 16 Nov
+ * 2026, split the clicks by landing section into four groups of readers (plus
+ * the homepage's own, who do not know the category yet); each door names one
+ * group's job in its words and links that group's most-clicked pages and its
+ * reading path. Every link carries a `home-door-<door>-…` data-cta id
+ * (ops/MEASUREMENT.md, "CTA ids"). Every href is a released page.
+ */
+type Door = {
+  id: "wearable" | "content" | "motion" | "platform";
+  title: string;
+  blurb: string;
+  links: { href: string; label: string }[];
+  path: string;
+};
+
+const DOORS: Door[] = [
+  {
+    id: "wearable",
+    title: "I need one wearable brand’s data",
+    blurb: "Garmin, WHOOP, Oura, Strava, Polar or Fitbit: approval forms, unpublished prices, retired tokens and the routes for your own data.",
+    links: [
+      { href: "/fix/garmin-api-approval", label: "Garmin API access on hold" },
+      { href: "/pricing/garmin-api-pricing", label: "What the Garmin API costs" },
+      { href: "/integrate/oura-api", label: "Integrate the Oura API" },
+      { href: "/own-your-data", label: "Export your own data" },
+    ],
+    path: "one-wearable-brand",
+  },
+  {
+    id: "content",
+    title: "I need exercises or foods I can ship",
+    blurb: "Exercise and food databases: what is free, what you may ship in a commercial app, and which ones have video.",
+    links: [
+      { href: "/pricing/exercise-database-api-pricing", label: "Exercise database API pricing" },
+      { href: "/alternatives/exercisedb-alternatives", label: "ExerciseDB alternatives" },
+      { href: "/compare/exercisedb-vs-wger", label: "ExerciseDB vs wger" },
+      { href: "/fitness-apis/nutrition-apis", label: "Nutrition and food database APIs" },
+    ],
+    path: "exercise-and-food-content",
+  },
+  {
+    id: "motion",
+    title: "I’m picking a pose model",
+    blurb: "MediaPipe, MoveNet, YOLO pose, RTMPose or Apple Vision for camera rep counting: keypoint sets, model sizes, licenses.",
+    links: [
+      { href: "/motion/pose-estimation-models-compared", label: "Pose estimation models compared" },
+      { href: "/motion/mediapipe-pose-landmarker-models", label: "MediaPipe Pose Landmarker models" },
+      { href: "/motion/rtmpose-models", label: "RTMPose models" },
+      { href: "/pose-keypoints", label: "Pose keypoint maps" },
+    ],
+    path: "camera-coaching",
+  },
+  {
+    id: "platform",
+    title: "I’m on HealthKit or Health Connect",
+    blurb: "Google Fit’s end-of-2026 shutdown, the Fitbit Web API’s November 2026 turn-off, and the empty reads a new integration hits first.",
+    links: [
+      { href: "/google-fit-shutdown", label: "Google Fit shutdown" },
+      { href: "/migrate/fitbit-web-api-to-google-health", label: "Fitbit Web API to Google Health API" },
+      { href: "/fix/health-connect-no-data", label: "Health Connect returns no data" },
+      { href: "/integrate/healthkit", label: "Integrate Apple HealthKit" },
+    ],
+    path: "escape-google-fit",
+  },
+];
+
+/** `home-door-<door>-<target path, slashes as dashes>`, as `next-step-…` ids are built. */
+const doorCta = (door: Door["id"], href: string) =>
+  `home-door-${door}-${href.replace(/^\//, "").replace(/#.*$/, "").replace(/\//g, "-")}`;
+
 const STATUS_STYLES: Record<ChangeStatus, string> = {
   confirmed: "border-brand-400 bg-brand-500/10",
   reported: "border-amber-400/50 bg-amber-500/10",
@@ -280,6 +351,52 @@ export default function Home() {
           </dl>
         </Container>
       </section>
+
+      {/* ——— Four doors: one per search audience (see DOORS) ——— */}
+      <Container className="pt-16">
+        <section aria-labelledby="home-doors">
+          <h2 id="home-doors" className="mb-6 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            What brought you here?
+          </h2>
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {DOORS.map((d) => {
+              const path = READING_PATHS.find((p) => p.slug === d.path);
+              // A renamed path slug must fail the build, not drop the link.
+              if (!path) throw new Error(`Home door ${d.id}: no reading path "${d.path}"`);
+              return (
+                <li key={d.id} className="flex flex-col rounded-2xl border border-[var(--border)] p-5">
+                  <h3 className="font-bold tracking-tight text-[var(--fg)]">{d.title}</h3>
+                  <p className="mt-1 text-sm text-[var(--muted)]">{d.blurb}</p>
+                  <ul className="mt-3 flex-1 space-y-0.5 text-sm">
+                    {d.links.map((l) => (
+                      <li key={l.href}>
+                        <Link
+                          href={l.href}
+                          prefetch={false}
+                          data-cta={doorCta(d.id, l.href)}
+                          data-cta-source="home-doors"
+                          className="inline-block py-1 font-medium text-brand-600 hover:text-brand-500"
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/paths#${path.slug}`}
+                    prefetch={false}
+                    data-cta={doorCta(d.id, "/paths")}
+                    data-cta-source="home-doors"
+                    className="mt-3 inline-block py-1 text-sm font-semibold text-[var(--fg)] hover:text-brand-600"
+                  >
+                    Reading path: {path.title} <span aria-hidden>→</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      </Container>
 
       {/* ——— New on the site ———
           The strongest of the pages shipped on 2026-10-31, linked from the
