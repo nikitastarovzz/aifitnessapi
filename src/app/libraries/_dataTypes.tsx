@@ -81,11 +81,11 @@ export function LibraryDataTypes({ s }: { s: LibrarySupport }) {
       {s.unmatched.length > 0 && (
         <details className="mt-6 rounded-xl border border-[var(--border)] p-4 text-sm">
           <summary className="cursor-pointer font-semibold text-[var(--fg)]">
-            {s.unmatched.length} more name{s.unmatched.length === 1 ? "" : "s"} the files use that are not in this site&rsquo;s lists
+            {s.unmatched.length} more name{s.unmatched.length === 1 ? "" : "s"}{" "}the files use that are not in this site&rsquo;s lists
           </summary>
           <p className="mt-2 text-[var(--muted)]">
             Correlation types (blood pressure, food) and types this site&rsquo;s lists do not hold are shown as the source writes
-            them, and left out of the counts above rather than matched to a neighbour.
+            them, and left out of the counts above rather than matched to a neighbor.
           </p>
           <ul className="mt-3 space-y-2">
             {s.unmatched.map((u) => (
