@@ -15,9 +15,9 @@ No API route, no middleware, no new dependency. None of it runs under
 
 | Event | When | Properties |
 |---|---|---|
-| `landing` | first page view of a browser session (a `sessionStorage` flag, `aifa_landed`) | `source_class`, `source`, `landing_path` |
-| `cta_click` | a click on any `[data-cta]` element (CtaLink and the delegated backstop) | `id`, `source` (the CtaSource placement), `page`, and `picker` when the session reached a picker answer |
-| `funder_click` | a click on any link to kinestex.com or a subdomain | `placement`, `page`, and `picker` when the session reached a picker answer |
+| `landing` | first page view of a browser session (a `sessionStorage` flag, `aifa_landed`) | `source_class`, `source`, `landing_path`, `persona` (of `landing_path`) |
+| `cta_click` | a click on any `[data-cta]` element (CtaLink and the delegated backstop) | `id`, `source` (the CtaSource placement), `page`, `persona` (of `page`), and `picker` when the session reached a picker answer |
+| `funder_click` | a click on any link to kinestex.com or a subdomain | `placement`, `page`, `persona` (of `page`), and `picker` when the session reached a picker answer |
 
 `source_class` is one of:
 
@@ -49,6 +49,49 @@ session saw no answer. See "Picker answer on clicks" below.
 `placement` on `funder_click` is `kinestex_note` (the contextual
 KinestexNote), `footer_funding` (the sitewide credit), `methodology`, or
 `citation` for a "Sources checked" link to a kinestex.com page.
+
+`persona` is the audience label of the page path, one of seven fixed values.
+See "Persona" below.
+
+## Persona
+
+Added 2026-11-19. The Search Console and Bing pulls of 8 Jul – 16 Nov 2026
+split the site's search audience by the section people land in: readers after
+one wearable brand's data (Garmin, WHOOP, Oura, Strava, Polar, Fitbit), readers
+shopping for an exercise or food catalogue, readers choosing a pose model,
+HealthKit / Health Connect / Google Health engineers, and people who do not
+know the category yet and land on the homepage. `persona` names which of these
+a page serves, so the events can be read by audience instead of path by path.
+
+It is computed by `personaOf(pathname)` in `src/lib/measure.mjs` from the path
+alone (a leading `/pt-br` set aside, query and fragment ignored), never from
+anything the reader did or typed, and it can only be one of:
+
+| persona | first rule that matches the path |
+|---|---|
+| `aggregator` | a whole word segment `terra`, `rook`, `junction`, `spike`, `thryve`, `sahha`, `human-api`, `validic`, `aggregator`, `wearable-data-apis`, `open-wearables` or `vital` (e.g. `/compare/terra-vs-vital`, not `vitality`) |
+| `content` | contains `exercisedb`, `exercise-database` / `-video` / `-library`, `wger`, `nutrition`, `nutritionix`, `edamam`, `spoonacular`, `food`, `free-exercise`, `meal`, `gymvisual`, `your-move` or `api-ninjas` |
+| `motion` | under `/motion` or `/pose-keypoints`, or contains `pose`, `mediapipe`, `movenet`, `yolo`, `rtmpose`, `openpose`, `blazepose`, `keypoint`, `ai-workout-tracking`, `rep-counter`, `challenge`, `sency`, `quickpose` or `kinestex` |
+| `compliance` | under `/compliance` or `/accessibility` |
+| `platform` | under `/healthkit`, `/health-connect`, `/google-health-api`, `/google-fit-shutdown`, `/fitbit-api-shutdown`, `/migrate`, `/wear-os`, `/watch-apps`, `/workout-types` or `/test`, or contains `healthkit`, `health-connect`, `google-fit` or `samsung-health` |
+| `wearable` | under `/integrate`, `/pricing`, `/fix`, `/devices`, `/bluetooth-fitness`, `/libraries`, `/data`, `/apis` or `/own-your-data`, or contains `garmin`, `whoop`, `oura`, `strava`, `polar`, `coros`, `fitbit`, `withings`, `suunto`, `wahoo` or `dexcom` |
+| `explorer` | everything else, the homepage, `/paths`, `/picker`, `/tools` and the blog included |
+
+"Under" is a whole leading segment (`/data` and `/data/…`, not `/datasets`).
+The order is the rule: `/integrate/terra-api` is `aggregator`,
+`/fix/health-connect-no-data` is `platform`, `/fix/garmin-api-approval` is
+`wearable`. Change a rule in `measure.mjs` and its tests
+(`npm run test:measure`), then here, in the same PR.
+
+How to read it in Vercel Analytics: Events → `landing`, break down by
+`persona` for the audience mix of new sessions (add a `source_class` filter for
+search or AI only). Events → `cta_click` or `funder_click`, break down by
+`persona` for which audience clicks; filter one persona and break down by `id`
+or `page` to see what that audience clicks. A `persona` on a click names the
+page the click happened on, not the page the session landed on, so a reader
+who lands on a wearable page and clicks on the homepage counts as `explorer`
+for that click. The property starts on 2026-11-19: read before/after by its
+presence, and expect events before that date to have none.
 
 ## Picker answer on clicks
 
@@ -119,6 +162,16 @@ the query stay in the browser. The `/my-stack` share card (drawn on a canvas
 in the tab) and its share row carry no `data-cta`, so they send nothing
 either.
 
+Added 2026-11-19 (the four-audience split of the 8 Jul – 16 Nov 2026 Search
+Console and Bing data; see "Persona"). `<door>` is `wearable`, `content`,
+`motion` or `platform`, so a breakdown by the id's second part gives clicks
+per door.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `home-door-<door>-<target path, slashes as dashes>`, e.g. `home-door-wearable-fix-garmin-api-approval`, `home-door-platform-google-fit-shutdown` | `home-doors` | The "What brought you here?" block under the homepage hero (`DOORS` in `src/app/page.tsx`): four doors, four links each | a link to one of that audience's most-clicked pages |
+| `home-door-<door>-paths`, e.g. `home-door-content-paths` | `home-doors` | The last link of each door | a link to that audience's reading path on `/paths` (`#one-wearable-brand`, `#exercise-and-food-content`, `#camera-coaching`, `#escape-google-fit`) |
+
 A completed signup from the inline form also fires `cta_click` with id
 `signup-complete` and source `money-<section>` (the form's own event), and the
 stored signup record carries `source: money-<section>`. Before 2026-11-05 the
@@ -159,6 +212,10 @@ property:
 - **CTA clicks**: `cta_click` → `id`, `source` or `page`.
 - **Which picker answer leads to a funder or CTA click**: `funder_click` or
   `cta_click` → filter or break down by `picker` (from 2026-11-14).
+- **Which audience lands and clicks**: `landing`, `cta_click` or
+  `funder_click` → break down by `persona` (from 2026-11-19; see "Persona").
+- **Which homepage door gets used**: `cta_click` → filter `source =
+  home-doors`, break down by `id`; the door is the second part of the id.
 
 Use the panel's date range for before/after reads against the Nov 10 and
 Nov 24 search pulls. Could not verify from the dev environment (vercel.com is
@@ -168,8 +225,11 @@ the Vercel dashboard before reading a zero as "no traffic".
 
 ## Privacy
 
-`/privacy` states all three events, and the `picker` property on clicks, in
-plain language. The classifier returns
+`/privacy` states all three events, the `picker` property on clicks and the
+`persona` label on all three (derived from the page path only), in plain
+language. The classifier returns
 labels from fixed lists and a bare host; the full referrer URL, its query and
-free-text utm values never reach an event. Change the privacy page in the
+free-text utm values never reach an event. `withPersona` overwrites any
+incoming `persona` with `personaOf(path)`, so the property cannot carry
+anything but one of the seven labels. Change the privacy page in the
 same PR as any new event or property.

@@ -190,4 +190,100 @@ export const READING_PATHS: ReadingPath[] = [
       },
     ],
   },
+  {
+    slug: "one-wearable-brand",
+    title: "Get one wearable brand's data past the gate",
+    blurb:
+      "For when the one API you need sits behind an approval form, an unpublished price or a retired token. Garmin is the worked example; the personal-export, library, OAuth and webhook steps cover other vendors too.",
+    steps: [
+      {
+        href: "/integrate/garmin-api",
+        label: "Integrate the Garmin API",
+        why: "What Garmin's Connect Developer Program actually is before you apply: the access request, Starter versus Enterprise Access, OAuth 2.0, and push or ping/pull delivery.",
+      },
+      {
+        href: "/fix/garmin-api-approval",
+        label: "Garmin API access on hold",
+        why: "When the request stalls. What the reorganized program says now, and the order to try things in: apply, and bridge through an aggregator only after confirming whose Garmin credentials it uses.",
+      },
+      {
+        href: "/pricing/garmin-api-pricing",
+        label: "What the Garmin API costs",
+        why: "Garmin publishes no price for any of its access levels, so this is the list of what to get in writing before you put a number in a budget.",
+      },
+      {
+        href: "/own-your-data",
+        label: "Export your own data",
+        why: "If the data you need is your own, you may not need a developer program at all: each platform's official export, any personal-use API such as Garmin's, and notebooks to analyze the files.",
+      },
+      {
+        href: "/libraries/python",
+        label: "Python libraries for fitness APIs",
+        why: "The open-source clients for Garmin Connect, Strava, Oura, Fitbit and Withings, with versions and README caveats. garminconnect and garth are unofficial and sign in as the user, which suits a script for yourself, not an app serving other people.",
+      },
+      {
+        href: "/fix/oura-personal-access-token-deprecated",
+        label: "Oura personal access tokens are deprecated",
+        why: "The retired-credential trap: a tutorial that tells you to paste an Oura personal token predates Oura's December 2025 deprecation, and new integrations use OAuth 2.0 Authorization Code instead.",
+      },
+      {
+        href: "/tools/oauth-playground",
+        label: "Wearable OAuth playground",
+        why: "Build the authorize URL, scopes, PKCE and token request for Oura, WHOOP, Strava, Polar, Withings, Wahoo, Dexcom, Suunto or Google Health from each vendor's own docs, before you write the callback.",
+      },
+      {
+        href: "/tools/webhook-verifier",
+        label: "Verify a wearable webhook signature",
+        why: "Once data starts arriving: paste a webhook from Oura, WHOOP, Polar, Strava, Withings, Wahoo or Google Health, check its signature in the browser and see what the vendor expects back.",
+      },
+    ],
+  },
+  {
+    slug: "exercise-and-food-content",
+    title: "License exercise and food data you can ship",
+    blurb:
+      "The catalogue route: what each exercise and food database costs once you ship rather than try, which license comes with it, whether it has video, and how its categories line up with the health stores.",
+    steps: [
+      {
+        href: "/fitness-apis/exercise-database-apis",
+        label: "Exercise database APIs compared",
+        why: "The field side by side — ExerciseDB, wger, API Ninjas, Your Move and free-exercise-db by free tier, price, license, media and size — so you start from the constraint that matters to you.",
+      },
+      {
+        href: "/pricing/exercise-database-api-pricing",
+        label: "Exercise database API pricing",
+        why: "The cost of shipping, not of trying: API Ninjas' free plan is for evaluation only and storing its data needs a higher plan, while wger and free-exercise-db cost nothing for the data but you host them.",
+      },
+      {
+        href: "/compare/exercisedb-vs-wger",
+        label: "ExerciseDB vs wger",
+        why: "The license question in its sharpest form: a rented hosted API against self-hosted AGPL software whose exercise data is licensed Creative Commons per entry. Read the copyleft section before you self-host.",
+      },
+      {
+        href: "/alternatives/exercisedb-alternatives",
+        label: "ExerciseDB alternatives",
+        why: "If ExerciseDB is not the one, the alternatives sorted by what is pushing you away: license and ownership, a simpler hosted API, paid hosted video, or media you control.",
+      },
+      {
+        href: "/fitness-apis/exercise-video-apis",
+        label: "Exercise video APIs",
+        why: "Only if you need demonstration video. Few exercise APIs serve it, and this page separates hosted video from GIFs, still images and video files licensed from a stock library.",
+      },
+      {
+        href: "/tools/exercise-taxonomy-crosswalk",
+        label: "Exercise taxonomy crosswalk",
+        why: "If you picked ExerciseDB, wger or free-exercise-db: its categories, equipment and muscles set against HealthKit and Health Connect workout types by name only, with each database's license quoted from its license file or README.",
+      },
+      {
+        href: "/fitness-apis/nutrition-apis",
+        label: "Nutrition and food database APIs",
+        why: "The food side: USDA FoodData Central, Open Food Facts, Nutritionix, Edamam and Spoonacular, each matched to the use case it fits.",
+      },
+      {
+        href: "/pricing/nutrition-api-pricing",
+        label: "What a nutrition API costs",
+        why: "Price and, often more binding, usage terms: Edamam allows only end-user-driven requests, and Open Food Facts requires attribution and share-alike.",
+      },
+    ],
+  },
 ];

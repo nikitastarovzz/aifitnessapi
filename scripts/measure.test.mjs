@@ -17,6 +17,9 @@ import {
   pickerAnswerId,
   parsePickerId,
   withPicker,
+  PERSONAS,
+  personaOf,
+  withPersona,
 } from "../src/lib/measure.mjs";
 
 const SITE = "aifitnessapi.com";
@@ -204,4 +207,172 @@ test("every picker answer has an id (option values read from src/lib/picker.ts)"
     ids.add(id);
   }
   assert.equal(ids.size, jobs.length * platforms.length * priorities.length);
+});
+
+test("personaOf: aggregator, matched as a whole word segment", () => {
+  for (const p of [
+    "/integrate/terra-api",
+    "/compare/terra-vs-vital",
+    "/compare/terra-vs-open-wearables",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/fitness-apis/wearable-data-apis",
+    "/pricing/health-data-aggregator-pricing",
+    "/alternatives/rook-alternatives",
+    "/integrate/human-api",
+    "/tools/aggregator-chooser",
+    "/learn/what-is-a-health-data-aggregator",
+    "/vital",
+  ]) {
+    assert.equal(personaOf(p), "aggregator", p);
+  }
+  // Inside a longer word, an aggregator name is not a match.
+  assert.notEqual(personaOf("/learn/vitality-score"), "aggregator");
+  assert.notEqual(personaOf("/blog/brooklyn-run-club"), "aggregator");
+  assert.notEqual(personaOf("/integrate/terrace-api"), "aggregator");
+});
+
+test("personaOf: content", () => {
+  for (const p of [
+    "/pricing/exercise-database-api-pricing",
+    "/alternatives/exercisedb-alternatives",
+    "/compare/exercisedb-vs-wger",
+    "/fitness-apis/exercise-database-apis",
+    "/fitness-apis/exercise-video-apis",
+    "/fitness-apis/nutrition-apis",
+    "/integrate/nutritionix-api",
+    "/compare/nutritionix-vs-edamam",
+    "/compare/usda-fooddata-central-vs-open-food-facts",
+    "/compare/your-move-vs-free-exercise-db",
+    "/compare/exercisedb-vs-api-ninjas",
+    "/ai/ground-llm-in-exercise-database",
+  ]) {
+    assert.equal(personaOf(p), "content", p);
+  }
+});
+
+test("personaOf: motion", () => {
+  for (const p of [
+    "/motion",
+    "/motion/pose-estimation-models-compared",
+    "/motion/rtmpose-models",
+    "/pose-keypoints",
+    "/pose-keypoints/mediapipe",
+    "/fitness-apis/ai-workout-tracking-apis",
+    "/guides/camera-pose-tracking",
+    "/tools/rep-counter-playground",
+    "/tools/keypoint-playground",
+    "/challenge",
+    "/compare/kinestex-vs-sency",
+  ]) {
+    assert.equal(personaOf(p), "motion", p);
+  }
+});
+
+test("personaOf: compliance", () => {
+  assert.equal(personaOf("/compliance"), "compliance");
+  assert.equal(personaOf("/compliance/hipaa-for-fitness-apps"), "compliance");
+  assert.equal(personaOf("/accessibility/labelling-exercises-and-sets"), "compliance");
+  // A prefix is a whole segment: /compliance-checklist is not under /compliance.
+  assert.notEqual(personaOf("/compliance-checklist"), "compliance");
+});
+
+test("personaOf: platform", () => {
+  for (const p of [
+    "/healthkit",
+    "/healthkit/activity",
+    "/healthkit-identifiers",
+    "/health-connect",
+    "/health-connect-releases",
+    "/health-connect-api/read-records",
+    "/google-health-api",
+    "/google-fit-shutdown",
+    "/fitbit-api-shutdown",
+    "/migrate/fitbit-web-api-to-google-health",
+    "/migrate/google-fit-to-health-connect",
+    "/watch-apps/wear-os-exercise-tracking",
+    "/workout-types",
+    "/test/healthkit-integration",
+    "/fix/health-connect-no-data",
+    "/integrate/healthkit",
+    "/integrate/google-health-connect",
+    "/own-your-data/samsung-health-export",
+  ]) {
+    assert.equal(personaOf(p), "platform", p);
+  }
+});
+
+test("personaOf: wearable", () => {
+  for (const p of [
+    "/fix/garmin-api-approval",
+    "/pricing/garmin-api-pricing",
+    "/integrate/garmin-api",
+    "/pricing/fitbit-api-pricing",
+    "/integrate/oura-api",
+    "/pricing/strava-api-pricing",
+    "/own-your-data",
+    "/own-your-data/garmin-connect-export",
+    "/libraries/python",
+    "/devices/ble-heart-rate",
+    "/bluetooth-fitness",
+    "/data/heart-rate",
+    "/apis/whoop",
+    "/alternatives/polar-api-alternatives",
+    "/compare/oura-vs-whoop",
+  ]) {
+    assert.equal(personaOf(p), "wearable", p);
+  }
+  // /data is a whole segment: /datasets is not under it.
+  assert.equal(personaOf("/datasets"), "explorer");
+});
+
+test("personaOf: first match wins in rule order", () => {
+  assert.equal(personaOf("/fix/wearable-data-delayed"), "wearable");
+  assert.equal(personaOf("/integrate/spike-api"), "aggregator");
+  assert.equal(personaOf("/compare/terra-vs-garmin"), "aggregator");
+  assert.equal(personaOf("/compare/your-move-vs-kinestex"), "content");
+  assert.equal(personaOf("/compare/kinestex-vs-garmin"), "motion");
+  assert.equal(personaOf("/migrate/fitbit-web-api-to-google-health"), "platform");
+});
+
+test("personaOf strips a /pt-br prefix", () => {
+  assert.equal(personaOf("/pt-br/fix/garmin-api-approval"), "wearable");
+  assert.equal(personaOf("/pt-br/pricing/exercise-database-api-pricing"), "content");
+  assert.equal(personaOf("/pt-br/fitness-apis/ai-workout-tracking-apis"), "motion");
+  assert.equal(personaOf("/pt-br/integrate/terra-api"), "aggregator");
+  assert.equal(personaOf("/pt-br/integrate/healthkit"), "platform");
+  assert.equal(personaOf("/pt-br"), "explorer");
+  assert.equal(personaOf("/pt-br/"), "explorer");
+});
+
+test("personaOf falls back to explorer and only ever returns a fixed label", () => {
+  for (const p of ["/", "", "/paths", "/picker", "/blog/some-post", "/tools", "/methodology", "/privacy"]) {
+    assert.equal(personaOf(p), "explorer", p);
+  }
+  assert.equal(personaOf(undefined), "explorer");
+  assert.equal(personaOf(null), "explorer");
+  assert.equal(personaOf(42), "explorer");
+  assert.equal(personaOf("/fix/garmin-api-approval?q=someone@example.com#x"), "wearable");
+  assert.equal(personaOf("/FIX/Garmin-API-Approval"), "wearable");
+  assert.deepEqual([...PERSONAS].sort(), ["aggregator", "compliance", "content", "explorer", "motion", "platform", "wearable"]);
+  for (const p of ["/x", "/<script>", "/motion/x", "/a".repeat(500), "/pt-br/healthkit"]) {
+    assert.ok(PERSONAS.includes(personaOf(p)), p);
+  }
+});
+
+test("withPersona sets the label from the path, never another value", () => {
+  const cta = { id: "home-door-wearable-paths", source: "home-doors", page: "/" };
+  assert.deepEqual(withPersona(cta, "/"), { ...cta, persona: "explorer" });
+  const funder = { placement: "kinestex_note", page: "/motion" };
+  assert.deepEqual(withPersona(funder, "/motion"), { ...funder, persona: "motion" });
+  // An incoming value is replaced, so free text can never ride in on it.
+  assert.equal(withPersona({ persona: "someone@example.com" }, "/integrate/garmin-api").persona, "wearable");
+  const before = { ...cta };
+  withPersona(cta, "/integrate/garmin-api");
+  assert.deepEqual(cta, before);
+  // Composes with the picker property.
+  assert.deepEqual(withPicker(withPersona(cta, "/picker"), "ai-motion.ios.ship-fast"), {
+    ...cta,
+    persona: "explorer",
+    picker: "ai-motion.ios.ship-fast",
+  });
 });
