@@ -157,7 +157,7 @@
   {
     "claim": "Step 4 / FAQ: Google gives November 2, 2026 as the turn-off date for the legacy Fitbit Web API and points to the Google Health API.",
     "url": "https://developers.google.com/health/webhooks?hl=en",
-    "quote": "On November 2, 2026 , the legacy Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. To continue accessing data for your users after this date, migrate to the Google Health API."
+    "quote": "As of November 2, 2026 , the legacy Fitbit Web API and Fitbit OAuth endpoints have been turned off and no longer function or sync data to or from Google Health users."
   },
   {
     "claim": "Unofficial clients: garth's README says Garmin changed its auth flow, breaking garth's mobile auth approach.",
