@@ -16,6 +16,7 @@ import MetricFacts from "@/components/MetricFacts";
 import MetricPlatforms from "@/components/MetricPlatforms";
 import AccessReports from "@/components/AccessReports";
 import { vendorForPath } from "@/lib/accessReportSubmission.mjs";
+import PoseModelFiles from "@/components/PoseModelFiles";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
 import SeeAlsoCallout from "@/components/SeeAlsoCallout";
@@ -88,7 +89,7 @@ const TOOLS = {
   poseBenchmark: {
     href: "/tools/pose-benchmark",
     name: "Pose model benchmark",
-    does: "time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
+    does: "time MediaPipe Pose Landmarker lite, full and heavy, and MoveNet Lightning and Thunder, on your own device and copy the latency table as markdown.",
   },
   heartRate: {
     href: "/tools/heart-rate-lab",
@@ -741,6 +742,11 @@ export default function ClusterPage({
             (lib/accessReportSubmission VENDORS). Never on a translation: it is
             English and outside the translated text. */}
         {!tr && accessVendor && <AccessReports vendor={accessVendor} />}
+
+        {/* The Pose Landmarker .task files as a download measured them, from
+            data/poseModelFiles.ts. Renders nothing off that one page, and is
+            English-only: it is not part of the translatable body. */}
+        {!tr && <PoseModelFiles path={path} />}
 
         {entry.faqs.length > 0 && (
           <section className="mt-14">

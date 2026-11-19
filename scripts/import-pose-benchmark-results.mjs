@@ -66,7 +66,7 @@ for (const s of skipped) console.warn(`skipped ${s}`);
 
 const importedOn = new Date().toISOString().slice(0, 10);
 const body = `/**
- * Crowdsourced Pose Landmarker benchmark results, one entry per accepted
+ * Crowdsourced pose benchmark results (MediaPipe Pose Landmarker and MoveNet), one entry per accepted
  * GitHub issue in ${REPO} (title prefix ${JSON.stringify(TITLE_PREFIX)}, label
  * ${JSON.stringify(ACCEPT_LABEL)}).
  *
@@ -82,7 +82,10 @@ export type PoseBenchmarkSubmission = {
   issueUrl: string;
   submittedBy: string | null;
   submittedOn: string | null;
+  /** @mediapipe/tasks-vision version. */
   runtime: string;
+  /** TensorFlow.js and pose-detection versions; null when the run has no MoveNet row. */
+  tfjs: { tfjs: string; poseDetection: string } | null;
   measuredAt: string | null;
   input: string | null;
   device: {
@@ -96,6 +99,9 @@ export type PoseBenchmarkSubmission = {
   } | null;
   rows: {
     model: string;
+    /** Rows submitted before families existed are MediaPipe and read as such. */
+    family: "mediapipe" | "movenet";
+    /** For MoveNet rows, GPU is the TF.js webgl backend and CPU the wasm backend. */
     delegate: "GPU" | "CPU";
     frames: number;
     loadMs: number;

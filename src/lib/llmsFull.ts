@@ -3,7 +3,7 @@ import { converterCapsule, fitbitToolCapsule } from "@/lib/schemaToolsText";
 import { DS_PATH, DS_PRIMARY_QUERY, dsActionText, dsCapsule } from "@/lib/deprecationScannerText";
 import { site, absoluteUrl } from "@/lib/site";
 import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
-import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
+import { MOVENET_VERIFIED_ON, POSE_DETECTION_VERSION, TASKS_VISION_VERSION, TFJS_VERSION } from "@/lib/poseBenchmark";
 import { FORM_RULES_PRIMARY_QUERY, REP_PLAYGROUND_PRIMARY_QUERY, formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
 import {
   ATLAS_PATH,
@@ -346,7 +346,7 @@ function toolLines(): string[] {
   out.push("Primary query: mediapipe pose landmarker benchmark");
   out.push("");
   out.push(
-    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab; the runtime itself posts a usage report to Google (task name, running mode, OS family, library version and timing counters, no images). The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}. ${leaderboardText()}`,
+    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, and, as opt-in rows, MoveNet SinglePose Lightning and Thunder through @tensorflow-models/pose-detection ${POSE_DETECTION_VERSION} on TensorFlow.js ${TFJS_VERSION} (weights from tfhub.dev; GPU = the webgl backend, CPU = wasm), times both families with the same loop (same input, warm-up, frame count and percentiles) on the reader's own camera or a synthetic test frame, and reports load time, median and p95 inference time, FPS and the browser's device details as one markdown table. The two families output different keypoint sets (33 vs 17). Frames never leave the tab; the MediaPipe runtime itself posts a usage report to Google (task name, running mode, OS family, library version and timing counters, no images). The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. tfhub.dev could not be reached from the site's development environment on ${MOVENET_VERIFIED_ON}, so the MoveNet rows were not seen completing there; a failed weight download shows as a failed row, not a number. ${leaderboardText()}`,
   );
   out.push("");
   out.push(`## Rep counter playground (runs on your device) — ${absoluteUrl("/tools/rep-counter-playground")}`);
