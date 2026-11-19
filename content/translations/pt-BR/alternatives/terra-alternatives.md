@@ -1,8 +1,8 @@
 ---
 path: "/alternatives/terra-alternatives"
-translatedOn: "2026-11-14"
+translatedOn: "2026-11-18"
 sourceUpdated: "2026-10-17"
-sourceHash: "379020867e41e580"
+sourceHash: "466631a1e810d276"
 metaTitle: "Alternativas à API do Terra 2026: Junction, ROOK, Sahha e +6"
 metaDescription: >-
   Alternativas ao Terra, out. 2026: Junction a US$ 300/mês fixos até 500 usuários, Rook e Sahha desde US$ 399 e US$ 299, Thryve na UE, Open Wearables grátis.
@@ -41,6 +41,8 @@ related:
 ---
 O Terra é um agregador forte: ampla cobertura de fornecedores, um esquema normalizado rico, muitos destinos de entrega e, agora, exames laboratoriais. A maioria das equipes que pesquisa o mercado não está insatisfeita com o produto; elas esbarraram em uma unidade de cobrança, em uma exigência de hospedagem ou em uma fonte de dados que outro fornecedor atende melhor. Tudo abaixo vem das páginas dos próprios fornecedores, como as lemos em 17 de outubro de 2026. Para o que este site verificou sobre o acesso ao Terra em um só lugar, veja a [visão geral da API do Terra](/apis/terra).
 
+Está saindo do ROOK, do Sahha, do Thryve ou do Junction, e não do Terra? Cada um tem a sua página: [alternativas ao ROOK](/alternatives/rook-alternatives), [alternativas ao Sahha](/alternatives/sahha-alternatives), [alternativas ao Thryve](/alternatives/thryve-alternatives) e [alternativas ao Junction (antigo Vital)](/alternatives/junction-alternatives).
+
 ## Por que as equipes procuram uma alternativa ao Terra
 
 O Terra cobra em **créditos**. A página de preços dele diz que as assinaturas "start from $399 per month billed annually, or $499 per month billed monthly" [começam em US$ 399 por mês com cobrança anual, ou US$ 499 por mês com cobrança mensal], incluindo 100.000 créditos por mês; "An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month" [uma autenticação ativa é uma fonte de dados conectada de um usuário final, e custa 200 créditos da Unified API por mês], os primeiros 400 eventos por autenticação ativa a cada mês são gratuitos, e créditos não usados não se acumulam para o mês seguinte. Pela nossa conta, isso dá cerca de US$ 899 por mês com 1.000 fontes conectadas na cobrança anual, e a conta cresce com cada fonte que um usuário conecta, não com cada pessoa.
@@ -63,11 +65,11 @@ Exames laboratoriais costumavam estar nessa lista. Para a maioria das equipes, n
 
 **Thryve (thryve.health).** "Developed and hosted entirely in Europe" [desenvolvido e hospedado inteiramente na Europa], com dados "hosted in Germany" [hospedados na Alemanha]; o Start Up começa em 499 euros por mês para 500 usuários, mais 0,50 euro por usuário extra, e a página de certificações dele diz "Business Associate Agreements and Data Processing Agreements are standard on every plan" [Business Associate Agreements (BAA) e Data Processing Agreements (DPA) são padrão em todos os planos]. *Contrapartida:* o Start Up guarda os dados por duas semanas, e fornecedores sem um cliente OAuth compartilhado, como Dexcom e WHOOP, exigem o seu próprio. Veja [Terra vs Thryve](/compare/terra-vs-thryve).
 
-**Sahha (sahha.ai).** Celular em primeiro lugar: ele "turns the smartphone itself into a passive sensor" [transforma o próprio smartphone em um sensor passivo], lê o Apple Health e o Health Connect, e devolve biomarcadores, pontuações e arquétipos. O Starter custa US$ 299 por mês com cobrança anual, com 1.000 usuários incluídos. *Contrapartida:* as integrações diretas em nuvem com Garmin, Oura e WHOOP "are in public beta and are Sandbox only" [estão em beta público e só no Sandbox]. Veja [Terra vs Sahha](/compare/terra-vs-sahha), ou [alternativas ao Sahha](/alternatives/sahha-alternatives) se o Sahha for o fornecedor que você está deixando.
+**Sahha (sahha.ai).** Celular em primeiro lugar: ele "turns the smartphone itself into a passive sensor" [transforma o próprio smartphone em um sensor passivo], lê o Apple Health e o Health Connect, e devolve biomarcadores, pontuações e arquétipos. O Starter custa US$ 299 por mês com cobrança anual, com 1.000 usuários incluídos. *Contrapartida:* as integrações diretas em nuvem dele cobrem três fornecedores, Garmin, Oura e WHOOP, marcados como "GA" [disponibilidade geral] em 18 de novembro de 2026, e cada uma roda em um app que você registra com o fornecedor. Veja [Terra vs Sahha](/compare/terra-vs-sahha), ou [alternativas ao Sahha](/alternatives/sahha-alternatives) se o Sahha for o fornecedor que você está deixando.
 
 **Validic (validic.com).** A opção corporativa de monitoramento remoto, agora da ChartSpan, com "700+ devices" [mais de 700 dispositivos] e programas que escrevem no prontuário eletrônico (EHR); a Inform API dele tem um plano Developer gratuito para 5 usuários. *Contrapartida:* o uso em produção exige um contrato Enterprise negociado, e a lista de dispositivos dele mostra alguns fornecedores fechados a novos pedidos.
 
-**Open Wearables (openwearables.io).** Licença MIT e auto-hospedado, da Momentum: o Core é "$0 Forever" [US$ 0 para sempre], e um plano Pro com pontuações de saúde começa em "From $999 a month, per deployment" [a partir de US$ 999 por mês, por implantação] (27 de outubro de 2026). *Contrapartida:* você mesmo se cadastra em cada fornecedor ("You must apply for Garmin Developer Program" [você precisa se candidatar ao Garmin Developer Program]), e você mesmo o atualiza (o backend declarava a versão 1.0.0 quando o lemos em 14 de novembro de 2026). Veja [Terra vs Open Wearables](/compare/terra-vs-open-wearables).
+**Open Wearables (openwearables.io).** Licença MIT e auto-hospedado, da Momentum: o Core é "$0 Forever" [US$ 0 para sempre], as pontuações de saúde e os outros módulos são complementos (add-ons), o Enterprise é "Custom" [personalizado], e um serviço único de implantação (Deployment) custa "From $4,800" [a partir de US$ 4.800] (18 de novembro de 2026). *Contrapartida:* você mesmo se cadastra em cada fornecedor ("You must apply for Garmin Developer Program" [você precisa se candidatar ao Garmin Developer Program]), e você mesmo o atualiza (o backend declarava a versão 1.0.0 quando o lemos em 14 de novembro de 2026). Veja [Terra vs Open Wearables](/compare/terra-vs-open-wearables).
 
 **Integrações diretas por fornecedor** (Garmin, Oura, WHOOP, Strava, Polar, a Google Health API). Melhor para ser dono do pipeline e não pagar taxa de agregador. *Contrapartida:* você constrói e mantém cada conector, fluxo OAuth e renovação de token por conta própria, e passa pela aprovação de cada fornecedor.
 
@@ -79,7 +81,7 @@ Exames laboratoriais costumavam estar nessa lista. Para a maioria das equipes, n
 | Rook | Faixas por usuário ativo que ficam fixas até 5.000 ou 15.000 usuários | Contrato padrão de 12 meses |
 | Spike | IoT médica, OCR de laudos, fotos de comida, MCP | Preço não detalhado; aquisição anunciada |
 | Thryve | Hospedagem na UE e um BAA em todos os planos | Duas semanas de armazenamento no Start Up |
-| Sahha | Usuários sem wearables; pontuações prontas | Integrações em nuvem ainda em beta |
+| Sahha | Usuários sem wearables; pontuações prontas | Integrações em nuvem para três fornecedores, com apps seus |
 | Validic | Monitoramento remoto (RPM) corporativo dentro do EHR | Contratos negociados para produção |
 | Open Wearables | Dados que nunca saem dos seus servidores | Todos os cadastros nos fornecedores ficam com você |
 | Integrações diretas | Ser dono do pipeline, sem taxa de agregador | Você constrói cada conector |

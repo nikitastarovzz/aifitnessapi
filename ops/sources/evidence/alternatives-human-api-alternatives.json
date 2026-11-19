@@ -157,7 +157,7 @@
   {
     "claim": "Open Wearables: MIT-licensed software you host; the self-hosted Core is \"$0 Forever\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "For teams building their first wearable features. You run the open-source platform yourself. $0 Forever"
+    "quote": "For engineering teams that set up and run Open Wearables themselves, with community support. $0 Forever"
   },
   {
     "claim": "Open Wearables: software you host yourself.",
@@ -280,9 +280,9 @@
     "quote": "Data storage options 1 Day 2 Weeks 1 Month Flexible"
   },
   {
-    "claim": "Sahha: cloud integrations in beta.",
+    "claim": "Sahha: its docs list cloud integrations for Garmin, Oura and WHOOP only (all marked GA, 2026-11-18).",
     "url": "https://docs.sahha.ai/docs/connect/integrations",
-    "quote": "Integrations are in public beta and are Sandbox only"
+    "quote": "Provider Slug Device Connection Status Garmin garmin Watch Cloud OAuth GA Garmin approval required Oura oura Ring Cloud OAuth GA self sign-up WHOOP whoop Band Cloud OAuth GA self sign-up Samsung Health — Phone / watch On-device SDK Coming soon collected via the SDK"
   },
   {
     "claim": "Validic: negotiated Enterprise for production.",

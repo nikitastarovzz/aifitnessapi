@@ -78,7 +78,7 @@ const FAQS = [
   },
   {
     q: "What changed with ANT+ and does it affect a new fitness app?",
-    a: "Per widely-quoted announcements from the ANT+ organization — which we grade as reported, since we could not fetch the official page directly — the ANT+ membership and certification programs were discontinued at the end of June 2025, with device profiles and documentation reportedly remaining available and existing devices unaffected. For a new app in 2026 the practical reading is straightforward: Bluetooth Low Energy is the default radio for fitness sensors, phone-side BLE APIs are first-class on both platforms, and ANT+ matters mainly where an existing hardware ecosystem carries it. The deadline tracker follows this one as it evolves.",
+    a: "The ANT program's pages have moved from thisisant.com to Garmin's developer site, which says the ANT+ membership and certification programs, along with associated engineering support, ended on June 30, 2025. Garmin's ANT FAQ adds that ANT+ has been deprecated and is no longer supported, that no new ANT+ device profiles will be introduced, that existing ANT and ANT+ devices will continue to operate as before, and that ANT+ documentation and tools remain available under the ANT+ Adopter Agreement. For a new app in 2026 the practical reading is straightforward: Bluetooth Low Energy is the default radio for fitness sensors, phone-side BLE APIs are first-class on both platforms, and ANT+ matters mainly where an existing hardware ecosystem carries it. The deadline tracker follows this one as it evolves.",
   },
 ];
 
