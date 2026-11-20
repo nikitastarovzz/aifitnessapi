@@ -43,7 +43,7 @@ references:
       - name: "AIFitnessAPI"
     license: CC-BY-4.0
     url: "https://aifitnessapi.com/datasets/fitness-api-changes-2026.json"
-    notes: "27 rows; card at https://aifitnessapi.com/datasets/fitness-api-changes-2026.md"
+    notes: "29 rows; card at https://aifitnessapi.com/datasets/fitness-api-changes-2026.md"
   - type: dataset
     title: "Fitness & Health API Glossary 2026"
     version: "2026.1"
@@ -115,7 +115,7 @@ references:
       - name: "AIFitnessAPI"
     license: CC-BY-4.0
     url: "https://aifitnessapi.com/datasets/health-mcp-servers-2026.json"
-    notes: "176 rows; card at https://aifitnessapi.com/datasets/health-mcp-servers-2026.md"
+    notes: "283 rows; card at https://aifitnessapi.com/datasets/health-mcp-servers-2026.md"
   - type: dataset
     title: "Bluetooth Fitness GATT Characteristics 2026"
     version: "2026.1"

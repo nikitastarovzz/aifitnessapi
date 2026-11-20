@@ -43,6 +43,26 @@ export type ChangeEvent = {
 export const CHANGE_EVENTS: ChangeEvent[] = [
   {
     date: "2026-11",
+    sortDate: "2026-11-20",
+    title: "Your Move caps yearly Starter and Pro plans at 500 and 800 exercises with video",
+    summary:
+      "Your Move gives no date for the change: first seen on 2026-11-20. Its pricing page now sets the exercise video limit at 250 on Starter and 350 on Pro per rolling 30 days on monthly billing and 500 and 800 per rolling 365 days on yearly billing, and says Scale and Enterprise have no limit. On November 11, 2026 the page said every yearly plan had no exercise video limit.",
+    status: "confirmed",
+    page: { href: "/fitness-apis/exercise-database-apis", label: "Exercise database APIs" },
+    verifiedOn: "2026-11-20",
+  },
+  {
+    date: "2026-11-19",
+    sortDate: "2026-11-19",
+    title: "Google's MediaPipe Pose Landmarker samples download their models from Hugging Face",
+    summary:
+      "A commit dated November 19, 2026, titled \"feat: load the MediaPipe task models from Hugging Face\", changed the iOS and Android Pose Landmarker sample download scripts in google-ai-edge/mediapipe-samples from the storage.googleapis.com mediapipe-models URLs to litert-community repositories on Hugging Face. The Android script pins a SHA-256 for each file. The bucket URLs still returned HTTP 200 on November 20, 2026.",
+    status: "confirmed",
+    page: { href: "/motion/mediapipe-pose-landmarker-models", label: "MediaPipe Pose Landmarker model files" },
+    verifiedOn: "2026-11-20",
+  },
+  {
+    date: "2026-11",
     sortDate: "2026-11-18",
     title: "Sahha marks its Garmin, Oura and WHOOP cloud integrations GA",
     summary:
