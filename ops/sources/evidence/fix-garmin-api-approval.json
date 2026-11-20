@@ -55,24 +55,24 @@
     "quote": "It is not intended for commercial applications serving multiple end users."
   },
   {
-    "claim": "Step 2: the overview's Business section (served in the page's script bundle since the overview HTML now renders the Personal plan) says you create an app with Starter Access and request Enterprise Access through the Developer Portal.",
-    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-0436fbb800ba7e9202f1.js",
+    "claim": "Step 2: the overview's Business section says you create an app with Starter Access and can request Enterprise Access through the Developer Portal.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
     "quote": "Apply for the Garmin Connect Developer Program and create an app with Starter Access. As your business and integration needs evolve, you can request Enterprise Access through Garmin Developer Portal."
   },
   {
-    "claim": "Step 2: Starter is push-only (the Starter plan's Delivery cell in the overview bundle).",
-    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-0436fbb800ba7e9202f1.js",
-    "quote": "s.a.createElement(\"p\",null,\"Push only\")"
+    "claim": "Step 2: Starter is push-only (the Starter plan's Delivery cell on the overview).",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Delivery Push only"
   },
   {
     "claim": "Step 2: Starter has no historical data.",
-    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-0436fbb800ba7e9202f1.js",
-    "quote": "\"Historical Data\"),s.a.createElement(\"p\",null,\"Not included\")"
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Historical Data Not included"
   },
   {
     "claim": "Step 2: Starter has limited user capacity.",
-    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-0436fbb800ba7e9202f1.js",
-    "quote": "\"User Capacity\"),s.a.createElement(\"p\",null,\"Limited\")"
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "User Capacity Limited"
   },
   {
     "claim": "Body / FAQ: the October 17, 2026 FAQ (Wayback Machine capture) carried the Stay tuned banner.",
@@ -157,7 +157,7 @@
   {
     "claim": "Step 4 / FAQ: Google gives November 2, 2026 as the turn-off date for the legacy Fitbit Web API and points to the Google Health API.",
     "url": "https://developers.google.com/health/webhooks?hl=en",
-    "quote": "On November 2, 2026 , the legacy Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. To continue accessing data for your users after this date, migrate to the Google Health API."
+    "quote": "As of November 2, 2026 , the legacy Fitbit Web API and Fitbit OAuth endpoints have been turned off and no longer function or sync data to or from Google Health users."
   },
   {
     "claim": "Unofficial clients: garth's README says Garmin changed its auth flow, breaking garth's mobile auth approach.",
