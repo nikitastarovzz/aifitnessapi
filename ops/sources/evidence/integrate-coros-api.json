@@ -5,14 +5,14 @@
     "quote": "\"section_id\":53180979524884,\"created_at\":\"2026-09-02T18:30:33Z\""
   },
   {
-    "claim": "The Partner API Access article was published on September 2, 2026 and last updated November 13, 2026 (read November 14, 2026).",
+    "claim": "The Partner API Access article was published on September 2, 2026.",
     "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
-    "quote": "\"created_at\":\"2026-09-02T18:34:37Z\",\"updated_at\":\"2026-11-13T15:29:17Z\",\"name\":\"Partner API Access\""
+    "quote": "\"created_at\":\"2026-09-02T18:34:37Z\""
   },
   {
-    "claim": "The Submit an API Application article was last updated on November 10, 2026 (read November 14, 2026).",
+    "claim": "The Submit an API Application article was last edited on September 4, 2026 (the listing's edited_at field, read November 19, 2026).",
     "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
-    "quote": "\"updated_at\":\"2026-11-10T10:51:25Z\",\"name\":\"Submit an API Application\""
+    "quote": "\"name\":\"Submit an API Application\",\"title\":\"Submit an API Application\",\"source_locale\":\"en-us\",\"locale\":\"en-us\",\"outdated\":false,\"outdated_locales\":[],\"edited_at\":\"2026-09-04T13:57:33Z\""
   },
   {
     "claim": "COROS supports data sharing in alignment with EU data protection regulations.",
@@ -278,5 +278,10 @@
     "claim": "Deleting must be done in the COROS app.",
     "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
     "quote": "However, you are not able to delete a plan or workout with AI; this must be done manually in the COROS app."
+  },
+  {
+    "claim": "The Partner API Access article was last edited on September 3, 2026 (the listing's edited_at field, read November 19, 2026).",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "\"name\":\"Partner API Access\",\"title\":\"Partner API Access\",\"source_locale\":\"en-us\",\"locale\":\"en-us\",\"outdated\":false,\"outdated_locales\":[],\"edited_at\":\"2026-09-03T14:38:22Z\""
   }
 ]

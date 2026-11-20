@@ -16,12 +16,12 @@
     "verifiedOn": "Date this entry was last checked against its source page"
   },
   "stats": {
-    "totalItems": 27,
+    "totalItems": 29,
     "byStatus": {
-      "confirmed": 25,
+      "confirmed": 27,
       "reported": 2
     },
-    "confirmed": 25,
+    "confirmed": 27,
     "reported": 2,
     "watch": 0,
     "earliestSortDate": "2023-04-15",
@@ -37,6 +37,26 @@
       "source": "https://aifitnessapi.com/google-fit-shutdown",
       "sourceLabel": "Google Fit shutdown hub",
       "verifiedOn": "2026-10-02"
+    },
+    {
+      "date": "2026-11",
+      "sortDate": "2026-11-20",
+      "title": "Your Move caps yearly Starter and Pro plans at 500 and 800 exercises with video",
+      "summary": "Your Move gives no date for the change: first seen on 2026-11-20. Its pricing page now sets the exercise video limit at 250 on Starter and 350 on Pro per rolling 30 days on monthly billing and 500 and 800 per rolling 365 days on yearly billing, and says Scale and Enterprise have no limit. On November 11, 2026 the page said every yearly plan had no exercise video limit.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/fitness-apis/exercise-database-apis",
+      "sourceLabel": "Exercise database APIs",
+      "verifiedOn": "2026-11-20"
+    },
+    {
+      "date": "2026-11-19",
+      "sortDate": "2026-11-19",
+      "title": "Google's MediaPipe Pose Landmarker samples download their models from Hugging Face",
+      "summary": "A commit dated November 19, 2026, titled \"feat: load the MediaPipe task models from Hugging Face\", changed the iOS and Android Pose Landmarker sample download scripts in google-ai-edge/mediapipe-samples from the storage.googleapis.com mediapipe-models URLs to litert-community repositories on Hugging Face. The Android script pins a SHA-256 for each file. The bucket URLs still returned HTTP 200 on November 20, 2026.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models",
+      "sourceLabel": "MediaPipe Pose Landmarker model files",
+      "verifiedOn": "2026-11-20"
     },
     {
       "date": "2026-11",
