@@ -1,6 +1,7 @@
 /**
  * Measurement helpers: where a visit came from, the tagged link to the
- * site's funder, and the picker answer that later clicks carry.
+ * site's funder, the picker answer that later clicks carry, and the reader
+ * persona a page path belongs to.
  *
  * One module, imported by the client tracker (src/components/CtaTracker.tsx),
  * the components that link to kinestex.com, and scripts/measure.test.mjs, so
@@ -244,4 +245,109 @@ export function withPicker(props, raw) {
   const id = parsePickerId(raw);
   if (!id || "picker" in props) return { ...props };
   return { ...props, picker: id };
+}
+
+// ── The reader persona a page belongs to ──────────────────────────────────
+
+/**
+ * The search audience splits into a few kinds of reader by the section they
+ * land in (Search Console and Bing, 8 Jul – 16 Nov 2026). `persona` on the
+ * landing, cta_click and funder_click events names which one a page serves,
+ * so a click can be read by audience rather than page by page. It is derived
+ * from the page path alone, never from anything the reader did or typed.
+ *
+ * @typedef {"wearable" | "content" | "motion" | "platform" | "aggregator" | "compliance" | "explorer"} Persona
+ */
+export const PERSONAS = /** @type {const} */ ([
+  "wearable",
+  "content",
+  "motion",
+  "platform",
+  "aggregator",
+  "compliance",
+  "explorer",
+]);
+
+/** True when `path` is `prefix` or sits under it (/data, not /datasets). */
+const under = (path, prefixes) => prefixes.some((p) => path === p || path.startsWith(`${p}/`));
+
+/**
+ * Rules in order; the first that matches wins. `prefix` matches a whole
+ * leading path segment (or segments); `word` matches a term as a whole
+ * hyphen- or slash-delimited run (terra-vs-vital, not "brooklyn" for rook);
+ * `contains` matches anywhere in the path.
+ *
+ * @type {{ persona: Persona, prefix?: string[], word?: RegExp, contains?: RegExp }[]}
+ */
+const PERSONA_RULES = [
+  {
+    persona: "aggregator",
+    word: /(^|[/-])(terra|rook|junction|spike|thryve|sahha|human-api|validic|aggregator|wearable-data-apis|open-wearables|vital)(?=$|[/-])/,
+  },
+  {
+    persona: "content",
+    contains: /exercisedb|exercise-(database|video|library)|wger|nutrition|nutritionix|edamam|spoonacular|food|free-exercise|meal|gymvisual|your-move|api-ninjas/,
+  },
+  {
+    persona: "motion",
+    prefix: ["/motion", "/pose-keypoints"],
+    contains: /pose|mediapipe|movenet|yolo|rtmpose|openpose|blazepose|keypoint|ai-workout-tracking|rep-counter|challenge|sency|quickpose|kinestex/,
+  },
+  { persona: "compliance", prefix: ["/compliance", "/accessibility"] },
+  {
+    persona: "platform",
+    prefix: [
+      "/healthkit",
+      "/health-connect",
+      "/google-health-api",
+      "/google-fit-shutdown",
+      "/fitbit-api-shutdown",
+      "/migrate",
+      "/wear-os",
+      "/watch-apps",
+      "/workout-types",
+      "/test",
+    ],
+    contains: /healthkit|health-connect|google-fit|samsung-health/,
+  },
+  {
+    persona: "wearable",
+    prefix: ["/integrate", "/pricing", "/fix", "/devices", "/bluetooth-fitness", "/libraries", "/data", "/apis", "/own-your-data"],
+    contains: /garmin|whoop|oura|strava|polar|coros|fitbit|withings|suunto|wahoo|dexcom/,
+  },
+];
+
+/**
+ * The persona a page serves, from its pathname: one of PERSONAS, never any
+ * other string. A leading /pt-br is set aside, so a translation counts with
+ * its English page; query and fragment are ignored; anything unmatched, the
+ * homepage included, is "explorer".
+ *
+ * @param {unknown} pathname e.g. window.location.pathname
+ * @returns {Persona}
+ */
+export function personaOf(pathname) {
+  if (typeof pathname !== "string") return "explorer";
+  let path = pathname.split(/[?#]/)[0].toLowerCase().slice(0, 256);
+  if (path === "/pt-br" || path.startsWith("/pt-br/")) path = path.slice("/pt-br".length) || "/";
+  for (const r of PERSONA_RULES) {
+    if (r.prefix && under(path, r.prefix)) return r.persona;
+    if (r.word && r.word.test(path)) return r.persona;
+    if (r.contains && r.contains.test(path)) return r.persona;
+  }
+  return "explorer";
+}
+
+/**
+ * Event properties with `persona` set from the page path. Any `persona`
+ * already in `props` is replaced, so the property can only ever hold one of
+ * PERSONAS; the caller's object is not changed.
+ *
+ * @template {Record<string, string>} T
+ * @param {T} props
+ * @param {unknown} pathname
+ * @returns {T & { persona: Persona }}
+ */
+export function withPersona(props, pathname) {
+  return { ...props, persona: personaOf(pathname) };
 }

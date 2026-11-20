@@ -50,6 +50,7 @@ import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 import { robotsFor } from "@/data/noindex";
+import WrappedBy from "@/components/WrappedBy";
 
 /**
  * One page per Health Connect record class — the query is the class name
@@ -601,6 +602,7 @@ export default async function HcRecordPage({ params }: { params: Promise<Params>
             </Link>
             .
           </p>
+          <WrappedBy store="healthConnect" id={r.className} name={r.className} />
         </section>
 
         <section id="healthkit" className="mt-14 scroll-mt-24">

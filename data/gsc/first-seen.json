@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-18",
+  "asOf": "2026-11-19",
   "firstSeen": {
     "/": "2026-07-08",
     "/about": "2026-07-12",
@@ -722,6 +722,7 @@
     "/pricing/whoop-api-pricing": "2026-07-24",
     "/pricing/withings-api-pricing": "2026-11-11",
     "/privacy": "2026-09-20",
+    "/pt-br/fitness-apis/ai-workout-tracking-apis": "2026-11-19",
     "/pt-br/fix/garmin-api-approval": "2026-11-12",
     "/questions/accessibility": "2026-10-13",
     "/questions/alternatives": "2026-10-24",

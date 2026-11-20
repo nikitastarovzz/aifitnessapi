@@ -281,6 +281,22 @@ export const ENTRIES: Entry[] = [
       "crosswalkKey is derived: the name with a leading EXERCISE_TYPE_ removed, lowercased, separators dropped. Constants are joined on that key alone, so a shared key means the names match, not that the platforms define the activity alike, and no Apple or Google page read for it maps one list onto another. Wear OS ids come from the androidx source the reference links, because the reference prints none.",
   },
   {
+    slug: "health-library-support-2026",
+    unit: "rows",
+    blurb:
+      "Which HealthKit identifiers and Health Connect record classes each React Native, Capacitor, Cordova and Flutter health wrapper library maps, read from the library's own source at its release tag (or default-branch head), each row with the file, line and verbatim line, matched exactly against this site's identifier lists.",
+    keywords: [
+      "react-native-health supported types",
+      "flutter health package data types",
+      "capacitor health plugin HealthKit types",
+      "react-native-health-connect record types",
+      "HealthKit wrapper library comparison",
+    ],
+    presentedBy: { href: "/libraries", label: "Health and fitness libraries" },
+    caveat:
+      "A row means the library's type-mapping files name the type, read by a script; it is not a runtime test. The files read are a reviewer's choice, named per library on its page. Tokens that are not exactly in this site's lists (correlation types, types newer than the lists) are kept as unmatched rows, never matched by similarity. Head reads describe unreleased code where the manifest version differs from the registry's.",
+  },
+  {
     slug: "exercise-form-rules-2026",
     unit: "rules",
     blurb:

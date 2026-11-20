@@ -1,8 +1,18 @@
 import { POSE_SCHEMES, POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
-import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
+import {
+  BENCH_MODELS,
+  MOVENET_MODELS,
+  MOVENET_VERIFIED_ON,
+  POSE_DETECTION_VERSION,
+  TASKS_VISION_USAGE_LOG_URL,
+  TASKS_VISION_VERSION,
+  TFJS_VERSION,
+  VERIFIED_ON,
+  mib,
+} from "@/lib/poseBenchmark";
 import { POSE_BENCHMARK_RESULTS_IMPORTED_ON } from "@/data/poseBenchmarkResults";
 import { ACCEPT_LABEL, REPO, TITLE_PREFIX } from "@/lib/poseBenchmarkSubmission.mjs";
-import { LEADERBOARD_TEMPLATE_URL, leaderboardGroups, leaderboardMs } from "@/lib/poseLeaderboard";
+import { LEADERBOARD_TEMPLATE_URL, leaderboardDelegate, leaderboardGroups, leaderboardMs, leaderboardRuntime } from "@/lib/poseLeaderboard";
 import { site } from "@/lib/site";
 import { interactiveNote, link, table, type MirrorDoc } from "./core";
 
@@ -26,7 +36,7 @@ export function poseBenchmarkMirror(): MirrorDoc {
         ]
       : [
           ...groups.flatMap((g) => [
-            `### ${g.model}, ${g.delegate} delegate`,
+            `### ${g.model}, ${leaderboardDelegate(g.model, g.delegate)}`,
             "",
             ...table(
               ["Platform", "GPU (as reported)", "Median ms", "p95 ms", "Loop fps", "Runtime", "Issue"],
@@ -36,7 +46,7 @@ export function poseBenchmarkMirror(): MirrorDoc {
                 leaderboardMs(row.medianMs),
                 leaderboardMs(row.p95Ms),
                 row.loopFps === null ? "—" : row.loopFps.toFixed(1),
-                sub.runtime,
+                leaderboardRuntime(sub, row),
                 `${link(`#${sub.issue}`, sub.issueUrl)}${sub.submittedOn ? ` · ${sub.submittedOn}` : ""}`,
               ]),
             ),
@@ -50,17 +60,18 @@ export function poseBenchmarkMirror(): MirrorDoc {
   const plEvidence = blazepose?.usedBy.find((u) => u.modelId === "mediapipe-pose-landmarker");
   const numPoses = blazepose?.notes.find((n) => n.text === "num_poses: int = 1");
   const movenet = coco?.notes.find((n) => /MoveNet/.test(n.text));
+  const moveNetUrls = MOVENET_MODELS.map((m) => `\`${m.url}\``).join(" and ");
   const sizes = BENCH_MODELS.map((m, i) => `${i > 0 ? (i === BENCH_MODELS.length - 1 ? " and " : ", ") : ""}${mib(m.bytes)} (${m.id})`).join("");
 
   return {
     path: PATH,
     title: "Benchmark a pose model on your own device",
     description:
-      "Time MediaPipe Pose Landmarker lite, full and heavy on your own device: load time, median and p95 latency, FPS, delegate. In the browser; no video upload.",
+      "Time MediaPipe Pose Landmarker lite, full and heavy, and MoveNet Lightning and Thunder, on your own device: median and p95 latency, FPS. No video upload.",
     updated: UPDATED,
     type: "tool",
     capsule:
-      "The only latency number that predicts how a pose model will run in your app is one measured on the hardware it will run on. This page loads MediaPipe Pose Landmarker (lite, full and heavy) in your browser, runs it on your camera or a test frame, and reports load time, median and p95 inference time, frames per second and the delegate used, as a table you can copy as markdown. Frames never leave the tab: the page downloads Google’s runtime and model files and sends nothing from the camera; the runtime’s own usage report to Google carries timings, not images.",
+      "The only latency number that predicts how a pose model will run in your app is one measured on the hardware it will run on. This page loads MediaPipe Pose Landmarker (lite, full and heavy) in your browser, and MoveNet SinglePose Lightning and Thunder through TensorFlow.js if you tick them, runs them on your camera or a test frame with the same timing loop, and reports load time, median and p95 inference time, frames per second and the delegate used, as one table you can copy as markdown. Frames never leave the tab: the page downloads the runtimes and model files and sends nothing from the camera; the MediaPipe runtime’s own usage report to Google carries timings, not images.",
     body: [
       interactiveNote(PATH, "the benchmark runner"),
       "",
@@ -71,14 +82,18 @@ export function poseBenchmarkMirror(): MirrorDoc {
       "",
       `The model files sit on the \`float16/1/\` path of Google’s mediapipe-models storage bucket: the package README gives that URL for lite, and Google’s Android sample downloads all three from it. On ${VERIFIED_ON} they were served at ${sizes}. All three produce the same output:${plEvidence ? ` MediaPipe’s own Tasks source declares “${plEvidence.evidence.replace(/^.*"""(.*)"""$/, "$1")}”` : ""} (${blazepose?.points.length} points, indexed on the ${link("BlazePose 33 keypoint reference", "/pose-keypoints/blazepose-33")})${numPoses ? ", and its num_poses option defaults to 1, which is what this page uses" : ""}. Which variant to ship is the question ${link("Pose Landmarker lite vs full vs heavy", "/motion/mediapipe-pose-landmarker-models")} answers; this page gives you your own numbers to answer it with.`,
       "",
-      "## Why MoveNet is not here yet",
+      "## MoveNet beside MediaPipe",
       "",
-      `MoveNet Lightning and Thunder run in the browser through TensorFlow.js${movenet ? `, and the TF.js pose-detection README states “${movenet.text}”` : ""}. The package loads its weights from tfhub.dev unless you pass your own \`modelUrl\`, and when this page was built on ${VERIFIED_ON} we could not reach tfhub.dev to confirm those files are still served. A benchmark that might time a failed download is worse than none, so MoveNet stays out until its weight URLs can be checked. Its variants and runtimes are covered in ${link("MoveNet Lightning vs Thunder", "/motion/movenet-models")}, and the head-to-head is ${link("MediaPipe vs MoveNet", "/compare/mediapipe-vs-movenet")}.`,
+      `MoveNet Lightning and Thunder run in the browser through TensorFlow.js${movenet ? `, and the TF.js pose-detection README states “${movenet.text}”` : ""}. Tick them and the page loads \`@tensorflow-models/pose-detection\` ${POSE_DETECTION_VERSION} on TensorFlow.js ${TFJS_VERSION} (the latest releases on the npm registry when this was checked on ${MOVENET_VERIFIED_ON}) from cdn.jsdelivr.net, and the detector downloads its weights from the tfhub.dev addresses the package’s own source names: ${moveNetUrls}. The GPU box runs MoveNet on TF.js’s WebGL backend and the CPU box on its WebAssembly backend, the closest match to MediaPipe’s two delegates. Both families go through the same loop on the same input: the same warm-up, the same number of frames, one call per animation frame and the same percentiles, so the rows are comparable on your device.`,
+      "",
+      `The two families output different keypoint sets: Pose Landmarker ${blazepose?.points.length ?? 33} landmarks, MoveNet the ${coco?.points.length ?? 17} COCO keypoints, so a faster row is not doing the same job; the indices are on ${link("pose keypoint maps", "/pose-keypoints")}.`,
+      "",
+      `One limit we state plainly: on ${MOVENET_VERIFIED_ON} both tfhub.dev addresses answered with a TensorFlow.js graph model (Lightning with a 192×192 input, Thunder with 256×256), served through a redirect to Kaggle’s model storage, but our development environment’s network refused tfhub.dev, so we have not watched a MoveNet row complete on this page ourselves. If the download fails in your browser, the row says so instead of showing a number. The variants are covered in ${link("MoveNet Lightning vs Thunder", "/motion/movenet-models")}, and the head-to-head is ${link("MediaPipe vs MoveNet", "/compare/mediapipe-vs-movenet")}.`,
       "",
       "## How to read the numbers",
       "",
       "- **Load** is the time from asking for a model to having it ready, so on a first run it includes the download. The second delegate for the same model may be served the file from the browser’s cache, so compare loads across runs, not within one.",
-      "- **Median and p95** time one call to `detectForVideo`, which returns the landmarks to JavaScript, after 10 warm-up frames are discarded. p95 is the frame your users notice: a good median with a long tail still stutters.",
+      "- **Median and p95** time one call to `detectForVideo` (MediaPipe) or `estimatePoses` (MoveNet), each of which returns the keypoints to JavaScript, after 10 warm-up frames are discarded. p95 is the frame your users notice: a good median with a long tail still stutters.",
       "- **1000/mean fps** is the ceiling inference alone allows. **Loop fps** is what the page actually achieved with one inference per animation frame, so it is also capped by how often the browser paints; it is the closer estimate of a live overlay.",
       "- **Pose found** counts frames with a detected pose. In video mode the landmarker tracks a found pose from frame to frame, so a run with no person in view can time differently from one with a person in it. The synthetic frame is a drawn figure, not a photo, and is for timing only.",
       "- A browser is not your app. A native Android or iOS build of the same model runs through a different runtime and delegate, and a background tab, low-power mode or a hot device all slow the loop. Run it more than once, on the lowest-end device you intend to support.",
@@ -87,9 +102,9 @@ export function poseBenchmarkMirror(): MirrorDoc {
       "",
       "## How this works, and what it sends",
       "",
-      "Everything runs client-side. Camera frames go from your browser’s video element straight into the WebAssembly runtime and are never stored, sent or recorded; this site has no server code behind this page and logs no event from it beyond its ordinary page view. The network requests the page makes are the ones any app using the library makes: the runtime from cdn.jsdelivr.net and each model file from storage.googleapis.com, so those hosts see an ordinary download.",
+      "Everything runs client-side. Camera frames go from your browser’s video element straight into the WebAssembly runtime and are never stored, sent or recorded; this site has no server code behind this page and logs no event from it beyond its ordinary page view. The network requests the page makes are the ones any app using the libraries makes: the runtimes from cdn.jsdelivr.net, each MediaPipe model file from storage.googleapis.com and, only if you tick MoveNet, its weights from tfhub.dev (and any host that download is redirected to), so those hosts see an ordinary download.",
       "",
-      `The runtime also reports its own usage to Google. Version ${TASKS_VISION_VERSION} posts to \`${TASKS_VISION_USAGE_LOG_URL}\` about once a minute and when a model closes, which we saw in our own test of this page on ${VERIFIED_ON}. In the library’s code the report is built from the task name, the running mode, an operating-system family read from the user agent, the library version and timing counters such as frames processed and latency; no image, video or landmark value goes into it. Its public options offer no switch to turn it off, and blocking that host does not stop the benchmark.`,
+      `The runtime also reports its own usage to Google. Version ${TASKS_VISION_VERSION} posts to \`${TASKS_VISION_USAGE_LOG_URL}\` about once a minute and when a model closes, which we saw in our own test of this page on ${VERIFIED_ON}. In the library’s code the report is built from the task name, the running mode, an operating-system family read from the user agent, the library version and timing counters such as frames processed and latency; no image, video or landmark value goes into it. Its public options offer no switch to turn it off, and blocking that host does not stop the benchmark. The TensorFlow.js ${TFJS_VERSION} and pose-detection ${POSE_DETECTION_VERSION} bundles the MoveNet rows load name no reporting address: when we listed every URL in them on ${MOVENET_VERIFIED_ON}, they were model hosts and documentation links only.`,
       "",
       "The device details are what your browser chooses to report. Some browsers hide the GPU name or round the memory figure on purpose, and the table says “not reported” rather than guessing.",
       "",

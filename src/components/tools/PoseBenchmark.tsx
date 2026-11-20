@@ -5,11 +5,18 @@ import ShareCard from "@/components/ShareCard";
 import { localDate } from "@/lib/shareCard";
 import {
   BENCH_MODELS,
+  MOVENET_MODELS,
+  POSE_DETECTION_VERSION,
   TASKS_VISION_BUNDLE,
   TASKS_VISION_VERSION,
   TASKS_VISION_WASM,
+  TFJS_BACKEND,
+  TFJS_SCRIPTS,
+  TFJS_VERSION,
+  TFJS_WASM_PATH,
   mib,
   type BenchModel,
+  type MoveNetModel,
 } from "@/lib/poseBenchmark";
 import { ACCEPT_LABEL, buildIssue, resultRecord } from "@/lib/poseBenchmarkSubmission.mjs";
 
@@ -33,13 +40,26 @@ import { ACCEPT_LABEL, buildIssue, resultRecord } from "@/lib/poseBenchmarkSubmi
  * The runtime is imported from the CDN at run time, not bundled: the site
  * adds no npm dependency for it and a reader who never presses Run downloads
  * none of it.
+ *
+ * MoveNet Lightning and Thunder are opt-in rows. Only when one is ticked does
+ * the page add TensorFlow.js and @tensorflow-models/pose-detection as pinned
+ * UMD <script>s from the same CDN (TFJS_SCRIPTS in src/lib/poseBenchmark.ts,
+ * the install the package's MoveNet README gives), and the detector fetches
+ * its weights from the tfhub.dev URL written there. Both families go through
+ * the one timing loop below (timeRun): the same input element, the same
+ * warm-up, the same frame count, one call per animation frame, the same
+ * percentiles. Only the call inside the loop differs.
  */
 
 type Delegate = "GPU" | "CPU";
 type Source = "camera" | "synthetic";
+type Family = "mediapipe" | "movenet";
+type ModelId = BenchModel["id"] | MoveNetModel["id"];
+type Frame = HTMLVideoElement | HTMLCanvasElement;
 
 type Row = {
   model: string;
+  family: Family;
   delegate: Delegate;
   status: "ok" | "error";
   error?: string;
@@ -85,6 +105,25 @@ type VisionModule = {
   };
 };
 
+/* The subset of TensorFlow.js and pose-detection 2.1.3 this page calls, on the
+ * globals their UMD bundles define (window.tf, window.poseDetection). Typed
+ * by hand from the packages' .d.ts files for the same reason. */
+type TfGlobal = {
+  setBackend(name: string): Promise<boolean>;
+  ready(): Promise<void>;
+  getBackend(): string;
+  wasm?: { setWasmPaths(prefix: string): void };
+};
+type PoseDetector = {
+  estimatePoses(image: Frame, config?: object, timestamp?: number): Promise<unknown[]>;
+  dispose(): void;
+};
+type PoseDetectionGlobal = {
+  SupportedModels: { MoveNet: string };
+  createDetector(model: string, config: { modelType: string; modelUrl: string }): Promise<PoseDetector>;
+};
+type TfWindow = Window & { tf?: TfGlobal; poseDetection?: PoseDetectionGlobal };
+
 const WARMUP_FRAMES = 10;
 const FRAME_CHOICES = [50, 100, 300];
 const SYNTH_W = 640;
@@ -96,6 +135,26 @@ function quantile(sorted: number[], q: number): number {
   const lo = Math.floor(pos);
   const hi = Math.ceil(pos);
   return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
+}
+
+/** Add a classic <script> once and wait for it; rejects on a network error. */
+function loadScript(src: string): Promise<void> {
+  const prior = document.querySelector<HTMLScriptElement>(`script[data-bench-src="${src}"]`);
+  if (prior?.dataset.loaded === "1") return Promise.resolve();
+  prior?.remove();
+  return new Promise((resolve, reject) => {
+    const el = document.createElement("script");
+    el.src = src;
+    el.async = false;
+    el.crossOrigin = "anonymous";
+    el.dataset.benchSrc = src;
+    el.onload = () => {
+      el.dataset.loaded = "1";
+      resolve();
+    };
+    el.onerror = () => reject(new Error(`could not load ${new URL(src).pathname.split("/").slice(1, 3).join("/")}`));
+    document.head.appendChild(el);
+  });
 }
 
 const ms = (n: number | undefined) => (n === undefined || Number.isNaN(n) ? "—" : n.toFixed(1));
@@ -165,13 +224,23 @@ function drawSynthetic(ctx: CanvasRenderingContext2D, t: number) {
   seg(cx, 290, cx + 45, 420);
 }
 
+const delegateLabel = (r: Pick<Row, "family" | "delegate">) =>
+  r.family === "movenet" ? `${r.delegate} (TF.js ${TFJS_BACKEND[r.delegate]})` : r.delegate;
+
 function toMarkdown(rows: Row[], device: Device | null, input: string, when: string): string {
+  const mp = rows.some((r) => r.family === "mediapipe");
+  const mn = rows.some((r) => r.family === "movenet");
   const lines = [
-    `Pose Landmarker benchmark — ${when}`,
+    `${mp && mn ? "MediaPipe Pose Landmarker vs MoveNet" : mn ? "MoveNet" : "Pose Landmarker"} benchmark — ${when}`,
     "",
-    `- Runtime: @mediapipe/tasks-vision ${TASKS_VISION_VERSION} (WebAssembly), VIDEO running mode, numPoses 1`,
-    `- Input: ${input}`,
   ];
+  if (mp) lines.push(`- MediaPipe: @mediapipe/tasks-vision ${TASKS_VISION_VERSION} (WebAssembly), VIDEO running mode, numPoses 1; 33 keypoints`);
+  if (mn) {
+    lines.push(
+      `- MoveNet: @tensorflow-models/pose-detection ${POSE_DETECTION_VERSION} on TensorFlow.js ${TFJS_VERSION}, single-pose; GPU = webgl backend, CPU = wasm backend; 17 keypoints`,
+    );
+  }
+  lines.push(`- Input: ${input}`, `- Timing: ${WARMUP_FRAMES} warm-up frames discarded, then one call per animation frame, for every row`);
   if (device) {
     lines.push(
       `- Browser: ${device.userAgent}`,
@@ -186,10 +255,10 @@ function toMarkdown(rows: Row[], device: Device | null, input: string, when: str
   );
   for (const r of rows) {
     if (r.status === "error") {
-      lines.push(`| ${r.model} | ${r.delegate} | failed: ${r.error ?? "unknown error"} | | | | | | | |`);
+      lines.push(`| ${r.model} | ${delegateLabel(r)} | failed: ${r.error ?? "unknown error"} | | | | | | | |`);
     } else {
       lines.push(
-        `| ${r.model} | ${r.delegate} | ${ms(r.loadMs)} | ${ms(r.medianMs)} | ${ms(r.p95Ms)} | ${ms(r.meanMs)} | ${fps(r.meanMs ? 1000 / r.meanMs : undefined)} | ${fps(r.loopFps)} | ${r.frames} | ${r.poseFrames} |`,
+        `| ${r.model} | ${delegateLabel(r)} | ${ms(r.loadMs)} | ${ms(r.medianMs)} | ${ms(r.p95Ms)} | ${ms(r.meanMs)} | ${fps(r.meanMs ? 1000 / r.meanMs : undefined)} | ${fps(r.loopFps)} | ${r.frames} | ${r.poseFrames} |`,
       );
     }
   }
@@ -209,7 +278,14 @@ function headlineRow(rows: Row[]): Row | undefined {
 export default function PoseBenchmark() {
   const [device, setDevice] = useState<Device | null>(null);
   const [source, setSource] = useState<Source>("camera");
-  const [models, setModels] = useState<Record<BenchModel["id"], boolean>>({ lite: true, full: true, heavy: false });
+  const [models, setModels] = useState<Record<ModelId, boolean>>({
+    lite: true,
+    full: true,
+    heavy: false,
+    // Opt-in: ticking either is what loads TensorFlow.js at all.
+    lightning: false,
+    thunder: false,
+  });
   const [delegates, setDelegates] = useState<Record<Delegate, boolean>>({ GPU: true, CPU: true });
   const [frames, setFrames] = useState(100);
   const [running, setRunning] = useState(false);
@@ -223,6 +299,7 @@ export default function PoseBenchmark() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stopRef = useRef(false);
   const visionRef = useRef<{ mod: VisionModule; fileset: unknown } | null>(null);
+  const tfRef = useRef<{ tf: TfGlobal; pd: PoseDetectionGlobal; wasm: boolean } | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
   // Read in an effect, not during render: the server has no navigator, and a
@@ -240,6 +317,28 @@ export default function PoseBenchmark() {
     const fileset = await mod.FilesetResolver.forVisionTasks(TASKS_VISION_WASM);
     visionRef.current = { mod, fileset };
     return visionRef.current;
+  }
+
+  /** TF.js core, converter and the WebGL backend, then pose-detection; the
+   *  WASM backend only when the CPU delegate is ticked. */
+  async function loadTf(needWasm: boolean): Promise<{ tf: TfGlobal; pd: PoseDetectionGlobal }> {
+    if (!tfRef.current) {
+      await loadScript(TFJS_SCRIPTS.core);
+      await loadScript(TFJS_SCRIPTS.converter);
+      await loadScript(TFJS_SCRIPTS.webgl);
+      await loadScript(TFJS_SCRIPTS.poseDetection);
+      const w = window as TfWindow;
+      if (!w.tf || !w.poseDetection) throw new Error("the TensorFlow.js scripts loaded but defined no tf / poseDetection global");
+      tfRef.current = { tf: w.tf, pd: w.poseDetection, wasm: false };
+    }
+    if (needWasm && !tfRef.current.wasm) {
+      await loadScript(TFJS_SCRIPTS.wasm);
+      const tf = (window as TfWindow).tf!;
+      if (!tf.wasm) throw new Error("the TF.js WASM backend script defined no tf.wasm");
+      tf.wasm.setWasmPaths(TFJS_WASM_PATH);
+      tfRef.current = { ...tfRef.current, tf, wasm: true };
+    }
+    return tfRef.current;
   }
 
   async function openSource(): Promise<{ el: HTMLVideoElement | HTMLCanvasElement; label: string }> {
@@ -268,25 +367,21 @@ export default function PoseBenchmark() {
     return { el: canvas, label: `synthetic test frame, ${SYNTH_W}×${SYNTH_H} (not a person; pose may not be found)` };
   }
 
-  async function benchOne(
-    vision: { mod: VisionModule; fileset: unknown },
-    model: BenchModel,
-    delegate: Delegate,
-    el: HTMLVideoElement | HTMLCanvasElement,
+  /**
+   * The one timing loop both families go through: WARMUP_FRAMES discarded,
+   * then `frames` timed calls, one per animation frame, on the same element.
+   * `infer` returns the number of poses found. MediaPipe's call is
+   * synchronous and is not awaited, so its timing is what it always was;
+   * MoveNet's resolves once the keypoints are back in JavaScript, which is
+   * the same point detectForVideo returns at.
+   */
+  async function timeRun(
+    base: Pick<Row, "model" | "family" | "delegate">,
+    loadMs: number,
+    el: Frame,
+    infer: (el: Frame, ts: number) => number | Promise<number>,
+    close: () => void,
   ): Promise<Row> {
-    const base = { model: model.name, delegate };
-    let lm: Landmarker | null = null;
-    const t0 = performance.now();
-    try {
-      lm = await vision.mod.PoseLandmarker.createFromOptions(vision.fileset, {
-        baseOptions: { modelAssetPath: model.url, delegate },
-        runningMode: "VIDEO",
-        numPoses: 1,
-      });
-    } catch (e) {
-      return { ...base, status: "error", error: String((e as Error)?.message ?? e).slice(0, 140) };
-    }
-    const loadMs = performance.now() - t0;
     const ctx = el instanceof HTMLCanvasElement ? el.getContext("2d") : null;
     const times: number[] = [];
     let poseFrames = 0;
@@ -302,20 +397,21 @@ export default function PoseBenchmark() {
         lastTs = ts;
         if (i === WARMUP_FRAMES) loopStart = performance.now();
         const s = performance.now();
-        const res = lm.detectForVideo(el, ts);
+        let found = infer(el, ts);
+        if (typeof found !== "number") found = await found;
         const d = performance.now() - s;
         if (i >= WARMUP_FRAMES) {
           times.push(d);
-          if (res.landmarks.length > 0) poseFrames++;
+          if (found > 0) poseFrames++;
         }
-        if (i % 10 === 0) setStatus(`${model.name} · ${delegate}: frame ${i + 1} of ${total}`);
+        if (i % 10 === 0) setStatus(`${base.model} · ${delegateLabel(base)}: frame ${i + 1} of ${total}`);
       }
     } catch (e) {
-      lm.close();
+      close();
       return { ...base, status: "error", loadMs, error: String((e as Error)?.message ?? e).slice(0, 140) };
     }
     const loopMs = performance.now() - loopStart;
-    lm.close();
+    close();
     const sorted = [...times].sort((a, b) => a - b);
     const mean = times.reduce((a, b) => a + b, 0) / (times.length || 1);
     return {
@@ -332,6 +428,66 @@ export default function PoseBenchmark() {
     };
   }
 
+  async function benchOne(
+    vision: { mod: VisionModule; fileset: unknown },
+    model: BenchModel,
+    delegate: Delegate,
+    el: Frame,
+  ): Promise<Row> {
+    const base = { model: model.name, family: "mediapipe" as const, delegate };
+    let lm: Landmarker | null = null;
+    const t0 = performance.now();
+    try {
+      lm = await vision.mod.PoseLandmarker.createFromOptions(vision.fileset, {
+        baseOptions: { modelAssetPath: model.url, delegate },
+        runningMode: "VIDEO",
+        numPoses: 1,
+      });
+    } catch (e) {
+      return { ...base, status: "error", error: String((e as Error)?.message ?? e).slice(0, 140) };
+    }
+    const loadMs = performance.now() - t0;
+    const landmarker = lm;
+    return timeRun(base, loadMs, el, (f, ts) => landmarker.detectForVideo(f, ts).landmarks.length, () => landmarker.close());
+  }
+
+  async function benchMoveNet(
+    lib: { tf: TfGlobal; pd: PoseDetectionGlobal },
+    model: MoveNetModel,
+    delegate: Delegate,
+    el: Frame,
+  ): Promise<Row> {
+    const base = { model: model.name, family: "movenet" as const, delegate };
+    const backend = TFJS_BACKEND[delegate];
+    const t0 = performance.now();
+    const failed = (error: string): Row => ({ ...base, status: "error", error: error.slice(0, 200) });
+    try {
+      const ok = await lib.tf.setBackend(backend);
+      await lib.tf.ready();
+      if (!ok || lib.tf.getBackend() !== backend) return failed(`TF.js could not start its ${backend} backend in this browser`);
+    } catch (e) {
+      return failed(`TF.js could not start its ${backend} backend in this browser (${String((e as Error)?.message ?? e)})`);
+    }
+    let detector: PoseDetector;
+    try {
+      // modelUrl is the URL pose-detection would load by default, passed
+      // explicitly so the address timed is the one in src/lib/poseBenchmark.ts.
+      detector = await lib.pd.createDetector(lib.pd.SupportedModels.MoveNet, { modelType: model.modelType, modelUrl: model.url });
+    } catch (e) {
+      return failed(
+        `could not load the weights from ${new URL(model.url).host} (${String((e as Error)?.message ?? e)}); a blocker or a network policy may be stopping that host`,
+      );
+    }
+    const loadMs = performance.now() - t0;
+    return timeRun(
+      base,
+      loadMs,
+      el,
+      (f, ts) => detector.estimatePoses(f, undefined, ts).then((poses) => poses.length),
+      () => detector.dispose(),
+    );
+  }
+
   async function run() {
     stopRef.current = false;
     setRunning(true);
@@ -341,24 +497,50 @@ export default function PoseBenchmark() {
     try {
       const { el, label } = await openSource();
       setInput(label);
-      setStatus(`Loading the MediaPipe runtime (${TASKS_VISION_VERSION}) from cdn.jsdelivr.net…`);
-      let vision: { mod: VisionModule; fileset: unknown };
-      try {
-        vision = await loadRuntime();
-      } catch (e) {
-        setStatus(`Could not load the MediaPipe runtime: ${(e as Error).message}. A blocker or a network policy may be stopping cdn.jsdelivr.net.`);
-        return;
-      }
       const picked = BENCH_MODELS.filter((m) => models[m.id]);
+      const pickedMoveNet = MOVENET_MODELS.filter((m) => models[m.id]);
       const dels = (["GPU", "CPU"] as Delegate[]).filter((d) => delegates[d]);
       const out: Row[] = [];
-      for (const m of picked) {
-        for (const d of dels) {
-          if (stopRef.current) break;
-          setStatus(`Loading ${m.name} (${mib(m.bytes)}) with the ${d} delegate…`);
-          const row = await benchOne(vision, m, d, el);
-          out.push(row);
-          setRows([...out]);
+      const fail = (model: string, family: Family, error: string) => {
+        for (const d of dels) out.push({ model, family, delegate: d, status: "error", error });
+        setRows([...out]);
+      };
+      if (picked.length > 0) {
+        setStatus(`Loading the MediaPipe runtime (${TASKS_VISION_VERSION}) from cdn.jsdelivr.net…`);
+        let vision: { mod: VisionModule; fileset: unknown } | null = null;
+        try {
+          vision = await loadRuntime();
+        } catch (e) {
+          const why = `could not load the MediaPipe runtime (${(e as Error).message}); a blocker or a network policy may be stopping cdn.jsdelivr.net`;
+          for (const m of picked) fail(m.name, "mediapipe", why);
+        }
+        for (const m of vision ? picked : []) {
+          for (const d of dels) {
+            if (stopRef.current) break;
+            setStatus(`Loading ${m.name} (${mib(m.bytes)}) with the ${d} delegate…`);
+            const row = await benchOne(vision!, m, d, el);
+            out.push(row);
+            setRows([...out]);
+          }
+        }
+      }
+      if (pickedMoveNet.length > 0 && !stopRef.current) {
+        setStatus(`Loading TensorFlow.js ${TFJS_VERSION} and pose-detection ${POSE_DETECTION_VERSION} from cdn.jsdelivr.net…`);
+        let lib: { tf: TfGlobal; pd: PoseDetectionGlobal } | null = null;
+        try {
+          lib = await loadTf(dels.includes("CPU"));
+        } catch (e) {
+          const why = `could not load TensorFlow.js (${(e as Error).message}); a blocker or a network policy may be stopping cdn.jsdelivr.net`;
+          for (const m of pickedMoveNet) fail(m.name, "movenet", why);
+        }
+        for (const m of lib ? pickedMoveNet : []) {
+          for (const d of dels) {
+            if (stopRef.current) break;
+            setStatus(`Loading ${m.name} from ${new URL(m.url).host} on the TF.js ${TFJS_BACKEND[d]} backend…`);
+            const row = await benchMoveNet(lib!, m, d, el);
+            out.push(row);
+            setRows([...out]);
+          }
         }
       }
       setStatus(stopRef.current ? "Stopped." : "Done. Results are below; no frame was sent anywhere.");
@@ -392,7 +574,14 @@ export default function PoseBenchmark() {
   const issue =
     !running && okRows.length > 0
       ? buildIssue(
-          resultRecord({ runtime: TASKS_VISION_VERSION, measuredAt: when, input, device, rows }),
+          resultRecord({
+            runtime: TASKS_VISION_VERSION,
+            tfjs: { tfjs: TFJS_VERSION, poseDetection: POSE_DETECTION_VERSION },
+            measuredAt: when,
+            input,
+            device,
+            rows,
+          }),
           toMarkdown(rows, device, input, when),
         )
       : null;
@@ -418,12 +607,13 @@ export default function PoseBenchmark() {
           ))}
         </div>
 
-        <p className="mt-5 text-sm font-semibold text-[var(--fg)]">Models</p>
+        <p className="mt-5 text-sm font-semibold text-[var(--fg)]">MediaPipe Pose Landmarker (33 keypoints)</p>
         <div className="mt-2 flex flex-wrap gap-2">
           {BENCH_MODELS.map((m) => (
             <label key={m.id} className={chip}>
               <input
                 type="checkbox"
+                data-bench-model={m.id}
                 checked={models[m.id]}
                 onChange={(e) => setModels({ ...models, [m.id]: e.target.checked })}
               />
@@ -431,6 +621,26 @@ export default function PoseBenchmark() {
             </label>
           ))}
         </div>
+
+        <p className="mt-5 text-sm font-semibold text-[var(--fg)]">MoveNet SinglePose (17 keypoints)</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {MOVENET_MODELS.map((m) => (
+            <label key={m.id} className={chip}>
+              <input
+                type="checkbox"
+                data-bench-model={m.id}
+                checked={models[m.id]}
+                onChange={(e) => setModels({ ...models, [m.id]: e.target.checked })}
+              />
+              {m.id} <span className="text-xs text-[var(--muted)]">{m.input}×{m.input} input</span>
+            </label>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-[var(--muted)]">
+          Off by default. Ticking one loads TensorFlow.js {TFJS_VERSION} and pose-detection {POSE_DETECTION_VERSION}{" "}
+          from cdn.jsdelivr.net and the weights from tfhub.dev when you press Run; GPU runs it on the TF.js webgl
+          backend, CPU on the wasm backend.
+        </p>
 
         <p className="mt-5 text-sm font-semibold text-[var(--fg)]">Delegate</p>
         <div className="mt-2 flex flex-wrap gap-2">
@@ -517,9 +727,9 @@ export default function PoseBenchmark() {
               </thead>
               <tbody>
                 {rows.map((r) => (
-                  <tr key={`${r.model}-${r.delegate}`} className="border-t border-[var(--border)] text-[var(--fg)]">
+                  <tr key={`${r.model}-${r.delegate}`} data-bench-row={r.family} className="border-t border-[var(--border)] text-[var(--fg)]">
                     <td className="py-2 pr-3">{r.model}</td>
-                    <td className="py-2 pr-3">{r.delegate}</td>
+                    <td className="py-2 pr-3">{delegateLabel(r)}</td>
                     {r.status === "error" ? (
                       <td colSpan={6} className="py-2 text-[var(--muted)]">
                         Failed: {r.error}
@@ -603,7 +813,9 @@ export default function PoseBenchmark() {
                 headline: `${ms(share.medianMs)} ms per frame`,
                 lines: [
                   `Median of ${share.frames} frames, ${share.delegate} delegate, p95 ${ms(share.p95Ms)} ms`,
-                  `@mediapipe/tasks-vision ${TASKS_VISION_VERSION} in the browser · one device, one run`,
+                  share.family === "movenet"
+                    ? `TF.js ${TFJS_VERSION} (${TFJS_BACKEND[share.delegate]}) in the browser · one device, one run`
+                    : `@mediapipe/tasks-vision ${TASKS_VISION_VERSION} in the browser · one device, one run`,
                 ],
                 url: "aifitnessapi.com/tools/pose-benchmark",
                 stamp: share.date,

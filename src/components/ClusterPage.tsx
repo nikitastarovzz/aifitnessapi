@@ -14,6 +14,10 @@ import FaqJump from "@/components/FaqJump";
 import NextSteps from "@/components/NextSteps";
 import MetricFacts from "@/components/MetricFacts";
 import MetricPlatforms from "@/components/MetricPlatforms";
+import AccessReports from "@/components/AccessReports";
+import { vendorForPath } from "@/lib/accessReportSubmission.mjs";
+import PoseModelFiles from "@/components/PoseModelFiles";
+import ContentLicences from "@/components/ContentLicences";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
 import SeeAlsoCallout from "@/components/SeeAlsoCallout";
@@ -86,7 +90,7 @@ const TOOLS = {
   poseBenchmark: {
     href: "/tools/pose-benchmark",
     name: "Pose model benchmark",
-    does: "time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
+    does: "time MediaPipe Pose Landmarker lite, full and heavy, and MoveNet Lightning and Thunder, on your own device and copy the latency table as markdown.",
   },
   heartRate: {
     href: "/tools/heart-rate-lab",
@@ -407,6 +411,7 @@ export default function ClusterPage({
   // each one, without the reader having to search for the name.
   const products = apisOnPage(basePath, entry.slug);
   const toolKey = TOOL_FOR_PATH[path];
+  const accessVendor = tr ? null : vendorForPath(path);
   const tool = toolKey ? TOOLS[toolKey] : undefined;
   // /questions/<cluster> is generated for every populated cluster, and a spoke
   // rendering here means its cluster is populated. Counted exactly as that
@@ -732,6 +737,24 @@ export default function ClusterPage({
             from data/metricTypeMap.ts. Renders nothing off the /data guides
             the map covers. */}
         {!tr && <MetricPlatforms path={path} />}
+
+        {/* Developers' reports of applying for this vendor's API access, on the
+            vendor's English /integrate page and /fix/garmin-api-approval
+            (lib/accessReportSubmission VENDORS). Never on a translation: it is
+            English and outside the translated text. */}
+        {!tr && accessVendor && <AccessReports vendor={accessVendor} />}
+
+        {/* The Pose Landmarker .task files as a download measured them, from
+            data/poseModelFiles.ts. Renders nothing off that one page, and is
+            English-only: it is not part of the translatable body. */}
+        {!tr && <PoseModelFiles path={path} />}
+
+        {/* "Can I ship it?": free tier, price and commercial terms per exercise
+            or nutrition source, each cell linking its quoted source. English
+            only, and outside data-article-body, so a translation's text stays
+            held to the English entry alone. Renders nothing off the pages
+            src/lib/contentLicences.ts lists. */}
+        {!tr && <ContentLicences path={path} />}
 
         {entry.faqs.length > 0 && (
           <section className="mt-14">
