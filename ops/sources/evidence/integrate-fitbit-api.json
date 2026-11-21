@@ -6,9 +6,9 @@
     "expectStatus": 410
   },
   {
-    "claim": "Google's Google Health API page gives November 2, 2026 as the turn-off, still in the future tense (read 2026-11-18).",
+    "claim": "Google's Google Health API page gives November 2, 2026 as the turn-off, in the past tense (read 2026-11-21).",
     "url": "https://developers.google.com/health/about?hl=en",
-    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints were turned off and no longer function or sync data to or from Google Health users."
   },
   {
     "claim": "Google's Google Health help article says Fitbit connections retired on October 30, 2026 (read 2026-11-18).",
