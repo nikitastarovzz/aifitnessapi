@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-19",
+  "asOf": "2026-11-20",
   "firstSeen": {
     "/": "2026-07-08",
     "/about": "2026-07-12",
@@ -174,6 +174,7 @@
     "/build/weight-loss-app": "2026-10-11",
     "/changelog": "2026-10-09",
     "/changes": "2026-09-08",
+    "/collections": "2026-11-19",
     "/compare": "2026-07-26",
     "/compare-apis": "2026-10-13",
     "/compare/apple-watch-vs-garmin": "2026-10-22",
@@ -225,6 +226,7 @@
     "/cookbook/day-boundary-rollup": "2026-09-06",
     "/cookbook/dedupe-health-samples": "2026-10-06",
     "/cookbook/incremental-sync-anchor": "2026-10-10",
+    "/cookbook/pkce-authorize-url": "2026-11-19",
     "/cookbook/rate-limit-fetcher": "2026-11-01",
     "/cookbook/refresh-rotation": "2026-09-05",
     "/cookbook/rep-counter": "2026-09-15",
@@ -685,6 +687,7 @@
     "/motion/sit-up-counter-pose-estimation": "2026-10-20",
     "/motion/squat-detection-pose-estimation": "2026-10-24",
     "/motion/yolo-pose-models": "2026-10-18",
+    "/my-stack": "2026-11-20",
     "/newsletter": "2026-10-21",
     "/no-code-fitness-app": "2026-08-25",
     "/opensearch.xml": "2026-10-11",
@@ -757,6 +760,7 @@
     "/test/webhooks-locally": "2026-09-05",
     "/tools": "2026-10-08",
     "/tools/error-diagnoser": "2026-10-13",
+    "/tools/ftms-lab": "2026-11-20",
     "/tools/heart-rate-lab": "2026-11-04",
     "/tools/identifier-translator": "2026-10-30",
     "/tools/keypoint-playground": "2026-11-06",
