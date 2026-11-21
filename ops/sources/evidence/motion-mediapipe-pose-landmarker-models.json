@@ -1,22 +1,22 @@
 [
   {
-    "claim": "Google's sample download script fetches the lite model from the float16/latest path.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "claim": "Until the November 19, 2026 commit, Google's sample download script fetched the lite model from the float16/latest path (file pinned to the commit before it).",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/b85d483dad58b24588edf9ba18ec67259b61e5b0/examples/pose_landmarker/ios/RunScripts/download_models.sh",
     "quote": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task"
   },
   {
-    "claim": "Google's sample download script fetches the full model from the float16/latest path.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "claim": "Until the November 19, 2026 commit, Google's sample download script fetched the full model from the float16/latest path (file pinned to the commit before it).",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/b85d483dad58b24588edf9ba18ec67259b61e5b0/examples/pose_landmarker/ios/RunScripts/download_models.sh",
     "quote": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task"
   },
   {
-    "claim": "Google's sample download script fetches the heavy model from the float16/latest path.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "claim": "Until the November 19, 2026 commit, Google's sample download script fetched the heavy model from the float16/latest path (file pinned to the commit before it).",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/b85d483dad58b24588edf9ba18ec67259b61e5b0/examples/pose_landmarker/ios/RunScripts/download_models.sh",
     "quote": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/latest/pose_landmarker_heavy.task"
   },
   {
-    "claim": "Google's Android sample fetches the files from a /1/ path in the version slot instead of /latest/.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle.kts",
+    "claim": "Until the November 19, 2026 commit, Google's Android sample fetched the files from a /1/ path in the version slot instead of /latest/ (file pinned to the commit before it).",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/b85d483dad58b24588edf9ba18ec67259b61e5b0/examples/pose_landmarker/android/app/download_tasks.gradle.kts",
     "quote": "url = \"https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/1/pose_landmarker_heavy.task\""
   },
   {
@@ -93,5 +93,50 @@
     "claim": "The MediaPipe framework is Apache-2.0.",
     "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
     "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Google's iOS sample script now downloads the lite model from Hugging Face.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "quote": "https://huggingface.co/litert-community/MediaPipe-PoseLandmarker-Lite/resolve/main/pose_landmarker_lite.task"
+  },
+  {
+    "claim": "Google's iOS sample script now downloads the full model from Hugging Face.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "quote": "https://huggingface.co/litert-community/MediaPipe-PoseLandmarker-Full/resolve/main/pose_landmarker_full.task"
+  },
+  {
+    "claim": "Google's iOS sample script now downloads the heavy model from Hugging Face.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "quote": "https://huggingface.co/litert-community/MediaPipe-PoseLandmarker-Heavy/resolve/main/pose_landmarker_heavy.task"
+  },
+  {
+    "claim": "Google's Android sample now downloads from Hugging Face.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle.kts",
+    "quote": "url = \"https://huggingface.co/litert-community/MediaPipe-PoseLandmarker-Lite/resolve/main/pose_landmarker_lite.task\""
+  },
+  {
+    "claim": "The Android sample pins a SHA-256 for the lite file; it equals the hash in this page's model files table for the bucket's latest lite file.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle.kts",
+    "quote": "sha256 = \"59929e1d1ee95287735ddd833b19cf4ac46d29bc7afddbbf6753c459690d574a\""
+  },
+  {
+    "claim": "The Android sample pins a SHA-256 for the full file; it equals the table's hash for the bucket's latest full file.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle.kts",
+    "quote": "sha256 = \"4eaa5eb7a98365221087693fcc286334cf0858e2eb6e15b506aa4a7ecdcec4ad\""
+  },
+  {
+    "claim": "The Android sample pins a SHA-256 for the heavy file; it equals the table's hash for the bucket's latest heavy file.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle.kts",
+    "quote": "sha256 = \"64437af838a65d18e5ba7a0d39b465540069bc8aae8308de3e318aad31fcbc7b\""
+  },
+  {
+    "claim": "The commit that moved the sample downloads to Hugging Face.",
+    "url": "https://github.com/google-ai-edge/mediapipe-samples/commits/main/examples/pose_landmarker/android/app/download_tasks.gradle.kts",
+    "quote": "feat: load the MediaPipe task models from Hugging Face"
+  },
+  {
+    "claim": "That commit is dated November 19, 2026.",
+    "url": "https://github.com/google-ai-edge/mediapipe-samples/commits/main/examples/pose_landmarker/android/app/download_tasks.gradle.kts",
+    "quote": "Commits on Nov 19, 2026"
   }
 ]
