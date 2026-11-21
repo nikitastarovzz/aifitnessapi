@@ -2023,5 +2023,205 @@ export const motionEntries: ClusterEntry[] =
         "note": "Baldinger et al., Sensors 2025: agreement of OpenPose's shoulder angle with marker-based capture (read as Europe PMC's XML)."
       }
     ]
+  },
+  {
+    "slug": "control-games-with-body-movement",
+    "primaryQuery": "control games with body movement webcam",
+    "h1": "Control Games With Body Movement: Webcam Pose Estimation as a Controller",
+    "metaTitle": "Control Games With Body Movement: Webcam Pose Input",
+    "metaDescription": "How a webcam becomes a game controller: MediaPipe landmarks, pose rules, synthetic key presses, and why it reaches PC games such as GTA V, not consoles.",
+    "updated": "2026-11-21",
+    "answer": "A webcam game controller runs a pose model on each frame, tests the body landmarks against geometric rules such as an arm held parallel to the ground, and sends a key press when a rule matches. Google documents MediaPipe Pose Landmarker as tracking 33 3D full-body landmarks; the open-source Pose2Input-MK9 pairs MediaPipe with OpenCV and PyAutoGUI to play Mortal Kombat, and Appromove's itch.io listing describes a Windows app that maps poses to keys for keyboard games, GTA V among them. Those key presses are input events on the computer running the software, so they drive PC games, while Rockstar sells Grand Theft Auto VI for PlayStation 5 and Xbox Series X|S.",
+    "body": "Grand Theft Auto VI's gyms and workout windows, which [our GTA 6 fitness system page](/engagement/gta-6-fitness-system) walks through, have sent players looking for ways to play with their bodies instead of a pad. This page is the developer view: how body-movement control is built from a webcam, with one open-source project and one packaged app as worked examples, and where it stops working. This site is not affiliated with Rockstar Games, Appromove or the author of Pose2Input-MK9. We read Google's Pose Landmarker page, Appromove's itch.io listing and the Pose2Input-MK9 README on November 21, 2026, and we have not run either tool.\n\n## The pipeline, stage by stage\n\nPose2Input-MK9's README breaks its workflow into four steps, and the same four stages sit inside any webcam controller:\n\n1. **Capture.** OpenCV reads the camera. Pose2Input-MK9 captures an image only if motion is detected, by frame differencing, and its `MOTION_THRESHOLD_FACTOR` setting, default 64, is described as: the higher the value, the more motion is captured.\n2. **Pose.** MediaPipe returns the coordinates of each body part it finds. Google's Pose Landmarker page describes a task that detects landmarks of human bodies in an image or video and outputs them in image coordinates and in 3-dimensional world coordinates; its demo tracks 33 3D full-body skeletal landmarks. MediaPipe's Python result type documents the image-space landmarks as normalized image coordinates, each expected to fall between 0 and 1.\n3. **Rules.** The README's third step is mathematics: angle, slope and distance tests on the landmarks decide which pose the player is in and which key that pose stands for.\n4. **Output.** PyAutoGUI types the key. The README's dependency table describes PyAutoGUI as a library that can control the mouse and keyboard to automate interactions with other applications.\n\nGoogle's page offers three running modes. IMAGE is a stateless call on each still image. VIDEO processes every decoded frame in order and never drops one. For a live camera, Android's LIVE_STREAM mode runs asynchronously and, in Google's words, automatically drops incoming frames when busy so results stay current with low latency; on the web, Google pairs VIDEO mode with requestAnimationFrame so each paint inspects only the latest camera frame. A controller wants the live pattern, because a queued frame is a stale input. Which of the three model files to load is covered on [the MediaPipe Pose Landmarker models page](/motion/mediapipe-pose-landmarker-models), and the 33 points, index by index, are on [the BlazePose 33 keypoint map](/pose-keypoints/blazepose-33).\n\n## Pose2Input-MK9's move rules\n\nThe README's move list is a compact example of rule design. Each move is a test on a handful of landmarks:\n\n| Move | Rule, as the README states it |\n| --- | --- |\n| UP | Ankles above knees |\n| DOWN | Hip-to-nose distance against hip-to-knee distance greater than 7 : 10 |\n| LEFT | The perpendicular of the right-ankle to left-ankle line lies right of the right hip, and the slope from the right hip to each ankle is between −65° and −115° |\n| RIGHT | The same, with the left hip |\n| FRONT_PUNCH | Left shoulder-to-wrist slope between −10.5° and 10.5°, and the left shoulder-elbow-wrist angle between 169.5° and 190.5°: the arm parallel to the ground |\n| BACK_PUNCH | The same, with the right arm |\n| FRONT_KICK | Left ankle-to-hip slope between 45° and 135° |\n| BACK_KICK | The same, with the right leg |\n| THROW | Wrist above the elbow of the same arm, and both above the nose |\n| TAG | Distance between the wrists against distance between the elbows less than 3 : 10, and the elbow-wrists-elbow angle between 169.5° and 190.5°: the forearms parallel to the ground |\n| BLOCK | Wrist above the nose, and both above the elbow of the same arm |\n\nThree things in that table are worth copying or avoiding, in our reading:\n\n- **Ratios, not pixels.** DOWN compares two distances on the same body, so the rule holds whether the player stands near the camera or far from it. Angles and slopes have the same property.\n- **Know your angle convention.** An upper bound of 190.5° only makes sense for an angle measured around a full turn. An angle from an inverse cosine runs from 0 to 180°, and with it the same rule is simply greater than 169.5°.\n- **Rules that nearly overlap.** THROW and BLOCK differ only in where the elbow sits against the nose: above it for THROW, below it for BLOCK. Rules this close need an explicit priority or a dead band between them, or a pose near the boundary alternates between the two.\n\nThe key layer is separate from the rule layer. Each move's keystroke is set in the project's environment file, with UP defaulting to up and DOWN to down, so the same poses can drive another game by changing keys alone. For calibration the README offers `--debug_level` 0 to 3: level 1 adds FPS and the output moves, level 2 draws a virtual exoskeleton of the body parts found, and level 3 blacks the screen out when no motion is found. `--live_flag` shows the captured video, and `--log_flag` saves it as an .avi in a logs folder. In our view a visible overlay is not optional in a tool like this, because a player needs to see why a move did not fire.\n\n## Appromove: the packaged version\n\nAppromove's itch.io listing describes a downloadable motion-detection app for Windows that turns a webcam into a game controller using real-time computer vision. It lists hand gesture detection (fist, open palm, point up), a body pose mode it calls VR Mode (jump, crouch, raise arms), motion detection that maps movement to any key, custom profiles for each game, and a real-time overlay with an F6 hotkey toggle. It calls itself compatible with any keyboard-based game and names Minecraft, Skyrim, Roblox, Fortnite, GTA V, Terraria and Among Us. Its stated requirements are Windows 10 or later and any webcam, and it says the app runs on the PC and the camera image never leaves it.\n\nThe listing's details table gives the status as In development and the platform as Windows, and its tags include mediapipe; the installer on offer was Appromove_Setup_0.23.4.exe. The listing also warns that Windows may show a \"Windows protected your PC\" screen when the installer opens, which it puts down to the app having no paid certificate. That is the publisher's explanation, so treat the download as you would any unsigned installer.\n\n## Why these tools do not reach GTA VI\n\nRockstar's Grand Theft Auto VI page reads \"Grand Theft Auto VI Out Now\" and offers the game for PlayStation 5 and Xbox Series X|S, and Rockstar's Business Wire release of November 19, 2026 says it is now available on those two consoles. A PyAutoGUI keystroke or an Appromove key mapping is an input event on the Windows computer the software runs on. In our reading, a console takes input from its own controllers, not from the keyboard events of a PC in the same room, and neither Appromove's listing nor the Pose2Input-MK9 README describes any console output. So these tools do not control GTA VI. GTA V, which Appromove lists, is the kind of keyboard game they are built for.\n\nIf what you want from GTA VI is the exercise rather than the controller, [GTA 6's gym moves in real life](/motion/gta-6-gym-exercises-real-life) covers which of them a phone camera can count.\n\n## Building one: latency, hysteresis and fatigue\n\nWhat follows is our recommendation, not something either project documents.\n\n- **Count the latency budget.** Each stage adds delay: the camera frame, inference, the rule check and the key event. Pose2Input-MK9's `PYAUTO_PAUSE` defaults to 0.1 seconds, which the README defines as the pause after each PyAutoGUI call. Drop stale frames rather than queue them, as [real-time pose estimation](/motion/real-time-pose-estimation) explains; a controller that falls behind the body feels worse than one that skips frames.\n- **Give every rule hysteresis.** A pose rule is a threshold, and a landmark that jitters around a threshold fires again and again. Use a stricter bound to enter a pose than to leave it and require the pose to hold for a few frames, the same technique [rep counting](/motion/how-rep-counting-works) uses to stop jitter from double-counting.\n- **Decide tap or hold for each move.** A punch is one key press on entering the pose; walking is a key held down while the pose lasts. Mixing the two up gives a single step or a flurry of punches.\n- **Make the rest pose do nothing.** Standing relaxed should match no rule. Body control is physical work, and a scheme that needs a raised arm to stay idle tires players out quickly.\n- **Calibrate per player.** A fixed ratio such as 7 : 10 assumes one body's proportions. Record a neutral pose at start-up and set thresholds relative to it.\n- **Keep the camera local.** Running inference on the player's machine keeps the video off the network; [on-device vs cloud pose estimation](/motion/on-device-vs-cloud-pose-estimation) sets out the trade-off.\n- **Clear the space.** Kicks and punches in front of a desk put the player, the monitor and the webcam at risk.\n\n## One rule in code\n\nPose2Input-MK9's FRONT_PUNCH rule, rewritten with separate enter and exit bounds. The landmark indices are MediaPipe's PoseLandmark enum values for the left shoulder, elbow and wrist. The exit bounds are ours, to tune on your own recordings.\n\n```ts\n// MediaPipe PoseLandmark indices (BlazePose 33)\nconst LEFT_SHOULDER = 11, LEFT_ELBOW = 13, LEFT_WRIST = 15;\n\ntype Pt = { x: number; y: number };\n\n// Landmarks are normalized to 0..1 per axis: scale to pixels before angles\nconst px = (p: Pt, w: number, h: number): Pt => ({ x: p.x * w, y: p.y * h });\n\n// Interior angle at b, 0..180 degrees; a straight arm reads near 180\nfunction angleAt(a: Pt, b: Pt, c: Pt): number {\n  const d = Math.abs(Math.atan2(a.y - b.y, a.x - b.x) - Math.atan2(c.y - b.y, c.x - b.x)) * 180 / Math.PI;\n  return d > 180 ? 360 - d : d;\n}\n\n// Tilt of the segment a-b away from horizontal, 0..90 degrees\nconst tilt = (a: Pt, b: Pt) => Math.atan2(Math.abs(b.y - a.y), Math.abs(b.x - a.x)) * 180 / Math.PI;\n\nlet punching = false;\n\n/** Returns true once per punch: on entering the pose, not while it is held. */\nexport function frontPunch(lm: Pt[], w: number, h: number): boolean {\n  const s = px(lm[LEFT_SHOULDER], w, h), e = px(lm[LEFT_ELBOW], w, h), wr = px(lm[LEFT_WRIST], w, h);\n  const straight = angleAt(s, e, wr), level = tilt(s, wr);\n  if (!punching && straight > 169.5 && level < 10.5) { punching = true; return true; }\n  if (punching && (straight < 150 || level > 25)) punching = false; // exit bounds: ours\n  return false;\n}\n```\n\nA real controller would also require the pose to hold for a few frames before firing, check each landmark's visibility before trusting it, and run every rule through one arbiter so that two rules cannot fire on the same frame.",
+    "faqs": [
+      {
+        "q": "Can webcam body tracking control GTA 6 on a console?",
+        "a": "Not with the tools on this page. Rockstar sells Grand Theft Auto VI for PlayStation 5 and Xbox Series X|S, while Pose2Input-MK9 and Appromove send key presses on the Windows computer they run on, and neither documents any console output. Appromove's listing names GTA V among the keyboard games it works with."
+      },
+      {
+        "q": "How does a webcam turn a body pose into a key press?",
+        "a": "A pose model such as MediaPipe Pose Landmarker finds the body's landmarks in each frame, geometric rules test them (an angle, a slope, a ratio of two distances), and a library such as PyAutoGUI sends the mapped keystroke when a rule matches. Pose2Input-MK9's README describes exactly that pipeline, with OpenCV frame differencing in front to skip frames without motion."
+      },
+      {
+        "q": "Which landmarks does a pose-controlled punch use?",
+        "a": "The shoulder, elbow and wrist of one arm, which are indices 11, 13 and 15 on the left in MediaPipe's PoseLandmark enum. Pose2Input-MK9 counts a front punch when the shoulder-to-wrist slope is within 10.5° of level and the shoulder-elbow-wrist angle is between 169.5° and 190.5°, which means a straight arm parallel to the ground."
+      },
+      {
+        "q": "Why do pose-controlled games fire the wrong move?",
+        "a": "Usually because a landmark jitters around a single threshold, or because two rules overlap; in Pose2Input-MK9, THROW and BLOCK differ only in whether the elbow is above or below the nose. Separate enter and exit bounds, a short hold before firing, and an explicit priority between close rules fix most of it."
+      }
+    ],
+    "related": [
+      {
+        "href": "/motion/gta-6-gym-exercises-real-life",
+        "label": "GTA 6 gym exercises in real life"
+      },
+      {
+        "href": "/motion/real-time-pose-estimation",
+        "label": "Real-time pose estimation"
+      },
+      {
+        "href": "/motion/how-rep-counting-works",
+        "label": "How rep counting works"
+      },
+      {
+        "href": "/engagement/gta-6-fitness-system",
+        "label": "How GTA 6's fitness system works"
+      },
+      {
+        "href": "/motion",
+        "label": "All AI motion topics"
+      }
+    ],
+    "cta": {
+      "pitch": "Building body-movement controls on a webcam? Get our developer notes on pose rules, latency and rep logic."
+    },
+    "sources": [
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+        "checked": "2026-11-21",
+        "note": "Google's Pose Landmarker page: what the task detects, 33 landmarks, running modes and frame dropping (read from a source snapshot; ai.google.dev redirects here)."
+      },
+      {
+        "url": "https://github.com/ra101/Pose2Input-MK9",
+        "checked": "2026-11-21",
+        "note": "Pose2Input-MK9 README: workflow, move rules, settings, debug levels and dependencies (read from raw.githubusercontent.com)."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+        "checked": "2026-11-21",
+        "note": "MediaPipe Tasks Python: PoseLandmark enum indices and the normalized image coordinates of the result."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+        "checked": "2026-11-21",
+        "note": "NormalizedLandmark: coordinates within 0 to 1, and the visibility field."
+      },
+      {
+        "url": "https://appromove.itch.io/appromove",
+        "checked": "2026-11-21",
+        "note": "Appromove's itch.io listing: features, compatible games, requirements, status, platform and privacy statement (read from a source snapshot)."
+      },
+      {
+        "url": "https://www.rockstargames.com/VI",
+        "checked": "2026-11-21",
+        "note": "Rockstar's Grand Theft Auto VI page: out now, PlayStation 5 and Xbox Series X|S (read from a source snapshot)."
+      },
+      {
+        "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+        "checked": "2026-11-21",
+        "note": "Copy of Rockstar's Business Wire release of November 19, 2026: available for PlayStation 5 and Xbox Series X|S (read from a source snapshot)."
+      }
+    ]
+  },
+  {
+    "slug": "gta-6-gym-exercises-real-life",
+    "primaryQuery": "gta 6 workout real life",
+    "h1": "GTA 6 Gym Exercises in Real Life: What a Camera or Tracker Can Measure",
+    "metaTitle": "GTA 6 Gym Exercises in Real Life: Tracking Each Move",
+    "metaDescription": "GTA 6's gym moves in real life: which a phone camera can count, which a machine reports over Bluetooth, and the HealthKit or Health Connect type to log.",
+    "updated": "2026-11-21",
+    "answer": "Player guides list bench press, chest flies, deadlifts, pull-ups, squats and kettlebell swings as GTA 6's Strength exercises, and treadmills, exercise bikes and a punching bag for Cardio. Of those, squats, deadlifts and pull-ups are the moves this site's camera pages cover from published rep-counting studies; the bench press and chest fly are done lying down and none of those studies measured them, while treadmills and exercise bikes can report their own data over the Bluetooth Fitness Machine Service. A tracker would log the weights as a strength workout, HealthKit's traditionalStrengthTraining or functionalStrengthTraining and Health Connect's EXERCISE_TYPE_STRENGTH_TRAINING, and the machines as indoor running or stationary biking.",
+    "body": "Grand Theft Auto VI came out on November 19, 2026 for PlayStation 5 and Xbox Series X|S, according to Rockstar's release, and it brought back gym workouts. This page takes each move the player guides list and asks what a real app would need to measure it: a phone camera, the machine's own Bluetooth data, or neither, and which workout type it would write to HealthKit or Health Connect. It is a page about measurement, not a training plan, and it suggests no sets, reps or loads. This site is not affiliated with Rockstar Games; game details below come from published player guides, read on November 21, 2026. How the in-game stats and workout windows behave is covered in [our GTA 6 fitness system page](/engagement/gta-6-fitness-system).\n\n## The moves the guides list\n\nThe Leonida's guide, which cites IGN's official guide, GamesRadar+ and GameRant, gives the Strength exercises as bench press, chest flies, deadlifts, pull-ups, squats and kettlebell swings, and trains Cardio on treadmills, exercise bikes, the punching bag, running, cycling and swimming. GTABase, which calls the stats Health and Stamina, names bench presses, squats, chest flys and deadlifts for health, and treadmills, exercise bikes and punching bags at the gym for stamina.\n\nThe guides describe Jason's safehouse equipment slightly differently. The Leonida, citing GamesRadar+, says the lower deck has a bench press, deadlifts, pull-ups, squats and kettlebells; GTABase says the decking has a squat rack, a bench press and kettlebells. How To Video Game reports that its launch-night PS5 session on that deck was a bench press, kettlebell swings and then squats, after which the game showed \"Workout Complete. Time to rest and recover.\" GTABase likewise says three exercises count as the daily workout.\n\nIn the game a lift is a controller action. GamesRadar+, as The Leonida relays it, says to hold both triggers to lift and ease off slowly to lower the weight, and the same rundown notes that the punching bag has no rep counter at all. A real app has to infer the same events from a body or a machine, and the moves split into three groups.\n\n## Moves with camera rep-counting pages\n\nThis site's per-exercise pages cover three of the moves, each from published studies:\n\n- **Squats.** [Squat detection with pose estimation](/motion/squat-detection-pose-estimation) reads the knee angle from the hip, knee and ankle landmarks and the hip angle from the shoulder, hip and knee. In the 2026 study by Oliosi and colleagues that it reports, diagonal and front phone views beat side views at every distance, and the best squat setup, a diagonal view at 200 cm, counted 95.5% of repetitions correctly.\n- **Deadlifts.** [Deadlift pose estimation](/motion/deadlift-pose-estimation) describes Sousa and colleagues' state machine, which runs on a torso angle with the elbows kept straight, and quotes Shoaib and colleagues' statement that projected 2D keypoints cannot directly recover spinal curvature or the 3D bar path. A camera can count a deadlift; on that evidence it cannot by itself see a rounded back.\n- **Pull-ups.** [The pull-up counter page](/motion/pull-up-counter-computer-vision) explains how Lei and colleagues' system estimates the bar's height from the hands, which hold still once they grip it, and counts a repetition when the mouth rises above that height after a low position with the elbows extended past 150 degrees. That system counted 96.6% of pull-ups correctly against human assessors.\n\nAll three use the same pattern: one angle or height tracked over time, with separate thresholds for the top and the bottom of a rep so that jitter cannot complete a cycle on its own. Each figure above is one study's result under its own conditions, and none transfers to another camera or group of people without testing.\n\n## Moves a camera has not been shown to handle\n\nFor the rest, the following is our reading, not a study result.\n\n- **Bench press and chest flies.** Both are done lying on a bench. A camera at the side sees the arms working above a horizontal body, with the bench and the weights partly in the way; a camera overhead sees the arms move toward and away from it, along the depth axis that a single camera estimates rather than measures. None of the studies behind the camera pages above tested either move, so treat any bench-press or fly counter as unmeasured until you test it on real lifters.\n- **Kettlebell swings.** A swing is a hip hinge, so the torso angle in the deadlift state machine is the nearest starting point. But a swing is fast and continuous, with no pause at the top or bottom for a state machine to settle on, and none of the studies behind this site's camera pages measured it.\n- **Punching bag.** Punches are short and fast, and the bag hides part of the arm from many viewpoints. The game itself does not count them.\n\n## Machines that report their own data\n\nTreadmills and exercise bikes do not need a camera. The Bluetooth SIG's Fitness Machine Service, assigned number 0x1826, defines a Treadmill Data characteristic, 0x2ACD, and an Indoor Bike Data characteristic, 0x2AD2, through which a compatible machine streams its own measurements. [The FTMS guide](/devices/ftms-fitness-machine-service) covers discovering and reading them, and the related links below go deeper on treadmills and bike trainers. Running, cycling and swimming outdoors, which also train Cardio in the game, are workouts a watch or phone records directly.\n\n## Logging each move: the workout type table\n\nHealthKit's activity type describes the workout as a whole, and its list has no constant for an individual exercise such as a squat or a bench press. Health Connect records a session type, and a session can carry segments that name individual exercises, but only segment types the Jetpack library's compatibility table allows for that session type. Writing a disallowed pair fails the library's check with \"segmentType and sessionType is not compatible.\" Every constant below is spelled as Apple's and Google's references spell it.\n\n| Move (in-game stat) | Camera counting | HealthKit activity type | Health Connect session type | Health Connect segment type |\n| --- | --- | --- | --- | --- |\n| Squat (Strength) | Studied | `traditionalStrengthTraining` or `functionalStrengthTraining` | `EXERCISE_TYPE_STRENGTH_TRAINING` | `EXERCISE_SEGMENT_TYPE_SQUAT` |\n| Deadlift (Strength) | Studied, no view of the spine | as above | as above | `EXERCISE_SEGMENT_TYPE_DEADLIFT` |\n| Pull-up (Strength) | Studied | as above | as above | `EXERCISE_SEGMENT_TYPE_PULL_UP` |\n| Bench press (Strength) | Unmeasured | as above | as above | `EXERCISE_SEGMENT_TYPE_BENCH_PRESS` |\n| Chest fly (Strength) | Unmeasured | as above | as above | No fly segment; `EXERCISE_SEGMENT_TYPE_WEIGHTLIFTING` is the nearest |\n| Kettlebell swing (Strength) | Unmeasured | as above | as above | `EXERCISE_SEGMENT_TYPE_KETTLEBELL_SWING` |\n| Punching bag (Cardio) | Unmeasured | `boxing` | `EXERCISE_TYPE_BOXING` | Universal segments only, no `EXERCISE_SEGMENT_TYPE_PUNCH` |\n| Treadmill (Cardio) | Not needed: FTMS Treadmill Data | `running`, location type indoor | `EXERCISE_TYPE_RUNNING_TREADMILL` | `EXERCISE_SEGMENT_TYPE_RUNNING_TREADMILL` |\n| Exercise bike (Cardio) | Not needed: FTMS Indoor Bike Data | `cycling`, location type indoor | `EXERCISE_TYPE_BIKING_STATIONARY` | `EXERCISE_SEGMENT_TYPE_BIKING_STATIONARY` |\n\nNotes on the choices:\n\n- **Which HealthKit strength type.** Apple's abstract for `traditionalStrengthTraining` is \"The constant for strength training exercises primarily using machines or free weights.\" and for `functionalStrengthTraining` \"The constant for strength training, primarily with free weights and body weight.\" Both include free weights. Our recommendation: use the functional type for a home session of barbell, kettlebell and pull-up bar, the traditional one for a gym session with machines, and keep the choice consistent so a user's history stays comparable.\n- **Strength or weightlifting in Health Connect.** `EXERCISE_TYPE_WEIGHTLIFTING` accepts the same exercise segments as `EXERCISE_TYPE_STRENGTH_TRAINING` in the library's table, bench press, deadlift, pull-up, squat and kettlebell swing among them, so either works for the weights.\n- **The punching bag.** `EXERCISE_TYPE_BOXING` is not in the compatibility table, so a boxing session accepts only the universal segments: `EXERCISE_SEGMENT_TYPE_OTHER_WORKOUT`, `EXERCISE_SEGMENT_TYPE_PAUSE`, `EXERCISE_SEGMENT_TYPE_REST`, `EXERCISE_SEGMENT_TYPE_STRETCHING` and `EXERCISE_SEGMENT_TYPE_UNKNOWN`. `EXERCISE_SEGMENT_TYPE_PUNCH` (\"Use this type for punches.\") is accepted in strength training, weightlifting, calisthenics and gymnastics sessions, so bag work inside a strength session can carry punch segments, while a standalone boxing session cannot.\n- **Treadmill and bike in HealthKit.** HealthKit has no treadmill or stationary-bike activity type. Instead, `HKWorkoutConfiguration` has a `locationType` property, and Apple documents its `indoor` case as \"The workout session is indoors.\"\n\nThe same constants on all four platforms, with their counterparts, are in [the workout type crosswalk](/workout-types). If you want to go a step further and turn logged workouts into game-style Strength and Cardio numbers, [RPG stats from health data](/engagement/rpg-stats-from-health-data) covers that design, and if you would rather move your body to play, [controlling games with body movement](/motion/control-games-with-body-movement) explains why webcam controllers reach PC games and not GTA VI on a console.",
+    "faqs": [
+      {
+        "q": "Which GTA 6 gym moves can a phone camera count in real life?",
+        "a": "Squats, deadlifts and pull-ups have published camera rep-counting studies, which this site's per-exercise pages report; one squat study counted 95.5% of repetitions from its best phone position, and one pull-up system counted 96.6%. None of the studies behind those pages measured the bench press, chest fly, kettlebell swing or punching bag, so treat a camera counter for those as untested."
+      },
+      {
+        "q": "What workout type should an app log for a GTA 6 style strength session?",
+        "a": "On HealthKit, traditionalStrengthTraining (machines or free weights, in Apple's abstract) or functionalStrengthTraining (free weights and body weight). On Health Connect, EXERCISE_TYPE_STRENGTH_TRAINING or EXERCISE_TYPE_WEIGHTLIFTING, with segment types such as EXERCISE_SEGMENT_TYPE_BENCH_PRESS, EXERCISE_SEGMENT_TYPE_DEADLIFT and EXERCISE_SEGMENT_TYPE_SQUAT for the individual exercises."
+      },
+      {
+        "q": "Can a Health Connect boxing session include punch segments?",
+        "a": "No. EXERCISE_TYPE_BOXING is not in the Jetpack library's segment compatibility table, so a boxing session accepts only the universal segments such as rest and pause, and adding EXERCISE_SEGMENT_TYPE_PUNCH fails the check. Punch segments are accepted inside strength training, weightlifting, calisthenics and gymnastics sessions."
+      },
+      {
+        "q": "Does a real treadmill or exercise bike need a camera to track it?",
+        "a": "No. A machine that implements the Bluetooth Fitness Machine Service, 0x1826, streams its own data through Treadmill Data, 0x2ACD, or Indoor Bike Data, 0x2AD2. On Health Connect the sessions are EXERCISE_TYPE_RUNNING_TREADMILL and EXERCISE_TYPE_BIKING_STATIONARY; HealthKit uses running or cycling with an indoor location type."
+      }
+    ],
+    "related": [
+      {
+        "href": "/devices/treadmill-app-integration",
+        "label": "Treadmill app integration"
+      },
+      {
+        "href": "/devices/indoor-bike-trainer-integration",
+        "label": "Indoor bike trainer integration"
+      },
+      {
+        "href": "/motion/how-rep-counting-works",
+        "label": "How rep counting works"
+      },
+      {
+        "href": "/motion/control-games-with-body-movement",
+        "label": "Control games with body movement"
+      },
+      {
+        "href": "/motion",
+        "label": "All AI motion topics"
+      }
+    ],
+    "cta": {
+      "pitch": "Counting real-world reps from a camera or a gym machine? Get our developer notes on rep logic, FTMS data and workout types."
+    },
+    "sources": [
+      {
+        "url": "https://theleonida.com/guides/gta-6-gyms-how-to-work-out",
+        "checked": "2026-11-21",
+        "note": "The Leonida's gym guide (citing IGN's official guide, GamesRadar+ and GameRant): exercises per stat, safehouse equipment, controls, punching bag (read from a source snapshot)."
+      },
+      {
+        "url": "https://www.gtabase.com/gta-6/articles/how-to-increase-jason-and-lucia-stats-in-gta-6",
+        "checked": "2026-11-21",
+        "note": "GTABase: Health and Stamina exercises, safehouse equipment, three exercises per daily workout (read from a source snapshot)."
+      },
+      {
+        "url": "https://howtovideogame.com/gta-6-fitness-system/",
+        "checked": "2026-11-21",
+        "note": "How To Video Game: launch-night PS5 workout on the safehouse deck (read from a source snapshot)."
+      },
+      {
+        "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+        "checked": "2026-11-21",
+        "note": "Copy of Rockstar's Business Wire release of November 19, 2026: available for PlayStation 5 and Xbox Series X|S (read from a source snapshot)."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype",
+        "checked": "2026-11-21",
+        "note": "Apple's abstracts for traditionalStrengthTraining, functionalStrengthTraining, boxing, running and cycling (read as Apple's documentation JSON)."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype/indoor",
+        "checked": "2026-11-21",
+        "note": "HKWorkoutSessionLocationType.indoor (read as Apple's documentation JSON)."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/locationtype",
+        "checked": "2026-11-21",
+        "note": "HKWorkoutConfiguration.locationType (read as Apple's documentation JSON)."
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/ExerciseSegment",
+        "checked": "2026-11-21",
+        "note": "Health Connect segment type constants and descriptions."
+      },
+      {
+        "url": "https://github.com/androidx/androidx/blob/androidx-main/health/connect/connect-client/src/main/java/androidx/health/connect/client/records/ExerciseSegment.kt",
+        "checked": "2026-11-21",
+        "note": "The segment compatibility table: universal segments, the exercise segment set for strength training and weightlifting, treadmill and stationary biking."
+      },
+      {
+        "url": "https://github.com/androidx/androidx/blob/androidx-main/health/connect/connect-client/src/main/java/androidx/health/connect/client/records/ExerciseSessionRecord.kt",
+        "checked": "2026-11-21",
+        "note": "Session type constants and the segment compatibility check's error message."
+      },
+      {
+        "url": "https://bitbucket.org/bluetooth-SIG/public",
+        "checked": "2026-11-21",
+        "note": "Bluetooth SIG assigned numbers: Fitness Machine 0x1826, Treadmill Data 0x2ACD, Indoor Bike Data 0x2AD2."
+      }
+    ]
   }
 ];

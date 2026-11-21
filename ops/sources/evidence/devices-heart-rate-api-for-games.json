@@ -1,0 +1,312 @@
+[
+  {
+    "claim": "Pulsoid API: enables real-time heart rate data transmission from the peripherals.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "Pulsoid enables real-time heart rate data transmission from the peripherals"
+  },
+  {
+    "claim": "Pulsoid API: Users are the people streaming their heart rate.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "are real people who stream their heart rate data via Pulsoid."
+  },
+  {
+    "claim": "Pulsoid API: Clients are applications that want to read Pulsoid users' data.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "are applications that want to read Pulsoid users' data."
+  },
+  {
+    "claim": "Pulsoid API: create client credentials at pulsoid.net/ui/api-clients.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "The developer should create client credentials at"
+  },
+  {
+    "claim": "Pulsoid API: the client_secret should be stored securely and never shared.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "which should be stored securely and never shared"
+  },
+  {
+    "claim": "Pulsoid API: every call needs an authorization token.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "is used in every API call"
+  },
+  {
+    "claim": "Token flows: personal use, manual token issuing, client credentials not needed.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "is suitable and client credentials are not needed"
+  },
+  {
+    "claim": "Token flows: websites use the Implicit Grant.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "For Websites"
+  },
+  {
+    "claim": "Token flows: desktop apps that handle deep links use the Implicit Grant.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "If handling deep links"
+  },
+  {
+    "claim": "Token flows: backend servers use the Authorization Code Grant.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "For Backend Servers"
+  },
+  {
+    "claim": "Token flows: the Authorization Code Grant is recommended for backend servers.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "is recommended."
+  },
+  {
+    "claim": "Token flows: plugins or desktop apps use the OAuth 2 Device Authorization Flow.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "For Plugins or Desktop Applications"
+  },
+  {
+    "claim": "Token flows: enterprise applications contact Pulsoid.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "For Enterprise Applications"
+  },
+  {
+    "claim": "Recommendation context: Pulsoid notes the Authorization Code Grant requires trusted server.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "flow requires trusted server"
+  },
+  {
+    "claim": "Authorization code flow: scopes are a comma-separated list.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "Comma-separated list of scopes."
+  },
+  {
+    "claim": "Authorization code flow: the example requests data:heart_rate:read,profile:read.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "scope=data:heart_rate:read,profile:read"
+  },
+  {
+    "claim": "Authorization code flow: the token response includes refresh_token.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "\"refresh_token\": \"<refresh token>\""
+  },
+  {
+    "claim": "Authorization code flow: the token response includes expires_in.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "number of seconds until the token expires"
+  },
+  {
+    "claim": "Authorization code flow: the token response includes token_type.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "\"token_type\": \"bearer\""
+  },
+  {
+    "claim": "Authorization code flow: the code can be exchanged only once.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "Note that code can be exchanged for an access token only once."
+  },
+  {
+    "claim": "Authorization code flow: the example response shows expires_in as 3600.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "\"expires_in\": 3600"
+  },
+  {
+    "claim": "WebSocket: the v1 URL.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "wss://dev.pulsoid.net/api/v1/data/real_time"
+  },
+  {
+    "claim": "WebSocket: the scope data:heart_rate:read.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "scope data:heart_rate:read"
+  },
+  {
+    "claim": "WebSocket: token in an access_token query parameter or an Authorization header.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "OAuth2 access token (alternative to Authorization header)"
+  },
+  {
+    "claim": "WebSocket: the example message's measured_at value.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "1625310655000"
+  },
+  {
+    "claim": "WebSocket: the example message's heart_rate field.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "\" heart_rate \" : 40"
+  },
+  {
+    "claim": "WebSocket: response_mode=text_plain_only_heart_rate.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "response_mode=text_plain_only_heart_rate"
+  },
+  {
+    "claim": "WebSocket: Pulsoid labels the endpoint WebSocket v1 (Legacy).",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "Read Heart Rate via WebSocket v1 (Legacy)"
+  },
+  {
+    "claim": "WebSocket: v2 also carries battery level and data ingestion pause notifications; design note on ingestion pauses.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "To also receive the battery level of the measuring device or data ingestion pause notifications, use Read Data via WebSocket v2"
+  },
+  {
+    "claim": "WebSocket: the connection can be interrupted at any point, retry with backoff.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "The WebSocket connection can be interrupted at any point in time, make sure to have retry logic with backoff."
+  },
+  {
+    "claim": "@pulsoid/socket: auto-reconnection with exponential backoff, typed events, zero dependencies.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "auto-reconnection with exponential backoff, typed events, and zero dependencies"
+  },
+  {
+    "claim": "@pulsoid/socket: official library for JavaScript and TypeScript.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "use the official @pulsoid/socket library instead of managing WebSocket connections manually"
+  },
+  {
+    "claim": "@pulsoid/socket example: install.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "npm install @pulsoid/socket"
+  },
+  {
+    "claim": "@pulsoid/socket example: create.",
+    "url": "https://docs.pulsoid.net/llms-full.txt",
+    "quote": "const socket = PulsoidSocket.create('YOUR_TOKEN');"
+  },
+  {
+    "claim": "Docs list: read the latest heart rate over HTTP.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "Read Latest Heart Rate via HTTP"
+  },
+  {
+    "claim": "Docs list: read the latest battery level over HTTP.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "Read Latest Battery Level via HTTP"
+  },
+  {
+    "claim": "Docs list: heart rate statistics.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "Read Heart Rate Statistics"
+  },
+  {
+    "claim": "Docs list: writing data.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "Write Data via HTTP"
+  },
+  {
+    "claim": "Docs list: rooms.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "Read Room Data via WebSocket"
+  },
+  {
+    "claim": "Docs list: a VRChat world integration.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "VRChat World Integration"
+  },
+  {
+    "claim": "Docs list: a Geometry Dash mod configuration.",
+    "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+    "quote": "Geometry Dash Mod Configuration Entity"
+  },
+  {
+    "claim": "Pulsoid homepage VR routes: MagicChatbox, OyasumiVR, VRChat worlds, custom prefabs.",
+    "url": "https://pulsoid.net/",
+    "quote": "Share your heart rate in VR with MagicChatbox"
+  },
+  {
+    "claim": "Table: Pulsoid watches per its homepage.",
+    "url": "https://pulsoid.net/",
+    "quote": "arm bands, Apple Watch, Wear OS, Samsung Galaxy, Fitbit, and other"
+  },
+  {
+    "claim": "HypeRate API: users track heart rate through compatible devices.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Users track their heart rate through 200+ compatible devices"
+  },
+  {
+    "claim": "HypeRate API: an individual ID per user and a data stream on server.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "HypeRate creates an individual ID for each user and provides a data stream on server"
+  },
+  {
+    "claim": "HypeRate API: your services obtain heart rate data through user ID.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Your services can obtain heart rate data through user ID"
+  },
+  {
+    "claim": "HypeRate API: you build interactions on top.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "You can build services and interactions creating an engaging layer of interaction"
+  },
+  {
+    "claim": "HypeRate API: games use its SDK in Unity; table: an SDK in Unity.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "using our SDK in Unity"
+  },
+  {
+    "claim": "HypeRate API: real-time API and WebSocket integration; table transport.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "HypeRate offers a real-time API and WebSocket integration for developers."
+  },
+  {
+    "claim": "Tiers: Research and Indie Projects.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Research & Indie Projects"
+  },
+  {
+    "claim": "Tiers: Research and Indie Projects at €0 /annually.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "€0 /annually"
+  },
+  {
+    "claim": "Tiers: free tier includes free access to the API.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Free Access to"
+  },
+  {
+    "claim": "Tiers: free tier has Request API Key.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Request API Key"
+  },
+  {
+    "claim": "Tiers: Partner at €1,900 /annually.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "€1,900 /annually"
+  },
+  {
+    "claim": "Tiers: Partner includes co-marketing opportunities.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Co-marketing opportunities"
+  },
+  {
+    "claim": "Tiers: Commercial Projects.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Commercial Projects"
+  },
+  {
+    "claim": "Tiers: Commercial Projects at €3,800 /annually.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "€3,800 /annually"
+  },
+  {
+    "claim": "Tiers: Commercial Projects includes priority access.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Priority Access to"
+  },
+  {
+    "claim": "Tiers: Commercial Projects includes custom development options.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Custom development options"
+  },
+  {
+    "claim": "HypeRate: values are not stored persistently.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "HypeRate transmits biometric data in real time; values are not stored persistently."
+  },
+  {
+    "claim": "HypeRate: Streamer.bot's internal-testing ID sends fake testing data.",
+    "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+    "quote": "You can enter internal-testing in this field to have fake testing data sent to Streamer.bot"
+  },
+  {
+    "claim": "Table: HypeRate watches per its llms.txt.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "Apple Watch, Wear OS, Garmin, Fitbit, Amazfit, Polar, and other compatible heart rate sources"
+  }
+]

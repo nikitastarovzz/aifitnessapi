@@ -45,6 +45,8 @@ export const RELEASED_ENGAGEMENT = new Set<string>([
   "ab-testing-engagement-features",
   "engagement-metrics-that-matter",
   "notification-fatigue-and-optout",
+  "gta-6-fitness-system",
+  "rpg-stats-from-health-data",
 ]);
 
 export const allEngagement: ClusterEntry[] = engagementEntries;

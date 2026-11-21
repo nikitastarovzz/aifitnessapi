@@ -888,5 +888,194 @@ export const engagementEntries: ClusterEntry[] =
     "cta": {
       "pitch": "Permission models, channel behavior and provisional delivery keep shifting underneath messaging strategies, and our newsletter tracks the platform side so your frequency decisions get made against the rules that are actually in force."
     }
+  },
+  {
+    "slug": "gta-6-fitness-system",
+    "primaryQuery": "gta 6 fitness system",
+    "h1": "How the GTA 6 Fitness System Works, Read as Fitness-App Design",
+    "metaTitle": "GTA 6 Fitness System: Stats, Workout Windows, Recovery",
+    "metaDescription": "How GTA 6's Strength, Cardio and Focus stats, workout windows, daily cap and protein recovery work per player guides, then what fitness apps can borrow.",
+    "updated": "2026-11-21",
+    "answer": "GTA 6 gives Jason and Lucia three fitness stats: Strength raises maximum health, Cardio raises maximum stamina, and Focus lengthens the slow-motion Focus ability, and The Leonida, citing IGN's official guide, and GTABase both say each stat has four levels. Strength and Cardio are trained inside workout windows shown in the phone's Fitness app, a white dash caps what one day can count, and missing a window costs some progress, while Focus gains are permanent. Guides report that a full workout is three exercises, that protein afterwards halves the recovery wait, and that sleep comes before the next window. They disagree on whether a joint gym visit trains both characters and on what a gym membership costs.",
+    "body": "Grand Theft Auto VI went on sale on November 19, 2026, and Rockstar's announcement names PlayStation 5 and Xbox Series X|S as its platforms. It carries a small fitness game inside the larger one: stats that grow with training, a schedule that decays them, and a phone app that tracks all of it. This page sets out how that system works according to the guides published in the first days, and then reads it the way this site reads any fitness product, as a set of engagement mechanics with consequences.\n\nThis site is not affiliated with Rockstar Games; game details below come from published player guides. Rockstar has not published a fitness manual, so the sources are four guides written from early play: The Leonida, which compiles IGN's official guide, GamesRadar+, GameRant and Insider Gaming; How To Video Game, which describes a launch-night session on PS5; Power Up Gaming; and GTABase. Each claim below names who makes it. They were read on 2026-11-21, and a patch can change any number in them.\n\n## The three stats\n\n| Stat | What guides say it raises | What guides say trains it |\n|---|---|---|\n| Strength | Maximum health; The Leonida adds muscle | Weights: bench press, chest flies, deadlifts, pull-ups, squats, kettlebell swings |\n| Cardio | Maximum stamina: longer sprints and faster swimming | Treadmills, exercise bikes, the punching bag, running, cycling, swimming, kayaking |\n| Focus | How long Focus can slow time in a fight | Shooting ranges, golf, pool, basketball, fishing, meditation |\n\nThe Leonida, citing IGN's guide, says each stat has four levels and that Jason starts the game at level three Strength. GTABase agrees on four levels and adds that Jason and Lucia each have their own stats and start at different levels. Strength shows on the health bar itself: The Leonida describes everything left of a white dash as normal health and everything to the right as bonus health from Strength.\n\nCardio is the stat that ordinary play feeds. IGN's guide, as The Leonida reports it, says even sprinting around adds a little, though less than a workout, and Power Up Gaming notes that cycling or swimming as a way of getting around counts. Focus is trained outside the gym altogether. The Leonida adds taking enemies down without killing them; GTABase says incapacitating enemies or landing headshots can raise it depending on the player's criminal profile.\n\n## Workout windows and the Fitness app\n\nThe scheduling layer lives on the in-game phone. How To Video Game says the Fitness app shows a workout window for Strength and for Cardio, \"a stretch of time in which to fit a session\". The Leonida, citing IGN's guide, says the app shows calories for the day, the level of each stat and whether the window is open; Power Up Gaming adds hunger, muscle and body-fat levels, and when to work out next.\n\nThe rule the windows enforce is maintenance. How To Video Game puts it as: work out before the window runs out and the stat moves up, let it run out and you lose progress. The Leonida says a skipped window loses a bit of Strength or Cardio and that a level can drop; GTABase says fitness can drop if you skip the window too many times. How To Video Game quotes Rockstar North co-studio head Rob Nelson: \"you'll lose muscle if you have a lot and you stop maintaining it.\" Focus is the exception. The Leonida says it has no workout windows and every Focus gain is permanent, and Power Up Gaming says it will not regress.\n\n## The daily cap\n\nThe app's progress rings carry a ceiling. The Leonida describes circles around a heart, a lightning bolt and an eye showing progress toward the next level, with a white dash marking the most you can do that day: fill a circle to the dash and that workout is done for the day. The punching bag has no rep counter, but The Leonida says the game sends a notification once you have done all the Cardio you can for now.\n\nA session has a defined shape. GTABase says three exercises count as the daily workout, and Power Up Gaming also describes a workout of three exercises. How To Video Game's launch-night account matches: a Strength Workout tracker appeared after the first exercise, stations already used showed a lock, and after the third exercise (bench press, kettlebell swings, squats) the game showed \"Workout Complete. Time to rest and recover.\" The same guide says stopping partway does not lock in the gains.\n\n## Recovery: protein, sleep and food\n\nThe window does not reopen straight away. How To Video Game reports the on-screen tip it saw after that session: \"Consuming protein after a workout will reduce the recovery period by 50%.\" The Leonida, citing GamesRadar+, says the same thing as protein halving the wait, and both guides say to sleep before the next window. The Leonida adds that a hungry or tired character's workout counts for less, so the app is worth checking before starting.\n\nFood also drives appearance. The Leonida, citing Insider Gaming, says regular balanced meals keep weight steady, while overeating or junk food adds weight and skipping meals loses it. Power Up Gaming says this is reportedly mainly cosmetic.\n\n## Where to train, and where the guides disagree\n\nStrength training is free from the start: How To Video Game, Power Up Gaming and GTABase all say Jason's house has weights in Chapter 1, and The Leonida and Power Up Gaming describe a punching bag that can be hung up under the house. Gyms with memberships open up as the story goes on, The Leonida says, citing GamesRadar+, and it notes that Rockstar has not published a list of gyms.\n\n**Gym price.** GTABase says the nearest gym at the start is the Grand Majestic Gym, roughly a three-mile drive from Jason's house, with a membership of $250. The Leonida, citing GameRant, names Venus Fitness in the southeast of Vice Beach at $600. These may simply be two gyms with two prices; neither guide says what the other gym costs, and we have not checked either in the game.\n\n**Training together.** Power Up Gaming and How To Video Game both say that taking Jason and Lucia to a gym together means the character you are not controlling completes a workout alongside you, so one session trains both. The Leonida, citing IGN's official guide, says each character has their own fitness levels and tracker, so working out as one does not improve the other. The two readings could both hold, separate trackers with the partner doing their own workout when present, but no guide says so. Treat it as unresolved until a guide tests it directly.\n\n## Challenges and rewards\n\nHow To Video Game says Fitness is one of the game's eight challenge categories. Two of them, Strength Regime and Cardio Regime, ask the player to hold both characters at level 4 in that stat at the same time for five days running. Others ask for joining any gym (Gym Member), a workout on every type of gym equipment in one day (Balanced Workout), and 5 miles on foot, 15 miles cycled or 3 miles swum in a single day. The same guide says 100 completed workouts earn the Body Armor cheat, and that cheats work once the story is done.\n\n## Reading it as fitness-app design\n\nWhat follows is our reading of the mechanics, not anything Rockstar has said about why it built them this way. A game has an easier job than a fitness app, since nobody gets injured chasing a stamina bar. Several of its choices still answer problems real apps get wrong.\n\n| Game mechanic, per the guides | The fitness-app pattern it resembles, in our view |\n|---|---|\n| Workout windows that cost a bit of progress when missed | Decay toward a floor instead of a streak reset to zero |\n| Regime challenges: hold level 4 for five days | Rewarding maintenance rather than only new highs |\n| The white dash: the most a day can count | A visible daily cap on contribution |\n| Window closed until rest and sleep | Rest as a state in the loop, not a gap in the record |\n| Station locks and Balanced Workout | Variety rewarded over repeating one movement |\n| Separate trackers for Jason and Lucia | Per-person progress, with joint sessions as a stated rule |\n\n**Maintenance windows instead of a streak.** A streak counter is binary: one missed day and the number goes to zero, which is the failure covered in [streaks and habit loops](/engagement/streaks-and-habit-loops). GTA's windows are closer to a decay rule. Per The Leonida, a missed window costs a bit and a level can drop, and the Regime challenges reward holding a level rather than reaching it. In our view that is the more honest model for a training app: a lapse costs something proportionate, and getting back costs the same work as before rather than starting over.\n\n**A cap you can see.** The dash turns the daily target into a satisfiable goal: once it is reached, more effort earns nothing that day. That is the cap we recommend in [gamification in fitness apps](/engagement/gamification-in-fitness-apps), and GTA puts it on the main progress screen rather than truncating silently. Combined with the three-exercise shape of a session, it rules out one long session that banks a week of credit.\n\n**Recovery as part of the loop.** The window closes after a workout and reopens only after time passes, so rest is something the system expects rather than a hole in the log. Two parts we would not copy. The protein rule is a game number; a real app should not promise that a product shortens recovery. And crediting a hungry or tired character's workout at a lower rate works in a game that knows the character's state exactly, while a real app has only noisy proxies for how a person feels, and penalizing someone who trained on a bad day teaches them to skip it.\n\n**Separate progress, and the partner question.** Two characters with two trackers is per-user progress. The disagreement over joint gym sessions shows why the crediting rule has to be visible in the interface: guides written from the same game came away with opposite answers. A real app that credits both people for a shared session needs data from both, a consent model for it, and a sentence on screen saying what counts, which [social features in fitness apps](/engagement/social-features-fitness-app) covers.\n\n**What not to copy.** The app shows calories for the day, and food moves body weight up or down. In a game that is cosmetic, per Power Up Gaming. In a real product, calorie totals and weight change tied to \"junk food\" are where a habit feature can become harmful, and we would keep them out of any reward loop.\n\nBuilding stats like these from real workout data, with the exact HealthKit and Health Connect types that would feed each one, is covered in [turning workouts into RPG stats](/engagement/rpg-stats-from-health-data). The gym moves themselves, and which of them a phone camera can count, are on [GTA 6 gym exercises in real life](/motion/gta-6-gym-exercises-real-life).",
+    "faqs": [
+      {
+        "q": "Does working out as Jason also train Lucia in GTA 6?",
+        "a": "The guides disagree. Power Up Gaming and How To Video Game say that if you take both characters to a gym, the one you are not controlling completes a workout alongside you, so one session trains both. The Leonida, citing IGN's official guide, says each character has their own fitness levels and tracker, so working out as one does not improve the other. Both can be true if the partner does their own workout when present, but no guide we read confirms that, so treat it as unresolved."
+      },
+      {
+        "q": "What happens if you miss a workout window in GTA 6?",
+        "a": "You lose some progress in that stat. The Leonida, citing IGN's guide, says a skipped window loses a bit of Strength or Cardio and that a level can drop, and GTABase says fitness can drop if you skip the window too many times. Focus has no workout windows, and The Leonida says every Focus gain is permanent."
+      },
+      {
+        "q": "How much does a gym membership cost in GTA 6?",
+        "a": "Guides name different gyms at different prices. GTABase says the nearest gym at the start, the Grand Majestic Gym, costs $250. The Leonida, citing GameRant, says Venus Fitness in Vice Beach costs $600. Neither lists every gym, Rockstar has not published a list, and we have not checked the prices in the game. Jason's house has free weights from Chapter 1."
+      },
+      {
+        "q": "What can a fitness app learn from GTA 6's workout windows?",
+        "a": "In our reading, three things. A missed window costs a proportionate amount instead of resetting a streak to zero; the daily cap is visible on the progress ring, so more effort on one day earns nothing extra; and rest is built into the loop, because the window reopens only after time passes. We would not copy the calorie display, the weight changes tied to food, or the rule that a tired character's workout counts for less."
+      }
+    ],
+    "related": [
+      {
+        "href": "/engagement/rpg-stats-from-health-data",
+        "label": "Turn workouts into RPG stats"
+      },
+      {
+        "href": "/motion/gta-6-gym-exercises-real-life",
+        "label": "GTA 6 gym exercises in real life"
+      },
+      {
+        "href": "/engagement/streaks-and-habit-loops",
+        "label": "Streaks and habit loops"
+      },
+      {
+        "href": "/engagement/gamification-in-fitness-apps",
+        "label": "Gamification in fitness apps"
+      }
+    ],
+    "cta": {
+      "pitch": "Game fitness systems are a useful lens on the mechanics real apps ship, and we write up decay rules, daily caps and recovery design as we test them against actual workout data."
+    },
+    "sources": [
+      {
+        "url": "https://theleonida.com/guides/gta-6-gyms-how-to-work-out",
+        "checked": "2026-11-21",
+        "note": "Stats, levels, Fitness app, daily dash, windows, protein, food, partner rule, Venus Fitness price (citing IGN, GamesRadar+, GameRant, Insider Gaming)"
+      },
+      {
+        "url": "https://howtovideogame.com/gta-6-fitness-system/",
+        "checked": "2026-11-21",
+        "note": "Workout windows, launch-night session text, Rob Nelson quote, challenges, partner training"
+      },
+      {
+        "url": "https://powerupgaming.co.uk/2026/11/19/gta-6-how-to-improve-your-cardio-focus-and-strength-stats/",
+        "checked": "2026-11-21",
+        "note": "Three-exercise workout, partner training, Focus does not regress, Fitness app contents, weight cosmetic"
+      },
+      {
+        "url": "https://www.gtabase.com/gta-6/articles/how-to-increase-jason-and-lucia-stats-in-gta-6",
+        "checked": "2026-11-21",
+        "note": "Four levels, separate starting levels, Grand Majestic Gym price, three exercises, Focus activities"
+      },
+      {
+        "url": "https://www.rockstargames.com/VI",
+        "checked": "2026-11-21",
+        "note": "Out now on PlayStation 5 and Xbox Series X|S"
+      },
+      {
+        "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+        "checked": "2026-11-21",
+        "note": "Business Wire release, November 19, 2026"
+      }
+    ]
+  },
+  {
+    "slug": "rpg-stats-from-health-data",
+    "primaryQuery": "turn workouts into rpg stats",
+    "h1": "Turn Workouts Into RPG Stats: Strength, Cardio and Focus From Health Data",
+    "metaTitle": "Turn Workouts Into RPG Stats: HealthKit and Health Connect",
+    "metaDescription": "Build GTA 6-style Strength, Cardio and Focus stats from HealthKit and Health Connect: which workout types feed each, decay windows, level caps, code.",
+    "updated": "2026-11-21",
+    "answer": "Map each stat to platform types: HKWorkoutActivityType.traditionalStrengthTraining and functionalStrengthTraining, or Health Connect's EXERCISE_TYPE_STRENGTH_TRAINING and EXERCISE_TYPE_WEIGHTLIFTING, feed Strength; running, cycling, swimming and machine cardio types feed Cardio; HKCategoryTypeIdentifierMindfulSession samples and Health Connect's MindfulnessSessionRecord feed a Focus-like stat. Score each session by its duration, cap what one local day can add, and take a small amount of experience away for each maintenance window with no training, never a full reset. Deduplicate overlapping sessions written by different apps before scoring, and never score calories or reward unlimited volume.",
+    "body": "GTA 6 made a familiar idea concrete for a lot of players at once: three stats that grow with training, decay when neglected, and cannot be ground out in one sitting. Player guides describe Strength raising maximum health, Cardio raising maximum stamina, and Focus trained through activities like meditation, with Strength and Cardio kept up inside workout windows and a daily limit on how much a day can count. [How the GTA 6 fitness system works](/engagement/gta-6-fitness-system) covers the game's version and where the guides disagree. This site is not affiliated with Rockstar Games.\n\nThis page builds the same shape from real data, on top of the two platform stores most apps already read. Every type name below is copied from this site's generated datasets of Apple's and Google's documentation, which are browsable in the [workout types crosswalk](/workout-types). The scoring rules are our design, and they are labeled as such.\n\n## Which records feed which stat\n\nApple documents a workout's `workoutActivityType` as \"The type of activity performed during the workout.\" Health Connect's `ExerciseSessionRecord` carries an `exerciseType` integer instead, whose constants Google prints with their values. Mindfulness is a separate data type on both platforms, not a workout.\n\n| Stat | HealthKit | Health Connect (value) |\n|---|---|---|\n| Strength | `HKWorkoutActivityType.traditionalStrengthTraining`, `.functionalStrengthTraining` | `EXERCISE_TYPE_STRENGTH_TRAINING` (70), `EXERCISE_TYPE_WEIGHTLIFTING` (81), `EXERCISE_TYPE_CALISTHENICS` (13) |\n| Cardio | `.running`, `.cycling`, `.swimming`, `.rowing`, `.elliptical`, `.stairClimbing`, `.mixedCardio`, `.highIntensityIntervalTraining`, `.boxing` | `EXERCISE_TYPE_RUNNING` (56), `EXERCISE_TYPE_RUNNING_TREADMILL` (57), `EXERCISE_TYPE_BIKING` (8), `EXERCISE_TYPE_BIKING_STATIONARY` (9), `EXERCISE_TYPE_SWIMMING_POOL` (74), `EXERCISE_TYPE_SWIMMING_OPEN_WATER` (73), `EXERCISE_TYPE_ROWING_MACHINE` (54), `EXERCISE_TYPE_ELLIPTICAL` (25), `EXERCISE_TYPE_STAIR_CLIMBING_MACHINE` (69), `EXERCISE_TYPE_HIGH_INTENSITY_INTERVAL_TRAINING` (36), `EXERCISE_TYPE_BOXING` (11) |\n| Focus | `HKCategoryTypeIdentifierMindfulSession` category samples | `MindfulnessSessionRecord` |\n| None | `.other` | `EXERCISE_TYPE_OTHER_WORKOUT` (0) |\n\nA few of the assignments are judgment calls worth stating. Apple's abstracts split strength in two: `traditionalStrengthTraining` is \"strength training exercises primarily using machines or free weights\", and `functionalStrengthTraining` is \"strength training, primarily with free weights and body weight\". Both belong in Strength. Boxing goes to Cardio here because the game puts its punching bag there; an app about combat sports might give it a stat of its own. `.mixedCardio` is Apple's constant \"for workouts that mix a variety of cardio exercise machines or modalities\", which makes it the right home for a gym session that moved between machines.\n\nWalking and hiking are the hardest call. Both platforms have them (`.walking`, `.hiking`, `EXERCISE_TYPE_WALKING` (79), `EXERCISE_TYPE_HIKING` (37)), and counting them makes the stat move for people who do not train in a gym. Counting them at full rate also lets a daily commute fill the Cardio cap. The sketch below leaves them out; in a product our choice would be to count them under a lower daily cap of their own. Either answer is defensible as long as the app says which one it chose.\n\n## A Focus stat from mindfulness data\n\nApple describes `HKCategoryTypeIdentifierMindfulSession` as \"A category sample type for recording a mindful session.\" It is a category sample, not a workout, so it is requested and queried as its own type, separately from workouts. Google describes `MindfulnessSessionRecord` as capturing \"any mindfulness session a user does. This can be mindfulness sessions like meditation, breathing.\" Each record carries a `mindfulnessSessionType` (the constants include `MINDFULNESS_SESSION_TYPE_MEDITATION` and `MINDFULNESS_SESSION_TYPE_BREATHING`), and the record needs the `android.permission.health.READ_MINDFULNESS` permission.\n\nThe Health Connect side has a gate the others do not. Google documents that the ability to insert or read this record type depends on the installed version of Health Connect, checked by passing `HealthConnectFeatures.FEATURE_MINDFULNESS_SESSION` to `HealthConnectFeatures.getFeatureStatus`. When the feature is unavailable, show the Focus stat as unavailable rather than as zero; a user who meditates daily should not be told their Focus is empty. The [MindfulnessSessionRecord reference page](/health-connect/mindfulness-session-record) lists its fields and permissions.\n\n`HKWorkoutActivityType.yoga`, `.mindAndBody` and `EXERCISE_TYPE_YOGA` (83) and `EXERCISE_TYPE_GUIDED_BREATHING` (33) arrive as workouts but arguably belong to Focus. GTA's Focus also comes from golf, fishing and basketball, and HealthKit has `.golf`, `.fishing` and `.basketball` cases. We would leave those out: the game uses them for concentration, and in a fitness app they read better as sport than as a mental stat.\n\n## Scoring: duration, a daily cap, levels with a ceiling\n\nScore a session by its duration. Apple documents a `duration` property on `HKWorkout`, and Google documents that each `ExerciseSessionRecord` and `MindfulnessSessionRecord` needs a start time and an end time. Do not score active energy. In our view a calorie figure is an estimate whose method differs between the apps and devices that write it, and a stat built on it rewards whichever device estimates highest. It also turns the stat into an uncapped volume target, the kind of mechanic [gamification in fitness apps](/engagement/gamification-in-fitness-apps) argues against.\n\nThree rules do most of the work in the sketch below:\n\n- **A daily cap per stat.** Minutes beyond it on one local day earn nothing, so one long session cannot stand in for a week. Show the cap on the progress bar, the way the game's daily dash does, rather than cutting silently.\n- **A maintenance window with gentle decay.** Each window with no qualifying session takes a small fixed amount of experience away, enough to drop a level eventually, never a reset to zero. Focus has no window, which mirrors the game and avoids punishing someone for skipping meditation.\n- **Levels with a ceiling.** Four levels, and experience stops accruing at a cap. A stat with no top is a leaderboard against yourself with no finish line.\n\nEvery number in the sketch is a placeholder for your own tuning, not a value from Apple, Google or the game.\n\n```ts\ntype Stat = \"strength\" | \"cardio\" | \"focus\";\n\n// One row per workout or mindful session, normalised at ingest.\ntype Session = {\n  source: string;    // HealthKit sourceRevision, or Health Connect dataOrigin\n  kind: string;      // \"hk:running\", \"hc:EXERCISE_TYPE_RUNNING\", \"hk:mindfulSession\" ...\n  start: Date;\n  end: Date;\n  localDate: string; // YYYY-MM-DD in the user's zone at start, resolved once\n};\n\nconst STAT_FOR_KIND: Record<string, Stat> = {\n  // HKWorkoutActivityType cases\n  \"hk:traditionalStrengthTraining\": \"strength\",\n  \"hk:functionalStrengthTraining\": \"strength\",\n  \"hk:running\": \"cardio\",\n  \"hk:cycling\": \"cardio\",\n  \"hk:swimming\": \"cardio\",\n  \"hk:rowing\": \"cardio\",\n  \"hk:elliptical\": \"cardio\",\n  \"hk:stairClimbing\": \"cardio\",\n  \"hk:mixedCardio\": \"cardio\",\n  \"hk:highIntensityIntervalTraining\": \"cardio\",\n  \"hk:boxing\": \"cardio\",\n  // HKCategoryTypeIdentifier.mindfulSession samples\n  \"hk:mindfulSession\": \"focus\",\n  // ExerciseSessionRecord.exerciseType constants, sent by name from the client\n  \"hc:EXERCISE_TYPE_STRENGTH_TRAINING\": \"strength\",\n  \"hc:EXERCISE_TYPE_WEIGHTLIFTING\": \"strength\",\n  \"hc:EXERCISE_TYPE_CALISTHENICS\": \"strength\",\n  \"hc:EXERCISE_TYPE_RUNNING\": \"cardio\",\n  \"hc:EXERCISE_TYPE_RUNNING_TREADMILL\": \"cardio\",\n  \"hc:EXERCISE_TYPE_BIKING\": \"cardio\",\n  \"hc:EXERCISE_TYPE_BIKING_STATIONARY\": \"cardio\",\n  \"hc:EXERCISE_TYPE_SWIMMING_POOL\": \"cardio\",\n  \"hc:EXERCISE_TYPE_SWIMMING_OPEN_WATER\": \"cardio\",\n  \"hc:EXERCISE_TYPE_ROWING_MACHINE\": \"cardio\",\n  \"hc:EXERCISE_TYPE_ELLIPTICAL\": \"cardio\",\n  \"hc:EXERCISE_TYPE_STAIR_CLIMBING_MACHINE\": \"cardio\",\n  \"hc:EXERCISE_TYPE_HIGH_INTENSITY_INTERVAL_TRAINING\": \"cardio\",\n  \"hc:EXERCISE_TYPE_BOXING\": \"cardio\",\n  // MindfulnessSessionRecord, any mindfulnessSessionType\n  \"hc:MindfulnessSessionRecord\": \"focus\",\n};\n// Anything not listed, including HKWorkoutActivityType.other and\n// EXERCISE_TYPE_OTHER_WORKOUT, feeds no stat.\n\n// Placeholder tuning. None of these numbers comes from a source.\nconst DAILY_CAP_MIN: Record<Stat, number> = { strength: 45, cardio: 45, focus: 20 };\nconst WINDOW_DAYS: Record<Stat, number | null> = { strength: 4, cardio: 4, focus: null };\nconst DECAY_PER_MISSED_WINDOW = 60;       // XP lost per missed window\nconst LEVEL_FLOORS = [0, 300, 900, 1800]; // levels 1 to 4\nconst XP_CAP = 2400;                      // nothing accrues past this\n\nconst minutes = (s: Session) => (s.end.getTime() - s.start.getTime()) / 60_000;\n\n// Same stat, overlapping in time: keep the longest, whichever app wrote it.\nfunction dedupe(sessions: Session[]): Session[] {\n  const kept: Session[] = [];\n  for (const s of [...sessions].sort((a, b) => a.start.getTime() - b.start.getTime())) {\n    const stat = STAT_FOR_KIND[s.kind];\n    if (!stat) continue;\n    const i = kept.findLastIndex((k) => STAT_FOR_KIND[k.kind] === stat);\n    if (i >= 0 && s.start < kept[i].end) {\n      if (minutes(s) > minutes(kept[i])) kept[i] = s;\n      continue;\n    }\n    kept.push(s);\n  }\n  return kept;\n}\n\nfunction addDays(day: string, n: number): string {\n  const d = new Date(`${day}T12:00:00Z`);\n  d.setUTCDate(d.getUTCDate() + n);\n  return d.toISOString().slice(0, 10);\n}\n\nexport function scoreStats(sessions: Session[], firstDay: string, today: string) {\n  // Capped minutes per stat per local day: a long session cannot bank a week.\n  const perDay = new Map<string, number>();\n  for (const s of dedupe(sessions)) {\n    const stat = STAT_FOR_KIND[s.kind];\n    const key = `${stat}|${s.localDate}`;\n    perDay.set(key, Math.min(DAILY_CAP_MIN[stat], (perDay.get(key) ?? 0) + minutes(s)));\n  }\n\n  const result = {} as Record<Stat, { xp: number; level: number }>;\n  for (const stat of [\"strength\", \"cardio\", \"focus\"] as Stat[]) {\n    let xp = 0;\n    let idle = 0;\n    for (let day = firstDay; day <= today; day = addDays(day, 1)) {\n      const mins = perDay.get(`${stat}|${day}`) ?? 0;\n      if (mins > 0) {\n        xp = Math.min(XP_CAP, xp + mins);\n        idle = 0;\n      } else if (WINDOW_DAYS[stat] !== null && ++idle === WINDOW_DAYS[stat]) {\n        xp = Math.max(0, xp - DECAY_PER_MISSED_WINDOW); // a bit, not a reset\n        idle = 0;\n      }\n    }\n    result[stat] = { xp, level: LEVEL_FLOORS.filter((f) => xp >= f).length };\n  }\n  return result;\n}\n```\n\n## Pitfalls\n\n**The same workout, twice.** A watch app, a phone app and a third-party trainer can all write a session for the same hour. Apple documents `sourceRevision` on every HealthKit object as \"The app or device that created this object.\", and Google documents `Metadata.dataOrigin` as \"Where the data comes from, such as application information originally generated this data.\" Use them to show the user which app a session came from, and merge overlapping sessions of the same stat before scoring, as the sketch does. A fixed source priority is the alternative; [deduplicating health data](/architecture/deduplicate-health-data) compares the strategies.\n\n**Which day a session belongs to.** The daily cap and the window both count local days. Resolve the user's civil date once at ingest and store it beside the instant: Google documents `startZoneOffset` on Health Connect records as the \"User experienced zone offset at startTime, or null if unknown\", and HealthKit has the `HKMetadataKeyTimeZone` metadata key, \"The user's time zone when the HealthKit object was created.\" Deriving days in UTC at read time moves late-evening sessions to the wrong day and breaks windows across clock changes, which [the day-boundary problem](/day-boundaries) walks through.\n\n**Manual entries.** HealthKit's `HKMetadataKeyWasUserEntered` is \"A key that indicates whether the sample was entered by the user\", and Health Connect's `Metadata.recordingMethod` can be `RECORDING_METHOD_MANUAL_ENTRY`, \"For data manually entered by the user.\" Counting manual workouts is fair, since plenty of people train without a watch. Our recommendation is to count them toward the stat and leave them off anything shared or competitive.\n\n**Unknown and new types.** Google documents that \"Any unknown new value definition will also fall automatically into\" `EXERCISE_TYPE_OTHER_WORKOUT`, and Apple's `.other` is \"a workout that does not match any of the other workout activity types.\" A stat map keyed by type name, with everything unlisted feeding nothing, keeps a new constant from silently counting before you have decided what it means.\n\n**Volume that harms people.** Decay is the dangerous part of this design. A stat that drops when someone is ill, injured or on holiday turns rest into a loss. We would give users a pause that stops decay without asking for a reason, keep the loss from one missed window well short of a level's worth of experience, and never show a calorie target as the way to raise a stat.",
+    "faqs": [
+      {
+        "q": "Which HealthKit and Health Connect workout types should count as strength training for a game-style stat?",
+        "a": "On HealthKit, HKWorkoutActivityType.traditionalStrengthTraining, which Apple describes as strength training primarily using machines or free weights, and functionalStrengthTraining, described as primarily free weights and body weight. On Health Connect, EXERCISE_TYPE_STRENGTH_TRAINING (70) and EXERCISE_TYPE_WEIGHTLIFTING (81), plus EXERCISE_TYPE_CALISTHENICS (13) if body-weight work should count. Everything else, including the generic other types, is better left out until you decide what it means."
+      },
+      {
+        "q": "Can mindfulness data drive a Focus stat like the one in GTA 6?",
+        "a": "Yes. HealthKit records mindful sessions as HKCategoryTypeIdentifierMindfulSession category samples, and Health Connect has MindfulnessSessionRecord with a mindfulnessSessionType such as meditation or breathing. On Android, check HealthConnectFeatures.FEATURE_MINDFULNESS_SESSION before reading, because Google documents that support depends on the installed Health Connect version, and show the stat as unavailable rather than empty when it is missing."
+      },
+      {
+        "q": "Should a game-style fitness stat decay when the user stops training?",
+        "a": "In our view, gently and with an off switch. A small loss per missed maintenance window keeps the stat meaningful without the cliff of a streak reset, and it should never fall to zero in one step. Give users a pause for illness, injury or travel that stops decay without asking why, and leave any mindfulness-based stat out of decay entirely."
+      },
+      {
+        "q": "Why score workout minutes instead of calories for an RPG stat?",
+        "a": "Duration is a start and an end time on both platforms, while active energy is an estimate whose method, in our experience, varies between the apps and devices that write it. A stat built on calories rewards whichever source estimates highest and turns into a burn-more target. Minutes with a daily cap reward showing up, and the cap keeps one long session from standing in for a week."
+      }
+    ],
+    "related": [
+      {
+        "href": "/engagement/gta-6-fitness-system",
+        "label": "How the GTA 6 fitness system works"
+      },
+      {
+        "href": "/architecture/deduplicate-health-data",
+        "label": "Deduplicating health data"
+      },
+      {
+        "href": "/day-boundaries",
+        "label": "The day-boundary problem"
+      },
+      {
+        "href": "/engagement/gamification-in-fitness-apps",
+        "label": "Gamification in fitness apps"
+      }
+    ],
+    "cta": {
+      "pitch": "Stats built on workout data inherit every quirk of the stores underneath them, and we track the type constants, permissions and feature gates on both platforms as they change."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype",
+        "checked": "2026-11-21",
+        "note": "Workout activity type cases and abstracts, via this site's generated workout-types dataset"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/mindfulsession",
+        "checked": "2026-11-21",
+        "note": "Mindful session category type, via the generated HealthKit identifiers dataset"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkout/workoutactivitytype",
+        "checked": "2026-11-21"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkout/duration",
+        "checked": "2026-11-21"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision",
+        "checked": "2026-11-21"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkmetadatakeywasuserentered",
+        "checked": "2026-11-21",
+        "note": "Via the generated HealthKit metadata keys dataset"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkmetadatakeytimezone",
+        "checked": "2026-11-21",
+        "note": "Via the generated HealthKit metadata keys dataset"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/ExerciseSessionRecord",
+        "checked": "2026-11-21",
+        "note": "Exercise type constants and values, via the generated workout-types dataset"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/MindfulnessSessionRecord",
+        "checked": "2026-11-21",
+        "note": "Description, feature check, session types, permission, via the generated Health Connect records dataset"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/metadata/Metadata",
+        "checked": "2026-11-21",
+        "note": "dataOrigin and recordingMethod"
+      },
+      {
+        "url": "https://theleonida.com/guides/gta-6-gyms-how-to-work-out",
+        "checked": "2026-11-21",
+        "note": "GTA 6 stats, windows and daily limit"
+      },
+      {
+        "url": "https://howtovideogame.com/gta-6-fitness-system/",
+        "checked": "2026-11-21",
+        "note": "GTA 6 stat definitions"
+      }
+    ]
   }
 ];
