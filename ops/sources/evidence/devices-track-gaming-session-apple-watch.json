@@ -1,0 +1,27 @@
+[
+  {
+    "claim": "Intro: Rockstar's own page says \"Grand Theft Auto VI Out Now\".",
+    "url": "https://www.rockstargames.com/VI",
+    "quote": "Grand Theft Auto VI Out Now"
+  },
+  {
+    "claim": "Intro: Rockstar's page lists PlayStation 5 and Xbox Series X|S.",
+    "url": "https://www.rockstargames.com/VI",
+    "quote": "PlayStation 5 Xbox Series X"
+  },
+  {
+    "claim": "Intro: the Business Wire launch release says Grand Theft Auto VI is available on PlayStation 5.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "Grand Theft Auto VI is now available for the PlayStation"
+  },
+  {
+    "claim": "Intro: the Business Wire launch release says the same for Xbox Series X|S.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "computer entertainment systems and the Xbox Series X"
+  },
+  {
+    "claim": "Intro: the Business Wire launch release is dated November 19, 2026.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "November 19, 2026, 6:00 AM"
+  }
+]

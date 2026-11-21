@@ -236,6 +236,9 @@ for that copy.
 A page dropped from /llms.txt is still in /llms-index.txt and its section
 files, so nothing becomes invisible.
 
+2026-11-21: llms.txt reached 51,201 bytes against the 51,200 cap when seven
+GTA 6 spokes shipped; TOP_INTEGRATE_FIX went from 10 to 9 under this rule.
+
 Changed 2026-11-04 (ops/NEXT-10-2026-11-04.md item 6), all gated:
 
 - **Key facts.** Money-cluster spokes (pricing, alternatives, compare,

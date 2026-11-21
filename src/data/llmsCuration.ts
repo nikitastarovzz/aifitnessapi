@@ -34,7 +34,7 @@ import { site } from "@/lib/site";
 
 export const SEARCH_CONSOLE_FILE = "data/gsc/latest.json";
 export const TOP_VISITED = 15;
-export const TOP_INTEGRATE_FIX = 10;
+export const TOP_INTEGRATE_FIX = 9;
 const INTEGRATE_FIX = ["/integrate", "/fix"];
 
 type Row = { keys: string[]; clicks: number; impressions: number };
