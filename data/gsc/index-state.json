@@ -1,73 +1,73 @@
 {
-  "generatedOn": "2026-11-20",
-  "asOf": "2026-11-19",
+  "generatedOn": "2026-11-21",
+  "asOf": "2026-11-20",
   "verdict": "closed",
-  "reason": "3 of 42 pages published 2026-10-29 to 2026-11-12 were shown in Google within 7 days",
+  "reason": "3 of 42 pages published 2026-10-30 to 2026-11-13 were shown in Google within 7 days",
   "share": 0.0714,
   "sample": 42,
   "shownWithin7": 3,
   "window": {
-    "from": "2026-10-29",
-    "to": "2026-11-12"
+    "from": "2026-10-30",
+    "to": "2026-11-13"
   },
   "baseline": {
     "share": 0.549,
     "sample": 459
   },
   "allowance": 1,
-  "publishedLast7": 4,
+  "publishedLast7": 3,
   "budget": 0,
   "newPagesToday": 0,
   "requestIndexing": [
     {
-      "path": "/fix/garmin-api-personal-use",
-      "published": "2026-10-22",
-      "ageDays": 28
+      "path": "/compliance/gym-gdpr-compliance",
+      "published": "2026-11-04",
+      "ageDays": 16
     },
     {
-      "path": "/fix/fitbit-api-410-gone",
-      "published": "2026-11-02",
-      "ageDays": 17
+      "path": "/compliance/cms-medicare-app-library",
+      "published": "2026-11-05",
+      "ageDays": 15
     },
     {
-      "path": "/integrate/mindbody-api",
-      "published": "2026-10-18",
-      "ageDays": 32
+      "path": "/guides/camera-pose-tracking",
+      "published": "2026-07-08",
+      "ageDays": 135
     },
     {
-      "path": "/integrate/samsung-health-api",
-      "published": "2026-10-18",
-      "ageDays": 32
+      "path": "/healthkit-category-values",
+      "published": "2026-09-04",
+      "ageDays": 77
     },
     {
-      "path": "/integrate/suunto-api",
-      "published": "2026-10-18",
-      "ageDays": 32
+      "path": "/healthkit-status",
+      "published": "2026-09-04",
+      "ageDays": 77
     },
     {
-      "path": "/integrate/withings-api",
-      "published": "2026-10-18",
-      "ageDays": 32
+      "path": "/healthkit/workout-activities",
+      "published": "2026-09-04",
+      "ageDays": 77
     },
     {
-      "path": "/integrate/your-move-exercise-api",
-      "published": "2026-11-11",
-      "ageDays": 8
+      "path": "/healthkit-queries/healthkit-query-predicates",
+      "published": "2026-10-03",
+      "ageDays": 48
     },
     {
-      "path": "/fitness-apis/corporate-wellness-wearable-apis",
-      "published": "2026-10-12",
-      "ageDays": 38
+      "path": "/healthkit-queries/hkactivitysummaryquery",
+      "published": "2026-10-03",
+      "ageDays": 48
     },
     {
-      "path": "/fitness-apis/smart-ring-apis",
-      "published": "2026-10-18",
-      "ageDays": 32
+      "path": "/healthkit-queries/hkobserverquery-background-delivery",
+      "published": "2026-10-03",
+      "ageDays": 48
     },
     {
-      "path": "/compliance/apple-health-icon-works-with-apple-health",
-      "published": "2026-10-04",
-      "ageDays": 46
+      "path": "/healthkit-queries/hksamplequery",
+      "published": "2026-10-03",
+      "ageDays": 48
     }
   ],
   "listed": {
@@ -97,6 +97,8 @@
     "/compare/your-move-vs-exercisedb": "2026-11-19",
     "/compare/your-move-vs-free-exercise-db": "2026-11-19",
     "/compliance/apple-health-icon-works-with-apple-health": "2026-11-20",
+    "/compliance/cms-medicare-app-library": "2026-11-21",
+    "/compliance/gym-gdpr-compliance": "2026-11-21",
     "/fitness-apis/corporate-wellness-wearable-apis": "2026-11-20",
     "/fitness-apis/smart-ring-apis": "2026-11-20",
     "/fix/fitbit-api-410-gone": "2026-11-20",
@@ -109,6 +111,14 @@
     "/fix/healthkit-health-data-unavailable": "2026-11-19",
     "/fix/healthkit-invalid-argument": "2026-11-19",
     "/fix/healthkit-required-authorization-denied": "2026-11-19",
+    "/guides/camera-pose-tracking": "2026-11-21",
+    "/healthkit-category-values": "2026-11-21",
+    "/healthkit-queries/healthkit-query-predicates": "2026-11-21",
+    "/healthkit-queries/hkactivitysummaryquery": "2026-11-21",
+    "/healthkit-queries/hkobserverquery-background-delivery": "2026-11-21",
+    "/healthkit-queries/hksamplequery": "2026-11-21",
+    "/healthkit-status": "2026-11-21",
+    "/healthkit/workout-activities": "2026-11-21",
     "/integrate/mindbody-api": "2026-11-20",
     "/integrate/samsung-health-api": "2026-11-20",
     "/integrate/suunto-api": "2026-11-20",
@@ -121,11 +131,9 @@
     "/pricing/terra-api-pricing": "2026-11-15",
     "/pricing/wahoo-api-pricing": "2026-11-15"
   },
-  "recovered": [
-    "/pt-br/fitness-apis/ai-workout-tracking-apis"
-  ],
-  "previousAsOf": "2026-11-18",
-  "neverSeenCount": 105,
+  "recovered": [],
+  "previousAsOf": "2026-11-19",
+  "neverSeenCount": 104,
   "cohorts": [
     {
       "date": "2026-07-08",
@@ -133,7 +141,7 @@
       "within7": 16,
       "within14": 19,
       "ever": 20,
-      "ageDays": 134
+      "ageDays": 135
     },
     {
       "date": "2026-07-09",
@@ -141,7 +149,7 @@
       "within7": 6,
       "within14": 12,
       "ever": 17,
-      "ageDays": 133
+      "ageDays": 134
     },
     {
       "date": "2026-07-10",
@@ -149,7 +157,7 @@
       "within7": 4,
       "within14": 7,
       "ever": 10,
-      "ageDays": 132
+      "ageDays": 133
     },
     {
       "date": "2026-07-13",
@@ -157,7 +165,7 @@
       "within7": 14,
       "within14": 18,
       "ever": 20,
-      "ageDays": 129
+      "ageDays": 130
     },
     {
       "date": "2026-07-14",
@@ -165,7 +173,7 @@
       "within7": 3,
       "within14": 6,
       "ever": 10,
-      "ageDays": 128
+      "ageDays": 129
     },
     {
       "date": "2026-07-20",
@@ -173,7 +181,7 @@
       "within7": 4,
       "within14": 5,
       "ever": 10,
-      "ageDays": 122
+      "ageDays": 123
     },
     {
       "date": "2026-07-23",
@@ -181,7 +189,7 @@
       "within7": 16,
       "within14": 18,
       "ever": 19,
-      "ageDays": 119
+      "ageDays": 120
     },
     {
       "date": "2026-07-24",
@@ -189,7 +197,7 @@
       "within7": 9,
       "within14": 9,
       "ever": 10,
-      "ageDays": 118
+      "ageDays": 119
     },
     {
       "date": "2026-07-25",
@@ -197,7 +205,7 @@
       "within7": 8,
       "within14": 9,
       "ever": 10,
-      "ageDays": 117
+      "ageDays": 118
     },
     {
       "date": "2026-07-27",
@@ -205,7 +213,7 @@
       "within7": 12,
       "within14": 20,
       "ever": 24,
-      "ageDays": 115
+      "ageDays": 116
     },
     {
       "date": "2026-07-30",
@@ -213,7 +221,7 @@
       "within7": 3,
       "within14": 6,
       "ever": 12,
-      "ageDays": 112
+      "ageDays": 113
     },
     {
       "date": "2026-08-02",
@@ -221,7 +229,7 @@
       "within7": 0,
       "within14": 2,
       "ever": 6,
-      "ageDays": 109
+      "ageDays": 110
     },
     {
       "date": "2026-08-11",
@@ -229,7 +237,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 4,
-      "ageDays": 100
+      "ageDays": 101
     },
     {
       "date": "2026-08-12",
@@ -237,7 +245,7 @@
       "within7": 4,
       "within14": 4,
       "ever": 20,
-      "ageDays": 99
+      "ageDays": 100
     },
     {
       "date": "2026-08-15",
@@ -245,7 +253,7 @@
       "within7": 7,
       "within14": 8,
       "ever": 12,
-      "ageDays": 96
+      "ageDays": 97
     },
     {
       "date": "2026-08-22",
@@ -253,7 +261,7 @@
       "within7": 24,
       "within14": 29,
       "ever": 37,
-      "ageDays": 89
+      "ageDays": 90
     },
     {
       "date": "2026-09-01",
@@ -261,7 +269,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 17,
-      "ageDays": 79
+      "ageDays": 80
     },
     {
       "date": "2026-09-04",
@@ -269,7 +277,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 23,
-      "ageDays": 76
+      "ageDays": 77
     },
     {
       "date": "2026-10-02",
@@ -277,7 +285,7 @@
       "within7": 1,
       "within14": 2,
       "ever": 2,
-      "ageDays": 48
+      "ageDays": 49
     },
     {
       "date": "2026-10-03",
@@ -285,7 +293,7 @@
       "within7": 45,
       "within14": 53,
       "ever": 55,
-      "ageDays": 47
+      "ageDays": 48
     },
     {
       "date": "2026-10-04",
@@ -293,7 +301,7 @@
       "within7": 21,
       "within14": 21,
       "ever": 22,
-      "ageDays": 46
+      "ageDays": 47
     },
     {
       "date": "2026-10-12",
@@ -301,7 +309,7 @@
       "within7": 3,
       "within14": 3,
       "ever": 3,
-      "ageDays": 38
+      "ageDays": 39
     },
     {
       "date": "2026-10-17",
@@ -309,7 +317,7 @@
       "within7": 50,
       "within14": 53,
       "ever": 55,
-      "ageDays": 33
+      "ageDays": 34
     },
     {
       "date": "2026-10-18",
@@ -317,7 +325,7 @@
       "within7": 46,
       "within14": 48,
       "ever": 48,
-      "ageDays": 32
+      "ageDays": 33
     },
     {
       "date": "2026-10-22",
@@ -325,7 +333,7 @@
       "within7": 2,
       "within14": 2,
       "ever": 2,
-      "ageDays": 28
+      "ageDays": 29
     },
     {
       "date": "2026-10-27",
@@ -333,7 +341,7 @@
       "within7": 1,
       "within14": 1,
       "ever": 6,
-      "ageDays": 23
+      "ageDays": 24
     },
     {
       "date": "2026-11-02",
@@ -341,7 +349,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 17
+      "ageDays": 18
     },
     {
       "date": "2026-11-04",
@@ -349,15 +357,15 @@
       "within7": 1,
       "within14": 1,
       "ever": 1,
-      "ageDays": 15
+      "ageDays": 16
     },
     {
       "date": "2026-11-05",
       "pages": 21,
       "within7": 1,
-      "within14": 1,
-      "ever": 1,
-      "ageDays": 14
+      "within14": 2,
+      "ever": 2,
+      "ageDays": 15
     },
     {
       "date": "2026-11-09",
@@ -365,7 +373,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 10
+      "ageDays": 11
     },
     {
       "date": "2026-11-11",
@@ -373,7 +381,7 @@
       "within7": 1,
       "within14": 1,
       "ever": 1,
-      "ageDays": 8
+      "ageDays": 9
     },
     {
       "date": "2026-11-14",
@@ -381,7 +389,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 5
+      "ageDays": 6
     },
     {
       "date": "2026-11-18",
@@ -389,7 +397,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 1
+      "ageDays": 2
     }
   ]
 }

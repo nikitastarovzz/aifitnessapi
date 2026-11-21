@@ -1215,6 +1215,10 @@ export const motionEntries: ClusterEntry[] =
       {
         "q": "How fast is RTMPose on a mobile chip?",
         "a": "The RTMPose README reports RTMPose-s at 72.2% AP on COCO with 70+ FPS on a Snapdragon 865 chip, measured by the project itself after deploying to a mobile device, and its body model tables list ncnn FP16 latency on the same chip. Treat these as the authors' figures and measure on your own target phones."
+      },
+      {
+        "q": "What license is RTMPose released under?",
+        "a": "Apache-2.0 for the code. RTMPose lives in OpenMMLab's MMPose repository under projects/rtmpose; that repository's LICENSE file opens \"Copyright 2018-2020 Open-MMLab. All rights reserved.\" and continues with the Apache License, Version 2.0, and MMPose's README says the project is released under the Apache 2.0 license. The RTMPose README, read on November 21, 2026, links its checkpoints on download.openmmlab.com and states no separate terms for those pretrained weights, so confirm them before you ship a checkpoint."
       }
     ],
     "related": [
