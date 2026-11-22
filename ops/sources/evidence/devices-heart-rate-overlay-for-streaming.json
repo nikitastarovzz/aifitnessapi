@@ -1,0 +1,287 @@
+[
+  {
+    "claim": "Intro: Rockstar's own page says \"Grand Theft Auto VI Out Now\".",
+    "url": "https://www.rockstargames.com/VI",
+    "quote": "Grand Theft Auto VI Out Now"
+  },
+  {
+    "claim": "Intro: Rockstar's page lists PlayStation 5 and Xbox Series X|S.",
+    "url": "https://www.rockstargames.com/VI",
+    "quote": "PlayStation 5 Xbox Series X"
+  },
+  {
+    "claim": "Intro: the Business Wire launch release says Grand Theft Auto VI is available on PlayStation 5.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "Grand Theft Auto VI is now available for the PlayStation"
+  },
+  {
+    "claim": "Intro: the Business Wire launch release says the same for Xbox Series X|S.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "computer entertainment systems and the Xbox Series X"
+  },
+  {
+    "claim": "Intro: the Business Wire launch release is dated November 19, 2026.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "November 19, 2026, 6:00 AM"
+  },
+  {
+    "claim": "How the number gets to the stream: the Pulsoid app lists the BLE devices near you and you choose your monitor.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "When you open the Pulsoid mobile app you can see the list of all BLE devices near you and you have to choose your monitor."
+  },
+  {
+    "claim": "How the number gets to the stream: the monitor connects to the Pulsoid app on your phone.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "The heart Rate monitor connects to the Pulsoid app on your phone"
+  },
+  {
+    "claim": "How the number gets to the stream: the app sends heart rate data through an Internet connection.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "The app sends heart rate data through an Internet connection"
+  },
+  {
+    "claim": "How the number gets to the stream: copy the widget URL from the Configuration page and add it as a Browser Source in OBS.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "copy the widget URL from the Configuration page and add it as a Browser Source in OBS"
+  },
+  {
+    "claim": "Pulsoid: setup for a Twitch or YouTube stream in less than 3 minutes.",
+    "url": "https://pulsoid.net/",
+    "quote": "Set up a live heart rate widget for your Twitch, YouTube stream in less than 3 minutes."
+  },
+  {
+    "claim": "Pulsoid: add your widget as a browser source in OBS, Streamlabs, Streamelements, XSplit, etc.",
+    "url": "https://pulsoid.net/",
+    "quote": "Add your widget as a browser source in OBS, Streamlabs, Streamelements, XSplit, etc."
+  },
+  {
+    "claim": "Pulsoid: lists chest straps Polar H10, CooSpo H808S and Wahoo TICKR.",
+    "url": "https://pulsoid.net/",
+    "quote": "Supports chest strap HRMs"
+  },
+  {
+    "claim": "Pulsoid: lists arm bands, Apple Watch, Wear OS, Samsung Galaxy and Fitbit.",
+    "url": "https://pulsoid.net/",
+    "quote": "arm bands, Apple Watch, Wear OS, Samsung Galaxy, Fitbit, and other"
+  },
+  {
+    "claim": "Pulsoid: the app is also available on Windows.",
+    "url": "https://pulsoid.net/",
+    "quote": "Also available on Windows"
+  },
+  {
+    "claim": "Pulsoid: the OBS listing's setup list includes a supported monitor.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "get a supported heart rate monitor for streaming"
+  },
+  {
+    "claim": "Pulsoid: the OBS listing's setup list includes the Android or iOS app.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "download our application ( for Android or for iOS )"
+  },
+  {
+    "claim": "Pulsoid: the OBS listing's setup list includes an account on pulsoid.net; table: account on pulsoid.net.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "create an account on pulsoid.net"
+  },
+  {
+    "claim": "Pulsoid: the homepage advertises 60+ widgets and overlays.",
+    "url": "https://pulsoid.net/",
+    "quote": "60+ widgets and overlays"
+  },
+  {
+    "claim": "Pulsoid: widget kinds named in the OBS listing.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "Different widgets are available: custom images widget, sound alert widget, graph, calories, animated text, max, zones bar, and speedometer."
+  },
+  {
+    "claim": "Pulsoid: fonts, colors, ranges and transparency set on the Configuration page.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "You can customize fonts, colors, ranges, and transparency on the Configuration page."
+  },
+  {
+    "claim": "Pulsoid: widgets styled to match your game, with GTA next to Resident Evil, Minecraft, Dead by Daylight and Valorant.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "There are a lot of heart rate widgets styled to match your game: Resident Evil, Minecraft, Dead by Daylight, GTA, Beat Saber, Geometry Dash, Dead Space, Valorant"
+  },
+  {
+    "claim": "Pulsoid: the update log includes a Pulsoid Twitch Extension.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "Pulsoid Twitch Extension"
+  },
+  {
+    "claim": "Pulsoid and console section: shows heart rate on Twitch without adding an OBS Browser Source.",
+    "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+    "quote": "Show your heart rate directly on Twitch without adding an OBS Browser Source!"
+  },
+  {
+    "claim": "Pulsoid: integrations with Voicemod, LumiaStream, Streamer.bot and Discord; Making the overlay react: Pulsoid lists Streamer.bot among its integrations.",
+    "url": "https://pulsoid.net/",
+    "quote": "integrations with Voicemod, LumiaStream, Streamer.bot, Discord"
+  },
+  {
+    "claim": "Pulsoid: the homepage offers \"Get started for free\".",
+    "url": "https://pulsoid.net/",
+    "quote": "Get started for free"
+  },
+  {
+    "claim": "Pulsoid: the homepage offers a paid BRO plan.",
+    "url": "https://pulsoid.net/",
+    "quote": "BRO Plan Subscription"
+  },
+  {
+    "claim": "Heart rate is health data: Pulsoid advertises finding Highlights by heart rate.",
+    "url": "https://pulsoid.net/",
+    "quote": "find Highlights by heart rate"
+  },
+  {
+    "claim": "HypeRate: connects Apple Watch, Wear OS, Garmin, Fitbit, Amazfit and Polar to streaming software; table devices.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "HypeRate connects wearable devices (Apple Watch, Wear OS, Garmin, Fitbit, Amazfit, Polar) to streaming software (OBS, Streamlabs)"
+  },
+  {
+    "claim": "HypeRate: no account required to get started; table: no account required.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "No account required to get started."
+  },
+  {
+    "claim": "HypeRate: OBS and Streamlabs integration via browser source.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "OBS and Streamlabs integration via browser source"
+  },
+  {
+    "claim": "HypeRate: the studio is a free web studio for stream overlays.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "free web studio for stream overlays"
+  },
+  {
+    "claim": "HypeRate: the studio is for OBS, Streamlabs and TikTok Live Studio.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "for OBS, Streamlabs and TikTok Live Studio"
+  },
+  {
+    "claim": "HypeRate: Web Bluetooth mode, no smartphone needed; table: Web Bluetooth in the browser.",
+    "url": "https://www.hyperate.io/api",
+    "quote": "Stream your heart rate directly from your browser, no smartphone needed"
+  },
+  {
+    "claim": "HypeRate plugin: the OBS forum lists a HypeRate Studio Plugin at v0.1.11; table v0.1.11.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "HypeRate Studio Plugin v0.1.11"
+  },
+  {
+    "claim": "HypeRate plugin: first released July 9, 2026.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "First release Jul 9, 2026"
+  },
+  {
+    "claim": "HypeRate plugin: minimum OBS Studio version 32.0.2; table OBS 32.0.2 or later.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "Minimum OBS Studio Version 32.0.2"
+  },
+  {
+    "claim": "HypeRate plugin: 64-bit.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "Supported Bit Versions"
+  },
+  {
+    "claim": "HypeRate plugin: for Windows, macOS and Linux.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "Cross-platform support"
+  },
+  {
+    "claim": "HypeRate plugin: provides sources and filters that use live heart rate data inside OBS scenes.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "It provides sources and filters that use live heart rate data from HypeRate directly inside OBS scenes."
+  },
+  {
+    "claim": "HypeRate plugin: Heart Rate Source, the live value for other sources and plugin components.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "The Heart Rate Source provides access to your live heart rate received from HypeRate."
+  },
+  {
+    "claim": "HypeRate plugin: BPM Display Source is a native OBS text source.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "The BPM Display Source displays your current heart rate as a native OBS text source."
+  },
+  {
+    "claim": "HypeRate plugin: BPM Display Source takes font, size, color, alignment and outline.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "supports the standard OBS text properties, including font, size, color, alignment and outline"
+  },
+  {
+    "claim": "HypeRate plugin: Heartbeat Filter applies to image, text, media or camera sources.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "The Heartbeat Filter can be applied to supported OBS sources, including images, text, media sources and cameras."
+  },
+  {
+    "claim": "HypeRate plugin: Heartbeat Filter scales the source with the incoming BPM.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "It scales the selected source according to the current heart rate"
+  },
+  {
+    "claim": "HypeRate plugin: heartbeat sounds, zones, smoothing and Pulse Actions.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "The plugin supports heartbeat sounds, configurable heart rate zones, smoothing and pulse actions."
+  },
+  {
+    "claim": "HypeRate plugin: Pulse Actions react to user-defined thresholds and zones.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "Pulse Actions allow OBS sources to react to changes in heart rate using user-defined thresholds and zones."
+  },
+  {
+    "claim": "Making the overlay react: smoothing reduces rapid visual changes caused by short fluctuations.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "Heart rate smoothing can be enabled to reduce rapid visual changes caused by short fluctuations."
+  },
+  {
+    "claim": "HypeRate plugin setup: enter your HypeRate ID.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "Enter your HypeRate ID."
+  },
+  {
+    "claim": "HypeRate plugin: the source code is linked on GitHub.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "The complete source code is available on GitHub"
+  },
+  {
+    "claim": "HypeRate plugin: AI-assisted development tools were used.",
+    "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+    "quote": "AI-assisted development tools were used during the development of this project."
+  },
+  {
+    "claim": "Making the overlay react: Streamer.bot's HypeRate.io page is headed \"Trigger actions based on your heart rate\".",
+    "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+    "quote": "Trigger actions based on your heart rate"
+  },
+  {
+    "claim": "Making the overlay react: Streamer.bot receives heart rate events from HypeRate.",
+    "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+    "quote": "Receive heart rate events from HypeRate.io"
+  },
+  {
+    "claim": "Making the overlay react: enter your HypeRate ID under Integrations.",
+    "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+    "quote": "navigate to Integrations > HypeRate.io"
+  },
+  {
+    "claim": "Making the overlay react: Auto Connect.",
+    "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+    "quote": "Enable Auto Connect to automatically connect to HypeRate.io when Streamer.bot starts up"
+  },
+  {
+    "claim": "Making the overlay react: Auto Reconnect.",
+    "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+    "quote": "Enable Auto Reconnect to automatically reconnect to HypeRate.io when the connection is disrupted"
+  },
+  {
+    "claim": "Making the overlay react: internal-testing sends fake testing data; table: with a test ID.",
+    "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+    "quote": "You can enter internal-testing in this field to have fake testing data sent to Streamer.bot"
+  },
+  {
+    "claim": "Heart rate is health data: HypeRate says values are not stored persistently.",
+    "url": "https://www.hyperate.io/llms.txt",
+    "quote": "HypeRate transmits biometric data in real time; values are not stored persistently."
+  }
+]

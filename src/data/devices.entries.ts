@@ -766,5 +766,295 @@ export const devicesEntries: ClusterEntry[] =
     "cta": {
       "pitch": "Firmware revisions, OS releases and vendor policy changes quietly break device integrations that passed last month, so our newsletter tracks the ecosystem changes and deadlines that should send you back to the hardware bench."
     }
+  },
+  {
+    "slug": "heart-rate-overlay-for-streaming",
+    "primaryQuery": "heart rate overlay for streaming",
+    "h1": "Heart Rate Overlay for Streaming GTA 6 and Other Games (2026)",
+    "metaTitle": "Heart Rate Overlay for Streaming: Pulsoid, HypeRate, OBS",
+    "metaDescription": "Put your live heart rate on a GTA 6 stream: how Pulsoid and HypeRate relay a strap or watch to an OBS browser source, the native plugin, and Streamer.bot.",
+    "updated": "2026-11-21",
+    "answer": "A heart rate overlay is a small web page or plugin that your streaming software draws over the game. In the usual setup a chest strap or watch sends readings to a phone app, the app uploads them to a service such as Pulsoid or HypeRate, and the service gives you a widget URL that you add as a browser source in OBS or Streamlabs. HypeRate also lists a native OBS plugin with heart rate sources and filters, and Pulsoid lists a Twitch extension that needs no browser source. For a console game such as GTA 6, the overlay lives in the streaming software on the computer that captures the console, never on the console itself.",
+    "body": "Grand Theft Auto VI is out: Rockstar's own page says \"Grand Theft Auto VI Out Now\" and lists PlayStation 5 and Xbox Series X|S, and the Business Wire launch release dated November 19, 2026 says the same two platforms. Plenty of people streaming it want their pulse in a corner of the frame. This page covers how that works with two hosted heart rate services, Pulsoid and HypeRate, and what actually carries the number from your body to your viewers. This site is not affiliated with Rockstar Games, Pulsoid or HypeRate; product details below come from each vendor's own pages and OBS forum listings, read on November 21, 2026.\n\n## How the number gets from your chest to the stream\n\nA hosted overlay is a relay. Pulsoid's OBS forum listing spells out its version step by step: the app lists the BLE devices near you and you choose your monitor, \"The heart Rate monitor connects to the Pulsoid app on your phone\", the app \"sends heart rate data through an Internet connection\", and to put it on stream you \"copy the widget URL from the Configuration page and add it as a Browser Source in OBS\".\n\n```text\nchest strap or armband (Bluetooth Heart Rate service, 0x180D)\n  -> phone or watch app\n  -> the vendor's servers, over the internet\n  -> a widget URL, which is just a web page\n  -> a browser source in OBS or Streamlabs\n  -> your stream\n```\n\nThe first hop is a standard, which is why both services can list many strap brands. A conforming chest strap or armband exposes the Bluetooth SIG's Heart Rate service, listed in the SIG's assigned numbers as 0x180D, and pushes each reading as a notification on the Heart Rate Measurement characteristic, 0x2A37. The [Heart Rate Measurement byte layout](/bluetooth-fitness/heart-rate-measurement) has its own page, and the pairing flow is in [connecting a Bluetooth heart rate monitor to an app](/devices/bluetooth-heart-rate-monitor). A watch is a different first hop: it measures on the wrist and its own app does the sending. How a watch app gets a reading that updates during activity, rather than a delayed sample from the health store, is covered in [live heart rate from Apple Watch](/devices/apple-watch-live-heart-rate).\n\nTwo consequences follow from the shape of the chain, and they are our reading rather than anything either vendor states:\n\n- **Every hop fails on its own.** A strap that lost skin contact, a phone that put the app to sleep, a dropped connection and a stale browser source all look identical on stream: the number stops moving. Walk the chain from the strap outward before you start reloading OBS.\n- **The overlay needs the internet even though the strap is a meter from the PC.** The cloud hop is what makes setup quick, and it is also why the number freezes when your phone loses its connection.\n\n## Pulsoid\n\nPulsoid's homepage says you can set up a widget for a Twitch or YouTube stream \"in less than 3 minutes\" and names where it goes: \"Add your widget as a browser source in OBS, Streamlabs, Streamelements, XSplit, etc.\" It lists chest straps (Polar H10, CooSpo H808S, Wahoo TICKR), arm bands, Apple Watch, Wear OS, Samsung Galaxy and Fitbit as heart rate sources, and says of its mobile app that it is \"Also available on Windows\". The OBS listing's own setup list is short: a supported monitor, the Android or iOS app, and an account on pulsoid.net.\n\nOn the widget side the homepage advertises \"60+ widgets and overlays\", and the OBS listing names the kinds: custom images, sound alerts, graph, calories, animated text, max, zones bar and speedometer, with fonts, colors, ranges and transparency set on the Configuration page. For a GTA stream specifically, the listing says \"There are a lot of heart rate widgets styled to match your game\", and GTA is in its list next to Resident Evil, Minecraft, Dead by Daylight and Valorant. The listing does not say whether its GTA designs were drawn for GTA VI or for an earlier game in the series, so look at the gallery before assuming a match.\n\nTwo more Pulsoid features matter for a streamer. The OBS listing's update log includes a Pulsoid Twitch Extension, described as a way to \"Show your heart rate directly on Twitch without adding an OBS Browser Source!\" And the homepage lists integrations with Voicemod, LumiaStream, Streamer.bot and Discord. The homepage also offers a paid BRO plan next to \"Get started for free\"; neither page we read states the plan's price, so we do not either.\n\n## HypeRate\n\nHypeRate's llms.txt says it connects wearables (Apple Watch, Wear OS, Garmin, Fitbit, Amazfit, Polar) to streaming software, and that there is \"No account required to get started.\" Its overlay route is the same browser-source model, \"OBS and Streamlabs integration via browser source\", and its web studio at studio.hyperate.io is described as a free studio for stream overlays \"for OBS, Streamlabs and TikTok Live Studio\". HypeRate also lists a Web Bluetooth mode: \"Stream your heart rate directly from your browser, no smartphone needed\". That takes the phone out of the chain, and it inherits the browser support limits set out in [Web Bluetooth for fitness devices](/devices/web-bluetooth-fitness).\n\nThe newer HypeRate option is native to OBS. The OBS forum lists a HypeRate Studio Plugin at v0.1.11, first released July 9, 2026, for Windows, macOS and Linux, 64-bit, with a minimum OBS Studio version of 32.0.2. The listing says it \"provides sources and filters that use live heart rate data from HypeRate directly inside OBS scenes\":\n\n- **Heart Rate Source**: the live value, for other sources and plugin components to use.\n- **BPM Display Source**: \"a native OBS text source\" that takes the standard OBS text properties, including font, size, color, alignment and outline.\n- **Heartbeat Filter**: scales an image, text, media or camera source in time with the incoming BPM.\n- **Automation**: heartbeat sounds, heart rate zones, smoothing, and Pulse Actions, which let OBS sources react to user-defined thresholds and zones.\n\nSetup, per the listing, is to install the plugin, start OBS, enter your HypeRate ID, and add a source or filter. The source code is linked on GitHub, and the listing discloses that \"AI-assisted development tools were used during the development of this project.\" Our view: a native source avoids running a web page inside OBS, at the price of a plugin that has to keep up with OBS releases, and a 0.1 version number is a good reason to keep a browser-source widget in a backup scene.\n\n## Making the overlay react\n\nStreamer.bot's documentation for its HypeRate.io integration is headed \"Trigger actions based on your heart rate\". You enter your HypeRate ID under Integrations, optionally turn on Auto Connect and Auto Reconnect, and Streamer.bot then receives heart rate events you can attach actions to. The same page notes: \"You can enter internal-testing in this field to have fake testing data sent to Streamer.bot\", which lets you build and test scenes before the strap is on. Pulsoid's homepage lists Streamer.bot among its own integrations, and HypeRate's plugin handles thresholds inside OBS through Pulse Actions.\n\nSome design notes, offered as our recommendation and not as any vendor's rule:\n\n- **Smooth before you trigger.** HypeRate's listing describes its smoothing option as a way \"to reduce rapid visual changes caused by short fluctuations\". Any threshold you set on a raw value will fire on noise.\n- **Use two thresholds, not one.** Enter a \"high\" scene at one value and leave it at a lower one, or the scene will flicker while you sit on the boundary.\n- **Think twice about scares tied to your pulse.** Viewer alerts designed to push your heart rate up are a loop with your body as the target. Cap how often they can fire.\n- **Show stale data as stale.** If readings stop, hide or dim the widget rather than leaving a number on screen that quietly stopped being true.\n\n## Console streams: where the overlay lives\n\nGTA VI runs on a console, and none of this setup touches the console. The overlay is drawn by your streaming software, so it lives in OBS, Streamlabs or XSplit on the computer that receives the console's video, while the phone or watch relays your heart rate to that same scene over the internet. The game never sees your heart rate, and nothing here changes how it plays.\n\nIf your stream starts on the console with no computer in the chain, there is no browser source to add. Pulsoid's Twitch extension is the one route above that its listing says works \"without adding an OBS Browser Source\". We have not verified how it behaves for a stream broadcast straight from a console, so test it before you plan a launch-night stream around it.\n\n## Pulsoid and HypeRate side by side\n\n| | Pulsoid | HypeRate |\n|---|---|---|\n| Account | Account on pulsoid.net, per its OBS listing | No account required, per its llms.txt |\n| Into OBS | Widget URL as a browser source | Browser source, or the native OBS plugin (v0.1.11, OBS 32.0.2 or later) |\n| Without OBS | Twitch extension | Not stated on the pages we read |\n| Heart rate sources named | Chest straps, arm bands, Apple Watch, Wear OS, Samsung Galaxy, Fitbit | Apple Watch, Wear OS, Garmin, Fitbit, Amazfit, Polar |\n| Phone-free option | Not stated on the pages we read | Web Bluetooth in the browser |\n| Streamer.bot | Listed integration | Listed integration, with a test ID |\n\nNeither column is a verdict. Choose on whether you want an account, whether you want a native OBS source, and which device you already own.\n\n## Heart rate is health data\n\nYour viewers will be watching a live physiological signal, and the two services describe their handling differently. HypeRate's llms.txt says it \"transmits biometric data in real time; values are not stored persistently.\" Pulsoid's homepage advertises finding \"Highlights by heart rate\", which in our reading means it keeps heart rate history linked to your account. Read each service's privacy policy before you choose. In our view, treat the widget URL as private and assume anyone who has it can watch your live number.\n\nIf you also want to log the session on a watch, [tracking a gaming session on Apple Watch](/devices/track-gaming-session-apple-watch) covers which workout type fits and why a gaming session's calorie estimate is not exercise. If you are building your own overlay or a game integration rather than using a hosted widget, the APIs behind both services are in [heart rate APIs for games](/devices/heart-rate-api-for-games). And for the game's own in-game fitness, which is a separate thing from your real heart rate, see [how GTA 6's fitness system works](/engagement/gta-6-fitness-system).",
+    "faqs": [
+      {
+        "q": "How do I add a heart rate widget to OBS for a console stream?",
+        "a": "Add it to OBS on the computer that captures the console, not to the console. With Pulsoid, its OBS forum listing says you pair your monitor in the Pulsoid phone app, which sends the readings over the internet, then copy the widget URL from the Configuration page and add it as a Browser Source in OBS. HypeRate works the same way through a browser source, or through its native OBS plugin, which the OBS forum lists at v0.1.11 with a minimum OBS Studio version of 32.0.2. The game never sees your heart rate; the overlay is drawn on top of the captured video."
+      },
+      {
+        "q": "Do I need an account to show my heart rate on stream?",
+        "a": "It depends on the service. Pulsoid's OBS listing includes creating an account on pulsoid.net as a setup step. HypeRate's llms.txt says there is no account required to get started: you connect a supported device and use its widgets, and the OBS plugin asks for your HypeRate ID. Both offer browser-source widgets for OBS and Streamlabs. Whichever you pick, treat the widget URL as private, because in our view anyone who has it can watch your live heart rate."
+      },
+      {
+        "q": "Can I show heart rate on Twitch without an OBS browser source?",
+        "a": "Pulsoid says yes for Twitch: its OBS forum listing describes a Pulsoid Twitch Extension that shows your heart rate directly on Twitch without adding an OBS Browser Source. HypeRate's alternative to a browser source is its native OBS plugin, which still runs inside OBS. We have not verified how the Twitch extension behaves for a stream broadcast straight from a console with no computer in the chain, so test it before relying on it for a live session."
+      },
+      {
+        "q": "Why does my heart rate overlay freeze in the middle of a stream?",
+        "a": "Because any hop in the chain can stop on its own. The reading travels from the strap or watch to a phone app, from the app to the vendor's servers over the internet, and from there to a widget in OBS. A strap that lost skin contact, a phone that suspended the app, a dropped connection and a stale browser source all look the same on screen. Check the chain from the strap outward. In our view a good overlay also hides or dims itself when readings stop, rather than showing a frozen number."
+      }
+    ],
+    "related": [
+      {
+        "href": "/devices/heart-rate-api-for-games",
+        "label": "Heart rate APIs for games"
+      },
+      {
+        "href": "/devices/track-gaming-session-apple-watch",
+        "label": "Track a gaming session on Apple Watch"
+      },
+      {
+        "href": "/engagement/gta-6-fitness-system",
+        "label": "How GTA 6's fitness system works"
+      },
+      {
+        "href": "/devices/bluetooth-heart-rate-monitor",
+        "label": "Bluetooth heart rate monitors"
+      },
+      {
+        "href": "/devices/web-bluetooth-fitness",
+        "label": "Web Bluetooth for fitness devices"
+      }
+    ],
+    "cta": {
+      "pitch": "Streaming tools for heart rate ship new plugins and change their plans faster than most fitness APIs; our newsletter tracks those changes alongside the platform rules that decide what a watch can send."
+    },
+    "sources": [
+      {
+        "url": "https://pulsoid.net/",
+        "checked": "2026-11-21",
+        "note": "setup, OBS and other browser-source hosts, supported devices, widget count, integrations"
+      },
+      {
+        "url": "https://obsproject.com/forum/resources/pulsoid-heart-rate-streaming.559/",
+        "checked": "2026-11-21",
+        "note": "how the data flows, widget types, game-styled widgets including GTA, Twitch extension"
+      },
+      {
+        "url": "https://www.hyperate.io/llms.txt",
+        "checked": "2026-11-21",
+        "note": "no account, browser source, devices, values not stored persistently, studio"
+      },
+      {
+        "url": "https://www.hyperate.io/api",
+        "checked": "2026-11-21",
+        "note": "Web Bluetooth mode"
+      },
+      {
+        "url": "https://obsproject.com/forum/resources/hyperate-studio-plugin.2591/",
+        "checked": "2026-11-21",
+        "note": "v0.1.11, minimum OBS 32.0.2, platforms, sources, filters, automation, AI-assisted development note"
+      },
+      {
+        "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+        "checked": "2026-11-21",
+        "note": "HypeRate triggers, internal-testing ID, Pulsoid in the integrations list"
+      },
+      {
+        "url": "https://www.rockstargames.com/VI",
+        "checked": "2026-11-21",
+        "note": "out now, PlayStation 5 and Xbox Series X|S"
+      },
+      {
+        "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+        "checked": "2026-11-21",
+        "note": "Business Wire release, November 19, 2026, platforms"
+      }
+    ]
+  },
+  {
+    "slug": "heart-rate-api-for-games",
+    "primaryQuery": "heart rate api for games",
+    "h1": "Heart Rate API for Games: Pulsoid, HypeRate or Bluetooth (2026)",
+    "metaTitle": "Heart Rate API for Games: Pulsoid, HypeRate, Bluetooth",
+    "metaDescription": "Read a player's live heart rate in a game: Pulsoid's OAuth flows and WebSocket, HypeRate's listed tiers, or the Bluetooth Heart Rate service direct.",
+    "updated": "2026-11-21",
+    "answer": "A game can get a player's live heart rate in two ways. A relay service reads the player's strap or watch through its own app and lets your game read the value over the network: Pulsoid documents OAuth tokens and a WebSocket that pushes messages carrying a heart_rate value and a measured_at timestamp, and HypeRate describes a per-user ID through which your service obtains the data stream. The other way skips the middleman and connects to a Bluetooth strap directly through the standard Heart Rate service, 0x180D, which costs you pairing and parsing work but needs no account or third party. Pulsoid's docs warn that the WebSocket can be interrupted at any time, so either way, build for dropped data from the start.",
+    "body": "A game that reacts to the player's pulse needs a reading that arrives while they are playing, not a summary that lands in a health store afterward. That rules out the obvious first stop: HealthKit and Health Connect are where heart rate is stored and queried, and [heart rate APIs](/data/heart-rate-api) covers what that data looks like once it is there. For a live input you either read the sensor yourself or go through a service that already does. This page is the developer view of both. If you only want a number on your stream, [heart rate overlays for streaming](/devices/heart-rate-overlay-for-streaming) is the setup guide.\n\n## Two architectures\n\n**A relay service.** The player runs the vendor's phone or watch app, the app sends readings to the vendor's servers, and your game reads them over the network. You get every device the vendor supports and no Bluetooth code, and you take on an account flow, a network dependency and a third party in the path of a health signal.\n\n**A direct connection.** Your game, or a companion app, pairs with a Bluetooth heart rate strap and reads the standard profile itself. You get no account, no vendor and no internet hop, and you take on pairing, reconnection, parsing and the platform's Bluetooth permissions, with no help for players whose only sensor is a watch.\n\nNeither is better in general. The rest of the page is what each one looks like in practice.\n\n## The Pulsoid API\n\nPulsoid's documentation describes the service as enabling \"real-time heart rate data transmission from the peripherals\" to client applications. Users are the people streaming their heart rate; Clients are \"applications that want to read Pulsoid users' data\". You create client credentials at pulsoid.net/ui/api-clients, and the docs say the client_secret \"should be stored securely and never shared.\"\n\nEvery call needs an authorization token, and the docs pick the OAuth flow by kind of app:\n\n| Your app | Flow Pulsoid documents |\n|---|---|\n| Personal use, your own stream | Manual token issuing; client credentials not needed |\n| Website | OAuth2 Implicit Grant |\n| Desktop app that handles deep links | Implicit Grant |\n| Backend server | Authorization Code Grant, recommended |\n| Plugin or desktop app | OAuth 2 Device Authorization Flow |\n| Enterprise application | Contact Pulsoid |\n\nFor a game client, our recommendation is the device flow. Pulsoid notes that the Authorization Code Grant \"requires trusted server\", and a game binary on a player's machine is not one, so the client_secret must never ship inside it. In the authorization code flow, scopes are a comma-separated list, the docs' example requests `data:heart_rate:read,profile:read`, and the token endpoint returns `access_token`, `refresh_token`, `expires_in` and `token_type`. The docs add: \"Note that code can be exchanged for an access token only once.\" Their example response shows `expires_in` as 3600 seconds; read the field rather than hard-coding the number.\n\n### Reading heart rate over the WebSocket\n\nPulsoid documents a WebSocket at `wss://dev.pulsoid.net/api/v1/data/real_time`, with the scope `data:heart_rate:read`. The token goes either in an `access_token` query parameter or in an Authorization header. The docs' example message:\n\n```json\n{\n  \"measured_at\": 1625310655000,\n  \"data\": {\n    \"heart_rate\": 40\n  }\n}\n```\n\nAdding `response_mode=text_plain_only_heart_rate` to the URL makes each message the bare number instead, which is handy for engines with weak JSON handling. Pulsoid labels this endpoint \"WebSocket v1 (Legacy)\" and points to a v2 endpoint to \"also receive the battery level of the measuring device or data ingestion pause notifications\". We read the v1 page only, so the v2 message format is not reproduced here; for a new build, start from Pulsoid's v2 page.\n\nThe most important line on the page is operational: \"The WebSocket connection can be interrupted at any point in time, make sure to have retry logic with backoff.\" A minimal client that does that, written by us as a sketch rather than taken from Pulsoid:\n\n```ts\n// Sketch: reconnect with capped exponential backoff, and treat silence as \"no data\".\nconst URL_BASE = \"wss://dev.pulsoid.net/api/v1/data/real_time\";\n\nexport function connectHeartRate(token: string, onBpm: (bpm: number | null) => void) {\n  let attempt = 0;\n  let ws: WebSocket | null = null;\n  let stale: ReturnType<typeof setTimeout> | undefined;\n\n  const markStale = () => {\n    clearTimeout(stale);\n    stale = setTimeout(() => onBpm(null), 10_000); // our choice of window, not Pulsoid's\n  };\n\n  const open = () => {\n    ws = new WebSocket(`${URL_BASE}?access_token=${encodeURIComponent(token)}`);\n    ws.onopen = () => { attempt = 0; markStale(); };\n    ws.onmessage = (ev) => {\n      const msg = JSON.parse(ev.data as string);\n      const bpm = msg?.data?.heart_rate;\n      if (typeof bpm === \"number\") { onBpm(bpm); markStale(); }\n    };\n    ws.onclose = () => {\n      onBpm(null);\n      const delay = Math.min(30_000, 1_000 * 2 ** attempt++);\n      setTimeout(open, delay);\n    };\n  };\n\n  open();\n  return () => { clearTimeout(stale); ws?.close(); };\n}\n```\n\nFor JavaScript and TypeScript, Pulsoid publishes an official library, `@pulsoid/socket`, which its docs say provides \"auto-reconnection with exponential backoff, typed events, and zero dependencies\". Their example:\n\n```js\nimport PulsoidSocket from '@pulsoid/socket';\n\nconst socket = PulsoidSocket.create('YOUR_TOKEN');\n\nsocket.on('heart-rate', (data) => {\n  console.log(`${data.heartRate} BPM`);\n});\n\nawait socket.connect();\n```\n\nThe same documentation lists HTTP endpoints to read the latest heart rate and battery level, heart rate statistics, and writing data, plus rooms and game-specific sections: a VRChat world integration and a Geometry Dash mod configuration. The homepage also lists VR routes: MagicChatbox, OyasumiVR, VRChat worlds and custom prefabs.\n\n## The HypeRate API\n\nHypeRate's API page explains the model in four steps: users track their heart rate through compatible devices, \"HypeRate creates an individual ID for each user and provides a data stream on server\", \"Your services can obtain heart rate data through user ID\", and you build interactions on top. The page says games built with heart-rate triggers use \"our SDK in Unity\", and HypeRate's llms.txt says it \"offers a real-time API and WebSocket integration for developers.\"\n\nThe API page lists three annual tiers, quoted here as listed on November 21, 2026:\n\n| Tier | Price as listed | Access as listed |\n|---|---|---|\n| Research and Indie Projects | €0 /annually | Free Access to HypeRate API; Request API Key |\n| Partner | €1,900 /annually | Free Access to HypeRate API, plus co-marketing opportunities |\n| Commercial Projects | €3,800 /annually | Priority Access to HypeRate API, plus custom development options |\n\nTwo further details shape a design. HypeRate's llms.txt says the service \"transmits biometric data in real time; values are not stored persistently\", so if your game needs a player's history, you store it yourself, with their consent. And for testing, Streamer.bot's HypeRate documentation says \"You can enter internal-testing in this field to have fake testing data sent to Streamer.bot\". That is Streamer.bot's statement about its own integration; the HypeRate pages we read do not say whether your own API client can use the same ID. They also do not publish the message format, so we do not describe one: get it from HypeRate with your API key.\n\n## The direct route: the standard Heart Rate service\n\nSkip the relay and you are reading the Bluetooth SIG's Heart Rate service directly. The SIG's assigned numbers list the service as 0x180D, Heart Rate Measurement as 0x2A37 and Body Sensor Location as 0x2A38. Scan filtered on the service, subscribe to notifications on the measurement characteristic, and parse each value against the [Heart Rate Measurement field layout](/bluetooth-fitness/heart-rate-measurement); the whole flow is in [connecting a Bluetooth heart rate monitor](/devices/bluetooth-heart-rate-monitor).\n\nWhere your game runs decides how hard this is. A browser game can use Web Bluetooth, but support is limited to some browsers and excludes others entirely; check the matrix in [Web Bluetooth for fitness devices](/devices/web-bluetooth-fitness) before you plan on it. A native PC or mobile game uses the operating system's Bluetooth stack. This page does not cover consoles.\n\n## Side by side\n\n| | Pulsoid API | HypeRate API | Direct Bluetooth |\n|---|---|---|---|\n| What the player runs | Pulsoid app and account | HypeRate app and their HypeRate ID | Nothing extra, just a standard strap |\n| How your game authenticates | OAuth2 flows or a manual token | API key, requested from HypeRate | No account; the OS's Bluetooth permission |\n| Transport | WebSocket, plus HTTP endpoints | Real-time API and WebSocket, per its llms.txt | Bluetooth notifications on 0x2A37 |\n| Price | Not stated on the docs pages we read | €0, €1,900 or €3,800 a year, as listed | No service fee |\n| Watches | Apple Watch, Wear OS, Samsung Galaxy, Fitbit, per its homepage | Apple Watch, Wear OS, Garmin, Fitbit, Amazfit, Polar, per its llms.txt | Not through this route |\n| Libraries named | `@pulsoid/socket` for JS and TS | An SDK in Unity | Web Bluetooth in browsers; native stacks elsewhere |\n\n## Designing with a heart rate input\n\nThese are our recommendations, not any vendor's requirements:\n\n- **Make it optional.** A game that cannot be played without a strap shuts out every player who does not own one. Heart rate should change the experience, not gate it.\n- **Work from the player's own baseline.** Heart rate varies from person to person for reasons a game cannot see, so react to change relative to the player's own resting reading rather than to absolute numbers, and make no health claims about any value.\n- **Model \"no data\" as a state.** Pulsoid's v2 endpoint reports data ingestion pauses, which in our reading says pauses are routine. A dropped strap should freeze the mechanic, not snap it to zero or to maximum.\n- **Do not reward a higher heart rate for its own sake.** A mechanic that pays out for raising the player's pulse is an incentive aimed at their body. If you want durable progress from real activity, build it from logged workouts instead, as in [turning workouts into RPG stats](/engagement/rpg-stats-from-health-data); if you want the body to be the controller, see [controlling games with body movement](/motion/control-games-with-body-movement).\n- **Store nothing by default.** Live heart rate is health data. Keep what the mechanic needs for the session and ask before you keep anything longer.",
+    "faqs": [
+      {
+        "q": "Which OAuth flow should a game use to read Pulsoid heart rate?",
+        "a": "Pulsoid's docs match the flow to the kind of app: manual token issuing for personal use, the Implicit Grant for websites and for desktop apps that handle deep links, the Authorization Code Grant for backend servers, and the OAuth 2 Device Authorization Flow for plugins and desktop applications. For a game client our recommendation is the device flow. Pulsoid notes that the Authorization Code Grant requires a trusted server, and a game running on a player's machine is not one, so the client_secret must never be bundled into the game."
+      },
+      {
+        "q": "What does a Pulsoid WebSocket heart rate message look like?",
+        "a": "On the v1 endpoint, wss://dev.pulsoid.net/api/v1/data/real_time with the data:heart_rate:read scope, Pulsoid's example message is a JSON object with measured_at, a millisecond timestamp, and data.heart_rate, the value. Adding response_mode=text_plain_only_heart_rate makes each message the bare number. Pulsoid labels v1 as legacy and points to a v2 endpoint that also carries the device's battery level and data ingestion pause notifications. The docs say the connection can be interrupted at any point, so retry with backoff."
+      },
+      {
+        "q": "How much does the HypeRate API cost for a game developer?",
+        "a": "HypeRate's API page listed three tiers on November 21, 2026: Research and Indie Projects at €0 annually, Partner at €1,900 annually, and Commercial Projects at €3,800 annually. The free tier is listed with free access to the API and a Request API Key button; the Commercial tier is listed with priority access and custom development options. Prices on a vendor page change, so check the page itself before you budget, and note that HypeRate's llms.txt says values are not stored persistently, so any history your game needs is yours to keep."
+      },
+      {
+        "q": "Can a game read a Bluetooth heart rate strap without Pulsoid or HypeRate?",
+        "a": "Yes, if the strap implements the standard profile. The Bluetooth SIG's assigned numbers list the Heart Rate service as 0x180D and Heart Rate Measurement as 0x2A37, so a game or a companion app can scan for the service, subscribe to measurement notifications and parse the values itself. That removes the account, the vendor and the internet hop, and adds pairing, reconnection and parsing to your work. It does not cover players whose only sensor is a watch, which is the gap the relay services fill."
+      }
+    ],
+    "related": [
+      {
+        "href": "/devices/heart-rate-overlay-for-streaming",
+        "label": "Heart rate overlays for streaming"
+      },
+      {
+        "href": "/devices/bluetooth-heart-rate-monitor",
+        "label": "Bluetooth heart rate monitors"
+      },
+      {
+        "href": "/bluetooth-fitness/heart-rate-measurement",
+        "label": "Heart Rate Measurement byte layout"
+      },
+      {
+        "href": "/engagement/rpg-stats-from-health-data",
+        "label": "Turn workouts into RPG stats"
+      },
+      {
+        "href": "/motion/control-games-with-body-movement",
+        "label": "Control games with body movement"
+      }
+    ],
+    "cta": {
+      "pitch": "Relay services relabel endpoints as legacy and reprice their tiers without much notice; our newsletter tracks those changes and the platform Bluetooth rules underneath them."
+    },
+    "sources": [
+      {
+        "url": "https://docs.pulsoid.net/llms-full.txt",
+        "checked": "2026-11-21",
+        "note": "users and clients, client credentials, token flow per app type, authorization code grant, scopes, @pulsoid/socket"
+      },
+      {
+        "url": "https://docs.pulsoid.net/heart-rate-and-sensor-data/read-heart-rate-via-websocket",
+        "checked": "2026-11-21",
+        "note": "v1 WebSocket URL, scope, auth methods, message example, text_plain_only_heart_rate, retry with backoff, v2 pointer, docs navigation"
+      },
+      {
+        "url": "https://pulsoid.net/",
+        "checked": "2026-11-21",
+        "note": "supported watches, VR integrations"
+      },
+      {
+        "url": "https://www.hyperate.io/api",
+        "checked": "2026-11-21",
+        "note": "how it works, Unity SDK, three annual tiers"
+      },
+      {
+        "url": "https://www.hyperate.io/llms.txt",
+        "checked": "2026-11-21",
+        "note": "real-time API and WebSocket, values not stored persistently, devices"
+      },
+      {
+        "url": "https://docs.streamer.bot/guide/integrations/hyperate",
+        "checked": "2026-11-21",
+        "note": "internal-testing ID"
+      },
+      {
+        "url": "https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/uuids/service_uuids.yaml",
+        "checked": "2026-11-21",
+        "note": "Heart Rate 0x180D, as read by this site's generated GATT dataset"
+      },
+      {
+        "url": "https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+        "checked": "2026-11-21",
+        "note": "Heart Rate Measurement 0x2A37, Body Sensor Location 0x2A38, as read by this site's generated GATT dataset"
+      }
+    ]
+  },
+  {
+    "slug": "track-gaming-session-apple-watch",
+    "primaryQuery": "track gaming session apple watch",
+    "h1": "Track a Gaming Session on Apple Watch or Wear OS (2026)",
+    "metaTitle": "Track a Gaming Session on Apple Watch or Wear OS",
+    "metaDescription": "Logging a GTA 6 session on a watch: what fitnessGaming means, why Health Connect has no gaming type, live heart rate, and why calories are not exercise.",
+    "updated": "2026-11-21",
+    "answer": "HealthKit has a fitnessGaming workout type, but Apple defines it as the constant for playing fitness-based video games, so in our view a seated session of a game like GTA 6 does not fit it. Health Connect has no gaming exercise type at all, while the Google Health API lists FITNESS_GAMING. For a non-fitness game we would either discard the session after using it for live heart rate, or save it as HKWorkoutActivityType.other or EXERCISE_TYPE_OTHER_WORKOUT and label it as gaming. Live heart rate during the session comes from a workout session on the watch, and the calorie estimate it produces should not be presented as exercise.",
+    "body": "Grand Theft Auto VI went on sale on November 19, 2026 for PlayStation 5 and Xbox Series X|S, per Rockstar's page and its Business Wire release, and launch week means long sessions. If you wear a watch, two questions come up: can I see my heart rate while I play, and should the session be saved, and as what? The platforms answer the first one cleanly and the second one only by definition, so most of this page is about reading those definitions honestly. This site is not affiliated with Rockstar Games. The game's own in-game fitness system, where the characters train, is a different subject, covered in [how GTA 6's fitness system works](/engagement/gta-6-fitness-system).\n\n## What each platform defines\n\nApple's HealthKit has a dedicated constant, `HKWorkoutActivityType.fitnessGaming`, available from iOS 13.0 and watchOS 6.0. Apple's abstract for it is one sentence: \"The constant for playing fitness-based video games.\" The catch-all is `HKWorkoutActivityType.other`, \"The constant for a workout that does not match any of the other workout activity types.\" Apple attaches a condition to that one: \"If your app uses the HKWorkoutActivityType.swimming or HKWorkoutActivityType.other activity type, you must explain how your app calculates workout data when sensor information is not available.\"\n\nHealth Connect has no gaming type. Among the `ExerciseSessionRecord` exercise types, none mentions gaming, video games or esports, and the closest fit is `EXERCISE_TYPE_OTHER_WORKOUT`, which Google describes as one that \"Can be used to represent any generic workout that does not fall into a specific category.\" Wear OS Health Services' `ExerciseType` list has no gaming constant either. The Google Health API does: its `Exercise.exerciseType` enum includes `FITNESS_GAMING`, described as \"Fitness gaming type.\", alongside `OTHER`, \"Other type.\"\n\n| Platform | Gaming constant | Catch-all |\n|---|---|---|\n| HealthKit | `fitnessGaming`, for fitness-based video games | `other` |\n| Health Connect | None | `EXERCISE_TYPE_OTHER_WORKOUT` |\n| Wear OS Health Services | None | None named; `WORKOUT` exists, with no description in Google's reference |\n| Google Health API | `FITNESS_GAMING` | `OTHER` |\n\nThe full list of constants on all four platforms, joined only where names match, is in the [workout types crosswalk](/workout-types). The gaming row joins two platforms, HealthKit and the Google Health API, and nothing else.\n\n## Which type fits a GTA 6 session\n\nThis is our judgment, and the test is Apple's own wording. `fitnessGaming` is for fitness-based video games, the kind where moving your body is how you play. Nothing on Rockstar's page presents GTA VI as a fitness game, and while its characters train inside the game, the player at the console is not exercising to make that happen. Logging a seated GTA session as `fitnessGaming` stretches the definition until it describes any game at all, and the user's own history becomes less true for it.\n\nWhat we would do, in order of preference:\n\n1. **Do not save a workout at all.** If the point is to watch your heart rate during a session, you can run a session for the live signal and then throw the result away. Apple documents `HKWorkoutBuilder.discardWorkout()` as a call that \"Stops the collection of data and discards the current results without saving the workout.\"\n2. **If the user wants a record, save it as `other`** on HealthKit and `EXERCISE_TYPE_OTHER_WORKOUT` on Health Connect, label it plainly as a gaming session in your app, and meet Apple's condition by explaining how the numbers were calculated.\n3. **Keep `fitnessGaming` for games that are exercise.** If the game is played by moving, through a camera or motion controls, the constant fits, and [controlling games with body movement](/motion/control-games-with-body-movement) covers how those games read the player.\n\nOne cross-platform trap: a workout typed `FITNESS_GAMING` in the Google Health API has no identically named Health Connect constant, so any sync between the two has to pick a fallback. Health Connect's own fallback points the same way: Google's reference says \"Any unknown new value definition will also fall automatically into EXERCISE_TYPE_OTHER_WORKOUT.\" Our recommendation is to keep the original label in your own record, so \"gaming\" is not silently lost on the way through.\n\n## Heart rate while you play\n\nOn Apple Watch, the live path is a workout session, not the health store. Apple's documentation for `HKWorkoutSession` says \"The session fine-tunes Apple Watch's sensors for the specified activity\" and \"All workout sessions generate high-frequency heart rate samples\". The activity type you declare is therefore an instruction to the watch, not only a label, which is one more reason to declare an honest one. The full treatment, including background behavior and mirroring to iPhone, is in [live heart rate from Apple Watch](/devices/apple-watch-live-heart-rate). On Wear OS the equivalent is Health Services' ExerciseClient, covered in [Wear OS Health Services](/devices/wear-os-health-services).\n\nTwo documented constraints matter for a gaming evening:\n\n- **One session at a time.** Apple writes that \"Apple Watch runs one workout session at a time.\" If a second workout starts while yours is running, Apple says your session's delegate receives an `errorAnotherWorkoutSessionStarted` error \"and your session ends.\" If you use a watch app to stream your heart rate to an overlay, check whether it runs a workout session itself; if it does, starting a workout in a second app will end one of them.\n- **The phone has no heart rate sensor.** Apple states that \"Collecting heart rate data on iPhone or iPad requires pairing with an external heart rate sensor because these devices don't have one.\" Without a watch, the route is a chest strap or armband over the standard Bluetooth Heart Rate service, covered in [connecting a Bluetooth heart rate monitor](/devices/bluetooth-heart-rate-monitor).\n\nIf the goal is to show that heart rate on a stream, [heart rate overlays for streaming](/devices/heart-rate-overlay-for-streaming) covers the hosted services and OBS setup, and [heart rate APIs for games](/devices/heart-rate-api-for-games) covers reading it in your own code.\n\n## Why a gaming session's calories are not exercise\n\nThis section is our judgment, and it contains no numbers on purpose. An estimate that infers energy from heart rate cannot know why the heart rate rose. If your pulse climbs during a tense mission, an estimate built from that signal counts the climb the same way it would count a climb on a bike, and credits the sofa with work. Presented as \"calories burned playing GTA\", the number tells the user that a gaming session was exercise, which it was not, and it can quietly feed goals, streaks and weekly totals that are supposed to describe activity.\n\nOur recommendations for an app that logs gaming sessions:\n\n- **Do not show a calorie figure for a non-fitness game**, or if you must, label it as an estimate from heart rate, not as exercise.\n- **Keep gaming sessions out of activity goals and streaks** unless the game is a fitness game in Apple's sense.\n- **Record what you actually know**: start and end time, the game, and the heart rate samples with their source device. Those are measurements; the calorie figure is an inference.\n\n## Sessions that cross midnight\n\nA session that starts before midnight and ends after it belongs to two calendar days. Decide which day owns it before you show daily totals, and decide in the user's local time zone. The general rules are in [day boundaries for health data](/day-boundaries).",
+    "faqs": [
+      {
+        "q": "Should a GTA 6 session be logged as fitness gaming on Apple Watch?",
+        "a": "In our view, no. Apple's abstract for HKWorkoutActivityType.fitnessGaming is the constant for playing fitness-based video games, and GTA 6 is not presented as a fitness game. If the user wants a record, HKWorkoutActivityType.other is the honest type, which Apple describes as a workout that does not match any of the other activity types, and Apple asks apps using it to explain how they calculate workout data when sensor information is not available. If you only wanted live heart rate, Apple's HKWorkoutBuilder.discardWorkout() stops collection and discards the results without saving a workout."
+      },
+      {
+        "q": "Does Health Connect have a fitness gaming exercise type?",
+        "a": "No. None of the ExerciseSessionRecord exercise types mentions gaming, and Wear OS Health Services has no gaming constant either. The closest Health Connect type is EXERCISE_TYPE_OTHER_WORKOUT, which Google describes as usable for any generic workout that does not fall into a specific category. The Google Health API is the exception on Google's side: its Exercise.exerciseType enum includes FITNESS_GAMING, described as fitness gaming type. A sync from the Google Health API into Health Connect therefore has to pick a fallback, and we recommend keeping the original label in your own record."
+      },
+      {
+        "q": "How do I get live heart rate on Apple Watch while playing a console game?",
+        "a": "Run a workout session on the watch. Apple documents that all workout sessions generate high-frequency heart rate samples and that the session fine-tunes the watch's sensors for the declared activity, so declare an honest type. Apple Watch runs one workout session at a time, and a second workout started elsewhere ends yours, which matters if you also use a watch app to stream heart rate to an overlay. iPhone has no heart rate sensor of its own, so without a watch the route is a Bluetooth chest strap or armband."
+      },
+      {
+        "q": "Should a fitness app count calories burned during a video game session?",
+        "a": "Our recommendation is not to present them as exercise. An estimate that infers energy from heart rate cannot tell why heart rate rose, so a tense mission on a sofa is counted the same way as effort. Shown as calories burned playing a game, the number tells the user a gaming session was exercise and can leak into goals, streaks and weekly totals. Record what you measured instead: start and end time, the game, and the heart rate samples with their source device. If you show an energy figure at all, label it as an estimate from heart rate."
+      }
+    ],
+    "related": [
+      {
+        "href": "/devices/apple-watch-live-heart-rate",
+        "label": "Apple Watch live heart rate"
+      },
+      {
+        "href": "/devices/wear-os-health-services",
+        "label": "Wear OS Health Services"
+      },
+      {
+        "href": "/workout-types",
+        "label": "Workout types crosswalk"
+      },
+      {
+        "href": "/devices/heart-rate-overlay-for-streaming",
+        "label": "Heart rate overlays for streaming"
+      },
+      {
+        "href": "/motion/control-games-with-body-movement",
+        "label": "Control games with body movement"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple and Google add and redefine workout types with platform releases; our newsletter tracks those constants so the type your app writes still means what you think it means."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/fitnessgaming",
+        "checked": "2026-11-21",
+        "note": "abstract: the constant for playing fitness-based video games"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/other",
+        "checked": "2026-11-21",
+        "note": "abstract and the explain-your-calculation discussion"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkoutsession",
+        "checked": "2026-11-21",
+        "note": "sensor fine-tuning, high-frequency heart rate, iPhone needs an external sensor, one session at a time"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/discardworkout()",
+        "checked": "2026-11-21",
+        "note": "discards the current results without saving the workout"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/ExerciseSessionRecord",
+        "checked": "2026-11-21",
+        "note": "no gaming exercise type; EXERCISE_TYPE_OTHER_WORKOUT description"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/services/client/data/ExerciseType",
+        "checked": "2026-11-21",
+        "note": "Wear OS Health Services exercise types: no gaming constant"
+      },
+      {
+        "url": "https://health.googleapis.com/$discovery/rest?version=v4",
+        "checked": "2026-11-21",
+        "note": "Exercise.exerciseType FITNESS_GAMING and OTHER descriptions"
+      },
+      {
+        "url": "https://www.rockstargames.com/VI",
+        "checked": "2026-11-21",
+        "note": "out now, PlayStation 5 and Xbox Series X|S"
+      },
+      {
+        "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+        "checked": "2026-11-21",
+        "note": "Business Wire release, November 19, 2026"
+      }
+    ]
   }
 ];

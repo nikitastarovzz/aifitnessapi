@@ -89,6 +89,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Landmarks, camera placement, rep logic and measured accuracy for one exercise at a time, from published studies.",
     slugs: EXERCISE_SLUGS,
   },
+  {
+    title: "Games and body movement",
+    blurb: "A webcam as a game controller, and video-game workouts measured in real life.",
+    slugs: ["control-games-with-body-movement", "gta-6-gym-exercises-real-life"],
+  },
 ];
 
 const FAQS = [

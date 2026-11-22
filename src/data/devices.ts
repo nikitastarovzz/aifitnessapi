@@ -33,6 +33,9 @@ export const RELEASED_DEVICES = new Set<string>([
   "web-bluetooth-fitness",
   "ios-ble-fitness-devices",
   "testing-ble-fitness-devices",
+  "heart-rate-overlay-for-streaming",
+  "heart-rate-api-for-games",
+  "track-gaming-session-apple-watch",
 ]);
 
 export const allDevices: ClusterEntry[] = devicesEntries;

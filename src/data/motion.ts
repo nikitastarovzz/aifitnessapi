@@ -45,6 +45,8 @@ export const RELEASED_MOTION = new Set<string>([
   "sit-up-counter-pose-estimation",
   "pull-up-counter-computer-vision",
   "overhead-press-pose-estimation",
+  "control-games-with-body-movement",
+  "gta-6-gym-exercises-real-life",
 ]);
 
 export const allMotion: ClusterEntry[] = motionEntries;
