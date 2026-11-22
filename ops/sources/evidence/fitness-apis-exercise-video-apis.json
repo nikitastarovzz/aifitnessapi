@@ -300,9 +300,9 @@
     "quote": "$ 59 $ 39 / month"
   },
   {
-    "claim": "API Ninjas lists monthly and yearly prices, yearly at 34% off.",
+    "claim": "API Ninjas lists monthly and yearly prices, the yearly ones labelled Save 34 %.",
     "url": "https://api-ninjas.com/pricing",
-    "quote": "Monthly Yearly 34% off"
+    "quote": "$ 59 $ 39 / month Save 34 %"
   },
   {
     "claim": "Your Move: the key goes in an X-API-Key header.",
@@ -430,14 +430,14 @@
     "quote": "Every paid plan starts with a 7-day free trial."
   },
   {
-    "claim": "Your Move: monthly exercise cap of 250 on Starter and 350 on Pro, rolling 30 days; none on Scale, Enterprise and yearly plans.",
+    "claim": "Your Move: exercise video cap of 250 on Starter and 350 on Pro per rolling 30 days on monthly billing; 500 and 800 per rolling 365 days on yearly billing.",
     "url": "https://ymove.app/exercise-api/pricing",
-    "quote": "250 on Starter and 350 on Pro with monthly billing"
+    "quote": "On monthly billing that is 250 on Starter and 350 on Pro per rolling 30 days; on yearly billing, 500 on Starter and 800 on Pro per rolling 365 days."
   },
   {
-    "claim": "Your Move: Scale, Enterprise and yearly plans have no exercise video limit.",
+    "claim": "Your Move: Scale and Enterprise have no exercise video limit.",
     "url": "https://ymove.app/exercise-api/pricing",
-    "quote": "Scale, Enterprise and every yearly plan have no exercise video limit."
+    "quote": "Scale and Enterprise have no exercise video limit."
   },
   {
     "claim": "Your Move: over the cap the API keeps metadata but removes video URLs from exercises not accessed before.",
