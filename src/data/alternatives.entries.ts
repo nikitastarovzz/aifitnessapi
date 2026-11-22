@@ -468,7 +468,7 @@ export const alternativesEntries: ClusterEntry[] =
       },
       {
         "url": "https://developers.google.com/health/about",
-        "checked": "2026-11-18",
+        "checked": "2026-11-22",
         "note": "November 2, 2026 given as the legacy API turn-off"
       },
       {
