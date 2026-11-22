@@ -265,36 +265,6 @@
     "quote": "Once you exceed 100 unique active users, usage will be billed on a pay-as-you-go basis according to the rates listed on our pricing page."
   },
   {
-    "claim": "Sency's packages page lists a free Starter plan.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Build & Launch | FREE"
-  },
-  {
-    "claim": "Sency's Starter plan covers up to 100 monthly active users.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Up to 100 monthly active users"
-  },
-  {
-    "claim": "Sency's Growth plan starts from $499 a month.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Publish & Monetize | From $499 / month"
-  },
-  {
-    "claim": "Sency's Growth plan covers up to 3,800 monthly active users.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Up to 3,800 monthly active users"
-  },
-  {
-    "claim": "Sency's Growth plan lists $0.79 per active user.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "$0.79 per active user"
-  },
-  {
-    "claim": "Sency's Customized plan is on request.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "A Solution for All | Let’s Discuss"
-  },
-  {
     "claim": "Sency's FAQ says data is analyzed on the user's device and never sent to the cloud.",
     "url": "https://www.sency.ai/faq-motion-tracking",
     "quote": "All data is processed using edge computing, meaning it's analyzed directly on the user's device, never sent to the cloud."
@@ -480,19 +450,19 @@
     "quote": "The AI Personal Trainer chat needs internet, because it talks to an AI model."
   },
   {
-    "claim": "Sency's packages page: the 101-500 band is $499 a month at $0.99 per user.",
-    "url": "https://www.sency.ai/pricing-packages",
+    "claim": "Sency's pricing page: the 101-500 band is $499 a month at $0.99 per user.",
+    "url": "https://www.sency.ai/pricing",
     "quote": "101 - 500 | $499 | $0.99"
   },
   {
-    "claim": "Sency's packages page: the 1,200-1,700 band is $1,499 a month.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "1200 - 1700 | $1,499 | $0.88"
+    "claim": "Sency's pricing page: the 1,200-1,700 band is $1,499 a month.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "1,200 - 1,700 | $1,499 | $0.88"
   },
   {
-    "claim": "Sency's packages page: the 3,001-3,800 band is $3,000 a month at $0.79 per user.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "3001 - 3800 | $3,000 | $0.79"
+    "claim": "Sency's pricing page: the 3,001-3,800 band is $3,000 a month at $0.79 per user.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "3,001 - 3,800 | $3,000 | $0.79"
   },
   {
     "claim": "Sency's pricing page: up to 100 users is $99.99, a fixed price.",
