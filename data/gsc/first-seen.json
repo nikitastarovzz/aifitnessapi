@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-21",
+  "asOf": "2026-11-22",
   "firstSeen": {
     "/": "2026-07-08",
     "/about": "2026-07-12",
@@ -83,6 +83,7 @@
     "/architecture/time-series-storage": "2026-08-04",
     "/architecture/timezones-and-day-boundaries": "2026-08-04",
     "/architecture/webhook-ingestion": "2026-08-02",
+    "/atlas": "2026-11-22",
     "/audio-coaching": "2026-10-05",
     "/audio-coaching/android-audio-focus-may-duck": "2026-10-08",
     "/audio-coaching/audio-interruptions-during-workout-ios": "2026-10-08",
@@ -768,6 +769,7 @@
     "/tools/permission-builder": "2026-10-07",
     "/tools/pose-benchmark": "2026-11-02",
     "/tools/query-generator": "2026-10-06",
+    "/tools/rate-limit-calculator": "2026-11-21",
     "/tools/sample-data": "2026-11-02",
     "/tools/stack-generator": "2026-10-16",
     "/watch-apps": "2026-10-08",
