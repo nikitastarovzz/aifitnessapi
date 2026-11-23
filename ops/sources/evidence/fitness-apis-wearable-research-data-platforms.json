@@ -475,13 +475,13 @@
     "quote": "whether they'll keep collecting data after the Fitbit Web API shuts off on October 30, 2026."
   },
   {
-    "claim": "Google's own pages give November 2, 2026 as the turn-off (read November 6, 2026).",
+    "claim": "Google's own pages give November 2, 2026 as the turn-off (read November 23, 2026).",
     "url": "https://developers.google.com/health/migration?hl=en",
-    "quote": "the legacy Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+    "quote": "the legacy Fitbit Web API and Fitbit OAuth endpoints have been turned off and no longer function or sync data to or from Google Health users."
   },
   {
     "claim": "Google's pages date the turn-off November 2, 2026.",
     "url": "https://developers.google.com/health/migration?hl=en",
-    "quote": "On November 2, 2026 , the legacy Fitbit Web API"
+    "quote": "As of November 2, 2026 , the legacy Fitbit Web API"
   }
 ]
