@@ -1,6 +1,8 @@
 import Link from "next/link";
 import LibrarySupportTable from "@/components/LibrarySupportTable";
-import type { LibrarySupport, LibrarySupportExcluded } from "@/data/healthLibrarySupport";
+import LibrarySwitchPicker from "@/components/LibrarySwitchPicker";
+import { HEALTH_LIBRARY_SUPPORT, type LibrarySupport, type LibrarySupportExcluded } from "@/data/healthLibrarySupport";
+import { compactLibraries } from "@/lib/librarySwitch.mjs";
 import {
   LIBRARY_DATA_TYPES_DATASET,
   STORE_LABEL,
@@ -160,6 +162,42 @@ function DiffBlock({ label, items, total }: { label: string; items: { store: "he
       </summary>
       <NameList items={items} />
     </details>
+  );
+}
+
+/**
+ * "Switching libraries?" on a framework hub (_landing.tsx): the libraries of
+ * the hub's groups that the support dataset covers, compacted for the client
+ * picker, which shows what a move keeps, loses and gains. Null when fewer
+ * than two of the hub's libraries are covered (Python has none).
+ */
+export function LibrarySwitchSection({ groups }: { groups: string[] }) {
+  const covered = HEALTH_LIBRARY_SUPPORT.filter((l) => groups.includes(l.group));
+  if (covered.length < 2) return null;
+  const { libs, types } = compactLibraries(covered, sitePathFor);
+  return (
+    <section id="switch" className="mt-14 scroll-mt-24">
+      <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Switching libraries?</h2>
+      <p className="mt-2 text-sm text-[var(--muted)]">
+        Pick the library you use and the one you are moving to. The lists are the HealthKit identifiers and Health Connect record
+        classes each library&rsquo;s source maps, read by a script at a pinned commit and matched exactly against this site&rsquo;s{" "}
+        <Link href="/healthkit-identifiers" className={LINK}>
+          identifier
+        </Link>{" "}
+        and{" "}
+        <Link href="/health-connect" className={LINK}>
+          record
+        </Link>{" "}
+        lists. Each type links its page here and the source line it was read from. A type listed under lose may still be
+        reachable through a generic call the script does not read, so check the target library&rsquo;s own documentation before
+        you drop a feature. The method and the full lists are in the{" "}
+        <Link href={LIBRARY_DATA_TYPES_DATASET} className={LINK}>
+          wrapper-library data types dataset
+        </Link>
+        .
+      </p>
+      <LibrarySwitchPicker libs={libs} types={types} />
+    </section>
   );
 }
 

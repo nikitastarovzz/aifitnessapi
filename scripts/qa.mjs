@@ -413,6 +413,8 @@ if (fs.existsSync(matrixPath)) {
     "healthkit-type-identifiers-2026.csv",
     "fitness-api-decision-kit.zip",
     "rep-counter.html",
+    // The AI coding-assistant rule packs (scripts/build-ai-rules.mjs), held by AI-RULES-STALE below.
+    "ai-rules",
   ];
   for (const f of KIT) {
     if (!fs.existsSync(`public/kit/${f}`)) problems.push(`KIT-MISSING  public/kit/${f}`);
@@ -4237,6 +4239,19 @@ function checkSitemapIndex(SITE) {
       const unshown = manifest.filter((s) => !spage.includes(`data-cheat-sheet="${s.slug}"`) || !spage.includes(s.pdf) || !spage.includes(s.png));
       if (unshown.length) problems.push(`CHEATSHEET  /cheat-sheets does not show ${unshown.map((s) => s.slug).join(", ")} with both files`);
       else if (!sheetProblems.length) console.log(`Cheat sheets: ${manifest.length} sheets current; largest file ${Math.max(...manifest.flatMap((s) => [s.pdfBytes, s.pngBytes]))} B.`);
+    }
+
+    // AI-RULES-STALE / AI-RULES-UNLINKED: the rule packs match the data and /developers links every file.
+    const aiRules = await import(new URL("./build-ai-rules.mjs", import.meta.url));
+    const ruleProblems = await aiRules.checkAiRules();
+    for (const p of ruleProblems) problems.push(`AI-RULES-STALE  ${p}; run node scripts/build-ai-rules.mjs`);
+    const dpage = htmlOf("/developers");
+    if (!dpage) problems.push("AI-RULES-UNLINKED  /developers was not built");
+    else {
+      const files = aiRules.TOPICS.flatMap((t) => aiRules.FLAVORS.map((f) => `${aiRules.AI_RULES_DIR}/${f.file(t.slug)}`));
+      const unlinked = files.filter((f) => !dpage.includes(`href="${f}"`));
+      if (unlinked.length) problems.push(`AI-RULES-UNLINKED  /developers does not link ${unlinked.join(", ")}`);
+      else if (!ruleProblems.length) console.log(`AI rule packs: ${files.length} files current and linked from /developers.`);
     }
   }
 

@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "Code mode comment on every translated date range: TimeRangeFilter: \"use between for a closed-ended time range, inclusive-exclusive\". (src/lib/codeRosetta.mjs QUOTES.timeRange)",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/time/TimeRangeFilter?hl=en",
+    "quote": "use between for a closed-ended time range, inclusive-exclusive"
+  },
+  {
+    "claim": "Comment under an aggregate translation: \"The result may be null if no data is available in the time range\" (Google). (QUOTES.aggregateNull)",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/aggregate-data?hl=en",
+    "quote": "The result may be null if no data is available in the time range"
+  },
+  {
+    "claim": "Comment under a bucketed translation: \"Note that the list can be sparse, so a bucket is not included in the list if it doesn't contain any data.\" (QUOTES.sparse)",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/aggregate-data?hl=en",
+    "quote": "Note that the list can be sparse, so a bucket is not included in the list if it doesn't contain any data."
+  },
+  {
+    "claim": "Comment on an aggregateGroupByPeriod translation: pass LocalDateTime values, because per-period buckets with Instant start and end times throw. (QUOTES.periodInstant)",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/aggregate-data?hl=en",
+    "quote": "When running bucket aggregates per period, make sure that the start and end times set are not using the Instant class. Otherwise, the app returns an IllegalStateException"
+  },
+  {
+    "claim": "Comment on an aggregateGroupByDuration translation: the time range is sliced into equal buckets from its start, so start the range at HealthKit's anchor date. (QUOTES.slicer)",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/request/AggregateGroupByDurationRequest?hl=en",
+    "quote": "timeRangeFilter will be sliced into several equal-sized time buckets (except for the last one)."
+  },
+  {
+    "claim": "Comment under a readRecords translation on following pageToken. (QUOTES.pageToken)",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/response/ReadRecordsResponse?hl=en",
+    "quote": "an optional page token to use for androidx.health.connect.client.request.ReadRecordsRequest.pageToken in the next request if more records can be fetched; contains value null if no more pages."
+  },
+  {
+    "claim": "Comment on an HKAnchoredObjectQuery translation to a Changes token. (QUOTES.tokenExpiry)",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/sync-data?hl=en",
+    "quote": "Since an unused Changes token expires within 30 days, you must use a sync strategy that avoids losing information in such a case."
+  }
+]

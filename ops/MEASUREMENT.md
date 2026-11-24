@@ -218,6 +218,20 @@ never the clip, its size or anything from the camera.
 | `pose-arena-download` | `pose-arena` | The download button that appears after "Record 5 seconds" in the pose arena on `/tools/pose-benchmark` (`components/tools/PoseArena`) | saving the clip the browser just recorded (a `blob:` URL); nothing is uploaded |
 | `kit-rep-counter` | `rep-counter-playground` | "Download rep-counter.html" in the one-file section of `/tools/rep-counter-playground` | a direct download of `/kit/rep-counter.html` |
 
+Added 2026-11-24 (Health-Store Engineer features). Plain `data-cta` elements
+counted by the delegated listener; none carries the code a reader pasted or
+the libraries they picked.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `code-rosetta-copy` | `identifier-translator` | The "Copy the output" button of the code translator on `/tools/identifier-translator#code` (`components/tools/CodeRosetta`) | copying the translated Swift or Kotlin (the click is counted; the code is not sent) |
+| `ai-rules-<topic>-<flavor>`: `<topic>` is `healthkit`, `health-connect` or `pose-keypoints`, `<flavor>` is `cursor`, `claude` or `copilot` | `developers-ai-rules` | The rule-pack table on `/developers#ai-rules` (`components/AiRulesDownloads`) | a direct download of `/kit/ai-rules/<topic>.mdc`, `<topic>.md` or `<topic>.instructions.md` |
+| `ai-rules-copy-cursor`, `ai-rules-copy-claude`, `ai-rules-copy-copilot` | `developers-ai-rules` | The copy button under each tool's install commands on `/developers#ai-rules` | copying the `curl` commands that install all three packs for that tool |
+
+The "Switching libraries?" picker on `/libraries/react-native`, `/flutter` and
+`/capacitor-cordova` (`components/LibrarySwitchPicker`) sends nothing: its
+links are plain navigation to this site's type pages and to GitHub.
+
 ## UTM on links to the funder
 
 Every placement link to kinestex.com is built by `funderHref(placement, path)`

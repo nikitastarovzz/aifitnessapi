@@ -29,6 +29,8 @@ import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 import { Inline, LANGUAGE, githubUrl } from "./_shared";
+import { LibrarySwitchSection } from "./_dataTypes";
+import { HEALTH_LIBRARY_SUPPORT } from "@/data/healthLibrarySupport";
 
 /**
  * One landing page per framework or language under /libraries (the route
@@ -91,6 +93,7 @@ export function LandingPage({ slug }: { slug: string }) {
   const title = landingTitle(landing);
   const description = landingDescription(landing);
   const faqId = (i: number) => `faq-${i + 1}`;
+  const switchable = HEALTH_LIBRARY_SUPPORT.filter((l) => (landing.groups as string[]).includes(l.group)).length >= 2;
 
   const ecosystems = [...new Set(pages.map((p) => p.lib.ecosystem))];
   const ecoCounts = ecosystems.map((e) => `${pages.filter((p) => p.lib.ecosystem === e).length} ${ECOSYSTEM_LABEL[e]}`);
@@ -146,6 +149,7 @@ export function LandingPage({ slug }: { slug: string }) {
 
   const nav: [string, string][] = [
     ["#packages", "Packages"],
+    ...(switchable ? ([["#switch", "Switching libraries?"]] as [string, string][]) : []),
     ["#choose", "How to choose"],
     ["#platform", "Platform rules"],
     ...(comparisons.length ? ([["#compare", "Comparisons"]] as [string, string][]) : []),
@@ -260,6 +264,8 @@ export function LandingPage({ slug }: { slug: string }) {
             {`Versions, dates and licenses read from ${ecosystems.map((e) => ECOSYSTEM_LABEL[e]).join(" and ")} on ${LIBRARIES_FETCHED_ON}; last-commit dates read by git on ${commitReads.join(", ") || "no date"}; archive flags from the GitHub API, read ${githubReads.join(", ") || "never"}. This data records no download counts, so the table has no downloads column. Repository is the GitHub owner and name as GitHub reports it, which is how the data names a maintainer.`}
           </p>
         </section>
+
+        <LibrarySwitchSection groups={landing.groups} />
 
         <section id="choose" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">How to choose: our reading</h2>
