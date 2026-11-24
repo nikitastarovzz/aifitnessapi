@@ -94,7 +94,7 @@ Every product in the site's API directory, by category, with how it bills develo
 
 ## Libraries and SDK bridges
 
-Open-source packages for HealthKit, Health Connect and vendor web APIs, read from their registries on 2026-11-18. Each links its registry page; the license is the one the registry states.
+Open-source packages for HealthKit, Health Connect and vendor web APIs, read from their registries on 2026-11-24. Each links its registry page; the license is the one the registry states.
 
 ### React Native
 
@@ -102,7 +102,7 @@ Open-source packages for HealthKit, Health Connect and vendor web APIs, read fro
 - [@kingstinct/react-native-healthkit](https://www.npmjs.com/package/@kingstinct/react-native-healthkit) - The other React Native HealthKit binding, typed close to Apple's own identifiers — the usual alternative to react-native-health. npm, license MIT.
 - [react-native-health-connect](https://www.npmjs.com/package/react-native-health-connect) - The React Native wrapper for Android Health Connect; since v4 it also carries the Expo config plugin. npm, license MIT.
 - [expo-health-connect](https://www.npmjs.com/package/expo-health-connect) - Still in many Expo app.json files. Deprecated in the registry and merged into react-native-health-connect v4 — the page exists to say how to remove it. npm, license MIT. Deprecated on npm: Merged into react-native-health-connect v4 — remove this package, replace the expo-health-connect entry in your app.json plugins array with react-native-health-connect, then re-run expo prebuild --clean. See https://github.com/matinzd/react-native-health-connect. Repository archived on GitHub.
-- [react-native-google-fit](https://www.npmjs.com/package/react-native-google-fit) - The React Native bridge to the Google Fit Android API, which Google has deprecated in favour of Health Connect. npm, license MIT.
+- [react-native-google-fit](https://www.npmjs.com/package/react-native-google-fit) - The React Native bridge to the Google Fit Android API, which Google has deprecated in favour of Health Connect. npm, license MIT. Repository archived on GitHub.
 
 ### Capacitor and Cordova
 
