@@ -1,0 +1,557 @@
+[
+  {
+    "claim": "Health in ChatGPT launched to U.S. users; OpenAI's launch post is dated July 23, 2026.",
+    "url": "https://openai.com/index/health-in-chatgpt/",
+    "quote": "Health in ChatGPT is launching to U.S. users."
+  },
+  {
+    "claim": "The launch post gives the age as 18 and older.",
+    "url": "https://openai.com/index/health-in-chatgpt/",
+    "quote": "We're beginning to roll out Health to logged-in ChatGPT users 18 and older in the U.S."
+  },
+  {
+    "claim": "Plans: Free, Go, Plus and Pro.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Health is available to eligible, logged-in ChatGPT Free, Go, Plus, and Pro users in the U.S."
+  },
+  {
+    "claim": "Platforms: web, iOS, Android and the desktop app.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "It is supported on web, iOS, Android, and the ChatGPT desktop app."
+  },
+  {
+    "claim": "The help article describes parental controls that can turn Health off for linked teen accounts.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Parents may choose to turn Health access off for linked teen accounts."
+  },
+  {
+    "claim": "ChatGPT connects Apple Health on iPhone only.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Apple Health (iOS mobile only)"
+  },
+  {
+    "claim": "ChatGPT connects Health Connect on Android only.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Health Connect (Android mobile only)"
+  },
+  {
+    "claim": "ChatGPT connects supported U.S. provider portals.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Supported U.S. provider portals"
+  },
+  {
+    "claim": "ChatGPT connects One Medical and Function Health.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "One Medical and Function Health"
+  },
+  {
+    "claim": "The Health Privacy Notice lists Android Health Connect among Connected Health Accounts.",
+    "url": "https://openai.com/policies/health-privacy-policy/",
+    "quote": "These third parties include medical providers, Apple Health, and Android Health Connect"
+  },
+  {
+    "claim": "The Health Privacy Notice is dated November 19, 2026.",
+    "url": "https://openai.com/policies/health-privacy-policy/",
+    "quote": "Updated: November 19, 2026"
+  },
+  {
+    "claim": "OpenAI names WHOOP, Oura, Garmin, Strava and MyFitnessPal as apps that reach ChatGPT through Apple Health or Health Connect.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "(like WHOOP, Oura, Garmin, Strava, or MyFitnessPal), make sure it's set up to share data with Apple Health or Health Connect"
+  },
+  {
+    "claim": "ChatGPT uses what an app makes available through Apple Health.",
+    "url": "https://openai.com/index/health-in-chatgpt/",
+    "quote": "ChatGPT can use the information that app makes available through Apple Health, when you allow it"
+  },
+  {
+    "claim": "Some proprietary scores may not transfer.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "some proprietary scores may not transfer"
+  },
+  {
+    "claim": "ChatGPT only sees what an app shares through Apple Health, Health Connect or another connected source.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "ChatGPT only sees information that the app shares through Apple Health, Health Connect, or another connected source."
+  },
+  {
+    "claim": "App-specific metrics such as a sleep score may not be shared or may be calculated differently.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Some app-specific metrics, for example a sleep score or leaderboard position, may not be shared or may be calculated differently."
+  },
+  {
+    "claim": "Profile updates only change the Health profile in ChatGPT.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Updates made to your current conditions, current medications, or family history, including changes requested in a conversation, only change your Health profile in ChatGPT."
+  },
+  {
+    "claim": "ChatGPT cannot write to Apple Health, Health Connect or another connected account.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "ChatGPT cannot edit records held by your healthcare provider or write information to Apple Health, Health Connect, or another connected account."
+  },
+  {
+    "claim": "The January 7, 2026 beta post named b.well as the partner for U.S. provider records.",
+    "url": "https://openai.com/index/introducing-chatgpt-health/",
+    "quote": "To enable access to trusted U.S. healthcare providers, we partner with b.well"
+  },
+  {
+    "claim": "Launch post: connected records and Apple Health information, and conversations that use it, are not used to train foundation models regardless of the training setting.",
+    "url": "https://openai.com/index/health-in-chatgpt/",
+    "quote": "Connected medical records and Apple Health information, and conversations that use it, are not used to train our foundation models or target ads, regardless of the model-training setting you choose for ChatGPT."
+  },
+  {
+    "claim": "Privacy Notice: synced data is not used to train foundation models.",
+    "url": "https://openai.com/policies/health-privacy-policy/",
+    "quote": "We do not train our foundation models or target ads on data synced via Connected Health Accounts."
+  },
+  {
+    "claim": "Privacy Notice: conversations referencing the data and derived content may be used to improve models depending on settings.",
+    "url": "https://openai.com/policies/health-privacy-policy/",
+    "quote": "conversations that reference Connected Health Accounts data, and content derived from it, may be used to improve our models depending on your ChatGPT settings"
+  },
+  {
+    "claim": "Help article: model improvement settings decide whether conversations that reference connected data can be used to improve models.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Your model improvement settings determine whether conversations that reference your connected Health data, and content derived from that data, can be used to improve our models."
+  },
+  {
+    "claim": "Help article: the setting is Improve the model for everyone, in Data Controls.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "you can turn off \"Improve the model for everyone\" in Settings > Data Controls"
+  },
+  {
+    "claim": "Disconnect in Health, Accounts.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Disconnect accounts in Health > Accounts"
+  },
+  {
+    "claim": "After disconnecting, synced data is deleted within 30 days.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "When you disconnect an account, data synced from that source is deleted from OpenAI's systems within 30 days."
+  },
+  {
+    "claim": "Conversation history stays until you delete it.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Information already included in your ChatGPT conversation history remains until you delete those conversations."
+  },
+  {
+    "claim": "Memories can be created from Health conversations, not directly from synced data.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Memories are not created directly from data synced in Health."
+  },
+  {
+    "claim": "When memory is on, conversations that use Health can create memories.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "When memory is on, conversations that use Health can create memories to personalize future chats."
+  },
+  {
+    "claim": "Launch post: by default ChatGPT asks before using connected records and Apple Health information.",
+    "url": "https://openai.com/index/health-in-chatgpt/",
+    "quote": "By default, ChatGPT asks for permission before using connected medical records and Apple Health information to personalize a response."
+  },
+  {
+    "claim": "Help article: Health follows the global plugins permission setting, which defaults to Allow low-risk actions.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "If you make no changes to your Plugins settings, the default permission setting is"
+  },
+  {
+    "claim": "OpenAI's iPhone path for ChatGPT's Health permissions.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Open your iPhone's Settings > Apps > Health > Data Access & Devices > ChatGPT"
+  },
+  {
+    "claim": "OpenAI's Android path for Health Connect permissions.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Open Android device's Settings > search Health Connect > Your Health Apps"
+  },
+  {
+    "claim": "Claude's health features are in beta, need Pro, Max or Ultra, and are US only.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Health features are currently in beta, require a Pro, Max, or Ultra plan, and are available in the US only."
+  },
+  {
+    "claim": "Claude reads Apple Health but cannot write to it.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Claude can read health data but cannot write or modify entries in Apple Health."
+  },
+  {
+    "claim": "Claude reads activity, workout, vitals, body measurements, sleep and nutrition data.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Health: Activity, workout, vital signs, body measurements, sleep, and nutrition data"
+  },
+  {
+    "claim": "Claude reads Apple Health data with your permission.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "With your permission, Claude can read the following types of data from Apple Health"
+  },
+  {
+    "claim": "By default Claude does not save health information to memory.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "By default, Claude doesn't save health information to memory."
+  },
+  {
+    "claim": "Claude may remember health context if Include sensitive topics in memory is turned on.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Claude may remember health-related context from your conversations"
+  },
+  {
+    "claim": "Anthropic's iPhone path for Claude's Health permissions.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "You can modify these permissions at any time by going to Settings > Health > Data Access & Devices > Claude."
+  },
+  {
+    "claim": "Anthropic's January post: HealthEx and Function connectors in beta; Apple Health and Android Health Connect rolling out in beta via iOS and Android apps.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "New HealthEx and Function connectors are available in beta today, while Apple Health and Android Health Connect integrations are rolling out in beta this week via the Claude iOS and Android apps."
+  },
+  {
+    "claim": "Anthropic's January post: US Pro and Max subscribers can give Claude access to lab results and health records.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "In the US, Claude Pro and Max plan subscribers can choose to give Claude secure access to their lab results and health records."
+  },
+  {
+    "claim": "Anthropic: users can disconnect or edit permissions at any time.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "can disconnect or edit Claude's permissions at any time"
+  },
+  {
+    "claim": "Anthropic: health data is not used to train models.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "We do not use users' health data to train models."
+  },
+  {
+    "claim": "Perplexity Health is for Pro and Max subscribers in the US.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Perplexity Health is a personalized health experience available to Pro and Max subscribers in the US."
+  },
+  {
+    "claim": "Perplexity Health is on iOS and the web.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "is available to eligible subscribers on iOS and on the web"
+  },
+  {
+    "claim": "Apple Health features require 18 or older and are iOS only.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Apple HealthKit-based features require you to be 18 years or older and are only available on iOS."
+  },
+  {
+    "claim": "Apple Health data personalizes answers but is not on the Health hub dashboard.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Currently, Apple Health data is used to personalize your health answers but is not reflected on the Health hub dashboard or data visualizations."
+  },
+  {
+    "claim": "Medical records connection powered by b.well.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "The Medical Records connection is powered by b.well"
+  },
+  {
+    "claim": "Medical records are US only at launch.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Medical Records are available only in the United States at launch."
+  },
+  {
+    "claim": "Wearables and apps connection powered by Terra API.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "The health devices and apps connection is powered by Terra API"
+  },
+  {
+    "claim": "Terra connects Perplexity to wearables and wellness apps.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "a unified health and fitness data platform that securely connects Perplexity to your wearables and wellness apps"
+  },
+  {
+    "claim": "Perplexity names Fitbit, Google and Clue among connectable devices and apps.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Connector lets you link health devices and apps—such as Fitbit, Google, and Clue"
+  },
+  {
+    "claim": "Launch blog names Fitbit, Ultrahuman and Withings.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "platforms including Fitbit, Ultrahuman, Withings, and many more"
+  },
+  {
+    "claim": "Launch blog: records from over 1.7 million care providers.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "electronic health records from over 1.7 million care providers"
+  },
+  {
+    "claim": "Launch blog (March 19, 2026): Oura and Function expected soon.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "ŌURA and Function are expected soon."
+  },
+  {
+    "claim": "Medical records include lab results.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Perplexity may access data such as lab results, visit summaries, medications, and medical conditions"
+  },
+  {
+    "claim": "Perplexity: health chats, connector data, files and memories not used to train AI models.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Your health chats, connector data, files, and memories are not used to train AI models"
+  },
+  {
+    "claim": "Raw health data is queried on demand and not stored permanently.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Your raw health data is queried on demand through our data providers and is not stored permanently on our servers."
+  },
+  {
+    "claim": "After disconnect, Perplexity keeps only what appears in sessions.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Perplexity does not store data from your connected sources and only retains information that appears in your sessions, which you can delete at any time."
+  },
+  {
+    "claim": "Disconnect in Plugins, Installed.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "health records connector, and Apple Health (iOS only) at any time by going to Plugins"
+  },
+  {
+    "claim": "Perplexity creates health memories.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "It also creates health memories that can be referenced for related queries"
+  },
+  {
+    "claim": "Health memories can be viewed in Settings, Personalization.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can view your health-related memories by going to Settings > Personalization > Manage your saved memories"
+  },
+  {
+    "claim": "Perplexity's iPhone path through the Health app.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Check your iOS Health permissions by opening the Health app > tap your profile picture (top right) > Apps > Perplexity."
+  },
+  {
+    "claim": "Perplexity: help article last modified November 17, 2026.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Last modified on November 17, 2026"
+  },
+  {
+    "claim": "Copilot Health is a separate space within Copilot.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "a separate, secure space within Copilot where medical intelligence makes sense of your information"
+  },
+  {
+    "claim": "Copilot Health reads over 50 wearable devices including Apple Health, Oura and Fitbit.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Activity levels, sleep patterns, vital signs, and other trends from over 50 wearable devices including Apple Health, Oura, Fitbit and more."
+  },
+  {
+    "claim": "Health records through HealthEx from over 50,000 U.S. hospitals and provider organizations.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Health records from over 50,000 U.S. hospitals and provider organizations through HealthEx"
+  },
+  {
+    "claim": "Lab results from Function.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Comprehensive lab test results from Function."
+  },
+  {
+    "claim": "Copilot Health conversations and data are isolated from general Copilot.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Copilot Health conversations and data are isolated from general Copilot"
+  },
+  {
+    "claim": "Connectors can be disconnected instantaneously.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "You can disconnect your connectors to health data sources such as electronic health records or wearables instantaneously at any time."
+  },
+  {
+    "claim": "Microsoft: the ability to manage and delete your information.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "the ability to manage and delete your information when you choose"
+  },
+  {
+    "claim": "Microsoft: information in Copilot Health not used for model training.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Your information in Copilot Health is not used for model training."
+  },
+  {
+    "claim": "Phased rollout.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Copilot Health available through a careful, phased rollout"
+  },
+  {
+    "claim": "Google's post: Coach exits preview May 19 and becomes available globally with Google Health Premium.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Starting May 19, Google Health Coach will exit preview and become available globally as part of the Google Health Premium subscription."
+  },
+  {
+    "claim": "Footnote: in select international markets.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "In select international markets."
+  },
+  {
+    "claim": "Built with Gemini.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Built with Gemini, the coach gives you personalized insights"
+  },
+  {
+    "claim": "Price: $9.99 per month or $99 per year.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "at just $9.99 per month or $99 per year"
+  },
+  {
+    "claim": "Included for Google AI Pro and Ultra subscribers.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Google AI Pro and Ultra subscribers will now also enjoy Google Health Premium at no extra cost"
+  },
+  {
+    "claim": "Launching first for Fitbit and Pixel Watch users, other devices coming soon.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "The Coach is launching first for eligible Fitbit and Pixel Watch users, with support for other devices coming soon."
+  },
+  {
+    "claim": "The Fitbit app is now the Google Health app.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "The Fitbit app is now the Google Health app"
+  },
+  {
+    "claim": "Coach uses fitness and sleep metrics.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Fitness and sleep metrics"
+  },
+  {
+    "claim": "Coach uses nutrition and cycle tracking.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Nutrition and cycle tracking"
+  },
+  {
+    "claim": "Coach uses location and local weather.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Environmental context like location and local weather"
+  },
+  {
+    "claim": "Coach uses personal medical records.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Personal medical records"
+  },
+  {
+    "claim": "Medical records sync in the U.S.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Ability to sync medical records in the U.S., and share them with the Coach"
+  },
+  {
+    "claim": "Coach takes onboarding details into account and adapts when you update them.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "you can update details or shift your goals at any time through a simple conversation"
+  },
+  {
+    "claim": "Google's commitment on Fitbit data and ads.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "Google committed to not use Fitbit users' health and wellness data for Google Ads."
+  },
+  {
+    "claim": "Optional features can be turned off.",
+    "url": "https://healthapp.google/google-health-coach/",
+    "quote": "Turn off optional features at any point"
+  },
+  {
+    "claim": "Samsung Health Assistant is in beta for eligible U.S. users.",
+    "url": "https://news.samsung.com/us/samsung-launches-health-assistant-beta-first-fully-integrated-ai-powered-assistant/",
+    "quote": "now in beta for eligible U.S. users"
+  },
+  {
+    "claim": "It reads Samsung Health's five pillars.",
+    "url": "https://news.samsung.com/us/samsung-launches-health-assistant-beta-first-fully-integrated-ai-powered-assistant/",
+    "quote": "five core pillars of wellness — sleep, activity, nutrition, mindfulness, and vitals"
+  },
+  {
+    "claim": "Samsung's Xealth acquisition connects wellness data to clinical care.",
+    "url": "https://news.samsung.com/us/samsung-launches-health-assistant-beta-first-fully-integrated-ai-powered-assistant/",
+    "quote": "acquisition of Xealth extends this by connecting everyday wellness data to clinical care"
+  },
+  {
+    "claim": "Future versions will use the Personal Data Engine as context.",
+    "url": "https://news.samsung.com/us/samsung-launches-health-assistant-beta-first-fully-integrated-ai-powered-assistant/",
+    "quote": "It will also use the Personal Data Engine (PDE) as context"
+  },
+  {
+    "claim": "Samsung's release is dated July 21, 2026.",
+    "url": "https://news.samsung.com/us/samsung-launches-health-assistant-beta-first-fully-integrated-ai-powered-assistant/",
+    "quote": "AI-Powered Personal Health Assistant 7/21/2026"
+  },
+  {
+    "claim": "Health Assistant is an AI assistant for Samsung Health.",
+    "url": "https://news.samsung.com/us/samsung-launches-health-assistant-beta-first-fully-integrated-ai-powered-assistant/",
+    "quote": "a fully integrated AI-powered personal health assistant for Samsung Health"
+  },
+  {
+    "claim": "OpenAI's launch post is dated July 23, 2026.",
+    "url": "https://openai.com/index/health-in-chatgpt/",
+    "quote": "OpenAI July 23, 2026"
+  },
+  {
+    "claim": "OpenAI's beta post is dated January 7, 2026.",
+    "url": "https://openai.com/index/introducing-chatgpt-health/",
+    "quote": "OpenAI January 7, 2026"
+  },
+  {
+    "claim": "Anthropic's announcement was published January 11, 2026.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "Published Jan 11, 2026"
+  },
+  {
+    "claim": "Perplexity's launch blog is dated March 19, 2026.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "Mar 19, 2026"
+  },
+  {
+    "claim": "Microsoft's post is dated March 12, 2026.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Mar 12, 2026"
+  },
+  {
+    "claim": "Google's post is dated May 7, 2026.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "May 07, 2026"
+  },
+  {
+    "claim": "Health is a tab in ChatGPT.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "The Health tab is your home base for connecting and managing your accounts"
+  },
+  {
+    "claim": "OpenAI describes syncing connected information.",
+    "url": "https://openai.com/index/health-in-chatgpt/",
+    "quote": "Once connected, your information will begin syncing, which may take a few minutes."
+  },
+  {
+    "claim": "Connected Health Accounts include lab and test results.",
+    "url": "https://openai.com/policies/health-privacy-policy/",
+    "quote": "Connected Health Accounts allow ChatGPT to use connected medical records, lab and test results, prescription information"
+  },
+  {
+    "claim": "The iPhone Settings screen shows which data categories ChatGPT may read.",
+    "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+    "quote": "Check that read access is enabled for the data categories you want to share."
+  },
+  {
+    "claim": "The iOS Health permissions screen lets you choose data types for Claude.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "where you can choose exactly which data types to share"
+  },
+  {
+    "claim": "Perplexity links b.well's and Terra's privacy policies.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can read their privacy policy here"
+  },
+  {
+    "claim": "Perplexity lists connected sources under Plugins, Installed.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "confirm that the data source shows as active on the Health landing page or under Plugins"
+  },
+  {
+    "claim": "Perplexity's full sentence on improving Perplexity.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "We also may use your questions and answers to help improve Perplexity, as explained in our Privacy Notice."
+  },
+  {
+    "claim": "Google Health Coach runs in the Google Health app.",
+    "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+    "quote": "its intelligence elevates every corner of the Google Health app"
+  },
+  {
+    "claim": "Apple guideline 5.1.2(i): disclosure and explicit permission before sharing, including with third-party AI.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "You must clearly disclose where personal data will be shared with third parties, including with third-party AI, and obtain explicit permission before doing so."
+  }
+]

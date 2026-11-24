@@ -64,6 +64,18 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "ai-fitness-app-cost",
     ],
   },
+  {
+    title: "Which AI can read your health data",
+    blurb: "The consumer assistants that read Apple Health, Health Connect, wearables and medical records: what each reads, and on what terms.",
+    slugs: [
+      "which-ai-can-read-your-health-data",
+      "chatgpt-health-apple-health",
+      "claude-apple-health",
+      "perplexity-health",
+      "copilot-health",
+      "google-health-coach",
+    ],
+  },
 ];
 
 const FAQS = [
