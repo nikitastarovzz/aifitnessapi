@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20",
+  "generated": "2026-11-24",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -210,6 +210,18 @@
       "bytes": 5080,
       "rows": 32,
       "sha256": "32a07594a0e6d8835f91c74088b5029b33b226c568e2589bb95d8bbf32efe357"
+    },
+    {
+      "file": "open-exercises-2026.csv",
+      "bytes": 1076434,
+      "rows": 876,
+      "sha256": "077ecd041f09b5707a198e193974a9dd283b41bf34a142ab319e571913c0b2a7"
+    },
+    {
+      "file": "open-exercises-2026.json",
+      "bytes": 1446939,
+      "rows": 876,
+      "sha256": "898f5d18d122460ea663de72fc927880e863b1d01bfa4ea1ded98a992dd0dc06"
     },
     {
       "file": "pose-keypoint-maps-2026.csv",
