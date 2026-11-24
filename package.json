@@ -55,6 +55,7 @@
     "test:exercise-taxonomy": "node --test scripts/exercise-taxonomy.test.mjs",
     "test:open-exercises": "node --test scripts/open-exercises.test.mjs",
     "test:exercise-adapter": "node --test packages/exercise-adapter/test/run.mjs",
+    "test:food-test": "node --test scripts/food-test.test.mjs",
     "test:health-library-support": "node --test scripts/health-library-support.test.mjs",
     "test:matrices": "node --test scripts/evidence-matrix.test.mjs",
     "test:content-licences": "node --test scripts/content-licences.test.mjs",

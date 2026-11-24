@@ -174,6 +174,12 @@ per door.
 | `home-door-<door>-<target path, slashes as dashes>`, e.g. `home-door-wearable-fix-garmin-api-approval`, `home-door-platform-google-fit-shutdown` | `home-doors` | The "What brought you here?" block under the homepage hero (`DOORS` in `src/app/page.tsx`): four doors, four links each | a link to one of that audience's most-clicked pages |
 | `home-door-<door>-paths`, e.g. `home-door-content-paths` | `home-doors` | The last link of each door | a link to that audience's reading path on `/paths` (`#one-wearable-brand`, `#exercise-and-food-content`, `#camera-coaching`, `#escape-google-fit`) |
 
+Added 2026-11-24 (the food-database test on `/fitness-apis/nutrition-apis`):
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `food-test-json`, `food-test-csv` | `nutrition-apis-food-test` | The license box at the foot of "The food-database test" section (`components/FoodDatabaseTest`) | a direct download of `/food-test/food-database-test-2026.json` or `.csv` (ODbL 1.0), ungated |
+
 A completed signup from the inline form also fires `cta_click` with id
 `signup-complete` and source `money-<section>` (the form's own event), and the
 stored signup record carries `source: money-<section>`. Before 2026-11-05 the
