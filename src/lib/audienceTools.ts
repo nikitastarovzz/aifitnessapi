@@ -80,6 +80,19 @@ export function taxonomyRows() {
   }));
 }
 
+/** Every constant the crosswalk matched for free-exercise-db, to its row on /workout-types (the normalizer's links). */
+export function normalizerTypeLinks(): Record<string, string> {
+  const fedb = [
+    ...ET_EXERCISE_MATCHES.filter((m) => m.database === "free-exercise-db"),
+    ...ET_TERMS.filter((t) => t.database === "free-exercise-db" && t.status === "mapped").map((t) => ({
+      healthkit: t.healthkit.exact,
+      healthConnect: t.healthConnect.exact,
+      hcSegment: t.hcSegment.exact,
+    })),
+  ];
+  return Object.fromEntries(fedb.flatMap((m) => constantLinks(m)).map((l) => [l.name, l.href]));
+}
+
 /** The "limits" list on the page and in its mirror. */
 export function taxonomyLimits(): string[] {
   return [

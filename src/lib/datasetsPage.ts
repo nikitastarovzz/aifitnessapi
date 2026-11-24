@@ -329,6 +329,22 @@ export const ENTRIES: Entry[] = [
       "Matches are by name alone: a category or exercise name maps only where its normalized name equals a constant's, so most terms are unmapped by design. Equipment, muscle and body-part terms are never mapped; the nameContains columns are text coincidences for browsing. The databases' own licenses cover their content; this file republishes the term names.",
   },
   {
+    slug: "open-exercises-2026",
+    unit: "exercises",
+    blurb:
+      "Every exercise in free-exercise-db, read at one pinned commit: name, category, equipment, level, mechanic, force, primary and secondary muscles, every instruction step and absolute image URLs, plus the HealthKit and Health Connect types this site's exercise taxonomy crosswalk already matched.",
+    keywords: [
+      "free exercise database",
+      "public domain exercise dataset",
+      "exercise database commercial use",
+      "free-exercise-db JSON",
+      "exercise list with muscles and equipment",
+    ],
+    presentedBy: { href: "/tools/exercise-taxonomy-crosswalk#normalize", label: "Exercise taxonomy crosswalk and name normalizer" },
+    caveat:
+      "free-exercise-db's LICENSE.md is the Unlicense: \"This is free and unencumbered software released into the public domain.\" It lets anyone use it \"for any purpose, commercial or non-commercial\". The file carries that notice whole in sourceTerms; CC BY 4.0 covers only the columns this site adds. Images are linked at the pinned commit on GitHub, not copied. The type columns come from the crosswalk, which matches by name only, so most rows have none and HealthKit has none at all.",
+  },
+  {
     slug: "fitness-api-docs-drift-2026",
     unit: "row groups",
     blurb:

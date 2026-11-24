@@ -198,6 +198,15 @@ checkboxes stay in the reader's localStorage.
 | `access-report-any` | `access-scoreboard` | The empty-state button of the access scoreboard (`components/AccessScoreboard`) on `/integrate`, shown while no report is accepted | opening a new GitHub issue with the `[access-report]` title and no vendor chosen |
 | `share-access-report-<vendor>-<target>`, e.g. `share-access-report-garmin-copy`, `share-access-report-garmin-linkedin` | `share-row` | The "Share" control on each accepted report's row in the access-reports section (`components/AccessReports`) | copying, or opening a compose page for, the vendor's panel (`<vendor page>#access-reports`) with a line describing that report |
 
+Added 2026-11-24 (Open Exercises dataset). Plain links with fixed ids; the
+normalizer's search box and the "Which ExerciseDB is this?" sniffer on
+`/pricing/exercise-database-api-pricing` carry no `data-cta` and send nothing,
+so what a reader types or pastes stays in the tab.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `open-exercises-json`, `open-exercises-csv`, `open-exercises-card` | `exercise-normalizer` | The "Normalize a gym-floor exercise name" section of `/tools/exercise-taxonomy-crosswalk` | a direct download of `/datasets/open-exercises-2026.json` or `.csv`, or opening its dataset card `.md` |
+
 ## UTM on links to the funder
 
 Every placement link to kinestex.com is built by `funderHref(placement, path)`

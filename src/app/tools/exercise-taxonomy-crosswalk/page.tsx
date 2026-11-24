@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ToolNextStep from "@/components/ToolNextStep";
 import TaxonomyTable from "@/components/tools/TaxonomyTable";
+import ExerciseNameNormalizer from "@/components/tools/ExerciseNameNormalizer";
 import { ET_DATABASES, ET_EXERCISE_MATCHES, ET_FETCHED_ON, ET_RULE, ET_SOURCES } from "@/data/exerciseTaxonomy";
 import {
   TAXONOMY_DATASET,
@@ -13,11 +14,21 @@ import {
   TAXONOMY_PATH,
   TAXONOMY_TITLE,
   constantLinks,
+  normalizerTypeLinks,
   taxonomyCapsule,
   taxonomyLimits,
   taxonomyRows,
   taxonomyCounts,
 } from "@/lib/audienceTools";
+import {
+  ABBREVIATIONS,
+  ABBREVIATIONS_H3,
+  MATCH_RULES,
+  MATCH_RULES_H3,
+  NORMALIZER_H2,
+  OPEN_EXERCISES_DATASET,
+  normalizerIntro,
+} from "@/lib/openExercisesPage";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { toolGraph } from "@/lib/schema";
 
@@ -118,6 +129,64 @@ export default function ExerciseTaxonomyCrosswalkPage() {
               </tbody>
             </table>
           </div>
+        </section>
+
+        <section id="normalize" className="mt-14 scroll-mt-20" aria-label="Exercise name normalizer">
+          <h2 className={H2}>{NORMALIZER_H2}</h2>
+          <p className="mt-3 leading-relaxed text-[var(--muted)]">{normalizerIntro()}</p>
+          <div className="mt-4 flex flex-wrap gap-3 text-sm">
+            <a
+              href={`/datasets/${OPEN_EXERCISES_DATASET}.json`}
+              data-cta="open-exercises-json"
+              data-cta-source="exercise-normalizer"
+              className="rounded-lg border border-[var(--border)] px-3 py-1.5 font-medium text-[var(--fg)] hover:border-brand-400"
+            >
+              Download the exercises (JSON)
+            </a>
+            <a
+              href={`/datasets/${OPEN_EXERCISES_DATASET}.csv`}
+              data-cta="open-exercises-csv"
+              data-cta-source="exercise-normalizer"
+              className="rounded-lg border border-[var(--border)] px-3 py-1.5 font-medium text-[var(--fg)] hover:border-brand-400"
+            >
+              Download the exercises (CSV)
+            </a>
+            <a
+              href={`/datasets/${OPEN_EXERCISES_DATASET}.md`}
+              data-cta="open-exercises-card"
+              data-cta-source="exercise-normalizer"
+              className="rounded-lg border border-[var(--border)] px-3 py-1.5 font-medium text-[var(--fg)] hover:border-brand-400">
+              Dataset card and license
+            </a>
+          </div>
+          <ExerciseNameNormalizer dataUrl={`/datasets/${OPEN_EXERCISES_DATASET}.json`} typeLinks={normalizerTypeLinks()} />
+
+          <h3 className="mt-8 text-lg font-semibold text-[var(--fg)]">{ABBREVIATIONS_H3}</h3>
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full max-w-md text-left text-sm">
+              <thead className="text-xs uppercase tracking-wider text-[var(--muted)]">
+                <tr>
+                  <th className="py-1.5 pr-3">You type</th>
+                  <th className="py-1.5">We read</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ABBREVIATIONS.map((a) => (
+                  <tr key={a.abbr} className="border-t border-[var(--border)] text-[var(--fg)]">
+                    <td className="py-1.5 pr-3 font-mono">{a.abbr}</td>
+                    <td className="py-1.5">{a.expansion}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="mt-8 text-lg font-semibold text-[var(--fg)]">{MATCH_RULES_H3}</h3>
+          <ol className="mt-3 list-decimal space-y-2 pl-5 leading-relaxed text-[var(--muted)]">
+            {MATCH_RULES.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ol>
         </section>
 
         <section className="mt-14">
