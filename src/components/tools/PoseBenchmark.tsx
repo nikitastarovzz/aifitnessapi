@@ -7,17 +7,24 @@ import {
   BENCH_MODELS,
   MOVENET_MODELS,
   POSE_DETECTION_VERSION,
-  TASKS_VISION_BUNDLE,
   TASKS_VISION_VERSION,
-  TASKS_VISION_WASM,
   TFJS_BACKEND,
-  TFJS_SCRIPTS,
   TFJS_VERSION,
-  TFJS_WASM_PATH,
   mib,
   type BenchModel,
   type MoveNetModel,
 } from "@/lib/poseBenchmark";
+import {
+  loadTf,
+  loadVision,
+  type Delegate,
+  type Landmarker,
+  type PoseDetectionGlobal,
+  type PoseDetector,
+  type PoseFrame as Frame,
+  type TfGlobal,
+  type Vision,
+} from "@/lib/poseRuntime";
 import { ACCEPT_LABEL, buildIssue, resultRecord } from "@/lib/poseBenchmarkSubmission.mjs";
 
 /**
@@ -51,11 +58,9 @@ import { ACCEPT_LABEL, buildIssue, resultRecord } from "@/lib/poseBenchmarkSubmi
  * percentiles. Only the call inside the loop differs.
  */
 
-type Delegate = "GPU" | "CPU";
 type Source = "camera" | "synthetic";
 type Family = "mediapipe" | "movenet";
 type ModelId = BenchModel["id"] | MoveNetModel["id"];
-type Frame = HTMLVideoElement | HTMLCanvasElement;
 
 type Row = {
   model: string;
@@ -84,46 +89,6 @@ type Device = {
   pixelRatio: string;
 };
 
-/* The subset of @mediapipe/tasks-vision this page calls. Typed by hand from
- * the package's vision.d.ts so the site does not depend on the package. */
-type PoseResult = { landmarks: unknown[][] };
-type Landmarker = {
-  detectForVideo(frame: HTMLVideoElement | HTMLCanvasElement, timestamp: number): PoseResult;
-  close(): void;
-};
-type VisionModule = {
-  FilesetResolver: { forVisionTasks(basePath: string): Promise<unknown> };
-  PoseLandmarker: {
-    createFromOptions(
-      fileset: unknown,
-      options: {
-        baseOptions: { modelAssetPath: string; delegate: Delegate };
-        runningMode: "VIDEO";
-        numPoses: number;
-      },
-    ): Promise<Landmarker>;
-  };
-};
-
-/* The subset of TensorFlow.js and pose-detection 2.1.3 this page calls, on the
- * globals their UMD bundles define (window.tf, window.poseDetection). Typed
- * by hand from the packages' .d.ts files for the same reason. */
-type TfGlobal = {
-  setBackend(name: string): Promise<boolean>;
-  ready(): Promise<void>;
-  getBackend(): string;
-  wasm?: { setWasmPaths(prefix: string): void };
-};
-type PoseDetector = {
-  estimatePoses(image: Frame, config?: object, timestamp?: number): Promise<unknown[]>;
-  dispose(): void;
-};
-type PoseDetectionGlobal = {
-  SupportedModels: { MoveNet: string };
-  createDetector(model: string, config: { modelType: string; modelUrl: string }): Promise<PoseDetector>;
-};
-type TfWindow = Window & { tf?: TfGlobal; poseDetection?: PoseDetectionGlobal };
-
 const WARMUP_FRAMES = 10;
 const FRAME_CHOICES = [50, 100, 300];
 const SYNTH_W = 640;
@@ -135,26 +100,6 @@ function quantile(sorted: number[], q: number): number {
   const lo = Math.floor(pos);
   const hi = Math.ceil(pos);
   return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
-}
-
-/** Add a classic <script> once and wait for it; rejects on a network error. */
-function loadScript(src: string): Promise<void> {
-  const prior = document.querySelector<HTMLScriptElement>(`script[data-bench-src="${src}"]`);
-  if (prior?.dataset.loaded === "1") return Promise.resolve();
-  prior?.remove();
-  return new Promise((resolve, reject) => {
-    const el = document.createElement("script");
-    el.src = src;
-    el.async = false;
-    el.crossOrigin = "anonymous";
-    el.dataset.benchSrc = src;
-    el.onload = () => {
-      el.dataset.loaded = "1";
-      resolve();
-    };
-    el.onerror = () => reject(new Error(`could not load ${new URL(src).pathname.split("/").slice(1, 3).join("/")}`));
-    document.head.appendChild(el);
-  });
 }
 
 const ms = (n: number | undefined) => (n === undefined || Number.isNaN(n) ? "—" : n.toFixed(1));
@@ -298,8 +243,6 @@ export default function PoseBenchmark() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stopRef = useRef(false);
-  const visionRef = useRef<{ mod: VisionModule; fileset: unknown } | null>(null);
-  const tfRef = useRef<{ tf: TfGlobal; pd: PoseDetectionGlobal; wasm: boolean } | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
   // Read in an effect, not during render: the server has no navigator, and a
@@ -308,38 +251,6 @@ export default function PoseBenchmark() {
     setDevice(readDevice());
     return () => streamRef.current?.getTracks().forEach((t) => t.stop());
   }, []);
-
-  async function loadRuntime(): Promise<{ mod: VisionModule; fileset: unknown }> {
-    if (visionRef.current) return visionRef.current;
-    const url = TASKS_VISION_BUNDLE;
-    // A runtime URL, so neither bundler tries to resolve or inline it.
-    const mod = (await import(/* webpackIgnore: true */ /* turbopackIgnore: true */ url)) as VisionModule;
-    const fileset = await mod.FilesetResolver.forVisionTasks(TASKS_VISION_WASM);
-    visionRef.current = { mod, fileset };
-    return visionRef.current;
-  }
-
-  /** TF.js core, converter and the WebGL backend, then pose-detection; the
-   *  WASM backend only when the CPU delegate is ticked. */
-  async function loadTf(needWasm: boolean): Promise<{ tf: TfGlobal; pd: PoseDetectionGlobal }> {
-    if (!tfRef.current) {
-      await loadScript(TFJS_SCRIPTS.core);
-      await loadScript(TFJS_SCRIPTS.converter);
-      await loadScript(TFJS_SCRIPTS.webgl);
-      await loadScript(TFJS_SCRIPTS.poseDetection);
-      const w = window as TfWindow;
-      if (!w.tf || !w.poseDetection) throw new Error("the TensorFlow.js scripts loaded but defined no tf / poseDetection global");
-      tfRef.current = { tf: w.tf, pd: w.poseDetection, wasm: false };
-    }
-    if (needWasm && !tfRef.current.wasm) {
-      await loadScript(TFJS_SCRIPTS.wasm);
-      const tf = (window as TfWindow).tf!;
-      if (!tf.wasm) throw new Error("the TF.js WASM backend script defined no tf.wasm");
-      tf.wasm.setWasmPaths(TFJS_WASM_PATH);
-      tfRef.current = { ...tfRef.current, tf, wasm: true };
-    }
-    return tfRef.current;
-  }
 
   async function openSource(): Promise<{ el: HTMLVideoElement | HTMLCanvasElement; label: string }> {
     const canvas = canvasRef.current!;
@@ -429,7 +340,7 @@ export default function PoseBenchmark() {
   }
 
   async function benchOne(
-    vision: { mod: VisionModule; fileset: unknown },
+    vision: Vision,
     model: BenchModel,
     delegate: Delegate,
     el: Frame,
@@ -507,9 +418,9 @@ export default function PoseBenchmark() {
       };
       if (picked.length > 0) {
         setStatus(`Loading the MediaPipe runtime (${TASKS_VISION_VERSION}) from cdn.jsdelivr.net…`);
-        let vision: { mod: VisionModule; fileset: unknown } | null = null;
+        let vision: Vision | null = null;
         try {
-          vision = await loadRuntime();
+          vision = await loadVision();
         } catch (e) {
           const why = `could not load the MediaPipe runtime (${(e as Error).message}); a blocker or a network policy may be stopping cdn.jsdelivr.net`;
           for (const m of picked) fail(m.name, "mediapipe", why);

@@ -9,8 +9,10 @@ import IdentifierTranslator, {
   type TRow,
 } from "@/components/tools/IdentifierTranslator";
 import MoreTools from "@/components/tools/MoreTools";
+import CodeRosetta from "@/components/tools/CodeRosetta";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
+import { ROSETTA_HEADING, rosettaParagraphs, rosettaTable } from "@/lib/codeRosettaPage";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
 import ToolNextStep from "@/components/ToolNextStep";
@@ -108,6 +110,18 @@ export default function IdentifierTranslatorPage() {
 
         <section data-tool="identifier-translator" aria-label="HealthKit to Health Connect translator">
           <IdentifierTranslator rows={ROWS} appleNames={APPLE_NAMES} />
+        </section>
+
+        <section id="code" data-tool="code-rosetta" aria-labelledby="code-heading" className="mt-14 scroll-mt-24">
+          <h2 id="code-heading" className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+            {ROSETTA_HEADING}
+          </h2>
+          {rosettaParagraphs().map((p) => (
+            <p key={p.slice(0, 40)} className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
+              {p}
+            </p>
+          ))}
+          <CodeRosetta table={rosettaTable()} />
         </section>
 
         <details className="mt-14 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">

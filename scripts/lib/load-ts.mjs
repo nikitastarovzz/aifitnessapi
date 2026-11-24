@@ -29,6 +29,17 @@ export async function loadTs(rel) {
     registerHooks({
       resolve(spec, ctx, next) {
         if (spec.startsWith("@/")) return next(resolveAlias(spec), ctx);
+        // A relative import written for the bundler ("./fix.entries") names no
+        // file extension; inside src/, when the file as named does not exist,
+        // try the same suffixes the alias does.
+        if (spec.startsWith(".") && ctx.parentURL?.startsWith(pathToFileURL(path.join(ROOT, "src")).href)) {
+          const base = path.resolve(path.dirname(new URL(ctx.parentURL).pathname), spec);
+          if (!fs.existsSync(base)) {
+            for (const p of [`${base}.ts`, `${base}.tsx`, `${base}.mjs`, path.join(base, "index.ts")]) {
+              if (fs.existsSync(p)) return next(pathToFileURL(p).href, ctx);
+            }
+          }
+        }
         return next(spec, ctx);
       },
     });

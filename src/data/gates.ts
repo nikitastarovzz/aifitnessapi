@@ -1416,6 +1416,16 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "An AWESOME.md at the repository root that differs from what scripts/build-awesome.mjs renders from the directory, libraries, MCP servers, datasets and tools today, because the data changed and the list was not regenerated.",
   },
   {
+    code: "AI-RULES-STALE",
+    area: "Derived blocks",
+    refuses: "An AI coding-assistant rule pack under public/kit/ai-rules that differs from what scripts/build-ai-rules.mjs renders from the site's HealthKit, Health Connect and pose-keypoint data today, so a developer would commit stale identifiers into their repository.",
+  },
+  {
+    code: "AI-RULES-UNLINKED",
+    area: "Derived blocks",
+    refuses: "A built /developers page that does not link every rule-pack file under /kit/ai-rules, so a published pack could exist with no way for a reader to find it.",
+  },
+  {
     code: "AWESOME-PAGE",
     area: "Derived blocks",
     refuses: "A built /awesome.md mirror missing any entry line of AWESOME.md, or an /awesome page that does not render every section, so the page and the file in the repository cannot list different things.",

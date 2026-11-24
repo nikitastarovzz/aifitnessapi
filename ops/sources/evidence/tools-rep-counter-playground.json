@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "The camera API works only in a secure context, and MDN's table of secure contexts lists a file:// page as secure.",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia",
+    "quote": "This feature is available only in secure contexts (HTTPS)"
+  },
+  {
+    "claim": "The camera API works only in a secure context, and MDN's table of secure contexts lists a file:// page as secure.",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Secure_Contexts",
+    "quote": "file:///path/to/resource.html | ✅ Secure ( file URL)"
+  },
+  {
+    "claim": "CodePen's documentation says files can be dragged in or uploaded.",
+    "url": "https://blog.codepen.io/docs/pens/files/",
+    "quote": "Drag and drop (or use the Upload button) to add files from your computer to the Pen"
+  },
+  {
+    "claim": "CodePen's documentation says its preview server answers / with /index.html.",
+    "url": "https://blog.codepen.io/docs/live-view/",
+    "quote": "The web server that serves the files from your successful builds is configured like a basic/standard static file web server."
+  },
+  {
+    "claim": "CodePen's documentation says its preview server answers / with /index.html.",
+    "url": "https://blog.codepen.io/docs/live-view/",
+    "quote": "| URL | Served File |\n| / | /index.html |"
+  },
+  {
+    "claim": "StackBlitz's documentation lists starter links such as vite.new.",
+    "url": "https://developer.stackblitz.com/guides/user-guide/starter-projects",
+    "quote": "Open Source projects can provide a custom URL as a convenient starting point for their online playground. Here is a list of some of these links:"
+  },
+  {
+    "claim": "StackBlitz's documentation lists starter links such as vite.new.",
+    "url": "https://developer.stackblitz.com/guides/user-guide/starter-projects",
+    "quote": "Vite vite.new"
+  }
+]

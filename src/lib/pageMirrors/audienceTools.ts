@@ -21,6 +21,15 @@ import {
   taxonomyLimits,
   taxonomyRows,
 } from "@/lib/audienceTools";
+import {
+  ABBREVIATIONS,
+  ABBREVIATIONS_H3,
+  MATCH_RULES,
+  MATCH_RULES_H3,
+  NORMALIZER_H2,
+  OPEN_EXERCISES_DATASET,
+  normalizerIntro,
+} from "@/lib/openExercisesPage";
 import { interactiveNote, link, table, type MirrorDoc } from "./core";
 
 /** Markdown mirrors of the AUDIENCE-30 wave-3 tools, from the same modules the pages render. */
@@ -56,6 +65,24 @@ export function exerciseTaxonomyMirror(): MirrorDoc {
         ["Exercise", "Its category and equipment", "Same name"],
         ET_EXERCISE_MATCHES.map((e) => [e.name, [e.category, e.equipment].filter(Boolean).join(" · "), cellLinks(constantLinks(e))]),
       ),
+      `## ${NORMALIZER_H2}`,
+      "",
+      normalizerIntro(),
+      "",
+      `${link("Download the exercises (JSON)", `/datasets/${OPEN_EXERCISES_DATASET}.json`)} · ${link("Download the exercises (CSV)", `/datasets/${OPEN_EXERCISES_DATASET}.csv`)} · ${link("Dataset card and license", `/datasets/${OPEN_EXERCISES_DATASET}.md`)}`,
+      "",
+      interactiveNote(TAXONOMY_PATH, "matches a typed exercise name against the dataset"),
+      "",
+      `### ${ABBREVIATIONS_H3}`,
+      "",
+      ...table(
+        ["You type", "We read"],
+        ABBREVIATIONS.map((a) => [a.abbr, a.expansion]),
+      ),
+      `### ${MATCH_RULES_H3}`,
+      "",
+      ...MATCH_RULES.map((r, i) => `${i + 1}. ${r}`),
+      "",
       "## The three databases and their licenses",
       "",
       ...ET_DATABASES.map((d) => `- ${link(d.name, d.home)}: ${d.license}. Its license file or README says: “${d.licenseQuote}” ${d.read}`),

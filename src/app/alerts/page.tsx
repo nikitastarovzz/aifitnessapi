@@ -5,6 +5,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import AnswerCapsule from "@/components/AnswerCapsule";
 import WatchForm from "@/components/WatchForm";
+import VendorStatus, { VendorStatusPending } from "@/components/VendorStatus";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { API_ENTRIES, CATEGORY_LABELS } from "@/data/apis";
@@ -12,6 +13,12 @@ import { CHANGE_EVENTS } from "@/data/changes";
 
 const PATH = "/alerts";
 const UPDATED = "2026-08-22";
+
+// The "Are vendor APIs up?" section probes vendor endpoints when the page is
+// generated; regenerate it in the background at most every 10 minutes.
+// Next needs a literal here: keep it equal to REVALIDATE_SECONDS in
+// src/lib/vendorStatus.mjs (scripts/vendor-status.test.mjs checks).
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: { absolute: "API change alerts — watch the APIs you depend on" },
@@ -97,6 +104,32 @@ export default function AlertsPage() {
             <WatchForm options={options} />
           </Suspense>
         </div>
+
+        <section id="vendor-status" aria-labelledby="vendor-status-h" className="mt-14 scroll-mt-24">
+          <h2 id="vendor-status-h" className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+            Are vendor APIs up?
+          </h2>
+          <p className="mt-3 leading-relaxed text-[var(--muted)]">
+            A quick reachability check, not a status page. Our server sends one plain GET, with no credentials, to the
+            public sign-in or documentation address each vendor publishes for its API, the same addresses the{" "}
+            <Link href="/tools/oauth-playground" className="text-brand-600 hover:text-brand-500">
+              OAuth playground
+            </Link>{" "}
+            and the Google Health API pages use. It shows whether that address answered our server, how, and how fast.
+            It cannot see a vendor&rsquo;s data API, webhooks, token exchange or your app&rsquo;s credentials, so
+            &ldquo;answering&rdquo; here does not mean the whole service works, and a slow answer may be the network
+            between us. Opened without a client, an authorize address is meant to refuse, so the rule beside each row
+            says which answer counts as normal for it.
+          </p>
+          <Suspense fallback={<VendorStatusPending />}>
+            <VendorStatus />
+          </Suspense>
+          <p className="mt-3 text-xs leading-relaxed text-[var(--muted)]">
+            Every request times out after 5 seconds and they run in parallel. The answers are from the moment this page
+            was last generated, at most about 10 minutes before you loaded it, from wherever our server runs. Nothing
+            about your visit is sent to the vendors.
+          </p>
+        </section>
 
         <p className="mt-10 text-xs leading-relaxed text-[var(--muted)]">
           We store your email, first name and the list you picked, and nothing else — see the{" "}

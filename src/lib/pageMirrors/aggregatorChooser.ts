@@ -1,6 +1,18 @@
 import { AGGREGATOR_MATRIX } from "@/data/aggregatorChooser";
 import { matrixMethodLines } from "@/lib/audienceTools";
-import { AGG_DESCRIPTION, AGG_H1, AGG_PATH, aggregatorCapsule, aggregatorFaqs, useCases } from "@/lib/aggregatorChooserView";
+import { BILL_VENDORS, billMethods } from "@/lib/aggregatorBill.mjs";
+import {
+  AGG_DESCRIPTION,
+  AGG_H1,
+  AGG_PATH,
+  BILL_CHECKED,
+  BILL_HEADING,
+  BILL_INTRO,
+  BILL_METHOD_HEADING,
+  aggregatorCapsule,
+  aggregatorFaqs,
+  useCases,
+} from "@/lib/aggregatorChooserView";
 import { faqSection, interactiveNote, link, table, type MirrorDoc } from "./core";
 
 /** The markdown mirror of /tools/aggregator-chooser, from the same modules the page renders. */
@@ -29,6 +41,16 @@ export function aggregatorChooserMirror(): MirrorDoc {
           }),
         ]),
       ),
+      `## ${BILL_HEADING}`,
+      "",
+      BILL_INTRO,
+      "",
+      BILL_CHECKED,
+      "",
+      `### ${BILL_METHOD_HEADING}`,
+      "",
+      ...BILL_VENDORS.map((v) => `- **${v.name}:** ${billMethods()[v.id]}`),
+      "",
       "## Trade-offs by use case",
       "",
       ...useCases().flatMap((u) => [

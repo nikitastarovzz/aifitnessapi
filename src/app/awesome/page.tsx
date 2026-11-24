@@ -106,7 +106,12 @@ export default function AwesomePage() {
           <section key={s.id} id={s.id} className="mt-14 scroll-mt-24">
             <h2 className={H2}>{s.title}</h2>
             <p className="mt-3 leading-relaxed text-[var(--muted)]">{s.intro}</p>
-            {s.groups.map((g) => (
+            {s.empty ? (
+              <p data-awesome-empty={s.key} className="mt-4 rounded-xl border border-dashed border-[var(--border)] p-4 text-sm text-[var(--muted)]">
+                {s.empty}
+              </p>
+            ) : null}
+            {s.groups.filter((g) => g.entries.length > 0).map((g) => (
               <div key={g.id} id={g.title ? g.id : undefined} className="mt-6 scroll-mt-24">
                 {g.title ? <h3 className="text-lg font-semibold text-[var(--fg)]">{g.title}</h3> : null}
                 <ul className="mt-2 space-y-2 text-sm leading-relaxed text-[var(--muted)]">
@@ -121,6 +126,16 @@ export default function AwesomePage() {
                 </ul>
               </div>
             ))}
+            {s.action ? (
+              <a
+                href={s.action.url}
+                data-cta={`awesome-${s.key}-submit`}
+                data-cta-source="awesome"
+                className="mt-5 inline-block rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-500"
+              >
+                {s.action.label}
+              </a>
+            ) : null}
           </section>
         ))}
 

@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { ClusterEntry } from "@/lib/cluster";
+// Relative, not "@/": scripts/fact-cards.test.mjs loads this file under
+// Node's type stripping, which cannot resolve the alias.
+import { factId } from "./factId.mjs";
 
 /**
  * "Key facts" for a money page (ops/NEXT-10-2026-11-04.md item 6): three to
@@ -56,7 +59,10 @@ export const STATES_NUMBER = /(?<![A-Za-z])\d/;
 /** Openings that only make sense after the sentence the source put before them. */
 const LEANS_ON_CONTEXT = /^(It|Its|They|Their|This|These|That|Those|Yes|No|After that|Once|Then|However|But|And|Also)\b/;
 
-export type KeyFact = { quote: string; url: string; host: string };
+/** `id` is the fact's share id (src/lib/factCardCore.mjs: evidence file + a
+ *  hash of the row's url and quote); `claim` is the evidence row's own claim
+ *  line, when it has one. */
+export type KeyFact = { id: string; quote: string; url: string; host: string; claim: string | null };
 type EvidenceRow = { claim?: string; url?: string; quote?: string };
 
 /** Same identity rule schema.ts uses for citations: no fragment, no trailing
@@ -121,7 +127,13 @@ export function keyFacts(enPath: string, entry: Pick<ClusterEntry, "sources">): 
     perUrl.set(key, (perUrl.get(key) ?? 0) + 1);
     // Verbatim, less a dangling comma or semicolon where the quoted passage
     // stops mid-sentence (qa strips the same before comparing).
-    out.push({ quote: quote.replace(/[,;:]$/, ""), url: r.url, host });
+    out.push({
+      id: factId(enPath, r.url, quote),
+      quote: quote.replace(/[,;:]$/, ""),
+      url: r.url,
+      host,
+      claim: typeof r.claim === "string" && r.claim.trim() ? r.claim.trim() : null,
+    });
   }
   return out.length >= KEY_FACTS_MIN ? out : [];
 }

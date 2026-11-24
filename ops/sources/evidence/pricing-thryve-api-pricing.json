@@ -253,5 +253,60 @@
     "claim": "The page says \"Removed Fitbit from the available sources following the shutdown from Google.\" (November 14, 2026).",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
     "quote": "Removed Fitbit from the available sources following the shutdown from Google."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Two Basic Auth headers: Authorization.",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "Basic Auth for your username:password. Required for all endpoints"
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Two Basic Auth headers: AppAuthorization.",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "Basic Auth for your authID:authSecret."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Thryve: Connection Widget embedded in an iframe.",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "The Connection Widget must be embedded in your app using an iframe component."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Thryve: webhooks so you need no API calls for the newest data.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Thryve can directly send new and updated end user data to your system through webhooks so that you don't have to do any API calls to receive the newest data."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Thryve: zstd-compressed webhooks.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "The webhook content is compressed using zstd to reduce payload sizes and improve network time."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Thryve: optional HMAC secret.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Data integrity and authenticity can be ensured by configuring an HMAC secret."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Thryve: up to 3 retries; respond within 2 seconds.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Respond to the request with a 200 or 204 within 2 seconds. Failed deliveries will be retried up to 3 times."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Thryve: pre-built algorithms or custom models.",
+    "url": "https://www.thryve.health/",
+    "quote": "Use our pre-built algorithms or collaborate with us to design models tailored to your organization’s specific needs."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Thryve: analytics for insurers and research.",
+    "url": "https://www.thryve.health/",
+    "quote": "empower insurers and healthcare providers globally to deliver personalized, preventive care with full data security and compliance."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: DiGA approval claim.",
+    "url": "https://www.thryve.health/certifications-compliance",
+    "quote": "Thryve is approved under Germany’s DiGA framework (§ 139e SGB V), the strictest regulatory standard for digital health applications in Europe."
+  },
+  {
+    "claim": "Evaluating Thryve on specific needs: Thryve lists Withings as a web source with historic data and shared OAuth client yes.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Withings Web Ping yes yes"
   }
 ]

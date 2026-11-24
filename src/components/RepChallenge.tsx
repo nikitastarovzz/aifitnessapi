@@ -5,37 +5,55 @@ import ShareCard from "@/components/ShareCard";
 import { localDate } from "@/lib/shareCard";
 import { BENCH_MODELS, TASKS_VISION_BUNDLE, TASKS_VISION_VERSION, TASKS_VISION_WASM, mib } from "@/lib/poseBenchmark";
 import {
+  CHALLENGES,
   CHALLENGE_SECONDS,
   COUNTDOWN_SECONDS,
   EXERCISES,
+  PLANK,
   SKELETON,
   VISIBILITY_MIN,
+  beatLine,
   bucketReps,
+  challengeLink,
   createCounter,
+  createHold,
   describeZone,
   exerciseAngle,
+  heldSeconds,
   paceSquares,
+  parseChallengeLink,
+  plankReading,
+  plankShareLine,
   shareLine,
   step,
+  stepHold,
 } from "@/lib/repCounter.mjs";
 
 /**
- * The 30-second webcam rep challenge.
+ * The webcam rep challenge: 30 seconds of squats, jumping jacks, push-ups or
+ * lunges, or a plank held as long as you can.
  *
  * The camera feed goes from the <video> element into MediaPipe Pose
  * Landmarker (lite) running in WebAssembly in this tab; each frame's
  * landmarks become one angle (src/lib/repCounter.mjs), and the rep state
- * machine in that module counts. No frame is recorded, stored or sent: the
- * network traffic is the download of the runtime from cdn.jsdelivr.net and of
- * the model from storage.googleapis.com, the same files and URLs
- * /tools/pose-benchmark loads (src/lib/poseBenchmark.ts), plus the runtime's
- * own usage report to Google (TASKS_VISION_USAGE_LOG_URL there: timings, no
- * images).
+ * machine in that module counts, or the plank hold timer in the same module
+ * times. No frame is recorded, stored or sent: the network traffic is the
+ * download of the runtime from cdn.jsdelivr.net and of the model from
+ * storage.googleapis.com, the same files and URLs /tools/pose-benchmark loads
+ * (src/lib/poseBenchmark.ts), plus the runtime's own usage report to Google
+ * (TASKS_VISION_USAGE_LOG_URL there: timings, no images).
+ *
+ * "Beat my score": the result's share link is /challenge?ex=<slug>&beat=<n>.
+ * Opening one preselects the exercise and shows the score to beat; the link
+ * is read by parseChallengeLink, which accepts a known slug and a whole
+ * number and nothing else, so no text from the address reaches the page.
  */
 
-type ExerciseId = keyof typeof EXERCISES;
+type RepId = keyof typeof EXERCISES;
+type ChallengeId = RepId | "plank";
 type Stage = "idle" | "loading" | "ready" | "countdown" | "running" | "done";
 type Counter = ReturnType<typeof createCounter>;
+type Hold = ReturnType<typeof createHold>;
 
 /* The subset of @mediapipe/tasks-vision used here, typed by hand from the
  * package's vision.d.ts so the site does not depend on the package. */
@@ -57,16 +75,31 @@ type VisionModule = {
 };
 
 const LITE = BENCH_MODELS.find((m) => m.id === "lite")!;
+const SITE = "https://aifitnessapi.com/challenge";
 
-type Result = { exercise: ExerciseId; reps: number; buckets: number[]; rejected: number; date: string };
+type Result = { exercise: ChallengeId; score: number; buckets: number[]; rejected: number; breaks: number; date: string };
+
+const isPlank = (id: ChallengeId): id is "plank" => id === "plank";
+const labelOf = (id: ChallengeId) => (isPlank(id) ? PLANK.label : EXERCISES[id].label);
+
+/** Where to put the camera, per exercise. */
+const SETUP: Record<ChallengeId, string> = {
+  squat: "Face the camera, whole body in frame.",
+  "jumping-jack": "Face the camera, whole body and both arms in frame.",
+  "push-up": "Camera at floor level, side-on, so it sees your shoulder, elbow and wrist.",
+  lunge: "Side-on or facing the camera, whole body in frame; alternate legs as you like.",
+  plank: "Camera at floor level, side-on, shoulders to ankles in frame.",
+};
 
 export default function RepChallenge() {
-  const [exerciseId, setExerciseId] = useState<ExerciseId>("squat");
+  const [exerciseId, setExerciseId] = useState<ChallengeId>("squat");
+  const [target, setTarget] = useState<{ id: ChallengeId; beat: number } | null>(null);
   const [stage, setStage] = useState<Stage>("idle");
   const [status, setStatus] = useState("");
   const [angle, setAngle] = useState<number | null>(null);
-  const [phase, setPhase] = useState<Counter["phase"]>("waiting");
-  const [reps, setReps] = useState(0);
+  const [tilt, setTilt] = useState<number | null>(null);
+  const [phase, setPhase] = useState<string>("waiting");
+  const [score, setScore] = useState(0);
   const [clock, setClock] = useState<number | null>(null);
   const [result, setResult] = useState<Result | null>(null);
   const [delegate, setDelegate] = useState("");
@@ -79,18 +112,29 @@ export default function RepChallenge() {
   const rafRef = useRef(0);
   const lastTsRef = useRef(0);
   const stageRef = useRef<Stage>("idle");
-  const exRef = useRef<ExerciseId>("squat");
+  const exRef = useRef<ChallengeId>("squat");
   const counterRef = useRef<Counter>(createCounter(EXERCISES.squat));
+  const holdRef = useRef<Hold>(createHold());
   const tRef = useRef({ countdownEnd: 0, start: 0, end: 0 });
   const loopingRef = useRef(false);
   const fpsRef = useRef({ since: 0, frames: 0 });
 
-  const ex = EXERCISES[exerciseId];
+  const plank = isPlank(exerciseId);
+  const ex = plank ? null : EXERCISES[exerciseId];
 
   function go(s: Stage) {
     stageRef.current = s;
     setStage(s);
   }
+
+  // A "Beat my score" link: preselect its exercise and show its score.
+  useEffect(() => {
+    const link = parseChallengeLink(window.location.search);
+    if (!link) return;
+    pick(link.id as ChallengeId);
+    if (link.beat !== null) setTarget({ id: link.id as ChallengeId, beat: link.beat });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -100,11 +144,16 @@ export default function RepChallenge() {
     };
   }, []);
 
-  function pick(id: ExerciseId) {
+  function resetCounters(id: ChallengeId) {
+    if (isPlank(id)) holdRef.current = createHold();
+    else counterRef.current = createCounter(EXERCISES[id]);
+    setPhase("waiting");
+  }
+
+  function pick(id: ChallengeId) {
     setExerciseId(id);
     exRef.current = id;
-    counterRef.current = createCounter(EXERCISES[id]);
-    setPhase("waiting");
+    resetCounters(id);
   }
 
   async function start() {
@@ -158,8 +207,8 @@ export default function RepChallenge() {
       stopCamera();
       return;
     }
-    setStatus("Step back until your whole body is in the frame, then press Go.");
-    counterRef.current = createCounter(EXERCISES[exRef.current]);
+    setStatus(`${SETUP[exRef.current]} Then press Go.`);
+    resetCounters(exRef.current);
     go("ready");
     resume();
   }
@@ -180,6 +229,7 @@ export default function RepChallenge() {
     streamRef.current = null;
     if (videoRef.current) videoRef.current.srcObject = null;
     setAngle(null);
+    setTilt(null);
     setClock(null);
     go("idle");
   }
@@ -187,20 +237,21 @@ export default function RepChallenge() {
   function countdown() {
     tRef.current.countdownEnd = performance.now() + COUNTDOWN_SECONDS * 1000;
     setResult(null);
-    setReps(0);
+    setScore(0);
     go("countdown");
     resume();
   }
 
-  function finish(c: Counter) {
+  function finish() {
+    const id = exRef.current;
     const { start } = tRef.current;
-    setResult({
-      exercise: exRef.current,
-      reps: c.reps,
-      buckets: bucketReps(c.repTimes, start),
-      rejected: c.rejected,
-      date: localDate(),
-    });
+    if (isPlank(id)) {
+      const h = holdRef.current;
+      setResult({ exercise: id, score: heldSeconds(h), buckets: [], rejected: 0, breaks: h.breaks, date: localDate() });
+    } else {
+      const c = counterRef.current;
+      setResult({ exercise: id, score: c.reps, buckets: bucketReps(c.repTimes, start), rejected: c.rejected, breaks: 0, date: localDate() });
+    }
     setClock(null);
     setStatus("Done. Detection is paused until you press Go again; no frame was recorded or sent.");
     go("done");
@@ -242,6 +293,30 @@ export default function RepChallenge() {
     }
   }
 
+  /** One frame for the plank: reading, timer, end of round. */
+  function plankFrame(lms: Lm[] | undefined, world: Lm[] | undefined, aspect: number, now: number) {
+    const r = lms ? plankReading(lms, world, aspect) : { line: null, tilt: null, ok: null };
+    draw(lms, PLANK.sides.flat());
+    setAngle(r.line);
+    setTilt(r.tilt);
+    const s = stageRef.current;
+    if (s === "countdown") {
+      const left = tRef.current.countdownEnd - now;
+      setClock(Math.ceil(left / 1000));
+      if (left <= 0) {
+        holdRef.current = createHold(now);
+        tRef.current.start = now;
+        setScore(0);
+        go("running");
+      }
+    } else if (s === "running") {
+      holdRef.current = stepHold(holdRef.current, r.ok, now);
+      setScore(heldSeconds(holdRef.current));
+      if (holdRef.current.phase === "over") finish();
+    }
+    setPhase(s === "running" ? holdRef.current.phase : r.ok ? "in position" : "not in position");
+  }
+
   function loop() {
     const v = videoRef.current;
     const lm = lmRef.current;
@@ -267,37 +342,42 @@ export default function RepChallenge() {
       } catch {
         res = null;
       }
-      const exercise = EXERCISES[exRef.current];
+      const id = exRef.current;
       const lms = res?.landmarks[0];
       const world = res?.worldLandmarks?.[0];
-      const a = lms ? exerciseAngle(exercise, lms, world, v.videoWidth / (v.videoHeight || 1)) : null;
-      draw(lms, exercise.sides.flat());
-      setAngle(a);
-
-      const s = stageRef.current;
-      if (s === "countdown") {
-        const left = tRef.current.countdownEnd - now;
-        setClock(Math.ceil(left / 1000));
-        if (left <= 0) {
-          counterRef.current = createCounter(exercise);
-          tRef.current.start = now;
-          tRef.current.end = now + CHALLENGE_SECONDS * 1000;
-          setReps(0);
-          go("running");
+      const aspect = v.videoWidth / (v.videoHeight || 1);
+      if (isPlank(id)) {
+        plankFrame(lms, world, aspect, now);
+      } else {
+        const exercise = EXERCISES[id];
+        const a = lms ? exerciseAngle(exercise, lms, world, aspect) : null;
+        draw(lms, exercise.sides.flat());
+        setAngle(a);
+        const s = stageRef.current;
+        if (s === "countdown") {
+          const left = tRef.current.countdownEnd - now;
+          setClock(Math.ceil(left / 1000));
+          if (left <= 0) {
+            counterRef.current = createCounter(exercise);
+            tRef.current.start = now;
+            tRef.current.end = now + CHALLENGE_SECONDS * 1000;
+            setScore(0);
+            go("running");
+          } else {
+            // Practice the phases during the countdown; the count resets at Go.
+            counterRef.current = step(counterRef.current, a, now);
+          }
+        } else if (s === "running") {
+          counterRef.current = step(counterRef.current, a, now);
+          setScore(counterRef.current.reps);
+          const left = tRef.current.end - now;
+          setClock(Math.max(0, Math.ceil(left / 1000)));
+          if (left <= 0) finish();
         } else {
-          // Practice the phases during the countdown; the count resets at Go.
           counterRef.current = step(counterRef.current, a, now);
         }
-      } else if (s === "running") {
-        counterRef.current = step(counterRef.current, a, now);
-        setReps(counterRef.current.reps);
-        const left = tRef.current.end - now;
-        setClock(Math.max(0, Math.ceil(left / 1000)));
-        if (left <= 0) finish(counterRef.current);
-      } else {
-        counterRef.current = step(counterRef.current, a, now);
+        setPhase(counterRef.current.phase);
       }
-      setPhase(counterRef.current.phase);
     }
     // After the result, stop running the model: the card and buttons should
     // not compete with inference for a slow device's main thread.
@@ -315,23 +395,54 @@ export default function RepChallenge() {
     "rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-500 disabled:opacity-50";
   const secondary =
     "rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--fg)] hover:border-brand-400 disabled:opacity-50";
-  const phaseName =
-    phase === "waiting" ? `waiting for ${ex.restName}` : phase === "rest" ? ex.restName : ex.activeName;
+  const phaseName = plank
+    ? phase
+    : phase === "waiting"
+      ? `waiting for ${ex!.restName}`
+      : phase === "rest"
+        ? ex!.restName
+        : ex!.activeName;
   const camOn = stage !== "idle" && stage !== "loading";
-  const resEx = result ? EXERCISES[result.exercise] : ex;
+  // The score from a "Beat my score" link, for its own exercise only.
+  const beat = target && target.id === exerciseId ? target.beat : null;
+  const resultText = (r: Result) => {
+    if (isPlank(r.exercise)) return `${r.score} ${r.score === 1 ? "second" : "seconds"}`;
+    const e = EXERCISES[r.exercise];
+    return `${r.score} ${r.score === 1 ? e.noun : e.plural}`;
+  };
 
   return (
     <div className={`mt-8 ${box}`}>
+      {beat !== null && (
+        <p data-challenge-beat className="mb-5 rounded-xl border border-brand-400/40 bg-brand-500/10 px-4 py-3 text-lg font-bold text-[var(--fg)]">
+          {beatLine(exerciseId, beat)}
+          <span className="block text-sm font-normal text-[var(--muted)]">
+            The score from the link you opened. Start the camera and press Go to try.
+          </span>
+        </p>
+      )}
       <fieldset disabled={busy}>
         <legend className="text-sm font-semibold text-[var(--fg)]">Exercise</legend>
         <div className="mt-2 flex flex-wrap gap-2">
-          {(Object.keys(EXERCISES) as ExerciseId[]).map((id) => (
-            <label key={id} className={chip}>
-              <input type="radio" name="challenge-exercise" checked={exerciseId === id} onChange={() => pick(id)} />
-              {EXERCISES[id].label}
+          {CHALLENGES.map((c) => (
+            <label key={c.id} className={chip}>
+              <input
+                type="radio"
+                name="challenge-exercise"
+                value={c.slug}
+                checked={exerciseId === c.id}
+                onChange={() => pick(c.id as ChallengeId)}
+              />
+              {labelOf(c.id as ChallengeId)}
             </label>
           ))}
         </div>
+        <p className="mt-2 text-xs text-[var(--muted)]" data-challenge-setup>
+          {SETUP[exerciseId]}{" "}
+          {plank
+            ? `Hold it as long as you can, up to ${PLANK.MAX_SECONDS / 60} minutes.`
+            : `As many as you can in ${CHALLENGE_SECONDS} seconds.`}
+        </p>
       </fieldset>
 
       <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -362,18 +473,19 @@ export default function RepChallenge() {
         </div>
         <div className="pointer-events-none absolute left-3 top-3 rounded-lg bg-black/60 px-3 py-2 font-mono text-sm text-white">
           <div data-challenge-angle>
-            {ex.angleName}: {angle === null ? "no reading" : `${Math.round(angle)}°`}
+            {plank ? "body line" : ex!.angleName}: {angle === null ? "no reading" : `${Math.round(angle)}°`}
           </div>
+          {plank && <div>tilt: {tilt === null ? "no reading" : `${Math.round(tilt)}°`}</div>}
           <div>phase: {phaseName}</div>
           <div data-challenge-fps>{fps === null ? "" : `${fps.toFixed(0)} frames/s`}</div>
         </div>
         <div className="pointer-events-none absolute right-3 top-3 rounded-lg bg-black/60 px-3 py-2 text-right text-white">
-          <div className="text-xs uppercase tracking-wider">reps</div>
+          <div className="text-xs uppercase tracking-wider">{plank ? "seconds" : "reps"}</div>
           <div data-challenge-reps className="text-3xl font-bold tabular-nums">
-            {stage === "running" || stage === "done" ? reps : "–"}
+            {stage === "running" || stage === "done" ? score : "–"}
           </div>
         </div>
-        {(stage === "countdown" || stage === "running") && clock !== null && (
+        {(stage === "countdown" || (stage === "running" && !plank)) && clock !== null && (
           <div
             data-challenge-clock
             className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-5xl font-extrabold text-white drop-shadow"
@@ -385,40 +497,77 @@ export default function RepChallenge() {
 
       {camOn && (
         <p className="mt-3 text-xs text-[var(--muted)]">
-          Counting {ex.plural}: a rep is {ex.angleName} {describeZone(ex.active)} and back {describeZone(ex.rest)}.
+          {plank
+            ? `Timing a plank: the hip angle between shoulder and ankle above ${PLANK.STRAIGHT_MIN}° and the body within ${PLANK.TILT_MAX}° of level; out of position for ${PLANK.GRACE_MS / 1000} s ends it.`
+            : `Counting ${ex!.plural}: a rep is ${ex!.angleName} ${describeZone(ex!.active)} and back ${describeZone(ex!.rest)}.`}{" "}
           Model: {LITE.name}, {delegate || "…"} delegate, in this tab.
         </p>
       )}
 
       {result && (
-        <div data-challenge-result className="mt-8 border-t border-[var(--border)] pt-6">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Your result</p>
-          <p className="mt-2 text-4xl font-extrabold text-[var(--fg)]">
-            {result.reps} {result.reps === 1 ? resEx.noun : resEx.plural}{" "}
-            <span className="text-lg font-medium text-[var(--muted)]">in {CHALLENGE_SECONDS} seconds</span>
-          </p>
-          <p className="mt-2 text-sm text-[var(--muted)]">
-            Pace by 5-second slice: <span className="text-base">{paceSquares(result.buckets)}</span> ({result.buckets.join(" · ")})
-            {result.rejected > 0
-              ? `. ${result.rejected} cycle${result.rejected === 1 ? " was" : "s were"} faster than ${resEx.minCycleMs} ms and not counted.`
-              : "."}
-          </p>
-          <ShareCard
-            filename={`rep-challenge-${result.exercise}-${result.date}.png`}
-            text={shareLine({ exercise: resEx, reps: result.reps, buckets: result.buckets })}
-            spec={{
-              eyebrow: `${CHALLENGE_SECONDS}-second rep challenge`,
-              headline: `${result.reps} ${result.reps === 1 ? resEx.noun : resEx.plural}`,
-              lines: [
-                `${resEx.label} in ${CHALLENGE_SECONDS} seconds, counted by a pose model in my browser`,
-                `Pace ${result.buckets.join(" · ")}`,
-              ],
-              url: "aifitnessapi.com/challenge",
-              stamp: result.date,
-            }}
-          />
-        </div>
+        <ResultCard result={result} beat={result.exercise === exerciseId ? beat : null} text={resultText(result)} />
       )}
+    </div>
+  );
+}
+
+function ResultCard({ result, beat, text }: { result: Result; beat: number | null; text: string }) {
+  const plank = isPlank(result.exercise);
+  const link = challengeLink(result.exercise, result.score);
+  const linkNoScheme = link.replace(/^https:\/\//, "");
+  const shareText = plank
+    ? plankShareLine({ seconds: result.score, url: linkNoScheme })
+    : shareLine({ exercise: EXERCISES[result.exercise as RepId], reps: result.score, buckets: result.buckets, url: linkNoScheme });
+  const label = labelOf(result.exercise);
+  return (
+    <div data-challenge-result className="mt-8 border-t border-[var(--border)] pt-6">
+      <p className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Your result</p>
+      <p className="mt-2 text-4xl font-extrabold text-[var(--fg)]">
+        {text}{" "}
+        <span className="text-lg font-medium text-[var(--muted)]">
+          {plank ? "of plank" : `in ${CHALLENGE_SECONDS} seconds`}
+        </span>
+      </p>
+      {beat !== null && (
+        <p data-challenge-beat-result className="mt-2 text-sm font-semibold text-[var(--fg)]">
+          {result.score > beat ? `You beat ${beat}.` : result.score === beat ? `A tie with ${beat}.` : `${beat} to beat; ${beat - result.score} to go.`}
+        </p>
+      )}
+      {plank ? (
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          {result.breaks > 0
+            ? `You dropped out of position ${result.breaks} ${result.breaks === 1 ? "time" : "times"} for less than ${PLANK.GRACE_MS / 1000} s; those moments are not counted.`
+            : "Held without dropping out of position."}
+        </p>
+      ) : (
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          Pace by 5-second slice: <span className="text-base">{paceSquares(result.buckets)}</span> ({result.buckets.join(" · ")})
+          {result.rejected > 0
+            ? `. ${result.rejected} cycle${result.rejected === 1 ? " was" : "s were"} faster than ${EXERCISES[result.exercise as RepId].minCycleMs} ms and not counted.`
+            : "."}
+        </p>
+      )}
+      <ShareCard
+        filename={`rep-challenge-${result.exercise}-${result.date}.png`}
+        text={shareText}
+        spec={{
+          eyebrow: plank ? "Plank challenge" : `${CHALLENGE_SECONDS}-second rep challenge`,
+          headline: text,
+          lines: [
+            plank
+              ? "Plank held, timed by a pose model in my browser"
+              : `${label} in ${CHALLENGE_SECONDS} seconds, counted by a pose model in my browser`,
+            plank ? `Can you beat it? ${linkNoScheme}` : `Pace ${result.buckets.join(" · ")}`,
+          ],
+          url: linkNoScheme,
+          stamp: result.date,
+        }}
+        intents={{ place: "challenge", url: link }}
+      />
+      <p className="mt-2 text-xs text-[var(--muted)]">
+        The link carries the exercise and your score, so whoever opens it sees the number to beat. Nothing else is in
+        it, and nothing about your attempt is stored anywhere.
+      </p>
     </div>
   );
 }

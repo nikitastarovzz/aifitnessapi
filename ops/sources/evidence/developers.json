@@ -1,0 +1,47 @@
+[
+  {
+    "claim": "Cursor reads project rules from .cursor/rules as .mdc files. (/developers#ai-rules; scripts/build-ai-rules.mjs writes <topic>.mdc for .cursor/rules/)",
+    "url": "https://cursor.com/docs/context/rules",
+    "quote": "Project rules live in .cursor/rules as .mdc files and are version-controlled."
+  },
+  {
+    "claim": "These carry a description and alwaysApply: false, so Agent pulls a rule in when the description fits the task.",
+    "url": "https://cursor.com/docs/context/rules",
+    "quote": "Agent reads the description and pulls the rule in when relevant."
+  },
+  {
+    "claim": "Each pack stays under Cursor's 500-line limit (MAX_LINES in scripts/build-ai-rules.mjs, held by scripts/ai-rules.test.mjs).",
+    "url": "https://cursor.com/docs/context/rules",
+    "quote": "Keep rules under 500 lines"
+  },
+  {
+    "claim": "Copilot reads path-specific instructions from .github/instructions/*.instructions.md.",
+    "url": "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions",
+    "quote": "These are specified in one or more NAME.instructions.md files within or below the .github/instructions directory in the repository."
+  },
+  {
+    "claim": "These apply to every path (applyTo: \"**\").",
+    "url": "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions",
+    "quote": "At the start of the file, create a frontmatter block containing the applyTo keyword."
+  },
+  {
+    "claim": "GitHub documents path-specific files for Copilot cloud agent and code review on GitHub.com.",
+    "url": "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions",
+    "quote": "Currently, on GitHub.com, path-specific custom instructions are only supported for Copilot cloud agent and Copilot code review."
+  },
+  {
+    "claim": "For the rest, paste a file's text into .github/copilot-instructions.md.",
+    "url": "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions",
+    "quote": "These are specified in a copilot-instructions.md file in the .github directory of the repository."
+  },
+  {
+    "claim": "Claude Code loads every markdown file in .claude/rules/ at launch.",
+    "url": "https://code.claude.com/docs/en/memory",
+    "quote": "Rules without paths frontmatter are loaded at launch with the same priority as"
+  },
+  {
+    "claim": "To keep the file elsewhere, import it from CLAUDE.md with @path/to/file.",
+    "url": "https://code.claude.com/docs/en/memory",
+    "quote": "CLAUDE.md files can import additional files using @path/to/import syntax."
+  }
+]

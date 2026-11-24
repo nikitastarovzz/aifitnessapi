@@ -1,0 +1,222 @@
+{
+  "count": 979,
+  "next": "https://wger.de/api/v2/exerciseinfo/?format=json&limit=2&offset=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 9,
+      "uuid": "1b020b3a-3732-4c7e-92fd-a0cec90ed69b",
+      "created": "2023-08-06T10:17:17.422900+02:00",
+      "last_update": "2026-07-23T12:24:53.482746+02:00",
+      "last_update_global": "2026-10-24T16:00:18.357676+02:00",
+      "category": {
+        "id": 10,
+        "name": "Abs"
+      },
+      "muscles": [
+        {
+          "id": 11,
+          "name": "Biceps femoris",
+          "name_en": "Hamstrings",
+          "is_front": false,
+          "image_url_main": "https://wger.de/static/images/muscles/main/muscle-11.svg",
+          "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-11.svg"
+        },
+        {
+          "id": 8,
+          "name": "Gluteus maximus",
+          "name_en": "Glutes",
+          "is_front": false,
+          "image_url_main": "https://wger.de/static/images/muscles/main/muscle-8.svg",
+          "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-8.svg"
+        }
+      ],
+      "muscles_secondary": [
+        {
+          "id": 10,
+          "name": "Quadriceps femoris",
+          "name_en": "Quads",
+          "is_front": true,
+          "image_url_main": "https://wger.de/static/images/muscles/main/muscle-10.svg",
+          "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-10.svg"
+        },
+        {
+          "id": 6,
+          "name": "Rectus abdominis",
+          "name_en": "Abs",
+          "is_front": true,
+          "image_url_main": "https://wger.de/static/images/muscles/main/muscle-6.svg",
+          "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-6.svg"
+        }
+      ],
+      "equipment": [
+        {
+          "id": 10,
+          "name": "Kettlebell"
+        }
+      ],
+      "license": {
+        "id": 2,
+        "full_name": "Creative Commons Attribution Share Alike 4",
+        "short_name": "CC-BY-SA 4",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      "license_author": "deusinvictus",
+      "images": [],
+      "translations": [
+        {
+          "id": 345,
+          "uuid": "c788d643-150a-4ac7-97ef-84643c6419bf",
+          "name": "2 Handed Kettlebell Swing",
+          "exercise": 9,
+          "description": "<ol>\n<li>Stand with your feet slightly wider than shoulder-width, the kettlebell on the floor about 20-30 cm in front of your toes.</li>\n<li>Hinge at the hips with a slight bend in the knees and a flat back, and grip the handle with both hands.</li>\n<li>Hike the kettlebell back between your legs, then drive your hips forward explosively so that it swings forward and up to chest or shoulder height (Russian style, not overhead). Your arms stay straight and relaxed, the power comes from the hips.</li>\n<li>Let the kettlebell swing back down, hinge again as it passes between your legs and go straight into the next rep.</li>\n</ol>\n",
+          "description_source": "1. Stand with your feet slightly wider than shoulder-width, the kettlebell on the floor about 20-30 cm in front of your toes.\n2. Hinge at the hips with a slight bend in the knees and a flat back, and grip the handle with both hands.\n3. Hike the kettlebell back between your legs, then drive your hips forward explosively so that it swings forward and up to chest or shoulder height (Russian style, not overhead). Your arms stay straight and relaxed, the power comes from the hips.\n4. Let the kettlebell swing back down, hinge again as it passes between your legs and go straight into the next rep.",
+          "created": "2023-08-06T10:17:17.349574+02:00",
+          "language": 2,
+          "aliases": [],
+          "notes": [],
+          "license": 2,
+          "license_title": "",
+          "license_object_url": "",
+          "license_author": "deusinvictus",
+          "license_author_url": "",
+          "license_derivative_source_url": "",
+          "author_history": [
+            "deusinvictus"
+          ]
+        }
+      ],
+      "variation_group": "a30b1f92-7b73-477e-abb0-e91993c5fb05",
+      "videos": [],
+      "author_history": [
+        "deusinvictus"
+      ]
+    },
+    {
+      "id": 12,
+      "uuid": "53906cd1-61f1-4d56-ac60-e4fcc5824861",
+      "created": "2023-08-06T10:17:17.422900+02:00",
+      "last_update": "2026-10-31T00:06:27.328057+01:00",
+      "last_update_global": "2026-10-31T00:06:27.328057+01:00",
+      "category": {
+        "id": 9,
+        "name": "Legs"
+      },
+      "muscles": [
+        {
+          "id": 8,
+          "name": "Gluteus maximus",
+          "name_en": "Glutes",
+          "is_front": false,
+          "image_url_main": "https://wger.de/static/images/muscles/main/muscle-8.svg",
+          "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-8.svg"
+        }
+      ],
+      "muscles_secondary": [],
+      "equipment": [],
+      "license": {
+        "id": 1,
+        "full_name": " Creative Commons Attribution Share Alike 3",
+        "short_name": "CC-BY-SA 3",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      },
+      "license_author": "flori",
+      "images": [
+        {
+          "id": 570,
+          "uuid": "4a42cc6f-648d-40cc-a72a-c49dd47e1667",
+          "exercise": 12,
+          "exercise_uuid": "53906cd1-61f1-4d56-ac60-e4fcc5824861",
+          "image": "https://wger.de/media/exercise-images/12/4a42cc6f-648d-40cc-a72a-c49dd47e1667.webp",
+          "thumbnails": {
+            "small": "https://wger.de/media/exercise-images/12/4a42cc6f-648d-40cc-a72a-c49dd47e1667.webp.200x200_q85.png",
+            "medium": "https://wger.de/media/exercise-images/12/4a42cc6f-648d-40cc-a72a-c49dd47e1667.webp.400x400_q85.png"
+          },
+          "is_main": true,
+          "style": "4",
+          "license": 2,
+          "license_title": "",
+          "license_object_url": "",
+          "license_author": "",
+          "license_author_url": "",
+          "license_derivative_source_url": "",
+          "author_history": [],
+          "is_ai_generated": false
+        }
+      ],
+      "translations": [
+        {
+          "id": 174,
+          "uuid": "99881bdd-43d7-4c3b-82ed-9c187d0455b7",
+          "name": "Adduktoren-Maschine",
+          "exercise": 12,
+          "description": "<ul>\n<li>in eine aufrechte Position setzen, bei der die Beine hüftbreit geöffnet sind</li>\n<li>den Rücken, die Knie und die Oberschenkelaußenseite an die jeweiligen Polster pressen</li>\n<li>mit den Händen an den Griffen festhalten</li>\n<li>die Oberschenkel bis zum Anschlagpunkt der Hebelarme auseinander drücken</li>\n<li>danach die Beine wieder zusammen führen</li>\n<li>das Gesäß nicht vom Sitz abheben</li>\n<li>beim Auseinanderdrücken der Hebelarme aus- und beim Zusammenführen einatmen</li>\n</ul>\n",
+          "description_source": "* in eine aufrechte Position setzen, bei der die Beine hüftbreit geöffnet sind\n* den Rücken, die Knie und die Oberschenkelaußenseite an die jeweiligen Polster pressen\n* mit den Händen an den Griffen festhalten\n* die Oberschenkel bis zum Anschlagpunkt der Hebelarme auseinander drücken\n* danach die Beine wieder zusammen führen\n* das Gesäß nicht vom Sitz abheben\n* beim Auseinanderdrücken der Hebelarme aus- und beim Zusammenführen einatmen",
+          "created": "2023-08-06T10:17:17.349574+02:00",
+          "language": 1,
+          "aliases": [],
+          "notes": [],
+          "license": 1,
+          "license_title": "",
+          "license_object_url": "",
+          "license_author": "flori",
+          "license_author_url": "",
+          "license_derivative_source_url": "",
+          "author_history": [
+            "flori"
+          ]
+        },
+        {
+          "id": 377,
+          "uuid": "4b3025a9-b717-4577-9e92-b1c200fe5f1c",
+          "name": "Seated Hip Adduction",
+          "exercise": 12,
+          "description": "<p>Starting Position: Sit on the machine with your knees inward and against the pads. Pull the pin to release the pads. Grab the handles on the sides.b</p>\n",
+          "description_source": "Starting Position: Sit on the machine with your knees inward and against the pads. Pull the pin to release the pads. Grab the handles on the sides.b",
+          "created": "2023-08-06T10:17:17.349574+02:00",
+          "language": 2,
+          "aliases": [],
+          "notes": [],
+          "license": 1,
+          "license_title": "",
+          "license_object_url": "",
+          "license_author": "flori",
+          "license_author_url": "",
+          "license_derivative_source_url": "",
+          "author_history": [
+            "flori",
+            "Araaosf"
+          ]
+        }
+      ],
+      "variation_group": "0b2e6216-ddb3-48a7-8650-7856df0faa30",
+      "videos": [
+        {
+          "id": 74,
+          "uuid": "5148c579-5df2-4618-9a7b-a2e29ac4dd7d",
+          "exercise": 12,
+          "video": "https://wger.de/media/exercise-video/12/5148c579-5df2-4618-9a7b-a2e29ac4dd7d.MOV",
+          "is_main": false,
+          "size": 60138928,
+          "duration": "20.86",
+          "width": 1920,
+          "height": 1080,
+          "codec": "hevc",
+          "codec_long": "H.265 / HEVC (High Efficiency Video Coding)",
+          "license": 2,
+          "license_title": "",
+          "license_object_url": "",
+          "license_author": "Goulart",
+          "license_author_url": "",
+          "license_derivative_source_url": "",
+          "author_history": [
+            "Goulart"
+          ]
+        }
+      ],
+      "author_history": [
+        "flori"
+      ]
+    }
+  ]
+}

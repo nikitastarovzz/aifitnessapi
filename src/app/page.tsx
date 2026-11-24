@@ -114,7 +114,7 @@ const NEW_PAGES: { href: string; title: string; blurb: string }[] = [
   { href: "/tools/apple-health-explorer", title: "Apple Health export explorer", blurb: "Open your Health export.zip in the browser: record types, date ranges, sources, a daily chart and CSV per type. Nothing is uploaded." },
   { href: "/graveyard", title: "The Fitness API Graveyard", blurb: "Shut-down, dying and deprecated fitness and health APIs: end dates, replacements, each vendor's own words." },
   { href: "/tools/heart-rate-lab", title: "Bluetooth heart-rate lab", blurb: "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs." },
-  { href: "/challenge", title: "30-second webcam rep challenge", blurb: "A pose model in your browser counts your squats or jumping jacks live from your webcam; the video stays on your device." },
+  { href: "/challenge", title: "30-second webcam rep challenge", blurb: "A pose model in your browser counts squats, jumping jacks, push-ups and lunges, or times a plank, live from your webcam; the video stays on your device." },
   { href: "/daily", title: "Daily health-API developer puzzle", blurb: "Five questions a day from our HealthKit, Health Connect, Google Health API and pose-keypoint datasets." },
 ];
 

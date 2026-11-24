@@ -10,7 +10,9 @@ import { NextResponse, type NextRequest } from "next/server";
  * old bookmarks add) was a 404. Both now get a permanent redirect to the page
  * they plainly meant. The matcher keeps this off every other request: it runs
  * only for a path that has a capital letter or ends in .html, so normal
- * traffic never reaches it.
+ * traffic never reaches it. /kit/ is left out of the .html rule: it holds
+ * real static .html downloads (public/kit/rep-counter.html), which must be
+ * served as they are, not redirected to a page that does not exist.
  */
 export function proxy(request: NextRequest) {
   const url = request.nextUrl.clone();
@@ -24,5 +26,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/|api/)[^.]*[A-Z][^.]*)", "/((?!_next/|api/).*\\.[hH][tT][mM][lL])"],
+  matcher: ["/((?!_next/|api/)[^.]*[A-Z][^.]*)", "/((?!_next/|api/|kit/).*\\.[hH][tT][mM][lL])"],
 };

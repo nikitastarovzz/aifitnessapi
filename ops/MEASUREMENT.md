@@ -156,6 +156,8 @@ id is fixed in code, so no event carries a reader's answers, inputs or stack.
 | `share-build-plan-<target>` | `share-row` | `/tools/build-plan`, under the download buttons | the same |
 | `share-compliance-wizard-<target>` | `share-row` | `/tools/compliance-wizard`, under the download button | the same |
 | `share-api-coverage-matrix-<target>` | `share-row` | `/tools/api-coverage-matrix`, under the filters | the same |
+| `share-aggregator-bill-<target>` | `share-row` | `/tools/aggregator-chooser`, under the bill calculator's inputs (added 2026-11-24) | the same; the address hash (`#users=…&sources=…&months=…&billing=…`) carries the inputs and is not part of the event |
+| `share-privacy-labels-<target>` | `share-row` | `/tools/store-submission-checklist`, in the privacy label helper (added 2026-11-24) | the same; the address hash (`#labels=…`) carries the ticks and is not part of the event |
 
 `/my-stack` and `/answers-search` send no events of their own: the stack and
 the query stay in the browser. The `/my-stack` share card (drawn on a canvas
@@ -185,6 +187,62 @@ fixed id, never anything the reader writes in the issue.
 | id | source | Where | What the click is |
 |---|---|---|---|
 | `access-report-<vendor>`: `access-report-garmin`, `access-report-whoop`, `access-report-oura`, `access-report-strava`, `access-report-polar`, `access-report-coros`, `access-report-suunto`, `access-report-withings`, `access-report-fitbit`, `access-report-samsung-health`, `access-report-dexcom`, `access-report-wahoo` | `access-reports` | The "Report your application" button in the access-reports section (`components/AccessReports`) on each vendor's English `/integrate/<vendor>-api` page, and `access-report-garmin` also on `/fix/garmin-api-approval` | opening a new GitHub issue in the site's repository with the `[access-report]` title and the vendor filled in |
+
+Added 2026-11-24 (access scoreboard, share line, badges). The scoreboard's
+button and the per-report share row carry fixed ids only; the share text and
+link are built in code from the accepted report (`shareText`, `shareUrl` in
+`lib/accessReportSubmission.mjs`), never from anything the reader types. The
+pre-flight checklist (`components/AccessPreflight`) sends nothing: its
+checkboxes stay in the reader's localStorage.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `access-report-any` | `access-scoreboard` | The empty-state button of the access scoreboard (`components/AccessScoreboard`) on `/integrate`, shown while no report is accepted | opening a new GitHub issue with the `[access-report]` title and no vendor chosen |
+| `share-access-report-<vendor>-<target>`, e.g. `share-access-report-garmin-copy`, `share-access-report-garmin-linkedin` | `share-row` | The "Share" control on each accepted report's row in the access-reports section (`components/AccessReports`) | copying, or opening a compose page for, the vendor's panel (`<vendor page>#access-reports`) with a line describing that report |
+
+Added 2026-11-24 (Open Exercises dataset). Plain links with fixed ids; the
+normalizer's search box and the "Which ExerciseDB is this?" sniffer on
+`/pricing/exercise-database-api-pricing` carry no `data-cta` and send nothing,
+so what a reader types or pastes stays in the tab.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `open-exercises-json`, `open-exercises-csv`, `open-exercises-card` | `exercise-normalizer` | The "Normalize a gym-floor exercise name" section of `/tools/exercise-taxonomy-crosswalk` | a direct download of `/datasets/open-exercises-2026.json` or `.csv`, or opening its dataset card `.md` |
+
+Added 2026-11-24 (pose tools for the Pose Model Picker). Both are downloads
+of something made or published locally; the event carries only the fixed id,
+never the clip, its size or anything from the camera.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `pose-arena-download` | `pose-arena` | The download button that appears after "Record 5 seconds" in the pose arena on `/tools/pose-benchmark` (`components/tools/PoseArena`) | saving the clip the browser just recorded (a `blob:` URL); nothing is uploaded |
+| `kit-rep-counter` | `rep-counter-playground` | "Download rep-counter.html" in the one-file section of `/tools/rep-counter-playground` | a direct download of `/kit/rep-counter.html` |
+
+Added 2026-11-24 (Health-Store Engineer features). Plain `data-cta` elements
+counted by the delegated listener; none carries the code a reader pasted or
+the libraries they picked.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `code-rosetta-copy` | `identifier-translator` | The "Copy the output" button of the code translator on `/tools/identifier-translator#code` (`components/tools/CodeRosetta`) | copying the translated Swift or Kotlin (the click is counted; the code is not sent) |
+| `ai-rules-<topic>-<flavor>`: `<topic>` is `healthkit`, `health-connect` or `pose-keypoints`, `<flavor>` is `cursor`, `claude` or `copilot` | `developers-ai-rules` | The rule-pack table on `/developers#ai-rules` (`components/AiRulesDownloads`) | a direct download of `/kit/ai-rules/<topic>.mdc`, `<topic>.md` or `<topic>.instructions.md` |
+| `ai-rules-copy-cursor`, `ai-rules-copy-claude`, `ai-rules-copy-copilot` | `developers-ai-rules` | The copy button under each tool's install commands on `/developers#ai-rules` | copying the `curl` commands that install all three packs for that tool |
+
+The "Switching libraries?" picker on `/libraries/react-native`, `/flutter` and
+`/capacitor-cordova` (`components/LibrarySwitchPicker`) sends nothing: its
+links are plain navigation to this site's type pages and to GitHub.
+
+Added 2026-11-24 (fact cards, the built-with gallery and Challenge 2.0).
+Plain elements and share rows as above; every id is fixed in code, so no
+event carries a fact id, a quote, a project or a score.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `fact-share` | `key-facts` | The "Share this fact" button on each line of the "Key facts" block on English cluster pages (`components/FactShareLink`) | opening the share row for that fact; nothing is sent until a target is picked |
+| `fact-card-open` | `key-facts` | "Open its card", in that share row | a link to `/s?t=fact&id=<fact id>`, the noindex fact card |
+| `share-fact-<target>` | `share-row` | The share row under a key fact, and the one on the `/s?t=fact&…` page itself | copying, or opening a compose page for, the fact card's address |
+| `awesome-built-with-submit` | `awesome` | The "Submit your project" button in the "Built with these APIs" section of `/awesome` | opening a new GitHub issue from the `built-with.md` template in the site's repository |
+| `share-challenge-<target>` | `share-row` | The result of `/challenge`, under the score card | copying, or opening a compose page for, the "Beat my score" address (`/challenge?ex=<exercise>&beat=<score>`); the score is in the shared address, never in the event |
 
 ## UTM on links to the funder
 

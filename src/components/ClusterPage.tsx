@@ -16,7 +16,10 @@ import MetricFacts from "@/components/MetricFacts";
 import MetricPlatforms from "@/components/MetricPlatforms";
 import AccessReports from "@/components/AccessReports";
 import { vendorForPath } from "@/lib/accessReportSubmission.mjs";
+import AccessPreflight from "@/components/AccessPreflight";
+import { preflightFor } from "@/data/accessPreflight";
 import PoseModelFiles from "@/components/PoseModelFiles";
+import CameraAngleSection from "@/components/CameraAngleSection";
 import ContentLicences from "@/components/ContentLicences";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
@@ -412,6 +415,7 @@ export default function ClusterPage({
   const products = apisOnPage(basePath, entry.slug);
   const toolKey = TOOL_FOR_PATH[path];
   const accessVendor = tr ? null : vendorForPath(path);
+  const preflight = tr ? undefined : preflightFor(path);
   const tool = toolKey ? TOOLS[toolKey] : undefined;
   // /questions/<cluster> is generated for every populated cluster, and a spoke
   // rendering here means its cluster is populated. Counted exactly as that
@@ -742,12 +746,23 @@ export default function ClusterPage({
             vendor's English /integrate page and /fix/garmin-api-approval
             (lib/accessReportSubmission VENDORS). Never on a translation: it is
             English and outside the translated text. */}
+        {/* What a gated vendor's own pages say it requires before granting
+            access, quoted, with checkboxes kept in the reader's browser
+            (data/accessPreflight.ts). On the vendor's /fix/...-approval page
+            where one exists, else its /integrate page; English only. */}
+        {!tr && preflight && <AccessPreflight p={preflight} />}
+
         {!tr && accessVendor && <AccessReports vendor={accessVendor} />}
 
         {/* The Pose Landmarker .task files as a download measured them, from
             data/poseModelFiles.ts. Renders nothing off that one page, and is
             English-only: it is not part of the translatable body. */}
         {!tr && <PoseModelFiles path={path} />}
+
+        {/* The camera-angle simulator (geometry of a drawn figure, not a model
+            benchmark) on the pose-accuracy guide. Renders nothing elsewhere;
+            English only and outside the translatable body. */}
+        {!tr && <CameraAngleSection path={path} />}
 
         {/* "Can I ship it?": free tier, price and commercial terms per exercise
             or nutrition source, each cell linking its quoted source. English

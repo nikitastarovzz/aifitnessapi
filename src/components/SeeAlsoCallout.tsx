@@ -67,7 +67,7 @@ const MAP: Record<string, Pointer[]> = {
     },
     {
       ...CHALLENGE,
-      why: "Pose Landmarker lite running in your browser, counting squats or jumping jacks from your webcam for 30 seconds.",
+      why: "Pose Landmarker lite running in your browser, counting squats, jumping jacks, push-ups or lunges, or timing a plank, from your webcam.",
     },
     {
       ...GRAVEYARD,

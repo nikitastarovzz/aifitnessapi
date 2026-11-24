@@ -1,0 +1,58 @@
+{
+  "success": true,
+  "meta": {
+    "total": 1500,
+    "hasNextPage": true,
+    "hasPreviousPage": true,
+    "nextCursor": "0CXGHya",
+    "previousCursor": "0br45wL"
+  },
+  "data": [
+    {
+      "exerciseId": "0br45wL",
+      "name": "push-up inside leg kick",
+      "gifUrl": "https://static.exercisedb.dev/media/0br45wL.gif",
+      "bodyParts": [
+        "upper legs"
+      ],
+      "equipments": [
+        "bodyweight"
+      ],
+      "targetMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "quadriceps",
+        "hamstrings",
+        "calves",
+        "core"
+      ],
+      "instructions": [
+        "Step:1 Begin in a push-up position with your hands just beyond shoulder width and your feet together.",
+        "Step:2 Lower your body toward the ground by bending your elbows, with your spine steady and your core engaged."
+      ]
+    },
+    {
+      "exerciseId": "0CXGHya",
+      "name": "Cable Crossover",
+      "gifUrl": "https://static.exercisedb.dev/media/0CXGHya.gif",
+      "bodyParts": [
+        "chest"
+      ],
+      "equipments": [
+        "cable"
+      ],
+      "targetMuscles": [
+        "pectorals"
+      ],
+      "secondaryMuscles": [
+        "deltoids",
+        "triceps"
+      ],
+      "instructions": [
+        "Step:1 Set the cable pulleys to chest height.",
+        "Step:2 Take your place in the center of the cable machine with one foot in front of the other."
+      ]
+    }
+  ]
+}

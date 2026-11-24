@@ -7,6 +7,8 @@ import ClusterHero from "@/components/ClusterHero";
 import KinestexNote from "@/components/KinestexNote";
 import PoseBenchmark from "@/components/tools/PoseBenchmark";
 import PoseLeaderboard from "@/components/tools/PoseLeaderboard";
+import PoseArena from "@/components/tools/PoseArena";
+import { DRAW_SCORE_MIN, FRAME_H, FRAME_W, METER_FRAMES, RECORD_MS, bonesFor } from "@/lib/poseArena.mjs";
 import { POSE_SCHEMES, POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import {
   BENCH_MODELS,
@@ -72,6 +74,14 @@ const COCO_POINTS = coco?.points.length;
 
 const linkCls = "font-medium text-brand-600 hover:text-brand-500";
 
+// The arena's limb lines, as index pairs in each model's own scheme, read from
+// the keypoint dataset by point name (bonesFor throws on a missing name).
+if (!blazepose || !coco) throw new Error("pose-benchmark: blazepose-33 or coco-17 missing from the keypoint dataset");
+const ARENA_BONES = {
+  mediapipe: bonesFor(blazepose.points, "blazepose-33"),
+  movenet: bonesFor(coco.points, "coco-17"),
+};
+
 export default function PoseBenchmarkPage() {
   const jsonLd = toolGraph({
     path: PATH,
@@ -117,6 +127,34 @@ export default function PoseBenchmarkPage() {
         </section>
 
         <PoseLeaderboard />
+
+        <section id="arena" className="mt-14 scroll-mt-24">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Pose arena: both models on the same frames</h2>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            The arena runs one MediaPipe Pose Landmarker model and one MoveNet model side by side on your camera
+            or on a video file from your device. Each frame is drawn once into a single {FRAME_W}&times;{FRAME_H}{" "}
+            image and that same image goes to both models, so the two panels show what each model returns for
+            identical pixels: MediaPipe&rsquo;s landmarks in blue on the left, MoveNet&rsquo;s keypoints in orange
+            on the right. The lines join the same twelve limb joints in both and are this page&rsquo;s drawing; a
+            hollow dot is a keypoint the model scored below {DRAW_SCORE_MIN}, a cutoff chosen for the picture.
+          </p>
+          <div data-tool="pose-arena">
+            <PoseArena bones={ARENA_BONES} />
+          </div>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            Each panel&rsquo;s rate is 1,000 divided by that model&rsquo;s mean inference time over the last{" "}
+            {METER_FRAMES}{" "}frames: what the model alone could sustain on your device. The arena runs both models
+            on every frame, one after the other, so it redraws slower than either rate and the two compete for the
+            same processor. The benchmark above runs one model at a time and is the measurement to quote.
+          </p>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            <strong className="text-[var(--fg)]">Record {RECORD_MS / 1000}{" "}seconds</strong>{" "}saves the arena as a
+            video your browser makes (WebM where it can, MP4 otherwise) for you to download; nothing is uploaded.
+            The caption under the panels, with both model names, their rates and this page&rsquo;s address, is
+            drawn into every frame, so a clip you share says where it came from. If MoveNet&rsquo;s weights cannot
+            be downloaded from tfhub.dev, its panel says so and MediaPipe keeps running.
+          </p>
+        </section>
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">What it runs</h2>
@@ -273,9 +311,10 @@ export default function PoseBenchmarkPage() {
           <div className="mt-3 space-y-3 text-sm leading-relaxed text-[var(--muted)]">
             <p>
               Everything runs client-side. Camera frames go from your browser&rsquo;s video element
-              straight into the WebAssembly runtime and are never stored, sent or recorded; this site
-              has no server code behind this page and logs no event from it beyond its ordinary page
-              view. The network requests the page makes are the ones any app using the libraries makes:
+              straight into the WebAssembly runtime and are never stored or sent; the only recording is
+              the arena&rsquo;s, made in your browser when you press Record and kept there until you
+              download it. This site has no server code behind this page and logs no event from it
+              beyond its ordinary page view and a click on the arena&rsquo;s download button. The network requests the page makes are the ones any app using the libraries makes:
               the runtimes from cdn.jsdelivr.net, each MediaPipe model file from storage.googleapis.com
               and, only if you tick MoveNet, its weights from tfhub.dev (and any host that download is
               redirected to), so those hosts see an ordinary download.

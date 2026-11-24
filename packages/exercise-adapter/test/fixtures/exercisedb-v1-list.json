@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "meta": {
+    "total": 1500,
+    "hasNextPage": true,
+    "hasPreviousPage": false,
+    "nextCursor": "05Cf2v8"
+  },
+  "data": [
+    {
+      "exerciseId": "01qpYSe",
+      "name": "upward facing dog",
+      "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+      "bodyParts": [
+        "back"
+      ],
+      "equipments": [
+        "bodyweight"
+      ],
+      "targetMuscles": [
+        "erector spinae"
+      ],
+      "secondaryMuscles": [
+        "deltoids",
+        "pectorals"
+      ],
+      "instructions": [
+        "Step:1 Position yourself face down on the floor with your legs extended behind you.",
+        "Step:2 Set your hands on the floor next to your lower ribs, fingers pointing forward."
+      ]
+    },
+    {
+      "exerciseId": "03lzqwk",
+      "name": "assisted hanging knee raise",
+      "gifUrl": "https://static.exercisedb.dev/media/03lzqwk.gif",
+      "bodyParts": [
+        "waist"
+      ],
+      "equipments": [
+        "assisted"
+      ],
+      "targetMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "hip flexors"
+      ],
+      "instructions": [
+        "Step:1 Suspend yourself from a pull-up bar with your arms straight and your palms turned away from you.",
+        "Step:2 Brace your trunk muscles and lift your knees toward your chest, bending at the hips and knees."
+      ]
+    }
+  ]
+}
