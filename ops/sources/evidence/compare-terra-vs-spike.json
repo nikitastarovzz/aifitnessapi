@@ -273,5 +273,85 @@
     "claim": "FAQ: Spike's Enterprise plan is custom.",
     "url": "https://www.spikeapi.com/pricing",
     "quote": "Designed for enterprise scale"
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Every API call sends both as headers.",
+    "url": "https://docs.tryterra.co/reference",
+    "quote": "For the data APIs, send your developer ID and API key as headers on every request from your server:"
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: \"Never share your x-api-key publicly or embed it directly in client-side code (e.g., mobile apps, frontend JavaScript).\"",
+    "url": "https://docs.tryterra.co/introduction/account-setup-and-api-keys",
+    "quote": "Never share your x-api-key publicly or embed it directly in client-side code (e.g., mobile apps, frontend JavaScript)."
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Terra: a mobile SDK for Apple Health, Samsung Health and Health Connect.",
+    "url": "https://docs.tryterra.co/unified-api/getting-started",
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra."
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Terra recommends its official libraries over a manual check.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "We recommend that you use our official libraries to verify webhook event signatures."
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Terra: testing environments capped at 50 users.",
+    "url": "https://docs.tryterra.co/unified-api/understanding-terra-environments",
+    "quote": "Testing and staging each have a limit of 50 users."
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Terra data types from \"sleep stages and latency\" to \"per-set strength training\".",
+    "url": "https://tryterra.co/",
+    "quote": "That covers sleep stages and latency, workouts, heart rate, HRV, VO2max, blood oxygen (SpO2), continuous glucose monitoring (CGM), menstrual cycle, body composition and per-set strength training."
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Overwrite the stored day with the latest daily payload.",
+    "url": "https://docs.tryterra.co/introduction/core-concepts",
+    "quote": "daily and body payloads arrive several times a day. Each one holds the running total for that day so far, so overwrite the stored payload for that date with the latest one."
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: A resend can deliver an event you already processed, so deduplicate on the event's event_id.",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "Your server can receive the same event more than once, so deduplicate on event_id"
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Terra: lab testing in the US and UK.",
+    "url": "https://docs.tryterra.co/vantage-api/overview",
+    "quote": "Vantage API is Terra's diagnostics platform: order blood and DNA test kits, track fulfilment, and receive lab results in FHIR format through a single API."
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Terra sources list.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra connects to 500+ health data sources including wearables (Garmin, Fitbit, Apple Watch, Oura Ring, WHOOP, Polar, Samsung Health, Withings, Suunto, Wahoo), fitness apps (Strava, MyFitnessPal, Cronometer), blood testing providers, CGM devices, medical devices, and sensors."
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Capsule / aggregators / FAQ: Terra says Dexcom requires every company's own app.",
+    "url": "https://docs.tryterra.co/unified-api/dexcom",
+    "quote": "Dexcom requires every company to connect users through its own app on the Dexcom developer portal"
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Its webhook docs show Python, JavaScript and Java SDK versions.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Python SDK Javascript SDK Java SDK"
+  },
+  {
+    "claim": "Evaluating Terra on specific needs: Add-on prices: Lab Reports, Planned Workouts, Streaming, Health Scores, Graph API, Health Rewards.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "Lab Reports API $499/month + usage 100,000 Lab Reports credits a month Planned Workouts $99/month + usage 20,000 Planned Workouts credits a month Streaming API $99/month + usage 20,000 Streaming credits a month Health Scores $499/month 14-day free trial Graph API $50/month per 2 graphs"
+  },
+  {
+    "claim": "Evaluating Spike on specific needs: FAQ: Spike's docs point to its SDK for Apple Health, Health Connect and Samsung Health.",
+    "url": "https://docs.spikeapi.com/api-docs/provider_integration",
+    "quote": "Refer to SDK Documentation for Apple Health, Health Connect & Samsung Health Data integrations."
+  },
+  {
+    "claim": "Evaluating Spike on specific needs: EMR and EHR connections.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Integrate with major EMR & EHR systems"
+  },
+  {
+    "claim": "Evaluating Spike on specific needs: Spike clinical data.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to top providers and access clinical data — all through a single integration."
   }
 ]

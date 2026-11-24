@@ -156,6 +156,8 @@ id is fixed in code, so no event carries a reader's answers, inputs or stack.
 | `share-build-plan-<target>` | `share-row` | `/tools/build-plan`, under the download buttons | the same |
 | `share-compliance-wizard-<target>` | `share-row` | `/tools/compliance-wizard`, under the download button | the same |
 | `share-api-coverage-matrix-<target>` | `share-row` | `/tools/api-coverage-matrix`, under the filters | the same |
+| `share-aggregator-bill-<target>` | `share-row` | `/tools/aggregator-chooser`, under the bill calculator's inputs (added 2026-11-24) | the same; the address hash (`#users=…&sources=…&months=…&billing=…`) carries the inputs and is not part of the event |
+| `share-privacy-labels-<target>` | `share-row` | `/tools/store-submission-checklist`, in the privacy label helper (added 2026-11-24) | the same; the address hash (`#labels=…`) carries the ticks and is not part of the event |
 
 `/my-stack` and `/answers-search` send no events of their own: the stack and
 the query stay in the browser. The `/my-stack` share card (drawn on a canvas

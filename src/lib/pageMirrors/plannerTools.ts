@@ -2,7 +2,8 @@ import { BUILD_PLAN_PAGE, COMPLIANCE_WIZARD_PAGE, STORE_CHECKLIST_PAGE, segsMark
 import { site } from "@/lib/site";
 import { PLANNER_SOURCES, STORE_ITEMS } from "@/data/plannerSources.mjs";
 import { STORES, STORE_LABELS } from "@/lib/plannerLogic.mjs";
-import { interactiveNote, link, type MirrorDoc } from "./core";
+import { APPLE_URL, GOOGLE_URL, PRIVACY_HEADING, PRIVACY_ITEMS, PRIVACY_MAP_HEADING } from "@/data/privacyLabels.mjs";
+import { interactiveNote, link, table, type MirrorDoc } from "./core";
 
 /**
  * /tools/build-plan.md, /tools/store-submission-checklist.md and
@@ -44,6 +45,27 @@ export const storeChecklistMirror = () => {
     }
     items.push("");
   }
+  // The privacy label helper renders under the checklist: its prose and the
+  // full type map (the answers themselves depend on what the reader ticks).
+  const typeName = (t: { category: string; type: string }) => (t.category === t.type ? t.type : `${t.category} › ${t.type}`);
+  items.push(
+    `## ${PRIVACY_HEADING}`,
+    "",
+    `Tick the data your app handles and say how. The answers name the data types to declare in Apple's App Privacy section in App Store Connect and in Google Play's Data safety form, each with the platform's own wording, from ${link("Apple's App privacy details page", APPLE_URL)} and ${link("Google's Data safety help article", GOOGLE_URL)}, both read on November 24, 2026. Nothing you tick leaves this browser; the share link carries your ticks in the address.`,
+    "",
+    `This is a helper, not legal advice: the forms ask about your app and every SDK in it, and only you can answer for those. For the rules around the forms, see the ${link("health app privacy policy guide", "/compliance/health-app-privacy-policy")}, ${link("App Store health data rules", "/compliance/app-store-health-data-rules")}, ${link("Google Play health data policy", "/compliance/google-play-health-data-policy")} and the ${link("compliance wizard", "/tools/compliance-wizard")}.`,
+    "",
+    `### ${PRIVACY_MAP_HEADING}`,
+    "",
+    ...table(
+      ["Your app handles", "Apple App Privacy", "Google Play Data safety"],
+      PRIVACY_ITEMS.map((i) => [
+        i.label,
+        i.apple ? i.apple.map(typeName).join("; ") : "No type named",
+        i.google ? i.google.map(typeName).join("; ") : "No type named",
+      ]),
+    ),
+  );
   // After the interactive note, where the page's tool sits.
   doc.body.splice(2, 0, ...items);
   return doc;

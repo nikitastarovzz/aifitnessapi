@@ -308,5 +308,45 @@
     "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
     "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
+  },
+  {
+    "claim": "Evaluating Junction on specific needs: Sandbox and docs free.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "The sandbox and developer docs are free, so your team can build and test a full integration before committing to a plan."
+  },
+  {
+    "claim": "Evaluating Junction on specific needs: Docs: Demo Connections emit synthetic data.",
+    "url": "https://docs.junction.com/",
+    "quote": "emit synthetic data mimicking selected providers"
+  },
+  {
+    "claim": "Evaluating Junction on specific needs: Some providers need BYOO.",
+    "url": "https://docs.junction.com/wearables/connecting-providers/bring-your-own-oauth/overview",
+    "quote": "Some OAuth providers are unavailable unless you can Bring Your Own OAuth (BYOO)"
+  },
+  {
+    "claim": "Evaluating Junction on specific needs: Junction Sense.",
+    "url": "https://docs.junction.com/",
+    "quote": "Automatically transforms raw activity and biometric data from 300+ connected devices into structured, aggregated datasets that update as new data arrives."
+  },
+  {
+    "claim": "Evaluating Junction on specific needs: CLIA and CAP labs.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "We only work with CLIA and CAP certified labs."
+  },
+  {
+    "claim": "Evaluating Junction on specific needs: Minimum 250 kits.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Our current minimum order quantity is 250 kits"
+  },
+  {
+    "claim": "Evaluating Junction on specific needs: Doctor's order provided.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "We provide the doctor’s order for the test, but we do not currently offer physician consults or personal result interpretations."
+  },
+  {
+    "claim": "Evaluating Junction on specific needs: No upcharges on tests.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "There are no upcharges on the tests themselves."
   }
 ]
