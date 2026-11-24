@@ -35,6 +35,7 @@ import {
   COUNTDOWN_SECONDS as REP_COUNTDOWN_SECONDS,
   EXERCISES as REP_EXERCISES,
   MIN_HOLD_MS as REP_MIN_HOLD_MS,
+  PLANK as REP_PLANK,
   describeZone,
 } from "@/lib/repCounter.mjs";
 import { getAllPosts } from "@/lib/posts";
@@ -472,8 +473,10 @@ function toolLines(): string[] {
   {
     const sq = REP_EXERCISES.squat;
     const jj = REP_EXERCISES["jumping-jack"];
+    const pu = REP_EXERCISES["push-up"];
+    const lu = REP_EXERCISES.lunge;
     out.push(
-      `A browser game: pick squats or jumping jacks, a ${REP_COUNTDOWN_SECONDS}-second countdown, then ${REP_CHALLENGE_SECONDS} seconds counted live from the webcam by MediaPipe Pose Landmarker lite (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) and a two-phase state machine with hysteresis on one angle per frame, computed from the model's world landmarks. Squat: knee angle (hip-knee-ankle), a rep is ${describeZone(sq.active)} and back ${describeZone(sq.rest)}, the example definition the squat detection page reports from a 2026 study. Jumping jack: arm angle (hip-shoulder-wrist, both arms visible), ${describeZone(jj.active)} and back ${describeZone(jj.rest)}, the site's own uncalibrated choice. A zone must hold ${REP_MIN_HOLD_MS} ms; cycles faster than ${sq.minCycleMs} ms (squat) or ${jj.minCycleMs} ms (jumping jack) are rejected. The end screen draws a share card on a canvas and offers a one-line text result with pace squares per 5-second slice. It is a demo of the method, not a measurement, coaching or medical advice, and the count can be wrong. Frames never leave the tab and no scores are stored; the runtime posts its own usage report to Google (timings, no images).`,
+      `A browser game: pick squats, jumping jacks, push-ups or lunges, a ${REP_COUNTDOWN_SECONDS}-second countdown, then ${REP_CHALLENGE_SECONDS} seconds counted live from the webcam by MediaPipe Pose Landmarker lite (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) and a two-phase state machine with hysteresis on one angle per frame, computed from the model's world landmarks; or a plank, timed instead of counted. Squat: knee angle (hip-knee-ankle), a rep is ${describeZone(sq.active)} and back ${describeZone(sq.rest)}, the example definition the squat detection page reports from a 2026 study. Jumping jack: arm angle (hip-shoulder-wrist, both arms visible), ${describeZone(jj.active)} and back ${describeZone(jj.rest)}, the site's own uncalibrated choice. Push-up: elbow angle (shoulder-elbow-wrist), ${describeZone(pu.active)} and back ${describeZone(pu.rest)}, the defaults Ultralytics' open-source workout monitor ships, as the site's exercise form rules dataset records them. Lunge: knee angle, ${describeZone(lu.active)} and back ${describeZone(lu.rest)}, the site's own simple default. Plank: the hip angle between shoulder and ankle above ${REP_PLANK.STRAIGHT_MIN} degrees and the shoulder-to-ankle line within ${REP_PLANK.TILT_MAX} degrees of level, timed while it holds and ended after ${REP_PLANK.GRACE_MS / 1000} seconds out of position, up to ${REP_PLANK.MAX_SECONDS / 60} minutes; the site's own simple defaults. A zone must hold ${REP_MIN_HOLD_MS} ms; cycles faster than ${sq.minCycleMs} ms (squat), ${jj.minCycleMs} ms (jumping jack), ${pu.minCycleMs} ms (push-up) or ${lu.minCycleMs} ms (lunge) are rejected. The end screen draws a share card on a canvas and offers a one-line text result with pace squares per 5-second slice, and a link (/challenge?ex=<exercise>&beat=<score>) that opens the challenge showing the score to beat. It is a demo of the method, not a measurement, coaching or medical advice, and the count can be wrong. Frames never leave the tab and no scores are stored; the runtime posts its own usage report to Google (timings, no images).`,
     );
   }
   out.push("");

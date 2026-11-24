@@ -25,8 +25,10 @@
  * The thresholds are starting values, not calibrated ones. The squat values
  * are the example definition /motion/squat-detection-pose-estimation reports
  * from a 2026 study; the jumping-jack values are this site's own choice,
- * because the studies that page read give none. Both are stated as such on
- * the page.
+ * because the studies that page read give none; the push-up values are
+ * Ultralytics' defaults from the form-rules dataset (src/data/formRules.ts);
+ * the lunge and plank values are this site's own simple defaults, because no
+ * source in that dataset states one. Each is stated as such on the page.
  */
 
 /** BlazePose 33 indices (MediaPipe Pose Landmarker). The page checks these
@@ -83,7 +85,7 @@ export const COUNTDOWN_SECONDS = 3;
 /**
  * @typedef {{ below?: number, above?: number }} Zone
  * @typedef {{
- *   id: "squat" | "jumping-jack",
+ *   id: "squat" | "jumping-jack" | "push-up" | "lunge",
  *   label: string, noun: string, plural: string, emoji: string,
  *   angleName: string, vertex: string,
  *   sides: [number, number, number][],
@@ -96,7 +98,7 @@ export const COUNTDOWN_SECONDS = 3;
  * }} Exercise
  */
 
-/** @type {Record<"squat" | "jumping-jack", Exercise>} */
+/** @type {Record<"squat" | "jumping-jack" | "push-up" | "lunge", Exercise>} */
 export const EXERCISES = {
   squat: {
     id: "squat",
@@ -136,7 +138,247 @@ export const EXERCISES = {
     activeName: "arms up",
     minCycleMs: 300,
   },
+  // Push-ups: the elbow angle, with the two zone boundaries Ultralytics'
+  // AIGym ships as its defaults for push-ups — src/data/formRules.ts rows
+  // push-up-elbow-top-ultralytics ("up_angle: float = 145.0") and
+  // push-up-elbow-bottom-ultralytics ("down_angle: float = 90.0"), read from
+  // ultralytics/solutions/config.py on 2026-11-14. src/lib/challengePage.ts
+  // checks these two numbers against that dataset at build, so a regenerated
+  // rule that moves fails the build here. Ultralytics counts on reaching the
+  // bottom; this counter counts on the return to the top, like the others.
+  // minCycleMs is our own default.
+  "push-up": {
+    id: "push-up",
+    label: "Push-ups",
+    noun: "push-up",
+    plural: "push-ups",
+    emoji: "💪",
+    angleName: "elbow angle",
+    vertex: "shoulder, elbow and wrist",
+    sides: [
+      [L.LEFT_SHOULDER, L.LEFT_ELBOW, L.LEFT_WRIST],
+      [L.RIGHT_SHOULDER, L.RIGHT_ELBOW, L.RIGHT_WRIST],
+    ],
+    requireBothSides: false,
+    rest: { above: 145 },
+    active: { below: 90 },
+    restName: "arms extended",
+    activeName: "chest down",
+    minCycleMs: 600,
+  },
+  // Lunges: the knee angle, like squats. No licensed source the site read
+  // states a lunge rep-count angle (src/data/formRules.ts row
+  // lunge-rep-count-null), so both boundaries and minCycleMs are our own
+  // simple defaults. The bottom zone sits inside the 60–125° range the
+  // Exercise-Correction project accepts for each knee at the bottom of a lunge
+  // (row lunge-knee-bottom-range-exercise-correction,
+  // "KNEE_ANGLE_THRESHOLD = [60, 125]"), which is a form check, not a counting
+  // rule.
+  lunge: {
+    id: "lunge",
+    label: "Lunges",
+    noun: "lunge",
+    plural: "lunges",
+    emoji: "🦿",
+    angleName: "knee angle",
+    vertex: "hip, knee and ankle",
+    sides: [
+      [L.LEFT_HIP, L.LEFT_KNEE, L.LEFT_ANKLE],
+      [L.RIGHT_HIP, L.RIGHT_KNEE, L.RIGHT_ANKLE],
+    ],
+    requireBothSides: false,
+    rest: { above: 160 },
+    active: { below: 110 },
+    restName: "standing",
+    activeName: "lunge bottom",
+    minCycleMs: 800,
+  },
 };
+
+/**
+ * The plank hold. No licensed source the site read states a plank angle or a
+ * hold time (src/data/formRules.ts row plank-hold-null), so every number here
+ * is our own simple default, labelled as such on the page:
+ *
+ *  - straight body: the angle at the hip between shoulder and ankle is above
+ *    STRAIGHT_MIN, on at least one side the camera can see;
+ *  - horizontal: the line from the shoulders to the ankles is within TILT_MAX
+ *    of horizontal in the image (x scaled by the frame's aspect), so standing
+ *    up straight is not a plank;
+ *  - the hold starts once that has held for ENTER_MS, pauses when it fails,
+ *    and ends when it has failed for GRACE_MS in a row, or at MAX_SECONDS.
+ *    Time spent out of position is not counted.
+ */
+export const PLANK = {
+  id: "plank",
+  label: "Plank hold",
+  noun: "second",
+  plural: "seconds",
+  emoji: "🧱",
+  STRAIGHT_MIN: 160,
+  TILT_MAX: 30,
+  ENTER_MS: 300,
+  GRACE_MS: 1500,
+  MAX_SECONDS: 300,
+  /** Go, then this long to get into position before the round ends at 0. */
+  START_WINDOW_MS: 30000,
+  sides: [
+    [L.LEFT_SHOULDER, L.LEFT_HIP, L.LEFT_ANKLE],
+    [L.RIGHT_SHOULDER, L.RIGHT_HIP, L.RIGHT_ANKLE],
+  ],
+};
+
+/**
+ * One frame's plank reading: the body-line angle (average of the visible
+ * sides, from world landmarks when given), the tilt of the shoulder-to-ankle
+ * line from horizontal (from image landmarks), and whether both pass. Null
+ * fields when the body is not visible enough.
+ */
+/**
+ * @param {{ x: number, y: number, z?: number, visibility?: number }[] | null | undefined} image
+ * @param {{ x: number, y: number, z?: number }[] | null | undefined} world
+ * @param {number} [aspect]
+ * @returns {{ line: number | null, tilt: number | null, ok: boolean | null }}
+ */
+export function plankReading(image, world, aspect = 1) {
+  if (!image) return { line: null, tilt: null, ok: null };
+  const pts = world && world.length === image.length ? world : image.map((p) => ({ x: p.x * aspect, y: p.y, z: 0 }));
+  const lines = [];
+  const tilts = [];
+  for (const [s, h, a] of PLANK.sides) {
+    const seen = [s, h, a].every((i) => image[i] && (image[i].visibility ?? 1) >= VISIBILITY_MIN);
+    if (!seen) continue;
+    const deg = jointAngle(pts[s], pts[h], pts[a]);
+    if (deg === null) continue;
+    lines.push(deg);
+    const dx = (image[a].x - image[s].x) * aspect;
+    const dy = image[a].y - image[s].y;
+    tilts.push((Math.atan2(Math.abs(dy), Math.abs(dx)) * 180) / Math.PI);
+  }
+  if (lines.length === 0) return { line: null, tilt: null, ok: null };
+  const line = lines.reduce((x, y) => x + y, 0) / lines.length;
+  const tilt = tilts.reduce((x, y) => x + y, 0) / tilts.length;
+  return { line, tilt, ok: line > PLANK.STRAIGHT_MIN && tilt <= PLANK.TILT_MAX };
+}
+
+/**
+ * @typedef {{
+ *   phase: "waiting" | "holding" | "paused" | "over",
+ *   startedAt: number | null,
+ *   lastT: number | null,
+ *   okFor: number,
+ *   badFor: number,
+ *   heldMs: number,
+ *   breaks: number,
+ *   event: null | "start" | "pause" | "resume" | "over",
+ * }} HoldState
+ */
+
+/**
+ * @param {number | null} [startedAt]
+ * @returns {HoldState}
+ */
+export function createHold(startedAt = null) {
+  return { phase: "waiting", startedAt, lastT: null, okFor: 0, badFor: 0, heldMs: 0, breaks: 0, event: null };
+}
+
+/**
+ * Feed one frame of the plank hold: `ok` is plankReading().ok (null for no
+ * reading, which counts as out of position), `t` the frame time in ms.
+ * `startedAt` (set by createHold) is the moment Go ended the countdown.
+ *
+ * @param {HoldState} s
+ * @param {boolean | null} ok
+ * @param {number} t
+ * @returns {HoldState}
+ */
+export function stepHold(s, ok, t) {
+  if (s.phase === "over") return { ...s, event: null };
+  const dt = s.lastT === null ? FIRST_DT : Math.min(MAX_DT, Math.max(1, t - s.lastT));
+  const good = ok === true;
+  const base = { ...s, lastT: t, event: null };
+  const start = s.startedAt ?? t;
+  if (s.phase === "waiting") {
+    if (t - start >= PLANK.START_WINDOW_MS) return { ...base, phase: "over", event: "over" };
+    const okFor = good ? s.okFor + dt : 0;
+    if (okFor >= PLANK.ENTER_MS) return { ...base, okFor: 0, badFor: 0, phase: "holding", event: "start" };
+    return { ...base, okFor };
+  }
+  let next;
+  if (good) {
+    next = { ...base, badFor: 0, heldMs: s.heldMs + dt, phase: "holding", event: s.phase === "paused" ? "resume" : null };
+  } else {
+    const badFor = s.badFor + dt;
+    if (badFor >= PLANK.GRACE_MS) return { ...base, badFor, phase: "over", event: "over" };
+    next = { ...base, badFor, phase: "paused", breaks: s.phase === "holding" ? s.breaks + 1 : s.breaks, event: s.phase === "holding" ? "pause" : null };
+  }
+  if (next.heldMs >= PLANK.MAX_SECONDS * 1000) return { ...next, heldMs: PLANK.MAX_SECONDS * 1000, phase: "over", event: "over" };
+  return next;
+}
+
+/** Whole seconds held. */
+export const heldSeconds = (s) => Math.floor(s.heldMs / 1000);
+
+/**
+ * Every challenge the page offers, in the order it lists them, with the
+ * address slug a "Beat my score" link carries (/challenge?ex=<slug>&beat=<n>).
+ */
+export const CHALLENGES = [
+  { id: "squat", slug: "squats", kind: "reps" },
+  { id: "jumping-jack", slug: "jumping-jacks", kind: "reps" },
+  { id: "push-up", slug: "pushups", kind: "reps" },
+  { id: "lunge", slug: "lunges", kind: "reps" },
+  { id: "plank", slug: "plank", kind: "hold" },
+];
+/** The highest score a link may carry: reps in 30 seconds, or plank seconds. */
+export const BEAT_MAX = { reps: 200, hold: PLANK.MAX_SECONDS };
+
+/**
+ * Read a "Beat my score" link's query string. Returns { id, slug, kind,
+ * beat } for a known exercise slug and a whole-number score from 1 to the
+ * kind's BEAT_MAX, { id, slug, kind, beat: null } for a known slug alone, and
+ * null for anything else. Nothing else from the address is used, so no free
+ * text reaches the page.
+ */
+export function parseChallengeLink(search) {
+  let q;
+  try {
+    q = new URLSearchParams(typeof search === "string" ? search : "");
+  } catch {
+    return null;
+  }
+  const exs = q.getAll("ex");
+  if (exs.length !== 1) return null;
+  const c = CHALLENGES.find((x) => x.slug === exs[0]);
+  if (!c) return null;
+  const beats = q.getAll("beat");
+  if (beats.length === 0) return { ...c, beat: null };
+  if (beats.length !== 1 || !/^[1-9]\d{0,3}$/.test(beats[0])) return { ...c, beat: null };
+  const beat = Number(beats[0]);
+  if (beat > BEAT_MAX[c.kind]) return { ...c, beat: null };
+  return { ...c, beat };
+}
+
+/** The "Beat my score" address for a result; a score of 0 carries no `beat`. */
+export function challengeLink(id, score, base = "https://aifitnessapi.com/challenge") {
+  const c = CHALLENGES.find((x) => x.id === id);
+  if (!c) throw new Error(`challengeLink: unknown exercise ${id}`);
+  const n = Number.isInteger(score) && score > 0 ? Math.min(score, BEAT_MAX[c.kind]) : 0;
+  return n ? `${base}?ex=${c.slug}&beat=${n}` : `${base}?ex=${c.slug}`;
+}
+
+/** "Beat 17 push-ups", "Beat a 42-second plank". */
+export function beatLine(id, beat) {
+  if (id === "plank") return `Beat a ${beat}-second plank`;
+  const ex = EXERCISES[id];
+  if (!ex) throw new Error(`beatLine: unknown exercise ${id}`);
+  return `Beat ${beat} ${beat === 1 ? ex.noun : ex.plural}`;
+}
+
+/** The copyable plank result. */
+export function plankShareLine({ seconds, url = "aifitnessapi.com/challenge" }) {
+  return `${PLANK.emoji} Plank challenge: held ${seconds} ${seconds === 1 ? "second" : "seconds"} ${url}`;
+}
 
 /** Angle at b between the rays b→a and b→c, in degrees (0–180). atan2 of the
  *  cross and dot products stays accurate near 0 and 180, where acos does not. */

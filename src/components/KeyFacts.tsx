@@ -1,5 +1,7 @@
 import type { KeyFact } from "@/lib/keyFacts";
 import { PT_UI } from "@/lib/translations";
+import FactShareLink from "@/components/FactShareLink";
+import { factCardText } from "@/lib/factCardCore.mjs";
 
 /**
  * The "Key facts" block under a money page's answer capsule. Facts come from
@@ -50,6 +52,8 @@ export default function KeyFacts({
                 {f.host}
               </a>
             </span>
+            {/* After the source link: qa reads the first link in a line as its source. */}
+            {!pt && <FactShareLink id={f.id} text={factCardText({ quote: f.quote, host: f.host, checked: null, pageTitle: "" }).shareText} />}
           </li>
         ))}
       </ul>

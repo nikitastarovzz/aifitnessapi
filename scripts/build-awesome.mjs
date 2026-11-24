@@ -8,7 +8,8 @@
  * Reads the same modules the /awesome page reads, through Node's type
  * stripping (each has no imports): src/data/costModel.ts (the directory,
  * minus the EXCLUDED ids src/data/apis.ts declares), src/data/libraries.ts,
- * src/data/mcpHealthServers.ts and src/lib/toolRegistry.ts; plus the
+ * src/data/mcpHealthServers.ts, src/lib/toolRegistry.ts and
+ * src/data/builtWith.ts (scripts/import-built-with.mjs); plus the
  * dataset files in public/datasets and the library group labels in
  * src/data/librariesEditorial.ts (read as text: that module imports through
  * the "@/" alias, which plain Node cannot resolve). src/lib/awesomeList.mjs
@@ -23,6 +24,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { awesomeMarkdown, awesomeModel } from "../src/lib/awesomeList.mjs";
+import { TEMPLATE_URL as BUILT_WITH_SUBMIT_URL } from "../src/lib/builtWithSubmission.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "AWESOME.md");
@@ -64,11 +66,12 @@ export function datasets(root = ROOT) {
 }
 
 export async function model() {
-  const [{ COST_ITEMS, CATEGORY_ORDER, CATEGORY_LABELS, DEV_COST_LABELS }, { LIBRARIES, LIBRARIES_FETCHED_ON }, mcp, { ALL_TOOLS }] = await Promise.all([
+  const [{ COST_ITEMS, CATEGORY_ORDER, CATEGORY_LABELS, DEV_COST_LABELS }, { LIBRARIES, LIBRARIES_FETCHED_ON }, mcp, { ALL_TOOLS }, { BUILT_WITH }] = await Promise.all([
     imp("src/data/costModel.ts"),
     imp("src/data/libraries.ts"),
     imp("src/data/mcpHealthServers.ts"),
     imp("src/lib/toolRegistry.ts"),
+    imp("src/data/builtWith.ts"),
   ]);
   const excluded = excludedApiIds();
   return awesomeModel({
@@ -85,6 +88,7 @@ export async function model() {
     mcpFetchedOn: mcp.MCP_SERVERS_FETCHED_ON,
     datasets: datasets(),
     tools: ALL_TOOLS,
+    builtWith: { projects: BUILT_WITH, submitUrl: BUILT_WITH_SUBMIT_URL },
   });
 }
 
