@@ -148,7 +148,7 @@
   {
     "claim": "Google's pages give November 2, 2026 as the legacy Fitbit Web API's turn-off.",
     "url": "https://developers.google.com/health/about?hl=en",
-    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints were turned off and no longer function or sync data to or from Google Health users."
   },
   {
     "claim": "Google says existing access and refresh tokens cannot be transferred, so users re-consent.",

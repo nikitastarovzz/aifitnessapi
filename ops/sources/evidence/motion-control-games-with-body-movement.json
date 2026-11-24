@@ -1,0 +1,132 @@
+[
+  {
+    "claim": "Answer and pipeline: Google documents MediaPipe Pose Landmarker as tracking 33 3D full-body landmarks; its demo tracks 33 3D full-body skeletal landmarks.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "quote": "Track 33 3D full-body skeletal landmarks in image, video, or camera streams."
+  },
+  {
+    "claim": "Google's Pose Landmarker page describes a task that detects landmarks of human bodies in an image or video.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "quote": "The MediaPipe Pose Landmarker task lets you detect landmarks of human bodies in an image or video."
+  },
+  {
+    "claim": "It outputs them in image coordinates and in 3-dimensional world coordinates.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "quote": "The task outputs body pose landmarks in image coordinates and in 3-dimensional world coordinates."
+  },
+  {
+    "claim": "IMAGE is a stateless call on each still image.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "quote": "Synchronous call on independent still images."
+  },
+  {
+    "claim": "VIDEO processes every decoded frame in order and never drops one.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "quote": "Processes every frame in order and never drops frames."
+  },
+  {
+    "claim": "Android's LIVE_STREAM mode runs asynchronously and automatically drops incoming frames when busy so results stay current with low latency.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "quote": "Automatically drops incoming frames when busy so results stay current with low latency."
+  },
+  {
+    "claim": "On the web, Google pairs VIDEO mode with requestAnimationFrame so each paint inspects only the latest camera frame.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "quote": "so each paint inspects only the latest camera frame"
+  },
+  {
+    "claim": "Appromove's itch.io listing describes a downloadable motion-detection app for Windows.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "A downloadable motion-detection for Windows"
+  },
+  {
+    "claim": "It turns a webcam into a game controller using real-time computer vision.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "Appromove turns your webcam into a game controller using real-time computer vision"
+  },
+  {
+    "claim": "It lists hand gesture detection (fist, open palm, point up).",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "fist, open palm, point up"
+  },
+  {
+    "claim": "A body pose mode it calls VR Mode (jump, crouch, raise arms).",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "jump, crouch, raise arms"
+  },
+  {
+    "claim": "Motion detection that maps movement to any key.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "maps movement to any key"
+  },
+  {
+    "claim": "Custom profiles for each game.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "Custom profiles for each game"
+  },
+  {
+    "claim": "A real-time overlay with an F6 hotkey toggle.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "Real-time overlay + hotkey toggle (F6)"
+  },
+  {
+    "claim": "It calls itself compatible with any keyboard-based game and names Minecraft, Skyrim, Roblox, Fortnite, GTA V, Terraria and Among Us.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "Compatible with any keyboard-based game: Minecraft, Skyrim, Roblox, Fortnite, GTA V, Terraria, Among Us and more."
+  },
+  {
+    "claim": "Its stated requirements are Windows 10 or later and any webcam.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "Requirements: Windows 10+, any webcam."
+  },
+  {
+    "claim": "It says the app runs on the PC and the camera image never leaves it.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "Appromove runs on your PC: your camera image never leaves it."
+  },
+  {
+    "claim": "The listing's details table gives the status as In development.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "In development"
+  },
+  {
+    "claim": "The installer on offer was Appromove_Setup_0.23.4.exe.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "Appromove_Setup_0.23.4.exe"
+  },
+  {
+    "claim": "The listing warns that Windows may show a \"Windows protected your PC\" screen when the installer opens.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "When you open the installer, Windows may show \"Windows protected your PC\"."
+  },
+  {
+    "claim": "It puts that down to the app having no paid certificate.",
+    "url": "https://appromove.itch.io/appromove",
+    "quote": "This is normal for new indie apps without a paid certificate."
+  },
+  {
+    "claim": "Rockstar's Grand Theft Auto VI page reads \"Grand Theft Auto VI Out Now\".",
+    "url": "https://www.rockstargames.com/VI",
+    "quote": "Grand Theft Auto VI Out Now"
+  },
+  {
+    "claim": "It offers the game for PlayStation 5 and Xbox Series X|S.",
+    "url": "https://www.rockstargames.com/VI",
+    "quote": "Xbox Series X|S"
+  },
+  {
+    "claim": "Rockstar's Business Wire release of November 19, 2026 says it is now available on those two consoles.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "is proud to announce that Grand Theft Auto VI is now available for the PlayStation"
+  },
+  {
+    "claim": "Rockstar's Business Wire release of November 19, 2026 says it is now available on those two consoles.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "Xbox Series X|S games and entertainment system"
+  },
+  {
+    "claim": "Rockstar's Business Wire release of November 19, 2026.",
+    "url": "https://finviz.com/news/425095/rockstar-games-announces-grand-theft-auto-vi-now-available",
+    "quote": "November 19, 2026"
+  }
+]

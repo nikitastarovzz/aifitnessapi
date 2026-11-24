@@ -69,6 +69,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "notification-fatigue-and-optout",
     ],
   },
+  {
+    title: "What games get right",
+    blurb: "GTA 6's fitness system read as app design, and the same stats built from real workout data.",
+    slugs: ["gta-6-fitness-system", "rpg-stats-from-health-data"],
+  },
 ];
 
 const FAQS = [

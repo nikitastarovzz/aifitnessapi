@@ -8,7 +8,7 @@
  * posts and translations: the commit that added the file; generated
  * sections: the commit that added the route, or the item to the data file if
  * that came later). Keyed by URL path without the leading slash.
- * 596 rows.
+ * 603 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -247,10 +247,13 @@ export const PUBLISHED: Record<string, string> = {
   "devices/bluetooth-heart-rate-monitor": "2026-08-15",
   "devices/cycling-sensors-power-cadence": "2026-08-15",
   "devices/ftms-fitness-machine-service": "2026-08-15",
+  "devices/heart-rate-api-for-games": "2026-11-21",
+  "devices/heart-rate-overlay-for-streaming": "2026-11-21",
   "devices/indoor-bike-trainer-integration": "2026-08-15",
   "devices/ios-ble-fitness-devices": "2026-08-15",
   "devices/rowing-machine-data": "2026-08-15",
   "devices/testing-ble-fitness-devices": "2026-08-15",
+  "devices/track-gaming-session-apple-watch": "2026-11-21",
   "devices/treadmill-app-integration": "2026-08-15",
   "devices/wear-os-health-services": "2026-08-15",
   "devices/web-bluetooth-fitness": "2026-08-15",
@@ -262,11 +265,13 @@ export const PUBLISHED: Record<string, string> = {
   "engagement/engagement-metrics-that-matter": "2026-08-22",
   "engagement/engagement-sdks-compared": "2026-08-22",
   "engagement/gamification-in-fitness-apps": "2026-08-22",
+  "engagement/gta-6-fitness-system": "2026-11-21",
   "engagement/leaderboards-and-challenges": "2026-08-22",
   "engagement/live-activities-workout-tracking": "2026-08-22",
   "engagement/measuring-retention-fitness-app": "2026-08-22",
   "engagement/notification-fatigue-and-optout": "2026-08-22",
   "engagement/push-notifications-fitness-app": "2026-08-22",
+  "engagement/rpg-stats-from-health-data": "2026-11-21",
   "engagement/social-features-fitness-app": "2026-08-22",
   "engagement/streaks-and-habit-loops": "2026-08-22",
   "engagement/wear-os-ongoing-activity": "2026-08-22",
@@ -497,7 +502,9 @@ export const PUBLISHED: Record<string, string> = {
   "motion/apple-vision-body-pose": "2026-08-02",
   "motion/bicep-curl-counter-pose-estimation": "2026-10-18",
   "motion/build-vs-buy-ai-motion-tracking": "2026-07-25",
+  "motion/control-games-with-body-movement": "2026-11-21",
   "motion/deadlift-pose-estimation": "2026-10-18",
+  "motion/gta-6-gym-exercises-real-life": "2026-11-21",
   "motion/how-form-feedback-works": "2026-07-25",
   "motion/how-rep-counting-works": "2026-07-25",
   "motion/jumping-jack-counter-pose-estimation": "2026-10-18",

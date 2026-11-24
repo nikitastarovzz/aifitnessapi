@@ -58,7 +58,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "The watch as a sensor",
     blurb: "Live workout data from the wrist — a session on watchOS, a platform service on Wear OS.",
-    slugs: ["apple-watch-live-heart-rate", "wear-os-health-services"],
+    slugs: ["apple-watch-live-heart-rate", "wear-os-health-services", "track-gaming-session-apple-watch"],
+  },
+  {
+    title: "Heart rate on stream and in games",
+    blurb: "Live heart rate in an overlay or a game: the hosted services, their APIs, and the direct Bluetooth path.",
+    slugs: ["heart-rate-overlay-for-streaming", "heart-rate-api-for-games"],
   },
   {
     title: "Protocols, platforms, and proof",

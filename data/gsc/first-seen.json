@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-20",
+  "asOf": "2026-11-23",
   "firstSeen": {
     "/": "2026-07-08",
     "/about": "2026-07-12",
@@ -83,6 +83,7 @@
     "/architecture/time-series-storage": "2026-08-04",
     "/architecture/timezones-and-day-boundaries": "2026-08-04",
     "/architecture/webhook-ingestion": "2026-08-02",
+    "/atlas": "2026-11-22",
     "/audio-coaching": "2026-10-05",
     "/audio-coaching/android-audio-focus-may-duck": "2026-10-08",
     "/audio-coaching/audio-interruptions-during-workout-ios": "2026-10-08",
@@ -565,6 +566,7 @@
     "/healthkit-versions/ios-11": "2026-10-06",
     "/healthkit-versions/ios-12": "2026-10-26",
     "/healthkit-versions/ios-13": "2026-10-06",
+    "/healthkit-versions/ios-15": "2026-11-21",
     "/healthkit-versions/ios-16": "2026-10-06",
     "/healthkit-versions/ios-17": "2026-10-08",
     "/healthkit-versions/ios-18": "2026-10-07",
@@ -767,8 +769,10 @@
     "/tools/permission-builder": "2026-10-07",
     "/tools/pose-benchmark": "2026-11-02",
     "/tools/query-generator": "2026-10-06",
+    "/tools/rate-limit-calculator": "2026-11-21",
     "/tools/sample-data": "2026-11-02",
     "/tools/stack-generator": "2026-10-16",
+    "/tools/step-lab": "2026-11-23",
     "/watch-apps": "2026-10-08",
     "/watch-apps/apple-watch-background-execution": "2026-08-31",
     "/watch-apps/healthkit-on-apple-watch": "2026-08-30",
