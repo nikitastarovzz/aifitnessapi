@@ -1,5 +1,22 @@
 import { ACCESS_REPORTS, ACCESS_REPORTS_IMPORTED_ON, type AccessReport } from "@/data/accessReports";
-import { ACCEPT_LABEL, MEDIAN_MIN, OUTCOMES, REPO, REPO_URL, buildIssueUrl, summarize, vendorBySlug } from "@/lib/accessReportSubmission.mjs";
+import ShareRow from "@/components/ShareRow";
+import {
+  ACCEPT_LABEL,
+  MEDIAN_MIN,
+  OUTCOMES,
+  REPO,
+  REPO_URL,
+  accessBadge,
+  accessBadgeAlt,
+  accessBadgePath,
+  buildIssueUrl,
+  shareText,
+  shareUrl,
+  summarize,
+  vendorBySlug,
+} from "@/lib/accessReportSubmission.mjs";
+import { badgeAlt, badgeMarkdown } from "@/lib/statusBadges.mjs";
+import { site } from "@/lib/site";
 
 /**
  * "Access reports" on a vendor's English /integrate page (and on
@@ -12,6 +29,11 @@ import { ACCEPT_LABEL, MEDIAN_MIN, OUTCOMES, REPO, REPO_URL, buildIssueUrl, summ
  * once MEDIAN_MIN reports give a number of days. With no accepted report the
  * section says so and offers the prefilled issue: no figure is shown for it.
  * ClusterPage renders it on English pages only, never on a translation.
+ *
+ * Each row has a Share action (components/ShareRow, plain compose links) with
+ * a line that describes the report, not the reader (shareText), and the
+ * section ends with the vendor's README badge, public/badges/access/<vendor>.svg,
+ * which the importer redraws from the same rows.
  */
 
 const OUTCOME_LABEL: Record<AccessReport["outcome"], string> = {
@@ -29,6 +51,8 @@ export default function AccessReports({ vendor }: { vendor: string }) {
   const s = summarize(reports);
   const href = buildIssueUrl({ vendor });
   const days = (n: number) => `${n} ${n === 1 ? "day" : "days"}`;
+  const badgePath = accessBadgePath(vendor);
+  const badge = accessBadge(v.name, s);
 
   const button = (
     <a
@@ -77,14 +101,15 @@ export default function AccessReports({ vendor }: { vendor: string }) {
               : ` A median time to a first answer is shown once ${MEDIAN_MIN} reports give one (${s.withDays} so far).`}
           </p>
           <div className="mt-3 overflow-x-auto">
-            <table className="w-full min-w-[520px] text-left text-sm">
+            <table className="w-full min-w-[580px] text-left text-sm">
               <thead className="text-xs uppercase tracking-wider text-[var(--muted)]">
                 <tr>
                   <th className="py-2 pr-3">Applied</th>
                   <th className="py-2 pr-3">Use</th>
                   <th className="py-2 pr-3">Outcome</th>
                   <th className="py-2 pr-3 text-right">Days to first answer</th>
-                  <th className="py-2">Report</th>
+                  <th className="py-2 pr-3">Report</th>
+                  <th className="py-2">Share</th>
                 </tr>
               </thead>
               <tbody>
@@ -94,10 +119,21 @@ export default function AccessReports({ vendor }: { vendor: string }) {
                     <td className="py-2 pr-3">{r.use}</td>
                     <td className="py-2 pr-3">{OUTCOME_LABEL[r.outcome]}</td>
                     <td className="py-2 pr-3 text-right font-mono">{r.daysToFirstAnswer === null ? "—" : r.daysToFirstAnswer}</td>
-                    <td className="py-2">
+                    <td className="py-2 pr-3">
                       <a href={r.issueUrl} className={linkCls} rel="noopener">
                         #{r.issue}
                       </a>
+                    </td>
+                    <td className="py-2 align-top">
+                      <details data-access-report-share={r.issue}>
+                        <summary className={`cursor-pointer ${linkCls}`}>Share</summary>
+                        <ShareRow
+                          place={`access-report-${vendor}`}
+                          label={`Share report #${r.issue}`}
+                          text={shareText(r)}
+                          url={shareUrl(r, site.url)}
+                        />
+                      </details>
                     </td>
                   </tr>
                 ))}
@@ -115,6 +151,22 @@ export default function AccessReports({ vendor }: { vendor: string }) {
           </div>
         </div>
       )}
+
+      <div data-access-badge={badgePath} data-badge-alt={badgeAlt(badge)} className="mt-6 border-t border-[var(--border)] pt-4">
+        <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Badge for a README</p>
+        <p className="mt-2">
+          <img src={badgePath} alt={badgeAlt(badge)} height={20} loading="lazy" />
+        </p>
+        <pre
+          aria-label={`Markdown for the ${v.name} access-report badge`}
+          className="mt-2 overflow-x-auto rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3 text-xs leading-relaxed text-[var(--fg)]"
+        >
+          <code>{badgeMarkdown(accessBadgeAlt(v.name), badgePath, `${v.pages[0]}#access-reports`)}</code>
+        </pre>
+        <p className="mt-2 text-xs text-[var(--muted)]">
+          {"The image is redrawn from these reports each time they are imported: the count, and the median once it is shown here."}
+        </p>
+      </div>
     </section>
   );
 }

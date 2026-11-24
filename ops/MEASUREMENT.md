@@ -186,6 +186,18 @@ fixed id, never anything the reader writes in the issue.
 |---|---|---|---|
 | `access-report-<vendor>`: `access-report-garmin`, `access-report-whoop`, `access-report-oura`, `access-report-strava`, `access-report-polar`, `access-report-coros`, `access-report-suunto`, `access-report-withings`, `access-report-fitbit`, `access-report-samsung-health`, `access-report-dexcom`, `access-report-wahoo` | `access-reports` | The "Report your application" button in the access-reports section (`components/AccessReports`) on each vendor's English `/integrate/<vendor>-api` page, and `access-report-garmin` also on `/fix/garmin-api-approval` | opening a new GitHub issue in the site's repository with the `[access-report]` title and the vendor filled in |
 
+Added 2026-11-24 (access scoreboard, share line, badges). The scoreboard's
+button and the per-report share row carry fixed ids only; the share text and
+link are built in code from the accepted report (`shareText`, `shareUrl` in
+`lib/accessReportSubmission.mjs`), never from anything the reader types. The
+pre-flight checklist (`components/AccessPreflight`) sends nothing: its
+checkboxes stay in the reader's localStorage.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `access-report-any` | `access-scoreboard` | The empty-state button of the access scoreboard (`components/AccessScoreboard`) on `/integrate`, shown while no report is accepted | opening a new GitHub issue with the `[access-report]` title and no vendor chosen |
+| `share-access-report-<vendor>-<target>`, e.g. `share-access-report-garmin-copy`, `share-access-report-garmin-linkedin` | `share-row` | The "Share" control on each accepted report's row in the access-reports section (`components/AccessReports`) | copying, or opening a compose page for, the vendor's panel (`<vendor page>#access-reports`) with a line describing that report |
+
 ## UTM on links to the funder
 
 Every placement link to kinestex.com is built by `funderHref(placement, path)`

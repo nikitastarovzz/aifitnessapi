@@ -1,0 +1,83 @@
+name: Library weather
+
+# Refreshes src/data/libraryWeather.ts from the GitHub REST API
+# (scripts/fetch-library-weather.mjs): for each Python client of a vendor
+# cloud API in src/data/libraries.ts, the issues opened in the last 14 and 90
+# days, how many have a sign-in keyword in the title, the newest such issue
+# and the latest release. The /libraries/<slug> pages render it as the
+# "Weather" box, so a run of "login fails" issues reaches the page within a
+# week. Modeled on .github/workflows/libraries.yml.
+on:
+  schedule:
+    # 05:23 UTC every Wednesday. Off the hour, a day after the library
+    # tracker (Tuesday 04:37) and away from the daily SDK tracker (06:20).
+    - cron: "23 5 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  # To dispatch ci.yml on the bot branch (scripts/bot-pr.sh).
+  actions: write
+
+concurrency:
+  group: library-weather
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Read issues and releases
+        env:
+          # The default token is enough for public repo reads and lifts the
+          # unauthenticated search limit. The script never prints it.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Exits non-zero (and writes nothing) if any repository cannot be read
+        # in full — a partial set is never published.
+        run: node scripts/fetch-library-weather.mjs
+
+      - name: Commit if the weather changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          # The windows end on the day of the run, so the dates move every
+          # week; a run where only they moved (no count, issue or release
+          # changed) is not worth a production build.
+          if git diff --quiet -- src/data/libraryWeather.ts; then
+            echo "No changes."
+            exit 0
+          fi
+          changed=$(git diff -U0 -- src/data/libraryWeather.ts \
+            | awk '/^diff --git /{h=0} /^@@ /{h=1; next} h && /^[-+]/')
+          noise='^[-+]([[:space:]]*"(asOf|short|long|releaseCheckedOn)": "[0-9]{4}-[0-9]{2}-[0-9]{2}",?|[[:space:]]*"issuesUrl": "[^"]*",?|export const LIBRARY_WEATHER_FETCHED_ON = "[0-9]{4}-[0-9]{2}-[0-9]{2}";)$'
+          meaningful=$(printf '%s\n' "$changed" | grep -Ev "$noise" | grep -v '^$' || true)
+          if [ -z "$meaningful" ]; then
+            echo "Only the window dates moved; not committing."
+            git checkout -- src/data/libraryWeather.ts
+            exit 0
+          fi
+          echo "Changed:"
+          printf '%s\n' "$meaningful"
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/libraryWeather.ts
+          git commit -m "Refresh library weather"
+
+          # Via a PR with auto-merge, not a direct push: main requires a pull
+          # request and green CI. Green merges itself and deploys as before;
+          # red parks as an open PR.
+          branch="bot/library-weather-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
+          git push origin "$branch"
+          bash scripts/bot-pr.sh "$branch" \
+            "Refresh library weather" \
+            "Automated weekly refresh of \`src/data/libraryWeather.ts\`. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

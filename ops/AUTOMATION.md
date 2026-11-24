@@ -76,6 +76,7 @@ which a pull request opened with `GITHUB_TOKEN` never starts by itself.
 | `sdk-releases.yml` | daily 06:20 |
 | `libraries.yml` | Tuesday 04:37 |
 | `mcp-health-servers.yml` | Wednesday 05:13 |
+| `library-weather.yml` | Wednesday 05:23; commits only when a count, an issue or a release changed, not when only the window dates moved |
 | `bluetooth-gatt.yml` | Wednesday 05:33 |
 | `google-health-api.yml` | Wednesday 05:52 |
 | `source-quotes.yml` | daily 06:17; the scheduled run reports and ends green, a pull request or manual run still fails on a missing quote |

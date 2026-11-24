@@ -6,6 +6,17 @@
  *   NODE_USE_ENV_PROXY=1 node scripts/import-access-reports.mjs
  *   node scripts/import-access-reports.mjs --from issues.json   (a saved API response, offline)
  *   ... --out <file>   (write elsewhere; the test uses it to rebuild the empty file)
+ *   ... --badges-dir <dir>   (where the badges go; default public/badges/access,
+ *       and none are written when --out is given without it, so a test run
+ *       never overwrites the published badges)
+ *   ... --badges-only   (redraw the badges from the committed src/data/accessReports.ts,
+ *       no network; after a change to the badge text or drawing)
+ *
+ * It also writes one README badge per vendor, public/badges/access/<vendor>.svg
+ * ("Garmin API access | 4 reports · median 12 days", or "no reports yet"),
+ * drawn by src/lib/statBadgeSvg.mjs, the same drawing as the /badges routes,
+ * from the rows it just wrote. scripts/access-reports.test.mjs fails when the
+ * committed badges are not what the committed rows draw.
  *
  * Run by hand. It reads the public issues of the repository through GitHub's
  * REST API without a token (no secret, nothing written to GitHub) and keeps
@@ -22,8 +33,20 @@
  * The output starts empty and stays empty until a report is accepted. Do not
  * add a report by hand: every row must point at the public issue it came from.
  */
-import { readFileSync, writeFileSync } from "node:fs";
-import { ACCEPT_LABEL, OUTCOMES, REPO, TITLE_PREFIX, USES, VENDOR_SLUGS, parseIssueBody } from "../src/lib/accessReportSubmission.mjs";
+import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import {
+  ACCEPT_LABEL,
+  ACCESS_BADGE_DIR,
+  OUTCOMES,
+  REPO,
+  TITLE_PREFIX,
+  USES,
+  VENDOR_SLUGS,
+  accessBadges,
+  parseIssueBody,
+} from "../src/lib/accessReportSubmission.mjs";
+import { statBadge } from "../src/lib/statBadgeSvg.mjs";
 
 const arg = (name) => {
   const i = process.argv.indexOf(name);
@@ -31,6 +54,26 @@ const arg = (name) => {
 };
 const OUT = arg("--out") ?? "src/data/accessReports.ts";
 const FROM = arg("--from");
+const BADGES_DIR = arg("--badges-dir") ?? (arg("--out") ? null : ACCESS_BADGE_DIR);
+
+/** Write one SVG per vendor into `dir`, and remove any SVG there for no vendor. */
+function writeBadges(dir, reports) {
+  mkdirSync(dir, { recursive: true });
+  const badges = accessBadges(reports);
+  const keep = new Set(badges.map((b) => `${b.slug}.svg`));
+  for (const f of readdirSync(dir)) if (f.endsWith(".svg") && !keep.has(f)) rmSync(join(dir, f));
+  for (const b of badges) writeFileSync(join(dir, `${b.slug}.svg`), statBadge(b.label, b.value, b.color));
+  return badges.length;
+}
+
+if (process.argv.includes("--badges-only")) {
+  const src = readFileSync("src/data/accessReports.ts", "utf8");
+  const m = /export const ACCESS_REPORTS: AccessReport\[\] = (\[[\s\S]*\]);\s*$/.exec(src);
+  if (!m) throw new Error("src/data/accessReports.ts has no ACCESS_REPORTS array");
+  const n = writeBadges(BADGES_DIR ?? ACCESS_BADGE_DIR, JSON.parse(m[1]));
+  console.log(`✓ ${BADGES_DIR ?? ACCESS_BADGE_DIR}: ${n} badges redrawn from src/data/accessReports.ts`);
+  process.exit(0);
+}
 
 async function fetchIssues() {
   if (FROM) return JSON.parse(readFileSync(FROM, "utf8"));
@@ -112,3 +155,4 @@ export const ACCESS_REPORTS: AccessReport[] = ${JSON.stringify(reports, null, 2)
 `;
 writeFileSync(OUT, body);
 console.log(`✓ ${OUT}: ${reports.length} accepted reports (${skipped.length} skipped, ${redacted} sensitive run(s) removed) from ${issues.length} labeled issues.`);
+if (BADGES_DIR) console.log(`✓ ${BADGES_DIR}: ${writeBadges(BADGES_DIR, reports)} badges`);

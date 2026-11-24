@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210" height="20" viewBox="0 0 210 20" role="img" aria-label="WHOOP API access: no reports yet">
+  <title>WHOOP API access: no reports yet</title>
+  <clipPath id="r"><rect width="210" height="20" rx="4"/></clipPath>
+  <g clip-path="url(#r)">
+    <rect width="117" height="20" fill="#334155"/>
+    <rect x="117" width="93" height="20" fill="#4b5563"/>
+  </g>
+  <g font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#ffffff">
+    <text x="8" y="10" dominant-baseline="central" textLength="101" lengthAdjust="spacingAndGlyphs">WHOOP API access</text>
+    <text x="125" y="10" dominant-baseline="central" font-weight="700" textLength="77" lengthAdjust="spacingAndGlyphs">no reports yet</text>
+  </g>
+</svg>

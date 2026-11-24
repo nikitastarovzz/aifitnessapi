@@ -27,6 +27,7 @@ import { CommandItem, FactList, Inline, LANGUAGE, NoteItem, factRows, githubUrl,
 import { robotsFor } from "@/data/noindex";
 import { librarySupport, librarySupportExcluded } from "@/data/libraryDataTypes";
 import { LibraryDataTypes, LibraryDataTypesExcluded } from "../_dataTypes";
+import { LibraryWeatherBox, libraryWeather } from "../_weather";
 
 /**
  * One page per open-source package. Every registry and repository fact on
@@ -83,6 +84,9 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
   // the generated src/data/healthLibrarySupport.ts (mobile wrappers only).
   const support = librarySupport(slug);
   const supportExcluded = support ? undefined : librarySupportExcluded(slug);
+  // Reported sign-in trouble on the repository, for the vendor-API clients
+  // (src/data/libraryWeather.ts, weekly).
+  const weather = libraryWeather(slug);
   const faqId = (i: number) => `faq-${i + 1}`;
 
   // Documentation a note cites becomes `citation`; the package's own registry
@@ -200,6 +204,7 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
 
         <nav aria-label="On this page" className="mt-6 flex flex-wrap gap-2 text-sm">
           {[
+            ...(weather ? [["#weather", "Weather"]] : []),
             ["#install", ed.commandsHeading],
             ...(support || supportExcluded ? [["#data-types", "Data types"]] : []),
             ["#facts", "Registry facts"],
@@ -229,6 +234,8 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
             </p>
           )}
         </section>
+
+        {weather && <LibraryWeatherBox w={weather} />}
 
         <section id="install" className="mt-12 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">{ed.commandsHeading}</h2>
