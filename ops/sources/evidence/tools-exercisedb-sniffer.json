@@ -1,0 +1,97 @@
+[
+  {
+    "claim": "The free V1 host's list response wraps records in success, meta (total, hasNextPage, hasPreviousPage, nextCursor) and data (source-snapshot run 45495879916, 2026-11-24).",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises?limit=3",
+    "quote": "{\"success\":true,\"meta\":{\"total\":1500,\"hasNextPage\":true,\"hasPreviousPage\":false,\"nextCursor\":"
+  },
+  {
+    "claim": "A free V1 record carries exerciseId, name, a single gifUrl on static.exercisedb.dev, and bodyParts, equipments, targetMuscles and secondaryMuscles lists.",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises?limit=3",
+    "quote": "{\"exerciseId\":\"01qpYSe\",\"name\":\"upward facing dog\",\"gifUrl\":\"https://static.exercisedb.dev/media/01qpYSe.gif\",\"bodyParts\":[\"back\"],\"equipments\":[\"bodyweight\"],\"targetMuscles\":[\"erector spinae\"],\"secondaryMuscles\":["
+  },
+  {
+    "claim": "A free V1 record's instructions are a list of strings that start \"Step:1\".",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises?limit=3",
+    "quote": "\"instructions\":[\"Step:1 Position yourself face down on the floor with your legs extended behind you.\""
+  },
+  {
+    "claim": "The free V1 host returns one exercise at /api/v1/exercises/{exerciseId}, wrapped in success and data (source-snapshot run 45496377203, 2026-11-24).",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises/01qpYSe",
+    "quote": "{\"success\":true,\"data\":{\"exerciseId\":\"01qpYSe\",\"name\":\"upward facing dog\""
+  },
+  {
+    "claim": "The free V1 search endpoint returns records with only exerciseId, name and gifUrl.",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises/search?search=bench&limit=2",
+    "quote": "{\"exerciseId\":\"mnzcrIB\",\"name\":\"dumbbell bench squat\",\"gifUrl\":\"https://static.exercisedb.dev/media/mnzcrIB.gif\"}"
+  },
+  {
+    "claim": "AscendAPI's V1 documentation shows a paid-tier record whose exerciseId starts with edb_.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "\"exerciseId\" : \"edb_T5uXtLj\""
+  },
+  {
+    "claim": "The paid V1 schema lists difficulty.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "difficulty | string | Difficulty level"
+  },
+  {
+    "claim": "The paid V1 schema lists imageUrls as multi-resolution images.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "imageUrls | object | Multi-resolution images (360p–1080p)"
+  },
+  {
+    "claim": "The paid V1 schema lists relatedExerciseIds.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "relatedExerciseIds | string[] | Related exercises"
+  },
+  {
+    "claim": "The paid V1 record's images are on assets.exercisedb.dev.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "\"360p\" : \"https://assets.exercisedb.dev/media/uc9UW4p.png\""
+  },
+  {
+    "claim": "The free V1 tier's single GIF is on static.exercisedb.dev.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "\"gifUrl\" : \"https://static.exercisedb.dev/media/EIeI8Vf.gif\""
+  },
+  {
+    "claim": "The free V1 schema describes gifUrl as a single animated GIF URL.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "gifUrl | string | Single animated GIF URL"
+  },
+  {
+    "claim": "The paid V1 schema lists exerciseTypes.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "exerciseTypes | string[] | Type of exercise"
+  },
+  {
+    "claim": "The paid V1 schema lists gifUrls as multi-resolution GIFs.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "gifUrls | object | Multi-resolution GIFs (360p–1080p)"
+  },
+  {
+    "claim": "The free V1 host pages with after=<cursor>: the page after a cursor reports hasPreviousPage true and a previousCursor (source-snapshot run 45496377203, 2026-11-24).",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises?limit=2&after=05Cf2v8",
+    "quote": "\"hasNextPage\":true,\"hasPreviousPage\":true,\"nextCursor\":"
+  },
+  {
+    "claim": "A free-exercise-db record carries primaryMuscles, images and instructions lists (exercises.json at commit f00c92c).",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/f00c92c7dcf1216a928a52c3706c7ce8e2f71ed5/dist/exercises.json",
+    "quote": "\"primaryMuscles\": [ \"abdominals\" ], \"secondaryMuscles\": [], \"instructions\": ["
+  },
+  {
+    "claim": "A free-exercise-db record's images are paths relative to its exercises folder.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/f00c92c7dcf1216a928a52c3706c7ce8e2f71ed5/dist/exercises.json",
+    "quote": "\"images\": [ \"3_4_Sit-Up/0.jpg\", \"3_4_Sit-Up/1.jpg\" ], \"id\": \"3_4_Sit-Up\""
+  },
+  {
+    "claim": "A wger /api/v2/exerciseinfo/ record carries a category object (source-snapshot run 45496377203, 2026-11-24).",
+    "url": "https://wger.de/api/v2/exerciseinfo/12/?format=json",
+    "quote": "\"category\":{\"id\":9,\"name\":\"Legs\"}"
+  },
+  {
+    "claim": "A wger exerciseinfo record carries a uuid.",
+    "url": "https://wger.de/api/v2/exerciseinfo/12/?format=json",
+    "quote": "\"uuid\":\"53906cd1-61f1-4d56-ac60-e4fcc5824861\""
+  }
+]

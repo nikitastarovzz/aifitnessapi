@@ -360,6 +360,7 @@ if (fs.existsSync(matrixPath)) {
     "exercise-form-rules-2026",
     "health-library-support-2026",
     "exercise-taxonomy-crosswalk-2026",
+    "open-exercises-2026",
     "fitness-api-docs-drift-2026",
     "fitness-api-shutdown-notice-2026",
     "fitness-api-pricing-transparency-2026",

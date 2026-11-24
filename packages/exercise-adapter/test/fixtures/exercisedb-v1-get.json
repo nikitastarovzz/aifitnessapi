@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "exerciseId": "01qpYSe",
+    "name": "upward facing dog",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "targetMuscles": [
+      "erector spinae"
+    ],
+    "bodyParts": [
+      "back"
+    ],
+    "equipments": [
+      "bodyweight"
+    ],
+    "secondaryMuscles": [
+      "deltoids",
+      "pectorals"
+    ],
+    "instructions": [
+      "Step:1 Position yourself face down on the floor with your legs extended behind you.",
+      "Step:2 Set your hands on the floor next to your lower ribs, fingers pointing forward."
+    ]
+  }
+}

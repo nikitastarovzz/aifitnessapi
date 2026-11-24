@@ -1,0 +1,79 @@
+[
+  {
+    "claim": "AscendAPI's pagination guide: nextCursor is the exercise ID to pass as after for the next page.",
+    "url": "https://docs.ascendapi.com/guides/pagination",
+    "quote": "nextCursor | string | Exercise ID to pass as after for the next page"
+  },
+  {
+    "claim": "On the free V1 host, after=<cursor> returns the following page, which reports hasPreviousPage true (source-snapshot run 45496377203, 2026-11-24).",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises?limit=2&after=05Cf2v8",
+    "quote": "\"hasNextPage\":true,\"hasPreviousPage\":true,\"nextCursor\":"
+  },
+  {
+    "claim": "The free V1 host returns one exercise wrapped in success and data at /api/v1/exercises/{exerciseId}.",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises/01qpYSe",
+    "quote": "{\"success\":true,\"data\":{\"exerciseId\":\"01qpYSe\",\"name\":\"upward facing dog\""
+  },
+  {
+    "claim": "The free V1 host answers 404 with a NOT_FOUND error for an unknown exercise ID (source-snapshot run 45498719063, 2026-11-24).",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises/zzzzzzz",
+    "quote": "\"code\":\"NOT_FOUND\"",
+    "expectStatus": 404
+  },
+  {
+    "claim": "A free V1 record has a single gifUrl and bodyParts, equipments, targetMuscles and secondaryMuscles lists.",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises?limit=3",
+    "quote": "\"gifUrl\":\"https://static.exercisedb.dev/media/01qpYSe.gif\",\"bodyParts\":[\"back\"],\"equipments\":[\"bodyweight\"],\"targetMuscles\":[\"erector spinae\"],\"secondaryMuscles\":["
+  },
+  {
+    "claim": "wger's exerciseinfo list pages with limit and offset in its next URL (source-snapshot run 45495879916, 2026-11-24).",
+    "url": "https://wger.de/api/v2/exerciseinfo/?format=json&limit=2",
+    "quote": "\"next\":\"https://wger.de/api/v2/exerciseinfo/?format=json&limit=2&offset=2\""
+  },
+  {
+    "claim": "wger's language id for English is 2.",
+    "url": "https://wger.de/api/v2/language/?format=json",
+    "quote": "{\"id\":2,\"short_name\":\"en\",\"full_name\":\"English\",\"full_name_en\":\"English\"}"
+  },
+  {
+    "claim": "A wger exerciseinfo record's English translation carries language 2 (source-snapshot run 45496377203, 2026-11-24).",
+    "url": "https://wger.de/api/v2/exerciseinfo/12/?format=json",
+    "quote": "\"language\":2,\"aliases\":[]"
+  },
+  {
+    "claim": "wger muscles carry a Latin name and an English name_en.",
+    "url": "https://wger.de/api/v2/exerciseinfo/12/?format=json",
+    "quote": "\"name\":\"Gluteus maximus\",\"name_en\":\"Glutes\""
+  },
+  {
+    "claim": "wger images carry the full image URL in image.",
+    "url": "https://wger.de/api/v2/exerciseinfo/12/?format=json",
+    "quote": "\"image\":\"https://wger.de/media/exercise-images/12/4a42cc6f-648d-40cc-a72a-c49dd47e1667.webp\""
+  },
+  {
+    "claim": "A wger exerciseinfo record carries its license as an object and its author as license_author.",
+    "url": "https://wger.de/api/v2/exerciseinfo/12/?format=json",
+    "quote": "\"license\":{\"id\":1,\"full_name\":\" Creative Commons Attribution Share Alike 3\",\"short_name\":\"CC-BY-SA 3\",\"url\":\"https://creativecommons.org/licenses/by-sa/3.0/deed.en\"},\"license_author\":\"flori\""
+  },
+  {
+    "claim": "wger equipment is a list of objects with a name.",
+    "url": "https://wger.de/api/v2/exerciseinfo/?format=json&limit=2",
+    "quote": "\"equipment\":[{\"id\":10,\"name\":\"Kettlebell\"}]"
+  },
+  {
+    "claim": "wger answers 404 for an unknown exercise (source-snapshot run 45498719063, 2026-11-24).",
+    "url": "https://wger.de/api/v2/exerciseinfo/99999999/?format=json",
+    "quote": "No Exercise matches the given query.",
+    "expectStatus": 404
+  },
+  {
+    "claim": "free-exercise-db's README says image paths are relative to its exercises folder on raw.githubusercontent.com.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/f00c92c7dcf1216a928a52c3706c7ce8e2f71ed5/README.md",
+    "quote": "prefix any of image path's contained in the `JSON` with `https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/`"
+  },
+  {
+    "claim": "free-exercise-db's LICENSE.md lets anyone use it for any purpose, commercial or non-commercial.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/f00c92c7dcf1216a928a52c3706c7ce8e2f71ed5/LICENSE.md",
+    "quote": "for any purpose, commercial or non-commercial, and by any means."
+  }
+]

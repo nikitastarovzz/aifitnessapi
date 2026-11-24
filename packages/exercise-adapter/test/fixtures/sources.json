@@ -1,0 +1,58 @@
+{
+  "note": "Every fixture is a real response, trimmed. wger.de and oss.exercisedb.dev are blocked from the environment the package was written in, so they were read through the repository's source-snapshot workflow (.github/workflows/source-snapshot.yml); free-exercise-db was read directly from raw.githubusercontent.com. Trimming only removes: list entries (records, translations, instruction steps) and wger's total_authors_history. No value is edited.",
+  "fixtures": {
+    "exercisedb-v1-list.json": {
+      "url": "https://oss.exercisedb.dev/api/v1/exercises?limit=3",
+      "fetched": "2026-11-24T21:55:27.878Z",
+      "via": "source-snapshot run 45495879916",
+      "trimmed": "data cut to its first two records; each record's instructions cut to the first two steps"
+    },
+    "exercisedb-v1-list-after.json": {
+      "url": "https://oss.exercisedb.dev/api/v1/exercises?limit=2&after=05Cf2v8",
+      "fetched": "2026-11-24T21:58:49.503Z",
+      "via": "source-snapshot run 45496377203",
+      "trimmed": "each record's instructions cut to the first two steps"
+    },
+    "exercisedb-v1-get.json": {
+      "url": "https://oss.exercisedb.dev/api/v1/exercises/01qpYSe",
+      "fetched": "2026-11-24T21:58:47.429Z",
+      "via": "source-snapshot run 45496377203",
+      "trimmed": "instructions cut to the first two steps"
+    },
+    "exercisedb-v1-not-found.json": {
+      "url": "https://oss.exercisedb.dev/api/v1/exercises/zzzzzzz",
+      "status": 404,
+      "fetched": "2026-11-24T22:12:50.163Z",
+      "via": "source-snapshot run 45498719063",
+      "trimmed": "nothing"
+    },
+    "wger-exerciseinfo-12.json": {
+      "url": "https://wger.de/api/v2/exerciseinfo/12/?format=json",
+      "fetched": "2026-11-24T21:58:52.046Z",
+      "via": "source-snapshot run 45496377203",
+      "trimmed": "translations other than English (language 2) and German (language 1) removed; total_authors_history removed",
+      "contentLicense": "wger exercise 12 and its translations carry their own license fields in the record (CC-BY-SA 3 and CC-BY-SA 4 here, authors as license_author)"
+    },
+    "wger-exerciseinfo-list.json": {
+      "url": "https://wger.de/api/v2/exerciseinfo/?format=json&limit=2",
+      "fetched": "2026-11-24T21:55:30.783Z",
+      "via": "source-snapshot run 45495879916",
+      "trimmed": "translations other than English (language 2) and German (language 1) removed; total_authors_history removed",
+      "contentLicense": "per record, in its license and license_author fields"
+    },
+    "wger-not-found.json": {
+      "url": "https://wger.de/api/v2/exerciseinfo/99999999/?format=json",
+      "status": 404,
+      "fetched": "2026-11-24T22:12:51.650Z",
+      "via": "source-snapshot run 45498719063",
+      "trimmed": "nothing"
+    },
+    "free-exercise-db-sample.json": {
+      "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/f00c92c7dcf1216a928a52c3706c7ce8e2f71ed5/dist/exercises.json",
+      "fetched": "2026-11-24",
+      "via": "direct",
+      "trimmed": "the first three exercises of the array",
+      "contentLicense": "Unlicense (public domain), per free-exercise-db's LICENSE.md"
+    }
+  }
+}

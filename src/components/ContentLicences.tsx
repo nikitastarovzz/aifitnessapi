@@ -1,5 +1,7 @@
 import Link from "next/link";
 import ContentLicenceTable from "@/components/ContentLicenceTable";
+import ExerciseDbSniffer from "@/components/ExerciseDbSniffer";
+import { snifferData } from "@/lib/exerciseDbSnifferPage";
 import { CONTENT_LICENCE_PAGES, resolvedLicences } from "@/lib/contentLicences";
 import { formatDate } from "@/lib/posts";
 
@@ -76,6 +78,14 @@ export default function ContentLicences({ path }: { path: string }) {
               </li>
             ))}
           </ul>
+          {path === PRICING_PATH && (
+            <div id="which-exercisedb" className="scroll-mt-24">
+              <p className="mt-4 text-sm text-[var(--muted)]">
+                {"Not sure which one your code calls? Paste the URL, the curl command or a response below. The host or the field names say which variant it is, using only hosts and fields the sources above document or that a response from the free V1 host showed on November 24, 2026; anything else is reported as not recognized."}
+              </p>
+              <ExerciseDbSniffer data={snifferData()} />
+            </div>
+          )}
           {path !== PRICING_PATH && (
             <p className="mt-2 text-xs text-[var(--muted)]">
               {"Plans and prices for each: "}
