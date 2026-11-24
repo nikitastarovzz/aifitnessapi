@@ -18,6 +18,7 @@ import AccessReports from "@/components/AccessReports";
 import { vendorForPath } from "@/lib/accessReportSubmission.mjs";
 import PoseModelFiles from "@/components/PoseModelFiles";
 import ContentLicences from "@/components/ContentLicences";
+import FoodDatabaseTest from "@/components/FoodDatabaseTest";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
 import SeeAlsoCallout from "@/components/SeeAlsoCallout";
@@ -755,6 +756,12 @@ export default function ClusterPage({
             held to the English entry alone. Renders nothing off the pages
             src/lib/contentLicences.ts lists. */}
         {!tr && <ContentLicences path={path} />}
+
+        {/* The food-database test: 50 generic foods in USDA FoodData Central and
+            Open Food Facts, from data/foodDatabaseTest.ts, with the ODbL notice
+            the Open Food Facts data needs. Renders nothing off
+            /fitness-apis/nutrition-apis, and English only. */}
+        {!tr && <FoodDatabaseTest path={path} />}
 
         {entry.faqs.length > 0 && (
           <section className="mt-14">
