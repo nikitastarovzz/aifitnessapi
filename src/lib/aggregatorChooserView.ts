@@ -157,3 +157,16 @@ export function aggregatorText(): string {
   const yesCells = m.columns.filter((c) => c.kind === "feature").reduce((k, c) => k + rowsWith(c.id).length, 0);
   return `${m.rows.length} aggregators × ${m.columns.length} columns, ${yesCells} documented feature cells, each citing a verbatim quote from the evidence files behind ${m.roundup.href} and the site's aggregator pricing, compare and alternatives pages, every quote re-found in its live source by source-quotes.yml run ${m.checkRun} on ${m.checkedOn}. Filters run in the browser; "not stated" is never read as "no". No vendor is ranked or recommended.`;
 }
+
+/**
+ * The bill calculator's static prose (src/lib/aggregatorBill.mjs holds the
+ * numbers), shared by the page and its markdown mirror. Run 45453537404 is
+ * the scheduled source-quotes check of 2026-11-24, which found every quote
+ * on the eight vendors' hosts in its live page.
+ */
+export const BILL_HEADING = "What each aggregator would bill at your numbers";
+export const BILL_INTRO =
+  "Enter your active users, how many sources each one connects, how many months and a billing period. Each row is computed only from the vendor's published price sheet: plan fees, included users or credits, overage rates and plan ceilings, each shown beside its quote. A vendor whose bill cannot be computed from what it publishes says so and why. The inputs live in the address, so a link reproduces the scenario, and nothing you type leaves your browser.";
+export const BILL_CHECKED =
+  "List prices before taxes, add-ons and negotiated discounts. Every quote behind these figures was found again in its live source on November 24, 2026 (source-quotes run 45453537404); prices move, so re-read the vendor's page before you budget. Thryve prices in euros and nothing here converts currencies. The months column is the monthly figure times the months you enter; on annual billing a vendor bills by the year, so a shorter term may still be billed as a full one.";
+export const BILL_METHOD_HEADING = "How each row is computed";

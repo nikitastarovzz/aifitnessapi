@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import EvidenceMatrixPage from "@/components/tools/EvidenceMatrixPage";
+import AggregatorBillCalculator from "@/components/tools/AggregatorBillCalculator";
 import { AGGREGATOR_MATRIX } from "@/data/aggregatorChooser";
-import { AGG_DESCRIPTION, AGG_H1, AGG_PATH, AGG_TITLE, aggregatorCapsule, aggregatorFaqs, useCases } from "@/lib/aggregatorChooserView";
+import { BILL_VENDORS, billMethods } from "@/lib/aggregatorBill.mjs";
+import {
+  AGG_DESCRIPTION,
+  AGG_H1,
+  AGG_PATH,
+  AGG_TITLE,
+  BILL_CHECKED,
+  BILL_HEADING,
+  BILL_INTRO,
+  BILL_METHOD_HEADING,
+  aggregatorCapsule,
+  aggregatorFaqs,
+  useCases,
+} from "@/lib/aggregatorChooserView";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { absoluteUrl } from "@/lib/site";
 
@@ -15,6 +29,10 @@ import { absoluteUrl } from "@/lib/site";
  * cell is a row of an existing page's evidence file
  * (src/data/aggregatorChooser.ts); the use cases and FAQ answers are built
  * from those cells (src/lib/aggregatorChooserView.ts). No vendor is crowned.
+ *
+ * The bill calculator below the matrix (2026-11-24) computes each vendor's
+ * bill from its quoted price rows only (src/lib/aggregatorBill.mjs, tests in
+ * scripts/aggregator-bill.test.mjs); the inputs live in the address hash.
  */
 
 export const metadata: Metadata = {
@@ -54,6 +72,25 @@ export default function AggregatorChooserPage() {
       rowLabel="Aggregator"
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+
+      <section id="bill-calculator" className="mt-14 max-w-5xl scroll-mt-24" aria-labelledby="bill-calculator-h">
+        <h2 id="bill-calculator-h" className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+          {BILL_HEADING}
+        </h2>
+        <p className="mt-3 leading-relaxed text-[var(--muted)]">{BILL_INTRO}</p>
+        <div data-tool="aggregator-bill">
+          <AggregatorBillCalculator />
+        </div>
+        <p className="mt-4 text-sm text-[var(--muted)]">{BILL_CHECKED}</p>
+        <h3 className="mt-6 text-lg font-semibold text-[var(--fg)]">{BILL_METHOD_HEADING}</h3>
+        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-[var(--fg)]">
+          {BILL_VENDORS.map((v) => (
+            <li key={v.id}>
+              <span className="font-semibold">{v.name}:</span> {billMethods()[v.id]}
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section className="mt-14 max-w-4xl" aria-labelledby="use-cases">
         <h2 id="use-cases" className="text-2xl font-bold tracking-tight text-[var(--fg)]">

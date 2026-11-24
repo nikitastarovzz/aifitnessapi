@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import StoreChecklistTool from "@/components/tools/StoreChecklistTool";
+import PrivacyLabelHelper from "@/components/tools/PrivacyLabelHelper";
 import PlannerPageShell from "@/components/tools/PlannerPageShell";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { STORE_CHECKLIST_PAGE as PAGE } from "@/lib/plannerPages";
@@ -12,6 +13,12 @@ import { site } from "@/lib/site";
  * (src/data/plannerSources.mjs, evidence in
  * ops/sources/evidence/tools-store-submission-checklist.json). Progress is kept
  * in the reader's localStorage only.
+ *
+ * Below it, the privacy label helper (2026-11-24): the Apple App Privacy and
+ * Google Play Data safety data types to declare for what the app collects,
+ * each quoted from the platform's page (src/data/privacyLabels.mjs, evidence
+ * in the same file). It runs in the browser; the ticks live in the address
+ * hash.
  */
 
 export const metadata: Metadata = {
@@ -32,6 +39,7 @@ export default function StoreChecklistPage() {
   return (
     <PlannerPageShell page={PAGE} crumb="Store submission checklist" toolId="store-submission-checklist" alternativeHeadline="App Store and Google Play review checklist for health and fitness apps">
       <StoreChecklistTool items={b.storeItems} sources={b.sources} traitLabels={b.traitLabels} pageLabels={b.labels} origin={site.url} />
+      <PrivacyLabelHelper />
     </PlannerPageShell>
   );
 }

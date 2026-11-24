@@ -233,5 +233,395 @@
     "claim": "Store checklist, Google Play Health Connect: Transparent and Accurate Notice: Say how you secure data, including HTTPS in transit.",
     "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "Information regarding handling all personal and sensitive user data securely, including transmitting it using modern cryptography (for example, over HTTPS)."
+  },
+  {
+    "claim": "Privacy label helper, Apple: what \"collect\" means.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "“Collect” refers to transmitting data off the device in a way that allows you and/or your third-party partners to access it for a period longer than what is necessary to service the transmitted request in real time."
+  },
+  {
+    "claim": "Privacy label helper, Apple: third-party partners include SDKs.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "“Third-party partners” refers to analytics tools, advertising networks, third-party SDKs, or other external vendors whose code you’ve added to your app."
+  },
+  {
+    "claim": "Privacy label helper, Apple: identify all data you or your partners collect.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "You need to identify all of the data you or your third-party partners collect, unless the data meets all of the criteria for optional disclosure listed below."
+  },
+  {
+    "claim": "Privacy label helper, Apple: optional disclosure needs every criterion.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Data types must meet all criteria in order to be considered optional for disclosure. If a data type collected by your app meets some, but not all, of the above criteria, it must be disclosed in App Store Connect."
+  },
+  {
+    "claim": "Privacy label helper, Apple: one optional-disclosure criterion is infrequent, optional collection.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Collection of the data occurs only in infrequent cases that are not part of your app’s primary functionality, and which are optional for the user."
+  },
+  {
+    "claim": "Privacy label helper, Apple: ongoing collection after a permission request must be disclosed.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "For the purpose of clarity, data collected on an ongoing basis after an initial request for permission must be disclosed."
+  },
+  {
+    "claim": "Privacy label helper, Apple: data processed only on device is not collected.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Data that is processed only on device is not “collected” and does not need to be disclosed in your answers. If you derive anything from that data and send it off device, the resulting data should be considered separately."
+  },
+  {
+    "claim": "Privacy label helper, Apple: data sent to service a request and not retained need not be disclosed.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "For example, if an authentication token or IP address is sent on a server call and not retained, or if data is sent to your servers then immediately discarded after servicing the request, you do not need to disclose this in your answers in App Store Connect."
+  },
+  {
+    "claim": "Privacy label helper, Apple: say whether each data type is linked to the user's identity.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "You’ll need to identify whether each data type is linked to the user’s identity (via their account, device, or other details) by you and/or your third-party partners."
+  },
+  {
+    "claim": "Privacy label helper, Apple: data is often linked unless de-identified before collection.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Data collected from an app is often linked to the user’s identity, unless specific privacy protections are put in place before collection to de-identify or anonymize it"
+  },
+  {
+    "claim": "Privacy label helper, Apple: personal data under privacy laws counts as linked.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Note: “Personal Information” and “Personal Data”, as defined under relevant privacy laws, are considered linked to the user."
+  },
+  {
+    "claim": "Privacy label helper, Apple: what tracking means.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "“Tracking” refers to linking data collected from your app about a particular end-user or device, such as a user ID, device ID, or profile, with Third-Party Data for targeted advertising or advertising measurement purposes, or sharing data collected from your app about a particular end-user or device with a data broker."
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Health & Fitness › Health.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Health and medical data, including but not limited to data from the Clinical Health Records API, HealthKit API, Movement Disorder API, or health-related human subject research or any other user provided health or medical data"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Health & Fitness › Fitness.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Fitness and exercise data, including but not limited to the Motion and Fitness API"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Sensitive Info.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as racial or ethnic data, sexual orientation, pregnancy or childbirth information, disability, religious or philosophical beliefs, trade union membership, political opinion, genetic information, or biometric data"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Location › Precise Location.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Information that describes the location of a user or device with the same or greater resolution as a latitude and longitude with three or more decimal places"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Location › Coarse Location.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Information that describes the location of a user or device with lower resolution than a latitude and longitude with three or more decimal places, such as Approximate Location Services"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Contact Info › Name.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as first or last name"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Contact Info › Email Address.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Including but not limited to a hashed email address"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Identifiers › User ID.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as screen name, handle, account ID, assigned user ID, customer number, or other user- or account-level ID that can be used to identify a particular user or account"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Identifiers › Device ID.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as the device’s advertising identifier, or other device-level ID"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type User Content › Photos or Videos.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "The user’s photos or videos"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type User Content › Audio Data.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "The user’s voice or sound recordings"
+  },
+  {
+    "claim": "Privacy label helper, Apple: in-app private messaging is declared as Emails or Text Messages.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Declare emails or text messages on your label. Text messages refer to both SMS and non-SMS messages."
+  },
+  {
+    "claim": "Privacy label helper, Apple data type User Content › Other User Content.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Any other user-generated content"
+  },
+  {
+    "claim": "Privacy label helper, Apple: free-form text fields are Other User Content.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Mark \"Other User Content\" to represent generic free form text fields and \"Audio Data\" for voice recordings."
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Usage Data › Product Interaction.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as app launches, taps, clicks, scrolling information, music listening data, video views, saved place in a game, video, or song, or other information about how the user interacts with the app"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Diagnostics › Crash Data.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as crash logs"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Diagnostics › Performance Data.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as launch time, hang rate, or energy use"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Other Data › Other Data Types.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Any other data types not mentioned"
+  },
+  {
+    "claim": "Privacy label helper, Apple data type Purchases › Purchase History.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "An account’s or individual’s purchases or purchase tendencies"
+  },
+  {
+    "claim": "Privacy label helper, Apple purpose Third-Party Advertising.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as displaying third-party ads in your app, or sharing data with entities who display third-party ads"
+  },
+  {
+    "claim": "Privacy label helper, Apple purpose Developer’s Advertising or Marketing.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as displaying first-party ads in your app, sending marketing communications directly to your users, or sharing data with entities who will display your ads"
+  },
+  {
+    "claim": "Privacy label helper, Apple purpose Analytics.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Using data to evaluate user behavior, including to understand the effectiveness of existing product features, plan new features, or measure audience size or characteristics"
+  },
+  {
+    "claim": "Privacy label helper, Apple purpose Product Personalization.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Customizing what the user sees, such as a list of recommended products, posts, or suggestions"
+  },
+  {
+    "claim": "Privacy label helper, Apple purpose App Functionality.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Such as to authenticate the user, enable features, prevent fraud, implement security measures, ensure server up-time, minimize app crashes, improve scalability and performance, or perform customer support"
+  },
+  {
+    "claim": "Privacy label helper, Apple purpose Other Purposes.",
+    "url": "https://developer.apple.com/app-store/app-privacy-details/",
+    "quote": "Any other purposes not listed"
+  },
+  {
+    "claim": "Privacy label helper, Google: what \"collect\" means.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "\"Collect\" means transmitting data from your app off a user’s device."
+  },
+  {
+    "claim": "Privacy label helper, Google: collection includes libraries and SDKs.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Libraries and SDKs: This includes user data transmitted off device from your app by libraries and/or SDKs used in your app, irrespective of whether data is transmitted to you or a third-party server."
+  },
+  {
+    "claim": "Privacy label helper, Google: the declaration covers third-party libraries and SDKs.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "This includes data collected and handled through any third-party libraries or SDKs used in their apps."
+  },
+  {
+    "claim": "Privacy label helper, Google: apps that collect nothing still complete the form.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Even developers with apps that do not collect any user data must complete this form and provide a link to their privacy policy."
+  },
+  {
+    "claim": "Privacy label helper, Google: on-device processing is not collection.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "On-device access/processing: User data accessed by your app that is only processed locally on the user’s device and not sent off device does not need to be disclosed."
+  },
+  {
+    "claim": "Privacy label helper, Google: ephemeral processing is in the form but not shown on the listing.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Ephemeral processing: User data transmitted off device that is processed ephemerally needs to be included in your form response, but if it meets the standard below, it will not be disclosed in your app’s Data safety section on Google Play."
+  },
+  {
+    "claim": "Privacy label helper, Google: what ephemeral means.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Processing data \"ephemerally\" means accessing and using it while the data is only stored in memory and retained for no longer than necessary to service the specific request in real-time."
+  },
+  {
+    "claim": "Privacy label helper, Google: building profiles is never ephemeral.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "However, using data to build advertising profiles or other user profiles cannot be treated as ephemeral and must be declared as collection or sharing for the relevant purposes."
+  },
+  {
+    "claim": "Privacy label helper, Google: pseudonymous data must be disclosed.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Pseudonymous data: User data collected pseudonymously must be disclosed. For example, data that can reasonably be re-associated with a user must be disclosed."
+  },
+  {
+    "claim": "Privacy label helper, Google: what \"sharing\" means.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "\"Sharing\" refers to transferring user data collected from your app to a third party."
+  },
+  {
+    "claim": "Privacy label helper, Google: SDK transfers to third parties are sharing.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "From your app libraries and SDKs. Transferring data collected from your app off a user’s device directly to a third party via libraries and/or SDKs included in your app."
+  },
+  {
+    "claim": "Privacy label helper, Google: transfers to service providers are not sharing.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Service providers. Transferring user data to a \"service provider\" that processes it on behalf of the developer."
+  },
+  {
+    "claim": "Privacy label helper, Google: user-initiated or consented transfers are not sharing.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "User-initiated action or prominent disclosure and user consent. Transferring user data to a third party based on a specific user-initiated action, where the user reasonably expects the data to be shared, or based on a prominent in-app disclosure and consent that meets the requirements described in our User Data policy"
+  },
+  {
+    "claim": "Privacy label helper, Google: each data type is optional or required.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "You can also disclose whether each data type collected by your app is \"optional\" or \"required.\" \"Optional\" includes the ability to opt into or opt out of data collection."
+  },
+  {
+    "claim": "Privacy label helper, Google: optional only if every user can choose.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "You can declare that your app collects certain data optionally only if all users – regardless of device or region – can either optionally provide information, opt-out, or opt-in to have the data collected."
+  },
+  {
+    "claim": "Privacy label helper, Google: data the primary functionality needs is required.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "If your app’s primary functionality requires the data type, you should declare that data as \"required.\""
+  },
+  {
+    "claim": "Privacy label helper, Google data type Health and fitness › Health info.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Information about a user's health, such as medical records or symptoms."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Health and fitness › Fitness info.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Information about a user's fitness, such as exercise or other physical activity."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Location › Precise location.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "User or device physical location within an area less than 3 square kilometers, such as location provided by Android’s ACCESS_FINE_LOCATION permission."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Location › Approximate location.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "User or device physical location to an area greater than or equal to 3 square kilometers, such as the city a user is in, or location provided by Android’s ACCESS_COARSE_LOCATION permission."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Personal info › Name.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "How a user refers to themselves, such as their first or last name, or nickname."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Personal info › Email address.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "A user’s email address."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Personal info › User IDs.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Identifiers that relate to an identifiable person. For example, an account ID, account number, or account name."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Personal info › Other info.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Any other personal information such as date of birth, gender identity, veteran status, etc."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Device or other IDs.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Identifiers that relate to an individual device, browser or app. For example, an IMEI number, MAC address, Widevine Device ID, Firebase installation ID, or advertising identifier."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Photos and videos › Photos.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "A user’s photos."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Photos and videos › Videos.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "A user’s videos."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Audio files › Voice or sound recordings.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "A user’s voice such as a voicemail or a sound recording."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Messages › Other in-app messages.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Any other types of messages. For example, instant messages or chat content."
+  },
+  {
+    "claim": "Privacy label helper, Google data type App activity › Other user-generated content.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Any other user-generated content not listed here, or in any other section. For example, user bios, notes, or open-ended responses."
+  },
+  {
+    "claim": "Privacy label helper, Google data type App activity › App interactions.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Information about how a user interacts with the app. For example, the number of times they visit a page, screenshots taken, or sections they tap on."
+  },
+  {
+    "claim": "Privacy label helper, Google data type App info and performance › Crash logs.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Crash log data from your app. For example, the number of times your app has crashed, stack traces, or other information directly related to a crash."
+  },
+  {
+    "claim": "Privacy label helper, Google data type App info and performance › Diagnostics.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Information about the performance of your app. For example battery life, loading time, latency, framerate, or any technical diagnostics."
+  },
+  {
+    "claim": "Privacy label helper, Google data type Financial info › Purchase history.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Information about purchases or transactions a user has made."
+  },
+  {
+    "claim": "Privacy label helper, Google purpose App functionality.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Used for features that are available in the app"
+  },
+  {
+    "claim": "Privacy label helper, Google purpose Analytics.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Used to collect data about how users use the app or how it performs"
+  },
+  {
+    "claim": "Privacy label helper, Google purpose Developer communications.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Used to send news or notifications about the app or the developer."
+  },
+  {
+    "claim": "Privacy label helper, Google purpose Advertising or marketing.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Used to display or target ads or marketing communications, or measuring ad performance"
+  },
+  {
+    "claim": "Privacy label helper, Google purpose Fraud prevention, security, and compliance.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Used for fraud prevention, security, or compliance with laws."
+  },
+  {
+    "claim": "Privacy label helper, Google purpose Personalization.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Used to customize your app, such as showing recommended content or suggestions."
+  },
+  {
+    "claim": "Privacy label helper, Google purpose Account management.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+    "quote": "Used for the setup or management of a user’s account with the developer."
   }
 ]

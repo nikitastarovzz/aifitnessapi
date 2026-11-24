@@ -263,5 +263,30 @@
     "claim": "Its FAQ asks \"How does the free trial work?\", but the answer is not in the page's text.",
     "url": "https://sahha.ai/pricing/",
     "quote": "What's the difference between monthly and annual billing? Can I change plans later? How does the free trial work?"
+  },
+  {
+    "claim": "Evaluating Sahha on specific needs: Sahha: HMAC-SHA256 signature.",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "Compute an HMAC-SHA256 hash of the raw request body using your secret key, then compare it to the signature in the header."
+  },
+  {
+    "claim": "Evaluating Sahha on specific needs: Sahha: up to 5 retries with exponential backoff.",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "Failed deliveries are retried up to 5 times with exponential backoff"
+  },
+  {
+    "claim": "Evaluating Sahha on specific needs: Wearable data reconciled and deduplicated with phone data into one stream.",
+    "url": "https://sahha.ai/",
+    "quote": "When users do have a wearable, its data is reconciled and deduplicated with phone data into one stream."
+  },
+  {
+    "claim": "Evaluating Sahha on specific needs: Sahha lists Dexcom with a cloud API connection.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Decathlon Dexcom + Cloud API"
+  },
+  {
+    "claim": "Evaluating Sahha on specific needs: Homepage FAQ offers partner cloud connections without the beta caveat.",
+    "url": "https://sahha.ai/",
+    "quote": "connect a partner cloud like Garmin, Oura, WHOOP, or Dexcom directly, with no mobile app required"
   }
 ]
