@@ -63,7 +63,7 @@ export type Library = {
 };
 
 /** The date this file was last written from a successful run. */
-export const LIBRARIES_FETCHED_ON = "2026-11-18";
+export const LIBRARIES_FETCHED_ON = "2026-11-24";
 
 /** Rows the generator expects; it refuses to write fewer. */
 export const LIBRARIES_EXPECTED_ROWS = 20;
@@ -104,15 +104,15 @@ export const LIBRARIES: Library[] = [
     "repoFullName": "agencyenterprise/react-native-health",
     "repoStats": {
       "stars": 1163,
-      "openIssues": 157,
+      "openIssues": 156,
       "pushedAt": "2026-04-27",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2024-10-15",
       "sha": "84d946aad6f2",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -151,16 +151,16 @@ export const LIBRARIES: Library[] = [
     "repo": "kingstinct/react-native-healthkit",
     "repoFullName": "kingstinct/react-native-healthkit",
     "repoStats": {
-      "stars": 715,
-      "openIssues": 23,
-      "pushedAt": "2026-10-02",
+      "stars": 721,
+      "openIssues": 19,
+      "pushedAt": "2026-11-18",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-12",
       "sha": "44e4de5e3cb6",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -203,16 +203,16 @@ export const LIBRARIES: Library[] = [
     "repo": "matinzd/react-native-health-connect",
     "repoFullName": "matinzd/react-native-health-connect",
     "repoStats": {
-      "stars": 416,
-      "openIssues": 58,
+      "stars": 425,
+      "openIssues": 60,
       "pushedAt": "2026-08-26",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-26",
       "sha": "8d72b6a07743",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -256,12 +256,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 1,
       "pushedAt": "2026-08-01",
       "archived": true,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-01",
       "sha": "36856dff8cfc",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -299,16 +299,16 @@ export const LIBRARIES: Library[] = [
     "repo": "StasDoskalenko/react-native-google-fit",
     "repoFullName": "StasDoskalenko/react-native-google-fit",
     "repoStats": {
-      "stars": 372,
-      "openIssues": 9,
-      "pushedAt": "2026-10-02",
-      "archived": false,
-      "checkedOn": "2026-10-03"
+      "stars": 373,
+      "openIssues": 6,
+      "pushedAt": "2026-11-13",
+      "archived": true,
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-11-13",
       "sha": "244504d70390",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -353,12 +353,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 6,
       "pushedAt": "2026-09-23",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-23",
       "sha": "7666a54bf3a2",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -399,16 +399,16 @@ export const LIBRARIES: Library[] = [
     "repo": "Cap-go/capacitor-health",
     "repoFullName": "Cap-go/capacitor-health",
     "repoStats": {
-      "stars": 31,
-      "openIssues": 2,
-      "pushedAt": "2026-09-25",
+      "stars": 33,
+      "openIssues": 3,
+      "pushedAt": "2026-11-23",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-11-18",
-      "sha": "f8a7ec19a5be",
-      "checkedOn": "2026-11-18"
+      "date": "2026-11-23",
+      "sha": "49f6a9094f84",
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -449,16 +449,16 @@ export const LIBRARIES: Library[] = [
     "repo": "perfood/capacitor-healthkit",
     "repoFullName": "perfood/capacitor-healthkit",
     "repoStats": {
-      "stars": 89,
+      "stars": 87,
       "openIssues": 13,
       "pushedAt": "2025-02-13",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2025-02-13",
       "sha": "59a6dedd4158",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -502,15 +502,15 @@ export const LIBRARIES: Library[] = [
     "repoFullName": "dariosalvi78/cordova-plugin-health",
     "repoStats": {
       "stars": 192,
-      "openIssues": 28,
-      "pushedAt": "2026-10-03",
+      "openIssues": 19,
+      "pushedAt": "2026-11-12",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-11-12",
       "sha": "eb85a7a76be6",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -521,10 +521,10 @@ export const LIBRARIES: Library[] = [
     "why": "The Flutter plugin over HealthKit and Health Connect most Flutter health apps start from.",
     "registryUrl": "https://pub.dev/packages/health",
     "description": "Wrapper for Apple's HealthKit on iOS and Google's Health Connect on Android.",
-    "latestVersion": "13.3.2",
-    "latestPublished": "2026-08-14",
+    "latestVersion": "14.0.0",
+    "latestPublished": "2026-11-20",
     "firstPublished": "2019-11-08",
-    "versionCount": 91,
+    "versionCount": 92,
     "license": "MIT",
     "licenseEvidence": "pub.dev tags: license:mit",
     "repositoryUrl": "https://github.com/carp-dk/carp-health-flutter",
@@ -535,8 +535,8 @@ export const LIBRARIES: Library[] = [
     ],
     "platformsEvidence": "pubspec flutter.plugin.platforms: android, ios",
     "requires": {
-      "sdk": ">=3.8.0 <4.0.0",
-      "flutter": ">=3.6.0"
+      "sdk": ">=3.12.0 <4.0.0",
+      "flutter": ">=3.44.0"
     },
     "requiresSource": "pubspec environment",
     "deprecated": null,
@@ -550,16 +550,16 @@ export const LIBRARIES: Library[] = [
     "repo": "carp-dk/carp-health-flutter",
     "repoFullName": "carp-dk/carp-health-flutter",
     "repoStats": {
-      "stars": 41,
-      "openIssues": 235,
-      "pushedAt": "2026-08-14",
+      "stars": 43,
+      "openIssues": 188,
+      "pushedAt": "2026-11-20",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-08-14",
-      "sha": "d90dbb717f04",
-      "checkedOn": "2026-11-18"
+      "date": "2026-11-20",
+      "sha": "3c9bb3bc6541",
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -570,10 +570,10 @@ export const LIBRARIES: Library[] = [
     "why": "A newer Flutter SDK over HealthKit and Health Connect, first published in November 2025 — the alternative to `health`.",
     "registryUrl": "https://pub.dev/packages/health_connector",
     "description": "The most comprehensive Flutter health SDK for seamless iOS HealthKit and Android Health Connect integration.",
-    "latestVersion": "3.14.1",
-    "latestPublished": "2026-11-11",
+    "latestVersion": "3.15.0",
+    "latestPublished": "2026-11-23",
     "firstPublished": "2025-11-23",
-    "versionCount": 43,
+    "versionCount": 44,
     "license": "MIT",
     "licenseEvidence": "pub.dev tags: license:mit",
     "repositoryUrl": "https://github.com/fam-tung-lam/health_connector/tree/main/packages/health_connector",
@@ -599,16 +599,16 @@ export const LIBRARIES: Library[] = [
     "repo": "fam-tung-lam/health_connector",
     "repoFullName": "fam-tung-lam/health_connector",
     "repoStats": {
-      "stars": 13,
-      "openIssues": 10,
-      "pushedAt": "2026-09-22",
+      "stars": 16,
+      "openIssues": 8,
+      "pushedAt": "2026-11-23",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-11-11",
-      "sha": "d64e86600444",
-      "checkedOn": "2026-11-18"
+      "date": "2026-11-23",
+      "sha": "d99789e29461",
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -647,15 +647,15 @@ export const LIBRARIES: Library[] = [
     "repoFullName": "kvs-coder/health_kit_reporter",
     "repoStats": {
       "stars": 37,
-      "openIssues": 33,
-      "pushedAt": "2024-12-12",
+      "openIssues": 2,
+      "pushedAt": "2026-10-10",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-10",
       "sha": "6dba9c5af44e",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -698,12 +698,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 18,
       "pushedAt": "2024-07-29",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2023-07-04",
       "sha": "d35ff4c4b0d6",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -738,16 +738,16 @@ export const LIBRARIES: Library[] = [
     "repo": "cyberjunky/python-garminconnect",
     "repoFullName": "cyberjunky/python-garminconnect",
     "repoStats": {
-      "stars": 3083,
-      "openIssues": 2,
-      "pushedAt": "2026-09-29",
+      "stars": 3289,
+      "openIssues": 3,
+      "pushedAt": "2026-10-31",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-31",
       "sha": "82bc11073b59",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -782,16 +782,16 @@ export const LIBRARIES: Library[] = [
     "repo": "matin/garth",
     "repoFullName": "matin/garth",
     "repoStats": {
-      "stars": 818,
-      "openIssues": 13,
+      "stars": 819,
+      "openIssues": 12,
       "pushedAt": "2026-06-09",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-03-28",
       "sha": "f99159a15c4c",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -826,16 +826,16 @@ export const LIBRARIES: Library[] = [
     "repo": "stravalib/stravalib",
     "repoFullName": "stravalib/stravalib",
     "repoStats": {
-      "stars": 1000,
-      "openIssues": 19,
-      "pushedAt": "2026-10-01",
+      "stars": 1002,
+      "openIssues": 21,
+      "pushedAt": "2026-11-24",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-11-16",
-      "sha": "c2a3540bd89d",
-      "checkedOn": "2026-11-18"
+      "date": "2026-11-24",
+      "sha": "aac6b29ec036",
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -870,16 +870,16 @@ export const LIBRARIES: Library[] = [
     "repo": "hedgertronic/oura-ring",
     "repoFullName": "hedgertronic/oura-ring",
     "repoStats": {
-      "stars": 92,
+      "stars": 91,
       "openIssues": 2,
-      "pushedAt": "2026-07-07",
+      "pushedAt": "2026-11-14",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-11-09",
       "sha": "50ecd2499f6a",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -918,12 +918,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 7,
       "pushedAt": "2024-04-23",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2024-04-23",
       "sha": "35fd39c1b1ad",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -956,16 +956,16 @@ export const LIBRARIES: Library[] = [
     "repo": "orcasgit/python-fitbit",
     "repoFullName": "orcasgit/python-fitbit",
     "repoStats": {
-      "stars": 633,
+      "stars": 632,
       "openIssues": 61,
       "pushedAt": "2024-07-23",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2019-08-12",
       "sha": "6a0a7cba26c2",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   },
   {
@@ -1004,12 +1004,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 10,
       "pushedAt": "2022-04-22",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-11-24"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2022-03-05",
       "sha": "69c21c32449b",
-      "checkedOn": "2026-11-18"
+      "checkedOn": "2026-11-24"
     }
   }
 ];
