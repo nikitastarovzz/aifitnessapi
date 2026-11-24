@@ -1,0 +1,167 @@
+[
+  {
+    "claim": "Health features are in beta, require Pro, Max or Ultra, and are US only.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Health features are currently in beta, require a Pro, Max, or Ultra plan, and are available in the US only."
+  },
+  {
+    "claim": "The iOS integrations are supported on all Claude plans.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "This feature is supported on all Claude plans"
+  },
+  {
+    "claim": "Claude reads health data but cannot write or modify Apple Health entries.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Claude can read health data but cannot write or modify entries in Apple Health."
+  },
+  {
+    "claim": "Claude reads health and fitness data from Apple Health.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Claude can read your health and fitness data from Apple Health"
+  },
+  {
+    "claim": "Claude reads listed data types from Apple Health with permission.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "With your permission, Claude can read the following types of data from Apple Health"
+  },
+  {
+    "claim": "Activity metrics data types.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Steps, distance, flights climbed, active calories, exercise minutes, move and stand hours."
+  },
+  {
+    "claim": "Workout data types.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "duration, distance, heart rate data, and calories burned"
+  },
+  {
+    "claim": "Vitals data types.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Heart rate, resting heart rate, heart rate variability (HRV), blood pressure, respiratory rate, and blood oxygen."
+  },
+  {
+    "claim": "Body measurement data types.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Weight, height, body mass index, and body fat percentage."
+  },
+  {
+    "claim": "Sleep data types.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Total sleep time, sleep stages, time in bed, and sleep efficiency."
+  },
+  {
+    "claim": "Nutrition data types.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Calories consumed, macronutrients, water intake, and micronutrients (if tracked)."
+  },
+  {
+    "claim": "Claude displays insights with native iOS charts.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Claude displays health insights using native iOS charts that appear directly in your conversation."
+  },
+  {
+    "claim": "Some data types require an Apple Watch or compatible device.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Some data types require an Apple Watch or compatible device."
+  },
+  {
+    "claim": "A recently started metric may lack history for trend analysis.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "there may not be enough historical data for trend analysis"
+  },
+  {
+    "claim": "Claude requests access to health data if not already granted.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Claude will request access to your health data if not already granted."
+  },
+  {
+    "claim": "Health data is accessed only when a question requires it and permission is granted.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "only when you ask a question that requires this information and have granted permission"
+  },
+  {
+    "claim": "Health permissions work differently from other permissions.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Health permissions work differently from other app permissions."
+  },
+  {
+    "claim": "The standard iOS Health permissions screen lets users choose data types.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "you'll see the standard iOS Health permissions screen where you can choose exactly which data types to share"
+  },
+  {
+    "claim": "Health permissions are modified in Settings > Health > Data Access & Devices > Claude.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "You can modify these permissions at any time by going to Settings > Health > Data Access & Devices > Claude."
+  },
+  {
+    "claim": "Other permissions offer Allow once, Always allow or Don't allow.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "You’ll be prompted to approve the action with three options: Allow once, Always allow, or Don't allow."
+  },
+  {
+    "claim": "By default Claude does not save health information to memory.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "By default, Claude doesn't save health information to memory."
+  },
+  {
+    "claim": "With Include sensitive topics in memory on, Claude may remember health context.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Claude may remember health-related context from your conversations"
+  },
+  {
+    "claim": "Tool use is preserved in conversation history like any tool.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "their use is preserved in the conversation history in the same way as any tool"
+  },
+  {
+    "claim": "The help article lists a separate Android apps article.",
+    "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+    "quote": "Use Claude with Android apps"
+  },
+  {
+    "claim": "Announcement: US Pro and Max subscribers can give Claude access to lab results and health records.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "In the US, Claude Pro and Max plan subscribers can choose to give Claude secure access to their lab results and health records."
+  },
+  {
+    "claim": "HealthEx and Function connectors are in beta.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "New HealthEx and Function connectors are available in beta today"
+  },
+  {
+    "claim": "Apple Health and Android Health Connect integrations rolling out in beta via iOS and Android apps.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "Apple Health and Android Health Connect integrations are rolling out in beta this week via the Claude iOS and Android apps"
+  },
+  {
+    "claim": "When connected, Claude can summarize history, explain results, detect patterns and prepare questions.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "When connected, Claude can summarize users’ medical history, explain test results in plain language, detect patterns across fitness and health metrics, and prepare questions for appointments."
+  },
+  {
+    "claim": "Users must explicitly opt in.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "must explicitly opt-in to enable access"
+  },
+  {
+    "claim": "Users can disconnect or edit Claude's permissions at any time.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "can disconnect or edit Claude’s permissions at any time"
+  },
+  {
+    "claim": "Users choose the information they share.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "Users can choose exactly the information they share with Claude"
+  },
+  {
+    "claim": "Anthropic does not use users' health data to train models.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "We do not use users’ health data to train models."
+  },
+  {
+    "claim": "The announcement was published January 11, 2026.",
+    "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+    "quote": "Published Jan 11, 2026"
+  }
+]
