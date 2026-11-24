@@ -239,6 +239,10 @@ files, so nothing becomes invisible.
 2026-11-21: llms.txt reached 51,201 bytes against the 51,200 cap when seven
 GTA 6 spokes shipped; TOP_INTEGRATE_FIX went from 10 to 9 under this rule.
 
+2026-11-24: llms.txt reached 51,919 bytes when six /ai spokes shipped (the
+"newest pages" list holds every new page by rule); TOP_VISITED went from 15 to
+13 and TOP_INTEGRATE_FIX from 9 to 7 under this rule.
+
 Changed 2026-11-04 (ops/NEXT-10-2026-11-04.md item 6), all gated:
 
 - **Key facts.** Money-cluster spokes (pricing, alternatives, compare,

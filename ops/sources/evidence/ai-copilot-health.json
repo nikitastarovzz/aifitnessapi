@@ -1,0 +1,112 @@
+[
+  {
+    "claim": "Announcement dated March 12, 2026.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Mar 12, 2026"
+  },
+  {
+    "claim": "Copilot Health is a separate, secure space within Copilot.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "a separate, secure space within Copilot where medical intelligence makes sense of your information"
+  },
+  {
+    "claim": "It brings together health records, wearable data and health history in one place.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Copilot Health brings together your health records, wearable data, and health history into one place"
+  },
+  {
+    "claim": "Wearables: activity, sleep, vitals and trends from over 50 wearable devices including Apple Health, Oura, Fitbit.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Activity levels, sleep patterns, vital signs, and other trends from over 50 wearable devices including Apple Health, Oura, Fitbit and more."
+  },
+  {
+    "claim": "Health records from over 50,000 US hospitals and provider organizations through HealthEx.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Health records from over 50,000 U.S. hospitals and provider organizations through HealthEx, including your visit summaries, medication lists, and test results."
+  },
+  {
+    "claim": "Lab test results from Function.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Comprehensive lab test results from Function."
+  },
+  {
+    "claim": "Search clinicians by specialty, location, languages and insurance, in US provider directories.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "so users can search for clinicians by specialty, location, languages spoken and insurance coverage"
+  },
+  {
+    "claim": "The provider directories are US provider directories.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "US provider directories so users can search for clinicians by specialty"
+  },
+  {
+    "claim": "Isolation from general Copilot under additional controls.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Your Copilot Health conversations and data are isolated from general Copilot and kept under additional access, privacy, and safety controls."
+  },
+  {
+    "claim": "Encryption at rest and in transit, strict access controls, manage and delete.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "including encryption at rest and in transit, strict access controls, and the ability to manage and delete your information when you choose"
+  },
+  {
+    "claim": "Connectors can be disconnected instantaneously at any time.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "You can disconnect your connectors to health data sources such as electronic health records or wearables instantaneously at any time."
+  },
+  {
+    "claim": "Not used for model training.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Your information in Copilot Health is not used for model training."
+  },
+  {
+    "claim": "The page's generic Data & privacy panel manages Microsoft AI model-service data.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Manage your Microsoft AI model-service data."
+  },
+  {
+    "claim": "Phased rollout.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Copilot Health available through a careful, phased rollout."
+  },
+  {
+    "claim": "ISO/IEC 42001 certification.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Copilot Health has achieved ISO/IEC 42001 certification"
+  },
+  {
+    "claim": "Microsoft's description of what the certification means.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "meaning an independent third party has verified how we build, govern, and continuously improve the AI behind this service"
+  },
+  {
+    "claim": "Standard for AI management systems.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "standard for AI management systems"
+  },
+  {
+    "claim": "Internal clinical team and external panel of over 230 physicians from more than 24 countries.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "informed by an external panel of over 230 physicians from more than 24 countries"
+  },
+  {
+    "claim": "New AI features released only after clinical evaluations and with clear labeling.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "will only be released into Copilot Health after rigorous clinical evaluations"
+  },
+  {
+    "claim": "Responses include citations with links to sources.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "Responses include clear citations with easy links to source material"
+  },
+  {
+    "claim": "Answer cards from Harvard Health.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "answer cards from Harvard Health"
+  },
+  {
+    "claim": "Medical superintelligence framing.",
+    "url": "https://microsoft.ai/news/introducing-copilot-health/",
+    "quote": "This work paves the way to providing users with trusted access to medical superintelligence"
+  }
+]

@@ -1,0 +1,252 @@
+[
+  {
+    "claim": "The help article was last modified on November 17, 2026.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Last modified on November 17, 2026"
+  },
+  {
+    "claim": "Medical Records connect through partner b.well, wellness apps via Terra API, plus a health files repository.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can securely connect your Electronic Health Records through our partner b.well"
+  },
+  {
+    "claim": "Apple Health connects on the iOS device.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "On your iOS device, you can also connect Apple Health."
+  },
+  {
+    "claim": "Only data selected on the Apple Health permissions screen is shared.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Only data you select on the Apple Health permissions screen will be shared with Perplexity."
+  },
+  {
+    "claim": "An iPhone is needed to connect Apple Health.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Yes, you will need an iPhone to connect Apple Health."
+  },
+  {
+    "claim": "HealthKit-based features require 18 or older and are iOS only.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Apple HealthKit-based features require you to be 18 years or older and are only available on iOS."
+  },
+  {
+    "claim": "Wearable data received: steps, workouts, heart rate, sleep, recovery and other wellness metrics, depending on app and permissions.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Perplexity may receive data such as steps, workouts, heart rate, sleep, recovery, and other wellness metrics"
+  },
+  {
+    "claim": "Devices and apps connection is powered by Terra API, described as a unified health and fitness data platform.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "is powered by Terra API , a unified health and fitness data platform"
+  },
+  {
+    "claim": "Help article examples of devices and apps: Fitbit, Google and Clue.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Connector lets you link health devices and apps—such as Fitbit, Google, and Clue"
+  },
+  {
+    "claim": "Medical Records may include lab results, visit summaries, medications and medical conditions, depending on the provider.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Perplexity may access data such as lab results, visit summaries, medications, and medical conditions, depending on what your provider makes available"
+  },
+  {
+    "claim": "Medical Records are US only at launch.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Medical Records are available only in the United States at launch."
+  },
+  {
+    "claim": "The Medical Records connection is powered by b.well, described as HIPAA-compliant.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "The Medical Records connection is powered by b.well , a HIPAA-compliant platform"
+  },
+  {
+    "claim": "Uploaded health files are stored in a separate encrypted repository.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Any health files you upload are stored in a separate, encrypted health file repository."
+  },
+  {
+    "claim": "Launch post names Apple Health, records from over 1.7 million care providers, and Fitbit, Ultrahuman, Withings.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "electronic health records from over 1.7 million care providers, and platforms including Fitbit, Ultrahuman, Withings, and many more"
+  },
+  {
+    "claim": "Connectors are powered by partners like b.well and Terra API alongside direct integrations.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "These are powered by partners like b.well and Terra API alongside direct integrations."
+  },
+  {
+    "claim": "On March 19, OURA and Function were expected soon.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "Function are expected soon."
+  },
+  {
+    "claim": "Launch post date: March 19, 2026.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "Today we are launching Perplexity Health, a suite of connectors to your personal health data"
+  },
+  {
+    "claim": "Apple Health data personalizes answers but is not reflected on the Health hub dashboard.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Currently, Apple Health data is used to personalize your health answers but is not reflected on the Health hub dashboard or data visualizations."
+  },
+  {
+    "claim": "Medical Records personalize answers and the health dashboard.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "can be used to personalize health-related answers and your health dashboard"
+  },
+  {
+    "claim": "iOS Health permissions are checked in the Health app, profile picture, Apps, Perplexity.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Check your iOS Health permissions by opening the Health app"
+  },
+  {
+    "claim": "Included with Pro and Max subscriptions in the US, on iOS and the web.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "At launch, Perplexity Health will be included with Perplexity Pro and Max subscriptions in the US and is available to eligible subscribers on iOS and on the web at perplexity.ai/health ."
+  },
+  {
+    "claim": "Phased launch; may not be available to all eligible subscribers right away.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "This feature is rolling out as part of a phased launch, so it may not be available to all eligible subscribers right away."
+  },
+  {
+    "claim": "More cohorts and geographies coming; Computer rollout to Pro/Max in the US first.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "Perplexity Health on Computer will first roll out to Pro/Max users in the US over the coming weeks, with more cohorts and geographies coming soon."
+  },
+  {
+    "claim": "On iOS, find the hub by typing Health in the search bar.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "On iOS, you can find it by typing “Health” in the search bar."
+  },
+  {
+    "claim": "Health-related queries in main chat trigger Perplexity Health automatically.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "relevant queries will automatically trigger Perplexity Health"
+  },
+  {
+    "claim": "Hub features fitness tracking, biomarker tracking, activity logs and AI-powered summaries.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "It features fitness tracking, biomarker tracking, activity logs, and AI-powered summaries."
+  },
+  {
+    "claim": "Launch post: personalized dashboard tracking metrics and trends over time.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "Perplexity Health tracks metrics and trends over time across biomarkers and activity data through a personalized dashboard."
+  },
+  {
+    "claim": "The system may generate health memories from queries.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "To provide personalized insights, the system may generate health memories based on your queries."
+  },
+  {
+    "claim": "Health memories are referenced only when relevant.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Health memories are referenced only when they are relevant to your question."
+  },
+  {
+    "claim": "View health memories under Settings, Personalization, Manage your saved memories, filtered for Health.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can view your health-related memories by going to Settings > Personalization > Manage your saved memories"
+  },
+  {
+    "claim": "A health memory can be deleted individually.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can also delete a health memory by hovering over it and clicking the Delete icon."
+  },
+  {
+    "claim": "Health chats, connector data, files and memories are not used to train AI models and never sold.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Your health chats, connector data, files, and memories are not used to train AI models and will never be sold to third parties."
+  },
+  {
+    "claim": "Perplexity may use questions and answers to help improve Perplexity, per its Privacy Notice.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "We also may use your questions and answers to help improve Perplexity, as explained in our Privacy Notice."
+  },
+  {
+    "claim": "Launch post: information never used to train AI models or sold to third parties.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "information is never used to train AI models or sold to third parties"
+  },
+  {
+    "claim": "Raw health data is queried on demand and not stored permanently.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Your raw health data is queried on demand through our data providers and is not stored permanently on our servers."
+  },
+  {
+    "claim": "Launch post: encryption in transit and at rest.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "Health data on Perplexity is protected with encryption in transit and at rest"
+  },
+  {
+    "claim": "Help article HIPAA answer: end-to-end encryption.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "your data is protected with end-to-end encryption and strict security practices"
+  },
+  {
+    "claim": "HIPAA does not apply to consumer health products like Perplexity Health.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "HIPAA does not apply to consumer health products like Perplexity Health."
+  },
+  {
+    "claim": "Health conversations can be shared on web and iOS.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can share Health conversations on the web by selecting Share in the top right"
+  },
+  {
+    "claim": "Disconnect wearable, records and Apple Health connectors under Plugins, Installed, or from the Health hub.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can disconnect your wearable connector, health records connector, and Apple Health (iOS only) at any time"
+  },
+  {
+    "claim": "Connectors can be disabled from the Health hub.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can also disable them directly from your Health hub."
+  },
+  {
+    "claim": "Disconnecting stops new data from that source.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "When you disconnect a health connector, Perplexity stops receiving new data from that source."
+  },
+  {
+    "claim": "Perplexity does not store connected-source data; retains only session information, deletable.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Perplexity does not store data from your connected sources and only retains information that appears in your sessions, which you can delete at any time."
+  },
+  {
+    "claim": "Delete memories in Personalization, remove connector access, delete Health sessions in History.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can also delete any Health session at any time in your History tab."
+  },
+  {
+    "claim": "It will not provide medical diagnoses.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Provide medical diagnoses."
+  },
+  {
+    "claim": "It will not recommend specific treatments.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Recommend specific treatments."
+  },
+  {
+    "claim": "It will not provide personalized nutrition therapy.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Provide personalized nutrition therapy."
+  },
+  {
+    "claim": "It will not give emergency medical advice.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "Give emergency medical advice."
+  },
+  {
+    "claim": "Launch post: not a substitute for professional medical advice.",
+    "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+    "quote": "is not a substitute for professional medical advice"
+  },
+  {
+    "claim": "Help article links b.well's privacy policy.",
+    "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+    "quote": "You can read their privacy policy here ."
+  }
+]
