@@ -17,6 +17,7 @@ import MetricPlatforms from "@/components/MetricPlatforms";
 import AccessReports from "@/components/AccessReports";
 import { vendorForPath } from "@/lib/accessReportSubmission.mjs";
 import PoseModelFiles from "@/components/PoseModelFiles";
+import CameraAngleSection from "@/components/CameraAngleSection";
 import ContentLicences from "@/components/ContentLicences";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
@@ -748,6 +749,11 @@ export default function ClusterPage({
             data/poseModelFiles.ts. Renders nothing off that one page, and is
             English-only: it is not part of the translatable body. */}
         {!tr && <PoseModelFiles path={path} />}
+
+        {/* The camera-angle simulator (geometry of a drawn figure, not a model
+            benchmark) on the pose-accuracy guide. Renders nothing elsewhere;
+            English only and outside the translatable body. */}
+        {!tr && <CameraAngleSection path={path} />}
 
         {/* "Can I ship it?": free tier, price and commercial terms per exercise
             or nutrition source, each cell linking its quoted source. English

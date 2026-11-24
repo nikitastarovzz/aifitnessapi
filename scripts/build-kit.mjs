@@ -10,6 +10,7 @@
  * instead of leaving a PDF from March contradicting the page.
  *
  *   node scripts/build-kit.mjs
+ *   node scripts/build-kit.mjs --only rep-counter [--check]   (public/kit/rep-counter.html alone)
  */
 import { readFileSync, writeFileSync, copyFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -204,12 +205,59 @@ function rebuildZip() {
   return KIT_FILES.length;
 }
 
-const ble = bleCheatSheet();
-const watch = watchPreflight();
-const mirrored = mirrorDatasets();
-const zipped = rebuildZip();
-console.log(
-  `kit: ble-fitness-uuid-cheat-sheet.md (${ble} rows), ` +
-    `watch-app-preflight-checklist.md (${watch} items), ` +
-    `${mirrored} datasets mirrored, fitness-api-decision-kit.zip (${zipped} files)`,
-);
+// ── The one-file squat rep counter, rendered from a template ──────────────
+// Its runtime URLs, thresholds and stance cue are read from the modules and
+// evidence the site already publishes (src/lib/repCounterKit.mjs says which);
+// the template is the only hand-written part. Not in the zip: it is code, not
+// a checklist. `--check` exits non-zero when the file is stale.
+async function repCounterHtml({ check = false } = {}) {
+  const { KIT_FILE, TEMPLATE_FILE, kitValues, renderRepCounter } = await import("../src/lib/repCounterKit.mjs");
+  const motion = entries("src/data/motion.entries.ts");
+  const values = kitValues({
+    poseBenchmark: await import("../src/lib/poseBenchmark.ts"),
+    formRules: await import("../src/data/formRules.ts"),
+    squatEvidence: JSON.parse(readFileSync("ops/sources/evidence/motion-squat-detection-pose-estimation.json", "utf8")),
+    squatEntry: motion.find((e) => e.slug === "squat-detection-pose-estimation"),
+    counter: (await import("../src/lib/repCounter.mjs")).EXERCISES.squat,
+  });
+  const html = renderRepCounter(readFileSync(TEMPLATE_FILE, "utf8"), values);
+  if (check) {
+    let current = "";
+    try {
+      current = readFileSync(KIT_FILE, "utf8");
+    } catch {
+      /* missing reads as stale */
+    }
+    if (current !== html) {
+      console.error(`${KIT_FILE} is stale: run node scripts/build-kit.mjs --only rep-counter`);
+      process.exit(1);
+    }
+    return html.split("\n").length;
+  }
+  writeFileSync(KIT_FILE, html);
+  return html.split("\n").length;
+}
+
+// `--only rep-counter` (and `--check`) touch the rep counter alone, so it can
+// be regenerated without rewriting the other kit files and the zip.
+const only = process.argv.includes("--only") ? process.argv[process.argv.indexOf("--only") + 1] : null;
+if (only && only !== "rep-counter") {
+  console.error(`unknown --only ${only}; the one partial target is rep-counter`);
+  process.exit(1);
+}
+if (only === "rep-counter") {
+  const check = process.argv.includes("--check");
+  const lines = await repCounterHtml({ check });
+  console.log(`kit: rep-counter.html (${lines} lines)${check ? " is current" : ""}`);
+} else {
+  const ble = bleCheatSheet();
+  const watch = watchPreflight();
+  const mirrored = mirrorDatasets();
+  const zipped = rebuildZip();
+  const rep = await repCounterHtml();
+  console.log(
+    `kit: ble-fitness-uuid-cheat-sheet.md (${ble} rows), ` +
+      `watch-app-preflight-checklist.md (${watch} items), ` +
+      `${mirrored} datasets mirrored, fitness-api-decision-kit.zip (${zipped} files), rep-counter.html (${rep} lines)`,
+  );
+}

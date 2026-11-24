@@ -1,7 +1,9 @@
-import { FORM_RULE_PRESETS, FORM_RULE_SOURCES, FORM_RULES_FETCHED_ON } from "@/data/formRules";
+import { FORM_RULE_PRESETS, FORM_RULE_SOURCES, FORM_RULES, FORM_RULES_FETCHED_ON } from "@/data/formRules";
 import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
 import { DEFAULT_CONFIG as D, JOINTS } from "@/lib/repPlayground.mjs";
 import { site } from "@/lib/site";
+import { EXERCISES as COUNTER_EXERCISES } from "@/lib/repCounter.mjs";
+import { STANCE_ROW_ID } from "@/lib/repCounterKit.mjs";
 import { interactiveNote, link, type MirrorDoc } from "./core";
 
 const PATH = "/tools/rep-counter-playground";
@@ -19,6 +21,11 @@ export function repCounterPlaygroundMirror(): MirrorDoc {
   const LITE = model("lite");
   const FULL = model("full");
   const presetSources = FORM_RULE_SOURCES.filter((s) => FORM_RULE_PRESETS.some((p) => p.sourceId === s.id));
+  const stance = FORM_RULES.find((r) => r.id === STANCE_ROW_ID);
+  const stanceSrc = FORM_RULE_SOURCES.find((s) => s.id === stance?.sourceId);
+  if (!stance || !stanceSrc) throw new Error(`rep-counter-playground mirror: no ${STANCE_ROW_ID} row in src/data/formRules.ts`);
+  const kitTop = COUNTER_EXERCISES.squat.rest.above;
+  const kitBottom = COUNTER_EXERCISES.squat.active.below;
 
   return {
     path: PATH,
@@ -57,6 +64,18 @@ export function repCounterPlaygroundMirror(): MirrorDoc {
       "- **A rep is counted twice** when noise crosses a line more than once. Widen the gap, raise the minimum frames or the smoothing, or raise the minimum cycle time.",
       `- **Gaps in the line** are frames with no reading: no person found, or the joint’s points below the visibility floor. Side-on footage hides the far limb, which is what the side setting is for. Camera placement is covered in ${link("how rep counting works", "/motion/how-rep-counting-works")} and ${link("improving pose detection accuracy", "/guides/improve-pose-detection-accuracy")}.`,
       "- **Image or world angles.** Image angles are measured on the picture, with x scaled by the frame’s aspect ratio, so they shrink when a limb points at the camera. World angles use the model’s 3D landmarks in meters and depend less on where you stand, at the cost of the model’s depth estimate.",
+      "",
+      "## The same counter in one HTML file",
+      "",
+      `rep-counter.html is a squat counter in a single file of about 200 lines you can read in one sitting: Pose Landmarker ${LITE.name.replace("Pose Landmarker ", "")} in \`@mediapipe/tasks-vision\` ${TASKS_VISION_VERSION} from the same pinned addresses as this page, the knee angle with two thresholds and a gap between them, and one form cue. It counts a rep when the knee angle goes below ${kitBottom}° and back above ${kitTop}°, the example defaults Sousa and colleagues mark as adjustable, quoted on ${link("squat detection with pose estimation", "/motion/squat-detection-pose-estimation")}. The cue checks stance: foot width over shoulder width between ${stance.value} and ${stance.value2}, the range ${stanceSrc.name} (${stanceSrc.license}) ships, read from its code on ${FORM_RULES_FETCHED_ON} into ${link("the form-rules dataset", "/tools/exercise-form-rules")}. Neither is calibrated for your camera or your users, and the file says where each number came from.`,
+      "",
+      `${link("Download rep-counter.html", "/kit/rep-counter.html")}`,
+      "",
+      "- **On your computer.** Open the downloaded file in your browser. The camera API works only in a secure context, and MDN’s table of secure contexts lists a file:// page as secure; we ran the file that way in Chromium with a test video as the camera.",
+      "- **In CodePen.** Create a Pen and drag the file onto it, or paste its contents into the Pen’s index.html. CodePen’s documentation says files can be dragged in or uploaded, and that its preview server answers / with /index.html.",
+      "- **In StackBlitz.** StackBlitz’s documentation lists starter links such as vite.new; open one and put the file’s contents in the project’s index.html.",
+      "",
+      `We have not run the file inside CodePen or StackBlitz. If an editor’s preview does not offer your camera, choose a video file instead. This page sends nothing to either service: there is no prefilled form, and you paste the file yourself. Count side-on and check stance facing the camera; why the view matters is shown in ${link("the camera-angle simulator", "/guides/improve-pose-detection-accuracy#camera-angle-simulator")}. The file is MIT-licensed, sends no frame anywhere, and, like this page, loads a runtime that posts its own usage report to Google.`,
       "",
       "## What runs, and what it sends",
       "",

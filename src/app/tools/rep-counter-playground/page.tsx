@@ -6,12 +6,14 @@ import ClusterHero from "@/components/ClusterHero";
 import KinestexNote from "@/components/KinestexNote";
 import RepCounterPlayground from "@/components/tools/RepCounterPlayground";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
-import { FORM_RULE_PRESETS, FORM_RULE_SOURCES, FORM_RULES_FETCHED_ON } from "@/data/formRules";
+import { FORM_RULE_PRESETS, FORM_RULE_SOURCES, FORM_RULES, FORM_RULES_FETCHED_ON } from "@/data/formRules";
 import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
 import { LANDMARKS } from "@/lib/repCounter.mjs";
 import { DEFAULT_CONFIG, JOINTS } from "@/lib/repPlayground.mjs";
 import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { site } from "@/lib/site";
+import { EXERCISES as COUNTER_EXERCISES } from "@/lib/repCounter.mjs";
+import { STANCE_ROW_ID } from "@/lib/repCounterKit.mjs";
 import { toolGraph, publishedDate } from "@/lib/schema";
 
 /**
@@ -66,6 +68,21 @@ const LITE = BENCH_MODELS.find((m) => m.id === "lite")!;
 const FULL = BENCH_MODELS.find((m) => m.id === "full")!;
 const linkCls = "font-medium text-brand-600 hover:text-brand-500";
 const D = DEFAULT_CONFIG;
+
+// The one-file counter (public/kit/rep-counter.html, rendered by
+// scripts/build-kit.mjs from the same modules): its count thresholds are the
+// /challenge squat rule, and its stance cue is one row of the form-rules dataset.
+const KIT_TOP = COUNTER_EXERCISES.squat.rest.above;
+const KIT_BOTTOM = COUNTER_EXERCISES.squat.active.below;
+function stanceRule() {
+  const row = FORM_RULES.find((r) => r.id === STANCE_ROW_ID);
+  const src = FORM_RULE_SOURCES.find((s) => s.id === row?.sourceId);
+  if (!row || row.value == null || row.value2 == null || !src) {
+    throw new Error(`rep-counter-playground: ${STANCE_ROW_ID} missing from the form-rules dataset`);
+  }
+  return { row, src };
+}
+const { row: STANCE, src: STANCE_SRC } = stanceRule();
 
 export default function RepCounterPlaygroundPage() {
   const jsonLd = toolGraph({
@@ -214,6 +231,64 @@ export default function RepCounterPlaygroundPage() {
               you stand, at the cost of the model&rsquo;s depth estimate.
             </li>
           </ul>
+        </section>
+
+        <section id="one-file" className="mt-14 scroll-mt-24">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">The same counter in one HTML file</h2>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            rep-counter.html is a squat counter in a single file of about 200 lines you can read in one sitting:
+            Pose Landmarker {LITE.name.replace("Pose Landmarker ", "")}{" "}in{" "}
+            <code className="font-mono text-sm">@mediapipe/tasks-vision</code> {TASKS_VISION_VERSION}{" "}from the same pinned
+            addresses as this page, the knee angle with two thresholds and a gap between them, and one form cue. It
+            counts a rep when the knee angle goes below {KIT_BOTTOM}&deg; and back above {KIT_TOP}&deg;, the example
+            defaults Sousa and colleagues mark as adjustable, quoted on{" "}
+            <Link href="/motion/squat-detection-pose-estimation" className={linkCls}>
+              squat detection with pose estimation
+            </Link>
+            . The cue checks stance: foot width over shoulder width between {STANCE.value} and {STANCE.value2}, the range{" "}
+            {STANCE_SRC.name} ({STANCE_SRC.license}) ships, read from its code on {FORM_RULES_FETCHED_ON}{" "}into{" "}
+            <Link href="/tools/exercise-form-rules" className={linkCls}>
+              the form-rules dataset
+            </Link>
+            . Neither is calibrated for your camera or your users, and the file says where each number came from.
+          </p>
+          <a
+            href="/kit/rep-counter.html"
+            download="rep-counter.html"
+            data-cta="kit-rep-counter"
+            data-cta-source="rep-counter-playground"
+            className="mt-5 inline-block rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-500"
+          >
+            Download rep-counter.html
+          </a>
+          <ul className="mt-5 list-disc space-y-2 pl-5 leading-relaxed text-[var(--muted)]">
+            <li>
+              <strong className="text-[var(--fg)]">On your computer.</strong>{" "}Open the downloaded file in your
+              browser. The camera API works only in a secure context, and MDN&rsquo;s table of secure contexts lists a
+              file:// page as secure; we ran the file that way in Chromium with a test video as the camera.
+            </li>
+            <li>
+              <strong className="text-[var(--fg)]">In CodePen.</strong>{" "}Create a Pen and drag the file onto it, or
+              paste its contents into the Pen&rsquo;s index.html. CodePen&rsquo;s documentation says files can be
+              dragged in or uploaded, and that its preview server answers / with /index.html.
+            </li>
+            <li>
+              <strong className="text-[var(--fg)]">In StackBlitz.</strong>{" "}StackBlitz&rsquo;s documentation lists
+              starter links such as vite.new; open one and put the file&rsquo;s contents in the project&rsquo;s
+              index.html.
+            </li>
+          </ul>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            We have not run the file inside CodePen or StackBlitz. If an editor&rsquo;s preview does not offer your
+            camera, choose a video file instead. This page sends nothing to either service: there is no prefilled
+            form, and you paste the file yourself. Count side-on and check stance facing the camera; why the view
+            matters is shown in{" "}
+            <Link href="/guides/improve-pose-detection-accuracy#camera-angle-simulator" className={linkCls}>
+              the camera-angle simulator
+            </Link>
+            . The file is MIT-licensed, sends no frame anywhere, and, like this page, loads a runtime that posts its own
+            usage report to Google.
+          </p>
         </section>
 
         <details className="mt-14 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
