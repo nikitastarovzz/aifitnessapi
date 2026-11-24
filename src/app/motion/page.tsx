@@ -200,7 +200,7 @@ export default function MotionPillar() {
           </p>
           <p>
             Want to see it run? The <Link href="/challenge">30-second rep challenge</Link> counts your
-            squats or jumping jacks from the webcam with the rules{" "}
+            squats, jumping jacks, push-ups and lunges, or times a plank, from the webcam with the rules{" "}
             <Link href="/motion/how-rep-counting-works">rep counting</Link> describes, and{" "}
             <Link href="/tools/pose-benchmark">the pose model benchmark</Link> times the model on your
             own device. Both run in the browser and never upload camera frames. To tune a counter on
