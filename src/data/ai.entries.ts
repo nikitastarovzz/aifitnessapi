@@ -681,5 +681,459 @@ export const aiEntries: ClusterEntry[] =
         "note": "registry entry fields, including environment variables and the isSecret flag"
       }
     ]
+  },
+  {
+    "slug": "which-ai-can-read-your-health-data",
+    "primaryQuery": "which ai can read my health data",
+    "h1": "Which AI Can Read Your Health Data? Six Assistants Compared",
+    "metaTitle": "Which AI Can Read Your Health Data? Six Assistants Compared",
+    "metaDescription": "ChatGPT, Claude, Perplexity, Copilot, Google and Samsung health AI compared: what each reads, write-back, training wording, deletion, plans and regions.",
+    "updated": "2026-11-24",
+    "answer": "As of November 24, 2026, six consumer AI assistants document reading your health data: Health in ChatGPT, Claude's health features on iOS, Perplexity Health, Microsoft's Copilot Health, Google Health Coach and Samsung's Health Assistant beta. ChatGPT reads Apple Health and Health Connect; Claude, Perplexity and Copilot list Apple Health; ChatGPT, Claude, Perplexity and Copilot also connect medical records, often through partners such as b.well and HealthEx; and Google's and Samsung's assistants work inside their own health apps. Most are limited to the U.S. and to named plans, OpenAI and Anthropic say their assistants cannot write back to Apple Health, and the vendors word their model-training promises differently, so check each one in the table.",
+    "body": "This page compares what six consumer AI assistants say they can read of your health data, from each vendor's own launch posts and help articles as we read them on November 24, 2026. To wire wearable data into an assistant yourself, through an MCP server or an export file, see [connecting wearable data to AI assistants](/ai/connect-wearable-data-to-ai-assistants). AIFitnessAPI is not affiliated with OpenAI, Anthropic, Perplexity, Microsoft, Google or Samsung, and this page does not rank them.\n\n## The matrix\n\nEvery cell is as of November 24, 2026. \"Not stated\" means not stated on the pages we read, listed under the sources below; it does not mean the feature is missing. The table is re-checked on the date in this page's verification stamp.\n\n| | ChatGPT (Health in ChatGPT) | Claude | Perplexity Health | Copilot Health | Google Health Coach | Samsung Health Assistant (beta) |\n|---|---|---|---|---|---|---|\n| Apple Health | Yes, iPhone only | Yes, in the Claude iOS app | Yes, iPhone only; used in answers, not on the Health hub dashboard | Listed among \"over 50 wearable devices\" | Not stated | Not stated |\n| Health Connect (Android) | Yes, Android only | Announced in beta for the Android app in January 2026; not in the help article we read | Not stated | Not stated | Not stated | Not stated |\n| Wearables and other apps | Through Apple Health or Health Connect (WHOOP, Oura, Garmin, Strava, MyFitnessPal named) | Through Apple Health | Through Terra API (Fitbit, Google, Clue, Ultrahuman, Withings named) | Oura, Fitbit \"and more\"; how they connect is not stated | Fitbit and Pixel Watch first, other devices \"coming soon\" (May 2026) | Samsung Health data: sleep, activity, nutrition, mindfulness, vitals |\n| Medical records, and through whom | U.S. provider portals and One Medical; no partner named now (the January beta post named b.well) | Health records through HealthEx (beta, U.S.) | Through b.well, U.S. only | Through HealthEx, over 50,000 U.S. hospitals and provider organizations | Synced in the U.S.; partner not stated | Not stated |\n| Lab data | Lab and test results in connected records; Function Health is a supported source | Lab results and records through the HealthEx and Function connectors (beta) | Lab results in records; Function \"expected soon\" (March 2026) | Lab test results from Function | Not stated | Not stated |\n| Writes back to Apple Health or Health Connect | No | No (Apple Health) | Not stated | Not stated | Not stated | Not stated |\n| Health data and model training, in the vendor's words | Two wordings, quoted below | \"We do not use users' health data to train models\" | Health chats, connector data, files and memories \"are not used to train AI models\"; questions and answers may improve Perplexity | \"Not used for model training\" | Not stated; Google commits not to use Fitbit users' health data for Google Ads | Not stated |\n| Disconnect and deletion | Health → Accounts; synced data deleted within 30 days; chats stay until deleted | Disconnect or edit permissions at any time; data afterward not stated | Plugins → Installed; raw data queried on demand, not stored permanently; sessions stay until deleted | Disconnect \"instantaneously\"; manage and delete your information; retention not stated | Optional features can be turned off; deletion not stated | Not stated |\n| Memory | Memories can come from Health conversations, not directly from synced data | Health is kept out of memory by default | Creates health memories; view and delete them in Settings → Personalization | Health space isolated from general Copilot; memory not stated | Uses the goals and context you give it; memory controls not stated | Not stated |\n| Plans and price | Free, Go, Plus, Pro; price not stated | Pro, Max, Ultra; price not stated | Pro and Max; price not stated | Not stated; phased rollout | Google Health Premium, $9.99 a month or $99 a year (May 2026); included with Google AI Pro and Ultra | Not stated |\n| Regions and age | U.S.; 18 and older per the launch post | U.S. only; age not stated | U.S.; 18+ for Apple Health features | Not stated | Global, in select markets; records U.S. only; age not stated | Eligible U.S. users; age not stated |\n| Platforms | Web, iOS, Android, desktop app | Claude iOS app | iOS and web | Not stated | Google Health app, formerly the Fitbit app | Samsung Health app |\n\n## ChatGPT: Health in ChatGPT\n\nOpenAI's July 23, 2026 launch post and its help article describe Health as a tab in ChatGPT that draws on Apple Health (iPhone), Health Connect (Android), supported U.S. provider portals, One Medical and Function Health. The launch post says ChatGPT asks permission by default before using connected records and Apple Health information; the help article says Health follows your global plugins setting, which defaults to \"Allow low-risk actions\". ChatGPT cannot write to any connected account, OpenAI says, and synced data is deleted within 30 days of a disconnect. More on [Health in ChatGPT and Apple Health](/ai/chatgpt-health-apple-health).\n\n## Claude\n\nAnthropic's help article \"Use Claude with iOS apps\" says the health features are in beta, need a Pro, Max or Ultra plan and are available in the US only. With your permission Claude reads activity, workout, vitals, body measurement, sleep and nutrition data from Apple Health, and it \"cannot write or modify entries in Apple Health\". Anthropic's January 11, 2026 announcement added HealthEx and Function connectors in beta and said Android Health Connect integrations were rolling out. More on [Claude and Apple Health](/ai/claude-apple-health).\n\n## Perplexity Health\n\nPerplexity's help article, last modified November 17, 2026, offers Perplexity Health to Pro and Max subscribers in the US, on iOS and the web. Records come through b.well, wearables and wellness apps through Terra API, and Apple Health through the iPhone app. Perplexity says raw health data \"is queried on demand through our data providers and is not stored permanently on our servers\". If you build on an aggregator yourself, [alternatives to Terra](/alternatives/terra-alternatives) compares the options. More on [Perplexity Health](/ai/perplexity-health).\n\n## Copilot Health\n\nMicrosoft's March 12, 2026 post introduces Copilot Health as \"a separate, secure space within Copilot\". It lists data \"from over 50 wearable devices including Apple Health, Oura, Fitbit and more\", records from over 50,000 U.S. hospitals and provider organizations through HealthEx, and lab results from Function. Microsoft says connectors can be disconnected instantaneously and that your information \"is not used for model training\". The post describes a phased rollout and states no plans, price, rollout regions or platforms. More on [Copilot Health](/ai/copilot-health).\n\n## Google Health Coach\n\nGoogle's May 7, 2026 post said the Coach, built with Gemini, would leave preview on May 19 and become available globally with a Google Health Premium subscription, in select markets per its footnote. It lives in the Google Health app, formerly the Fitbit app, and draws on fitness and sleep metrics, nutrition and cycle tracking, location and local weather, and medical records synced in the U.S. Google said it would launch first for eligible Fitbit and Pixel Watch users. The pages we read make a commitment about ads, not about training. More on [Google Health Coach](/ai/google-health-coach).\n\n## Samsung Health Assistant (beta)\n\nSamsung's July 21, 2026 release describes Health Assistant as an AI assistant for Samsung Health, in beta for eligible U.S. users, connecting data from its five pillars: sleep, activity, nutrition, mindfulness and vitals. It mentions Samsung's acquisition of Xealth to connect wellness data to clinical care, and a future version using Samsung's Personal Data Engine as context. It does not address training, deletion, memory, plans, Apple Health or Health Connect; this site has no separate page on it yet.\n\n## What differs most\n\n### How the training sentences are worded\n\nThis is where the wording varies most, so we quote rather than summarize.\n\n- **OpenAI publishes two wordings.** The July 23 launch post says \"Connected medical records and Apple Health information, and conversations that use it, are not used to train our foundation models or target ads, regardless of the model-training setting you choose for ChatGPT.\" The Health Privacy Notice, updated November 19, 2026, says \"We do not train our foundation models or target ads on data synced via Connected Health Accounts\", and that \"conversations that reference Connected Health Accounts data, and content derived from it, may be used to improve our models depending on your ChatGPT settings\". The help article matches the Notice and names the switch: \"Improve the model for everyone\" under Settings → Data Controls. The documents agree about the synced data and read differently about conversations that use it. We do not decide which governs.\n- **Anthropic:** \"We do not use users' health data to train models.\"\n- **Perplexity:** health chats, connector data, files and memories are not used to train AI models, and it \"may use your questions and answers to help improve Perplexity, as explained in our Privacy Notice\".\n- **Microsoft:** your information in Copilot Health is not used for model training.\n- **Google** commits not to use Fitbit users' health and wellness data for Google Ads; the pages we read do not address training. **Samsung's** release does not address it.\n\nIn our reading, the question to ask of each sentence is what it covers: the data you connect, the conversations that use it, or both.\n\n### Who reads Health Connect\n\nOnly OpenAI's current help article documents Health Connect, for ChatGPT on Android. Anthropic announced Android Health Connect integrations in beta in January 2026, but the help article we read covers iOS only, so we have not confirmed their current state. No other vendor's page we read mentions Health Connect.\n\n### Who sits in between\n\nRecords and some device data arrive through other companies. Perplexity names b.well for records and Terra API for wearables and apps. Microsoft names HealthEx for records and Function for lab test results; Anthropic names HealthEx and Function connectors for lab results and health records; OpenAI lists Function Health as a source, and its January beta post named b.well for U.S. provider records, which its current pages do not repeat. Each partner holds a connection to your records or devices on the assistant's behalf; Perplexity links b.well's and Terra's privacy policies from its help article.\n\n### Copied, or read on demand\n\nOpenAI describes syncing data into Health and deleting it within 30 days of a disconnect. Perplexity says raw data is queried on demand and not stored permanently, though what appears in your sessions stays until you delete it. The other four do not say on the pages we read.\n\n### Built into the vendor's own app\n\nGoogle Health Coach and Samsung Health Assistant run inside the vendor's own health app, on data that app already holds. The other four are general assistants you connect to a phone store, a records network or a lab.\n\n## What this means for health-app developers\n\nIf your app writes workouts, sleep, heart rate or nutrition to Apple Health or Health Connect, an assistant can read that data once a user grants it access to those types. OpenAI says so directly: \"ChatGPT only sees information that the app shares through Apple Health, Health Connect, or another connected source\", and \"some proprietary scores may not transfer\".\n\nThree consequences, in our reading:\n\n- **What you write is what the assistant sees.** A proprietary score kept in your backend does not reach an assistant by this route; the standard types you write, with correct units, do. The [HealthKit integration guide](/integrate/healthkit) and the [Health Connect record reference](/health-connect) list the types.\n- **The user's grant is to the assistant, not to you.** When a user lets ChatGPT or Claude read Apple Health, the assistant's app reads the store under its own permission. Apple's guideline 5.1.2(i) binds your app when it shares personal data itself, requiring clear disclosure and explicit permission before sharing with third parties, \"including with third-party AI\". That covers a coaching feature that sends data to a model API, not, as we read it, a read the user grants another app. [Guideline 5.1.2 on data use and sharing](/compliance/app-store-guideline-5-1-2-data-use-sharing) covers the clause and Apple's extra condition for HealthKit data.\n- **Not every route goes through the phone.** Perplexity reaches wearables through Terra API, and Microsoft does not say how it connects Oura and Fitbit. When users ask why an assistant's number differs from your app's, OpenAI's help article already says app-specific metrics \"may not be shared or may be calculated differently\".\n\n## How to check what an assistant can read on your phone\n\nThe vendors give these paths, which differ slightly; if one does not match your phone, try another.\n\n- **iPhone, from Settings.** OpenAI: Settings → Apps → Health → Data Access & Devices → ChatGPT. Anthropic: Settings → Health → Data Access & Devices → Claude. The screen shows the data types that app may read, and you can turn them off there.\n- **iPhone, from the Health app.** Perplexity: Health app → your profile picture (top right) → Apps → Perplexity.\n- **Android.** OpenAI: Settings → search Health Connect → Your Health Apps.\n- **Inside the assistant.** ChatGPT lists connected sources under Health → Accounts; Perplexity under Plugins → Installed.\n\nIn our reading, do both when you want to stop sharing: turning off read access on the phone stops new reads, while the disconnect inside the assistant is what OpenAI ties its 30-day deletion to. Neither removes what is already in your chat history.\n",
+    "faqs": [
+      {
+        "q": "Which AI assistants can read Health Connect data on Android?",
+        "a": "As of November 24, 2026, only OpenAI's help article documents it: Health in ChatGPT connects Health Connect on Android and Apple Health on iPhone. Anthropic's January 11, 2026 announcement said Android Health Connect integrations for Claude were rolling out in beta, but the help article we read covers the iOS app only, so we have not confirmed the Android feature's current state. The Perplexity, Microsoft, Google and Samsung pages we read do not mention Health Connect."
+      },
+      {
+        "q": "Do AI health assistants train their models on the health data you connect?",
+        "a": "Each vendor words it differently. Anthropic says it does not use users' health data to train models, Microsoft says information in Copilot Health is not used for model training, and Perplexity says health chats, connector data, files and memories are not used to train AI models, while adding that it may use your questions and answers to improve Perplexity. OpenAI says synced data is not used to train its foundation models; its launch post extends that to conversations that use the data regardless of your setting, while its Health Privacy Notice, updated November 19, 2026, says such conversations may be used to improve its models depending on your settings. The Google and Samsung pages we read do not address training."
+      },
+      {
+        "q": "Can an AI assistant write entries back into Apple Health or Health Connect?",
+        "a": "Two of the six vendors address it, and both say no. OpenAI's help article says ChatGPT cannot write information to Apple Health, Health Connect or another connected account, and that profile updates you make in a conversation change only your Health profile inside ChatGPT. Anthropic's help article says Claude can read health data but cannot write or modify entries in Apple Health. The Perplexity, Microsoft, Google and Samsung pages we read do not say either way."
+      },
+      {
+        "q": "How do I see which AI apps have access to my Apple Health data?",
+        "a": "On an iPhone, open each app's Health permissions. OpenAI gives Settings → Apps → Health → Data Access & Devices → ChatGPT, Anthropic gives Settings → Health → Data Access & Devices → Claude, and Perplexity gives the Health app → your profile picture → Apps → Perplexity; the vendors' paths differ slightly. Each screen shows the data types that app may read, and you can turn them off there. On Android, OpenAI's route is the device's Settings → search Health Connect → Your Health Apps."
+      },
+      {
+        "q": "What happens to synced health data when you disconnect an AI assistant?",
+        "a": "It depends on the vendor, and most do not say. OpenAI says data synced from a source is deleted from its systems within 30 days of a disconnect, while information already in your conversations stays until you delete those conversations. Perplexity says it does not store data from connected sources and keeps only what appears in your sessions, which you can delete. Anthropic and Microsoft say you can disconnect at any time without stating what happens to the data, Microsoft adding that you can manage and delete your information, and the Google and Samsung pages we read do not address it."
+      }
+    ],
+    "related": [
+      {
+        "href": "/ai/connect-wearable-data-to-ai-assistants",
+        "label": "Connect wearable data to an AI assistant safely"
+      },
+      {
+        "href": "/compliance/app-store-guideline-5-1-2-data-use-sharing",
+        "label": "App Store guideline 5.1.2: data use and sharing"
+      },
+      {
+        "href": "/compliance/health-data-user-consent",
+        "label": "User consent for health data"
+      },
+      {
+        "href": "/health-mcp-servers",
+        "label": "MCP servers for health and fitness data"
+      },
+      {
+        "href": "/ai",
+        "label": "All AI & LLM topics"
+      }
+    ],
+    "cta": {
+      "pitch": "If your app writes to Apple Health or Health Connect, our developer newsletter tracks what these assistants read and how their terms change."
+    },
+    "sources": [
+      {
+        "url": "https://openai.com/index/health-in-chatgpt/",
+        "checked": "2026-11-24",
+        "note": "Health in ChatGPT launch post (July 23, 2026): sources, U.S. and 18+, plans, training wording, permission default, disconnect and 30-day deletion, memory"
+      },
+      {
+        "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+        "checked": "2026-11-24",
+        "note": "Health in ChatGPT help article: Apple Health and Health Connect, platforms, no write-back, model improvement setting, disconnect, iPhone and Android permission paths"
+      },
+      {
+        "url": "https://openai.com/policies/health-privacy-policy/",
+        "checked": "2026-11-24",
+        "note": "Health Privacy Notice (updated November 19, 2026): Connected Health Accounts including Android Health Connect; training and model improvement wording"
+      },
+      {
+        "url": "https://openai.com/index/introducing-chatgpt-health/",
+        "checked": "2026-11-24",
+        "note": "January 7, 2026 beta post: b.well as the partner for U.S. provider records"
+      },
+      {
+        "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+        "checked": "2026-11-24",
+        "note": "Claude health features: beta, Pro, Max and Ultra, US only, read-only Apple Health, data types, memory default, iPhone permission path"
+      },
+      {
+        "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+        "checked": "2026-11-24",
+        "note": "January 11, 2026: HealthEx and Function connectors, Apple Health and Android Health Connect in beta, disconnect, training statement"
+      },
+      {
+        "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+        "checked": "2026-11-24",
+        "note": "Perplexity Health help article (last modified November 17, 2026): plans, US, iOS and web, b.well, Terra API, Apple Health, training, on-demand queries, memories, disconnect"
+      },
+      {
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+        "checked": "2026-11-24",
+        "note": "March 19, 2026 launch: connectors, partners, Oura and Function expected"
+      },
+      {
+        "url": "https://microsoft.ai/news/introducing-copilot-health/",
+        "checked": "2026-11-24",
+        "note": "Copilot Health (March 12, 2026): wearables, HealthEx records, Function labs, isolation, disconnect, training statement, phased rollout"
+      },
+      {
+        "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+        "checked": "2026-11-24",
+        "note": "Google Health Coach (May 7, 2026): global availability, Google Health Premium price, devices, data used, U.S. medical records, Google Ads commitment"
+      },
+      {
+        "url": "https://healthapp.google/google-health-coach/",
+        "checked": "2026-11-24",
+        "note": "Google Health Coach product page: privacy controls"
+      },
+      {
+        "url": "https://news.samsung.com/us/samsung-launches-health-assistant-beta-first-fully-integrated-ai-powered-assistant/",
+        "checked": "2026-11-24",
+        "note": "Samsung Health Assistant beta (July 21, 2026): eligible U.S. users, Samsung Health data, Xealth, Personal Data Engine"
+      },
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-11-24",
+        "note": "Guideline 5.1.2(i): disclosure and explicit permission before sharing with third parties, including third-party AI"
+      }
+    ]
+  },
+  {
+    "slug": "chatgpt-health-apple-health",
+    "primaryQuery": "chatgpt health apple health",
+    "h1": "Health in ChatGPT and Apple Health: Access, Deletion and Training",
+    "metaTitle": "ChatGPT Health and Apple Health: What It Reads and Keeps",
+    "metaDescription": "What Health in ChatGPT reads from Apple Health and medical records, how permission prompts work, what disconnecting deletes, and two training statements.",
+    "updated": "2026-11-24",
+    "answer": "Health in ChatGPT reads Apple Health on an iPhone, Health Connect on Android, supported U.S. medical records, One Medical and Function Health, and OpenAI says it cannot write anything back to them. As of November 24, 2026, OpenAI's help article says it is available to eligible, logged-in Free, Go, Plus and Pro users in the U.S. on web, iOS, Android and the desktop app, and the launch post describes the rollout as being to users 18 and older. Disconnecting a source deletes its synced data from OpenAI's systems within 30 days, but conversations that already used it remain until you delete them. OpenAI's launch post and its Health Privacy Notice describe whether those conversations can be used for model training in different words.",
+    "body": "We are not affiliated with OpenAI. Everything below comes from four OpenAI pages fetched on November 24, 2026: the July 23, 2026 launch post, the January 7, 2026 beta announcement, the Health in ChatGPT help article and the Health Privacy Notice (updated November 19, 2026). Where those pages say nothing on a point, we say so. For the same questions asked of every assistant, see [which AI assistants can read your health data](/ai/which-ai-can-read-your-health-data).\n\n## At a glance\n\n| Question | What OpenAI's pages say, as of November 24, 2026 |\n|---|---|\n| Sources it reads | Apple Health (iOS), Health Connect (Android), supported U.S. provider portals, One Medical, Function Health |\n| Plans | Free, Go, Plus and Pro |\n| Region and age | U.S.; the launch post says 18 and older |\n| Platforms | Web, iOS, Android and the desktop app, per the help article |\n| Writes back to Apple Health or Health Connect | No |\n| Asks before using health data | The launch post says yes by default; the help article describes a plugins permission setting (below) |\n| After you disconnect | Synced data deleted from OpenAI's systems within 30 days; conversations stay until you delete them |\n| Memories | Can be created from Health conversations, not directly from synced data |\n| Training | Synced data: not used to train foundation models or target ads. Conversations that use it: the launch post and the privacy notice word this differently (below) |\n\n## What Health in ChatGPT reads\n\nOpenAI's help article lists four kinds of account you can connect: Apple Health (iOS mobile only), Health Connect (Android mobile only), supported U.S. provider portals, and One Medical and Function Health. It adds that connecting Apple Health requires an iPhone and connecting Health Connect requires an Android device. The Health Privacy Notice names the same group, \"medical providers, Apple Health, and Android Health Connect\", and calls them Connected Health Accounts. It says they let ChatGPT use medical records, lab and test results, prescription information and measurements of vital signs.\n\nThe July launch post names Apple Health, medical records from U.S. hospital systems, One Medical and Function Health, and does not mention Health Connect. The help article, updated more recently, says Health is rolling out on Android, desktop and dots, and that if you do not see it on one of those surfaces it may not be available for your account yet. On medical records, the January beta post said OpenAI partners with b.well for access to U.S. healthcare providers. The current launch post and help article do not name a records partner.\n\nWearables and fitness apps are not connected directly. The help article names WHOOP, Oura, Garmin, Strava and MyFitnessPal and tells users to set each app to share with Apple Health or Health Connect first. ChatGPT then sees what that app makes available there, and OpenAI warns that \"some proprietary scores may not transfer\".\n\n## Who can use it\n\nAs of November 24, 2026, the help article says Health is available to eligible, logged-in ChatGPT Free, Go, Plus and Pro users in the U.S., on web, iOS, Android and the desktop app. The launch post describes the rollout as being to users 18 and older and says Health is not yet available in Codex. The privacy notice says Health is \"only available to certain users at this time\".\n\nTwo limits are stated outright. A parent or guardian can turn Health off for a linked teen account. And Health is not for clinical use: the help article says it \"does not offer a Business Associate Agreement\" and points covered entities to ChatGPT for Healthcare instead.\n\n## Connecting, and the permission prompts\n\nYou start from Health in the sidebar, choose Apple Health on iOS, Health Connect on Android, or a records provider, and choose the data categories to share. The help article gives the iOS place to check that grant afterward: iPhone Settings → Apps → Health → Data Access & Devices → ChatGPT, where read access is set per data category.\n\nOn whether ChatGPT asks before each use, OpenAI's pages differ. The launch post says that by default ChatGPT asks for permission before using connected medical records and Apple Health information to personalize a response, and that you can approve each request or choose to always allow access, which turns the prompts off. The help article says ChatGPT defaults to your global plugins permission setting, and that if you have never changed it, that default is \"Allow low-risk actions\". The help article does not say whether reading Health data counts as low-risk. Both pages send you to the same place, Settings → Plugins → Health, so in our reading that screen is where to check what your account actually does.\n\nTwo other behaviors are documented. Typing @Health in a message asks ChatGPT to use your health context. And ChatGPT may send proactive updates, for example when new medical records sync or when it detects a new trend in your Apple Health or Health Connect data.\n\n## It reads; it does not write back\n\nThe help article answers this directly: ChatGPT cannot edit records held by your healthcare provider or \"write information to Apple Health, Health Connect, or another connected account\". When you correct a condition, medication or family history entry, even by asking in a conversation, only your Health profile inside ChatGPT changes.\n\n## Disconnecting, and what is deleted\n\nApple Health and Health Connect are disconnected from Health → Accounts, then the menu next to the account, then Manage, then Disconnect; a medical-records account is removed from the same menu with Remove account. OpenAI's launch post and help article both say that data synced from that source \"is deleted from OpenAI's systems within 30 days\", and both add that information already in your conversation history remains until you delete those conversations.\n\nSo a full exit, in our reading, has three parts: disconnect the source in ChatGPT, delete the conversations that used it, and remove ChatGPT's read access in iPhone Settings or in Health Connect on Android. The third step is our suggestion; OpenAI's pages describe those screens for checking permissions, not as part of disconnecting.\n\n## Memory\n\nWhen memory is on, conversations that use Health can create memories for future chats. OpenAI's pages say memories are not created directly from synced data. To avoid them, they point to Temporary Chat or to turning memory off; the help article and privacy notice place that switch in Settings → Personalization, the launch post in Settings → Memory. People who used the earlier beta keep a Health Project whose memories, the help article says, stay inside that project.\n\n## The training wording: two statements\n\nOpenAI's launch post, help article and privacy notice agree on one thing: data synced through Health is not used to train OpenAI's foundation models or to target ads. On conversations that use that data, the launch post and the privacy notice read differently, and we quote both rather than decide between them.\n\nOpenAI's launch post, dated July 23, 2026, says: \"Connected medical records and Apple Health information, and conversations that use it, are not used to train our foundation models or target ads, regardless of the model-training setting you choose for ChatGPT.\"\n\nOpenAI's Health Privacy Notice, updated November 19, 2026, says: \"To help make ChatGPT a more capable health assistant, conversations that reference Connected Health Accounts data, and content derived from it, may be used to improve our models depending on your ChatGPT settings.\" The help article uses the same idea in its own words: your model improvement settings decide whether those conversations \"can be used to improve our models\".\n\nThe launch post speaks of training foundation models; the notice and help article speak of improving models. The pages do not explain whether those mean the same thing. The setting both the notice and the help article point to is in Settings → Data Controls, and the help article names the toggle: \"Improve the model for everyone\". The notice also lists model training among your choices, covering \"conversations and memories\".\n\n## What a health-app developer should know\n\nIf your app writes to Apple Health or Health Connect, ChatGPT can read that data once a user connects their health store to ChatGPT and grants read access to those categories. OpenAI's help article tells users to do exactly that for WHOOP, Oura, Garmin, Strava and MyFitnessPal. Your app takes no part in that grant: the user makes it in the system permission screens. How those permissions work is covered in our [HealthKit integration guide](/integrate/healthkit) and on the [Health Connect reference](/health-connect).\n\nWhat reaches ChatGPT is what you put in the shared store. The help article says that \"ChatGPT only sees information that the app shares\" through Apple Health, Health Connect or another connected source, and that app-specific metrics such as a sleep score may not be shared or may be calculated differently. In our reading, expect support questions from users who see different numbers in ChatGPT and in your app, and consider saying in your help pages which of your metrics you write to the shared store.\n\nBecause ChatGPT cannot write back, it will not alter or delete samples your app wrote. None of this changes your own obligations. If your app sends health data to a model itself, Apple's rule on third-party AI applies to you, as covered on [App Store guideline 5.1.2](/compliance/app-store-guideline-5-1-2-data-use-sharing), and [connecting wearable data to AI assistants](/ai/connect-wearable-data-to-ai-assistants) covers the MCP and API routes developers build themselves.\n\nFor how another assistant handles the same store, see [Claude and Apple Health](/ai/claude-apple-health).",
+    "faqs": [
+      {
+        "q": "Does Health in ChatGPT work with Android Health Connect?",
+        "a": "OpenAI's help article says yes: Health Connect can be connected from the ChatGPT app on an Android device, and Health is rolling out on Android, so it may not appear for every account yet. OpenAI's Health Privacy Notice also lists Android Health Connect among Connected Health Accounts. Wearables such as Oura, WHOOP and Garmin reach ChatGPT only if they share with Health Connect or Apple Health first."
+      },
+      {
+        "q": "Can ChatGPT write workouts or other data back to Apple Health?",
+        "a": "No. OpenAI's help article says ChatGPT cannot write information to Apple Health, Health Connect or another connected account, and cannot edit records held by your healthcare provider. Corrections you make to conditions, medications or family history change only your Health profile inside ChatGPT."
+      },
+      {
+        "q": "What happens to my Apple Health data in ChatGPT after I disconnect it?",
+        "a": "OpenAI says data synced from that source is deleted from OpenAI's systems within 30 days of disconnecting. Information already included in your ChatGPT conversations stays until you delete those conversations, so a complete removal also means deleting them. Turning off ChatGPT's read access in iPhone Settings is a separate step on the device."
+      },
+      {
+        "q": "Are conversations that use my connected health data used to train OpenAI's models?",
+        "a": "OpenAI's pages word this differently. The July 23, 2026 launch post says connected medical records and Apple Health information, and conversations that use it, are not used to train foundation models regardless of your model-training setting. The Health Privacy Notice, updated November 19, 2026, says conversations that reference that data may be used to improve OpenAI's models depending on your settings, and points to Settings, Data Controls, where the help article names the toggle Improve the model for everyone. All three pages say the synced data itself is not used to train foundation models or target ads."
+      }
+    ],
+    "related": [
+      {
+        "href": "/ai/which-ai-can-read-your-health-data",
+        "label": "Which AI assistants can read your health data"
+      },
+      {
+        "href": "/ai/claude-apple-health",
+        "label": "Claude and Apple Health"
+      },
+      {
+        "href": "/ai/connect-wearable-data-to-ai-assistants",
+        "label": "Connect wearable data to an AI assistant safely"
+      },
+      {
+        "href": "/integrate/healthkit",
+        "label": "Apple HealthKit integration guide"
+      },
+      {
+        "href": "/compliance/app-store-guideline-5-1-2-data-use-sharing",
+        "label": "App Store guideline 5.1.2: data use and sharing"
+      }
+    ],
+    "cta": {
+      "pitch": "If your app writes to Apple Health or Health Connect, our developer newsletter tracks what consumer assistants read from those stores and how their terms change."
+    },
+    "sources": [
+      {
+        "url": "https://openai.com/index/health-in-chatgpt/",
+        "checked": "2026-11-24",
+        "note": "OpenAI launch post, July 23, 2026: sources, plans, U.S. and 18 and older, permission prompts, disconnect and 30-day deletion, memory, training statement"
+      },
+      {
+        "url": "https://help.openai.com/en/articles/20001036-health-in-chatgpt",
+        "checked": "2026-11-24",
+        "note": "OpenAI help article: Apple Health and Health Connect, platforms, plugins permission default, no write-back, disconnect steps, model improvement setting"
+      },
+      {
+        "url": "https://openai.com/policies/health-privacy-policy/",
+        "checked": "2026-11-24",
+        "note": "OpenAI Health Privacy Notice, updated November 19, 2026: Connected Health Accounts, memories, model improvement wording, choices"
+      },
+      {
+        "url": "https://openai.com/index/introducing-chatgpt-health/",
+        "checked": "2026-11-24",
+        "note": "OpenAI beta announcement, January 7, 2026: b.well as the U.S. medical-records partner"
+      }
+    ]
+  },
+  {
+    "slug": "claude-apple-health",
+    "primaryQuery": "claude apple health",
+    "h1": "Claude and Apple Health: What the Beta Reads and Who Gets It",
+    "metaTitle": "Claude and Apple Health: Plans, Data Types and Memory",
+    "metaDescription": "What Claude reads from Apple Health on iOS, on which plans and where, the iOS permission path, the memory default, and what Anthropic says about training.",
+    "updated": "2026-11-24",
+    "answer": "Claude can read Apple Health data in the Claude iOS app, and as of November 24, 2026 Anthropic's help article says the health features are in beta, require a Pro, Max or Ultra plan, and are available in the US only. It reads activity, workouts, vitals, body measurements, sleep and nutrition with your permission, granted per data type on the standard iOS Health screen, and it cannot write or modify entries in Apple Health. By default Claude does not save health information to memory unless you turn on Include sensitive topics in memory. Anthropic's January 2026 announcement says it does not use users' health data to train models.",
+    "body": "We are not affiliated with Anthropic. This page is built from two Anthropic pages fetched on November 24, 2026: the January 11, 2026 announcement \"Advancing Claude in healthcare and the life sciences\" and the Claude help article \"Use Claude with iOS apps\". Where they are silent, we say \"not stated on the pages we read\" rather than fill the gap. The same questions for every assistant are side by side in [which AI assistants can read your health data](/ai/which-ai-can-read-your-health-data).\n\n## At a glance\n\n| Question | What Anthropic's pages say, as of November 24, 2026 |\n|---|---|\n| Status | Beta |\n| Plans | Pro, Max and Ultra (the January announcement named Pro and Max) |\n| Region | US only |\n| Where | The Claude iOS app, reading Apple Health |\n| Data types | Activity, workouts, vitals, body measurements, sleep, nutrition |\n| Writes back to Apple Health | No |\n| Permission | The standard iOS Health permission screen, per data type |\n| Memory | Off for health information by default; a setting turns it on |\n| Training | The announcement says health data is not used to train models |\n| After you disconnect | Not stated on the pages we read |\n| Android Health Connect | Announced in January; not covered by the iOS help article |\n\n## Who can use it\n\nAs of November 24, 2026, the help article says health features \"are currently in beta, require a Pro, Max, or Ultra plan, and are available in the US only\". The other iOS integrations it describes, such as Calendar, Reminders and Maps, are supported on all Claude plans, so the plan limit applies to health alone. The January announcement named \"Claude Pro and Max plan subscribers\" in the US; the help article, updated more recently, adds Ultra. The announcement also says that Apple Health and Android Health Connect integrations were rolling out in beta \"via the Claude iOS and Android apps\". The help article we read covers iOS only.\n\n## What Claude can read from Apple Health\n\nThe help article lists six groups of data Claude can read from Apple Health with your permission:\n\n| Group | Data types the help article names |\n|---|---|\n| Activity metrics | Steps, distance, flights climbed, active calories, exercise minutes, move and stand hours |\n| Workouts | Type, duration, distance, heart rate data, calories burned |\n| Vitals | Heart rate, resting heart rate, heart rate variability, blood pressure, respiratory rate, blood oxygen |\n| Body measurements | Weight, height, body mass index, body fat percentage |\n| Sleep | Total sleep time, sleep stages, time in bed, sleep efficiency |\n| Nutrition | Calories consumed, macronutrients, water intake, micronutrients if tracked |\n\nClaude can answer with native iOS charts in the conversation: bar charts, line charts and progress indicators, per the help article. It adds that some data types require an Apple Watch or compatible device, and that a recently started metric may not have enough history for trend analysis.\n\n## Read-only\n\nThe help article's limitations list says it plainly: \"Claude can read health data but cannot write or modify entries in Apple Health.\" In our reading, that means a training plan or chart Claude produces is not saved back into the Health app.\n\n## How the permission works\n\nAccess is requested in the conversation. You ask Claude a question about your health or fitness data, Claude requests access if it has not been granted, and you review the permission prompt. The help article says Claude reads health data \"only when you ask a question that requires this information and have granted permission\".\n\nFor health, the prompt is Apple's, not Claude's. The help article says health permissions \"work differently from other app permissions\": you see the standard iOS Health permissions screen and choose exactly which data types to share. You change that later in Settings → Health → Data Access & Devices → Claude. The Allow once, Always allow and Don't allow choices the article describes apply to its other permissions, such as location and calendar.\n\nAnthropic's announcement adds the general rules for its personal health integrations: users choose the information they share, \"must explicitly opt-in to enable access\", and can disconnect or edit Claude's permissions at any time.\n\n## Memory\n\nThe help article says: \"By default, Claude doesn't save health information to memory.\" If you turn on the setting it names, Include sensitive topics in memory, Claude \"may remember health-related context from your conversations\". The article links a separate page on sensitive topics in memory, which we did not read, so what else that setting covers is not described here.\n\nOn conversation history, the help article notes in its section on actions that when Claude uses tools, \"their use is preserved in the conversation history in the same way as any tool\". It does not say separately how long a health read stays in a conversation, or whether Anthropic keeps the Apple Health values it read outside the conversation.\n\n## Training and disconnecting\n\nOn training, Anthropic's announcement says, in its section on personal health data: \"We do not use users' health data to train models.\" The iOS help article does not address training. Neither page says whether a conversation that used health data is treated differently from the health data itself, so we do not draw that line for Anthropic.\n\nOn disconnecting, the announcement says users can disconnect or edit Claude's permissions at any time, and the help article gives the iOS path above. What happens to health data Claude has already read once you revoke access, and whether any of it is retained, is not stated on the pages we read. In our reading, revoking the Health permission and deleting the conversations that used it are the two steps the pages support; anything beyond that would need Anthropic's privacy policy, which this page does not cover.\n\n## Android, HealthEx and Function\n\nThe January announcement is the only Anthropic page we read that mentions these. It says that in the US, Pro and Max subscribers \"can choose to give Claude secure access to their lab results and health records\", that \"New HealthEx and Function connectors are available in beta today\", and that Apple Health and Android Health Connect integrations were rolling out in beta that week. It says that once connected, Claude can summarize medical history, explain test results in plain language, detect patterns across fitness and health metrics, and prepare questions for appointments.\n\nThe announcement does not list which Health Connect data types Claude reads, and the iOS help article does not cover Android; it lists a separate article, \"Use Claude with Android apps\", which we did not read. So the Android data types, and what the HealthEx and Function connectors return, are not stated on the pages we read. Connectors as a general mechanism, and the MCP servers developers build for wearable data, are covered in [connecting wearable data to AI assistants](/ai/connect-wearable-data-to-ai-assistants) and the [directory of health MCP servers](/health-mcp-servers).\n\n## What a health-app developer should know\n\nIf your app writes to Apple Health, Claude can read those samples once a user grants Claude read access to the same types in the iOS permission screen. Your app is not asked; the grant sits between the user, Apple's Health app and Claude. The data types in the table above are the help article's whole list. In our reading, a type it does not name should not be assumed readable, and a score your app keeps to itself never reaches Claude, because Claude reads only what is in Apple Health.\n\nSince Claude cannot write to Apple Health, it will not change or delete what your app wrote. How the underlying permission works for apps is in our [HealthKit integration guide](/integrate/healthkit). If your own app sends health data to a model, the obligations are yours, as set out on [App Store guideline 5.1.2](/compliance/app-store-guideline-5-1-2-data-use-sharing).\n\nFor OpenAI's equivalent, which reads Apple Health and Health Connect and documents a 30-day deletion window, see [Health in ChatGPT and Apple Health](/ai/chatgpt-health-apple-health).",
+    "faqs": [
+      {
+        "q": "Which Claude plans include Apple Health access?",
+        "a": "As of November 24, 2026, Anthropic's help article says Claude's health features require a Pro, Max or Ultra plan, are in beta, and are available in the US only. Other iOS integrations, such as Calendar and Reminders, work on all plans. Anthropic's January 2026 announcement named Pro and Max; Ultra appears in the later help article."
+      },
+      {
+        "q": "Can Claude write data to Apple Health?",
+        "a": "No. Anthropic's help article says Claude can read health data but cannot write or modify entries in Apple Health. So charts and plans it produces are not saved to the Health app."
+      },
+      {
+        "q": "Does Claude remember my Apple Health data in later conversations?",
+        "a": "Not by default. Anthropic's help article says Claude does not save health information to memory unless you turn on the setting Include sensitive topics in memory, in which case Claude may remember health-related context from your conversations. The pages we read do not say how long health values stay in a conversation itself."
+      },
+      {
+        "q": "Does Anthropic train Claude on Apple Health data?",
+        "a": "Anthropic's January 11, 2026 announcement says it does not use users' health data to train models. The iOS help article does not address training, and neither page says separately how conversations that use health data are treated."
+      }
+    ],
+    "related": [
+      {
+        "href": "/ai/which-ai-can-read-your-health-data",
+        "label": "Which AI assistants can read your health data"
+      },
+      {
+        "href": "/ai/chatgpt-health-apple-health",
+        "label": "Health in ChatGPT and Apple Health"
+      },
+      {
+        "href": "/ai/connect-wearable-data-to-ai-assistants",
+        "label": "Connect wearable data to an AI assistant safely"
+      },
+      {
+        "href": "/health-mcp-servers",
+        "label": "MCP servers for health and fitness data"
+      },
+      {
+        "href": "/integrate/healthkit",
+        "label": "Apple HealthKit integration guide"
+      }
+    ],
+    "cta": {
+      "pitch": "If your app writes to Apple Health, our developer newsletter tracks which assistants read that store, on which plans, and how their terms change."
+    },
+    "sources": [
+      {
+        "url": "https://support.claude.com/en/articles/11869619-use-claude-with-ios-apps",
+        "checked": "2026-11-24",
+        "note": "Claude help article, Use Claude with iOS apps: beta, Pro/Max/Ultra, US only, Apple Health data types, read-only, iOS Health permission path, memory default"
+      },
+      {
+        "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+        "checked": "2026-11-24",
+        "note": "Anthropic announcement, January 11, 2026: personal health integrations, HealthEx and Function connectors, Apple Health and Android Health Connect beta, opt-in, training statement"
+      }
+    ]
+  },
+  {
+    "slug": "perplexity-health",
+    "primaryQuery": "perplexity health apple health",
+    "h1": "Perplexity Health: What It Reads From Apple Health and Your Records",
+    "metaTitle": "Perplexity Health: Apple Health, Records and Privacy",
+    "metaDescription": "What Perplexity Health reads from Apple Health, wearables via Terra and US medical records via b.well, who can use it, and what it says on training.",
+    "updated": "2026-11-24",
+    "answer": "Perplexity Health connects Apple Health on iPhone, wearables and wellness apps through Terra API, and US medical records through b.well. As of November 24, 2026, Perplexity's help center says it is included with Pro and Max subscriptions in the US, on iOS and the web, and that Apple Health data personalizes answers but is not shown on the Health hub dashboard. Perplexity says health chats, connector data, files and memories are not used to train AI models and are never sold, and the same answer adds that it may use your questions and answers to help improve Perplexity.",
+    "body": "This page reads two Perplexity pages and nothing else: the launch post \"Introducing Perplexity Health\" (March 19, 2026) and the help center article \"What is Perplexity Health?\", last modified November 17, 2026. AIFitnessAPI is not affiliated with Perplexity. Where both pages are silent on a question, this page says so rather than filling the gap. How Perplexity compares with ChatGPT, Claude, Copilot and Google's coach is on [which AI can read your health data](/ai/which-ai-can-read-your-health-data).\n\n## What Perplexity Health connects\n\nPerplexity's help article names three kinds of connection plus a file upload, and says who sits between Perplexity and each source.\n\n| Source | Through | What Perplexity says it may receive | Where |\n|---|---|---|---|\n| Apple Health | Perplexity's iOS app | Only the data you select on the Apple Health permissions screen | iPhone only, 18+ |\n| Wearables and wellness apps | Terra API | Steps, workouts, heart rate, sleep, recovery and other wellness metrics, depending on the app and permissions | Not stated separately |\n| Medical Records | b.well | Lab results, visit summaries, medications and medical conditions, depending on what your provider makes available | United States only at launch |\n| Health files | Uploaded by you | Whatever the file contains, kept in a separate encrypted health file repository | Not stated separately |\n\nThe help article gives Fitbit, Google and Clue as examples of devices and apps behind the Terra connection; the launch post names Fitbit, Ultrahuman and Withings, and says the connectors are powered by partners like b.well and Terra API alongside direct integrations. It describes the records connection as covering electronic health records from over 1.7 million care providers. On March 19 it listed ŌURA and Function as expected soon; the help article does not name either, so we cannot say from these pages whether they have shipped.\n\nPerplexity describes Terra as a unified health and fitness data platform. Terra API is also a developer product, which this site compares with other wearable aggregators in [Terra alternatives](/alternatives/terra-alternatives). The help article links privacy policies for both b.well and Terra; this page did not read them.\n\nNeither page says that Perplexity writes anything back to Apple Health or to a connected service. Both describe data flowing into Perplexity only, but write access is not addressed either way.\n\n### Apple Health is used in answers, not on the dashboard\n\nThe help article says Apple Health data is used to personalize your health answers but is not reflected on the Health hub dashboard or its data visualizations. Medical Records, by the article's description, feed both your answers and the dashboard. Apple Health is the only source the article ties to an age limit: HealthKit-based features require you to be 18 or older and are only available on iOS. The permission itself is Apple's. The help article's troubleshooting steps point you to the Health app, then your profile picture, then Apps, then Perplexity, which is where you see and change what Perplexity may read.\n\n## Who can use it, as of November 24, 2026\n\n- **Plans.** The help article says Perplexity Health is included with Perplexity Pro and Max subscriptions in the US. Prices are not stated on the pages we read.\n- **Region.** The US. The launch post says more cohorts and geographies are coming, without dates. Medical Records are available only in the United States at launch.\n- **Platforms.** iOS and the web at perplexity.ai/health. Neither page mentions Android or Health Connect.\n- **Rollout.** The help article calls it a phased launch, so it may not be available to all eligible subscribers right away.\n\nThere are two ways in: the Health hub (in the web sidebar, or by typing \"Health\" in the iOS search bar), or the main chat, where the help article says health-related queries trigger Perplexity Health automatically. The launch post also describes Perplexity Health on Computer, Perplexity's agent product, rolling out first to Pro and Max users in the US.\n\n## The Health hub and health memories\n\nThe help article describes the hub as fitness tracking, biomarker tracking, activity logs and AI-powered summaries, with Medical Records, wellness apps and file uploads connected from the same place. The launch post calls it a personalized dashboard that tracks metrics and trends over time.\n\nPerplexity also keeps health memories. The help article says the system may generate them from your queries and references them only when they are relevant to your question. You view them under Settings → Personalization → Manage your saved memories, filtered for \"Health\", and delete them one at a time from the same list.\n\n## Training, selling and storage\n\nThe help article answers \"Is my health data used to train AI models?\" with this: \"No. Your health chats, connector data, files, and memories are not used to train AI models and will never be sold to third parties.\" The next sentence of the same answer reads: \"We also may use your questions and answers to help improve Perplexity, as explained in our Privacy Notice.\" The launch post says that information \"is never used to train AI models or sold to third parties\". In our reading, the help article leaves open how \"help improve Perplexity\" differs from training. We did not read the Privacy Notice, so we do not say what it covers.\n\nOn storage, the help article says raw health data is queried on demand through Perplexity's data providers and is not stored permanently on its servers. Health memories and uploaded files are kept. On encryption, the launch post says health data is encrypted in transit and at rest, while the help article's HIPAA answer says data is protected with end-to-end encryption. We report both as worded. That answer also says HIPAA does not apply to consumer health products like Perplexity Health, and describes b.well as a HIPAA-compliant platform. [Does a fitness app need to be HIPAA compliant](/compliance/hipaa-compliance-fitness-app) explains why a direct-to-consumer product usually falls outside HIPAA.\n\nHealth conversations can be shared as links, on the web and in the iOS app. Our recommendation is to treat a shared Health conversation as you would the data it quotes.\n\n## Disconnecting and deleting\n\n- **Disconnect.** You can disconnect the wearable connector, the records connector and Apple Health (iOS only) under Plugins → Installed, or disable them from the Health hub.\n- **What disconnecting does.** Perplexity stops receiving new data from that source. The help article adds that Perplexity does not store data from connected sources and keeps only what appears in your sessions, which you can delete.\n- **Delete.** Delete health memories in Personalization, remove connector access under Plugins → Installed, and delete any Health session from your History tab.\n- **Not stated on the pages we read.** What Terra and b.well keep after you disconnect, how long deleted sessions take to go, and whether removing the Apple Health connector also withdraws the iOS permission. Our recommendation is to turn the permission off in the Health app as well.\n\n## What it will not answer\n\nThe help article says Perplexity Health will not provide medical diagnoses, recommend specific treatments, provide personalized nutrition therapy or give emergency medical advice, and the launch post says it is not a substitute for professional medical advice. This page makes no claim about the quality of its answers. Why health questions are hard for language models is covered in [LLM safety for fitness advice](/ai/llm-safety-fitness-advice). If you are connecting wearable data to an assistant yourself, through an MCP server or an export, the checks are in [connecting wearable data to AI assistants](/ai/connect-wearable-data-to-ai-assistants).\n",
+    "faqs": [
+      {
+        "q": "Does Perplexity Health work on Android?",
+        "a": "Perplexity's help article, last modified November 17, 2026, names iOS and the web at perplexity.ai/health as the places Perplexity Health is available, and says Apple Health needs an iPhone. Neither the article nor the launch post mentions Android or Health Connect. Wearables and wellness apps connect through Terra API from the Health hub, which the article describes on the web as well as on iOS."
+      },
+      {
+        "q": "Who connects Perplexity to my medical records?",
+        "a": "b.well. Perplexity's help article says the Medical Records connection is powered by b.well, which it describes as a HIPAA-compliant platform, and that Medical Records are available only in the United States at launch. Once connected, Perplexity may access lab results, visit summaries, medications and medical conditions, depending on what your provider makes available. Wearables go through a different partner, Terra API."
+      },
+      {
+        "q": "Does Perplexity use my health data to train its models?",
+        "a": "Perplexity says no. Its help article states that health chats, connector data, files and memories are not used to train AI models and will never be sold to third parties, and the launch post says the same about training and selling. The same help answer continues that Perplexity may use your questions and answers to help improve Perplexity, as explained in its Privacy Notice. This page did not read the Privacy Notice, so it does not say what that covers."
+      },
+      {
+        "q": "What happens to my data when I disconnect a source from Perplexity Health?",
+        "a": "Perplexity's help article says it stops receiving new data from that source, that it does not store data from connected sources, and that it keeps only information that appears in your sessions, which you can delete from your History tab. Health memories are deleted separately, in Personalization. What Terra or b.well keep after you disconnect is not stated on the Perplexity pages we read."
+      }
+    ],
+    "related": [
+      {
+        "href": "/ai/which-ai-can-read-your-health-data",
+        "label": "Which AI can read your health data"
+      },
+      {
+        "href": "/ai/claude-apple-health",
+        "label": "Claude and Apple Health"
+      },
+      {
+        "href": "/ai/chatgpt-health-apple-health",
+        "label": "ChatGPT Health and Apple Health"
+      },
+      {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra API alternatives"
+      },
+      {
+        "href": "/ai/connect-wearable-data-to-ai-assistants",
+        "label": "Connect wearable data to an AI assistant safely"
+      }
+    ],
+    "cta": {
+      "pitch": "Assistant health features change plans, regions and privacy terms without much notice. Our developer newsletter tracks what the vendors' own pages say as it moves."
+    },
+    "sources": [
+      {
+        "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-health",
+        "checked": "2026-11-24",
+        "note": "launch post, March 19, 2026: connectors, partners b.well and Terra API, Computer, encryption, training and selling, US Pro/Max rollout"
+      },
+      {
+        "url": "https://www.perplexity.ai/help-center/en/articles/14035438-what-is-perplexity-health",
+        "checked": "2026-11-24",
+        "note": "help center article, last modified November 17, 2026: eligibility, platforms, data per connector, Health hub, memories, training, storage, HIPAA, disconnect and delete"
+      }
+    ]
+  },
+  {
+    "slug": "copilot-health",
+    "primaryQuery": "microsoft copilot health",
+    "h1": "Microsoft Copilot Health: What It Connects and What Microsoft Promises",
+    "metaTitle": "Microsoft Copilot Health: Data Sources and Privacy",
+    "metaDescription": "What Microsoft says Copilot Health connects: 50+ wearables incl. Apple Health, HealthEx records and Function labs, and its isolation and training terms.",
+    "updated": "2026-11-24",
+    "answer": "Microsoft says Copilot Health is a separate, secure space within Copilot that brings together data from over 50 wearable devices including Apple Health, Oura and Fitbit, health records from over 50,000 US hospitals and provider organizations through HealthEx, and lab results from Function. Its March 12, 2026 announcement says Copilot Health conversations and data are isolated from general Copilot, encrypted at rest and in transit, and not used for model training, and that you can disconnect health data connectors at any time. As of November 24, 2026, the announcement describes a phased rollout and does not state plans, prices, countries or platforms.",
+    "body": "This page reads one source: Microsoft's announcement \"Introducing Copilot Health\", dated March 12, 2026, on microsoft.ai. AIFitnessAPI is not affiliated with Microsoft. What the announcement says is reported below with Microsoft named as the source. What it does not say is listed as not stated, and is not filled in from press coverage or from other Copilot products. How Copilot Health compares with ChatGPT, Claude, Perplexity and Google's coach is on [which AI can read your health data](/ai/which-ai-can-read-your-health-data).\n\n## What Copilot Health is\n\nMicrosoft describes Copilot Health as a separate, secure space within Copilot that brings your health records, wearable data and health history together in one place. It is presented as part of the Copilot assistant rather than a standalone app. The announcement does not say which Copilot apps or surfaces it appears in.\n\n## What it brings together\n\nThe announcement lists three kinds of personal data for a Copilot Health profile:\n\n| Source | Through | What Microsoft lists |\n|---|---|---|\n| Wearables | Not stated | Activity levels, sleep patterns, vital signs and other trends from over 50 wearable devices including Apple Health, Oura, Fitbit and more |\n| Health records | HealthEx | Visit summaries, medication lists and test results, from over 50,000 US hospitals and provider organizations |\n| Lab tests | Function | Comprehensive lab test results |\n\nThree things in that table are worth reading closely.\n\n- **Apple Health is on the wearables list.** Apple Health is not a device. As this site's guide to [on-device and cloud health data](/learn/on-device-vs-cloud-health-data) explains, it is an on-device store that apps on the iPhone read under an OS-granted permission, with no vendor server to query. The announcement does not say how Copilot Health reaches it, which app asks for the permission, or which data types it reads.\n- **No aggregator is named for wearables.** Records go through HealthEx and labs through Function, but the announcement names no partner for the 50+ wearable devices and does not list them beyond the three examples.\n- **No mention of writing back.** The announcement describes data coming into Copilot Health only. It does not say whether anything is written back to Apple Health or a wearable account.\n\nCopilot Health also searches US provider directories, so users can search for clinicians by specialty, location, languages spoken and insurance coverage. That is a lookup feature, not a connection to your own data.\n\n## Isolation from general Copilot\n\nThe announcement makes this statement: \"Your Copilot Health conversations and data are isolated from general Copilot and kept under additional access, privacy, and safety controls.\"\n\nIt does not explain the mechanism. In particular, it does not say whether general Copilot conversations or Copilot memory can see anything from Copilot Health, or the reverse, beyond the word \"isolated\". Our recommendation is to take the statement at its word and not to assume details it does not give.\n\n## Encryption, training and disconnecting\n\nMicrosoft's announcement says, under \"Safe and Secure by Design\":\n\n- data in Copilot Health is protected with encryption at rest and in transit and strict access controls;\n- you have the ability to manage and delete your information when you choose;\n- you can disconnect your connectors to health data sources such as electronic health records or wearables instantaneously at any time;\n- \"Your information in Copilot Health is not used for model training.\"\n\nThe training statement is a single sentence with no qualifier on the page we read. There is no mention of a setting that changes it, and none of advertising or of selling data.\n\nNot stated on the page we read:\n\n- what happens to data already synced when you disconnect a connector;\n- how long Copilot Health keeps data, and how the delete control works;\n- whether HealthEx or Function keep anything after you disconnect.\n\nThe microsoft.ai page also carries a generic \"Data & privacy\" panel to manage your Microsoft AI model-service data, with export and delete buttons. Nothing in that panel mentions Copilot Health, so we do not treat it as Copilot Health's deletion control.\n\n## Rollout, plans and regions, as of November 24, 2026\n\nThe announcement says Microsoft is making Copilot Health available through a careful, phased rollout. It does not state:\n\n- which Copilot plans include it, or a price;\n- which countries it is available in;\n- which platforms or apps carry it, including whether Apple Health needs the Copilot iPhone app;\n- any age limit.\n\nTwo parts are US-specific by Microsoft's own description: records come from US hospitals and provider organizations, and the provider directories are US directories. In our reading, the announcement does not say whether the rest of Copilot Health is offered outside the US.\n\n## Oversight Microsoft describes\n\n- **Certification.** Microsoft says Copilot Health has achieved ISO/IEC 42001 certification, which it describes as a standard for AI management systems, meaning an independent third party has verified how Microsoft builds, governs and continuously improves the AI behind the service. That certifies a management system. It is not a measure of how accurate the answers are.\n- **Clinical input.** Microsoft says Copilot Health is developed with its internal clinical team and informed by an external panel of over 230 physicians from more than 24 countries.\n- **Release rule.** Microsoft says new AI features will be released into Copilot Health only after clinical evaluations and with clear labeling.\n- **Sources.** In its section on health answers, Microsoft says responses include citations with links to source material, alongside expert-written answer cards from Harvard Health.\n\nThe announcement also describes Microsoft's diagnostic research program and its goal of \"medical superintelligence\". This page reports that as Microsoft's stated direction and makes no claim about the quality of Copilot Health's answers. The general problems of health answers from language models are covered in [LLM safety for fitness advice](/ai/llm-safety-fitness-advice).\n\n## If you build health apps\n\nCopilot Health is a consumer product, and the announcement offers no developer route into it. If you want an assistant to read your own wearable data through an MCP server or an export instead, the checks to run first are in [connecting wearable data to AI assistants](/ai/connect-wearable-data-to-ai-assistants), and the servers that exist are listed in the [directory of health MCP servers](/health-mcp-servers).\n",
+    "faqs": [
+      {
+        "q": "Is Copilot Health separate from regular Microsoft Copilot?",
+        "a": "Microsoft describes it as a separate, secure space within Copilot. Its March 12, 2026 announcement says Copilot Health conversations and data are isolated from general Copilot and kept under additional access, privacy and safety controls. The announcement does not explain how that isolation works, or whether Copilot memory can see anything from Copilot Health."
+      },
+      {
+        "q": "Which wearables does Copilot Health connect to?",
+        "a": "Microsoft's announcement says over 50 wearable devices including Apple Health, Oura, Fitbit and more, contributing activity levels, sleep patterns, vital signs and other trends. It names only those three and does not say which partner, if any, connects the wearables, or how Apple Health is read. Health records come through HealthEx and lab results from Function."
+      },
+      {
+        "q": "Does Microsoft train its models on Copilot Health data?",
+        "a": "Microsoft says no. The announcement states that your information in Copilot Health is not used for model training, as a single sentence with no setting attached on the page we read. The same section says data is encrypted at rest and in transit and that you can disconnect connectors to health data sources at any time. The announcement does not say what happens to already-synced data after you disconnect."
+      },
+      {
+        "q": "How much does Microsoft Copilot Health cost?",
+        "a": "Not stated on the page we read. As of November 24, 2026, Microsoft's announcement says Copilot Health is arriving through a careful, phased rollout, but it does not name a price, the Copilot plans that include it, the countries it is offered in or the platforms that carry it. Check Microsoft's own Copilot pages for the current terms."
+      }
+    ],
+    "related": [
+      {
+        "href": "/ai/which-ai-can-read-your-health-data",
+        "label": "Which AI can read your health data"
+      },
+      {
+        "href": "/ai/perplexity-health",
+        "label": "Perplexity Health"
+      },
+      {
+        "href": "/ai/google-health-coach",
+        "label": "Google Health Coach"
+      },
+      {
+        "href": "/learn/on-device-vs-cloud-health-data",
+        "label": "On-device vs cloud health data"
+      },
+      {
+        "href": "/ai/connect-wearable-data-to-ai-assistants",
+        "label": "Connect wearable data to an AI assistant safely"
+      }
+    ],
+    "cta": {
+      "pitch": "Assistant health features change plans, regions and privacy terms without much notice. Our developer newsletter tracks what the vendors' own pages say as it moves."
+    },
+    "sources": [
+      {
+        "url": "https://microsoft.ai/news/introducing-copilot-health/",
+        "checked": "2026-11-24",
+        "note": "announcement, March 12, 2026: data sources (wearables, HealthEx, Function), isolation from general Copilot, encryption, disconnecting, no model training, phased rollout, ISO/IEC 42001, physician panel"
+      }
+    ]
+  },
+  {
+    "slug": "google-health-coach",
+    "primaryQuery": "google health coach gemini",
+    "h1": "Google Health Coach: What the Gemini Coach Reads and Who Gets It",
+    "metaTitle": "Google Health Coach: Gemini Coach, Data and Price",
+    "metaDescription": "What Google says its Gemini-built Health Coach uses, from sleep to US medical records, who gets it on Google Health Premium, and what Google leaves unsaid.",
+    "updated": "2026-11-24",
+    "answer": "Google Health Coach is a coach built with Gemini inside the Google Health app, formerly the Fitbit app, rather than a general chatbot. Google says it draws on fitness and sleep metrics, nutrition and cycle tracking, location and local weather, and personal medical records, which can be synced in the US. Google's May 7, 2026 post, as read on November 24, 2026, says the coach is included with Google Health Premium at $9.99 per month or $99 per year and launched first for eligible Fitbit and Pixel Watch users. On privacy, the pages we read repeat Google's commitment not to use Fitbit users' health and wellness data for Google Ads, and say nothing about model training or deletion.",
+    "body": "This page reads two Google pages: the blog post \"Google Health Coach is becoming globally available\" (May 7, 2026), by Andy Abramson, Head of Product, Google Health, and the product page at healthapp.google. Google's support articles could not be read: they returned error pages to our fetcher, so anything documented only there is missing here. AIFitnessAPI is not affiliated with Google. Google's post carries an AI-generated summary above the article; this page uses only the article and the footnotes.\n\n## A coach inside Google's health app, not a general assistant\n\nGoogle Health Coach is a coach built with Gemini that lives in the Google Health app. Google's post says \"The Fitbit app is now the Google Health app\", so this is the app that pairs with Google's own Fitbit and Pixel Watch devices. The footnotes on both pages add that \"Gemini features work independently of Gemini apps\": the coach is not the Gemini chatbot with a health connector added.\n\nThat is the main difference from the other assistants in [which AI can read your health data](/ai/which-ai-can-read-your-health-data). ChatGPT, Claude, Perplexity and Copilot are general-purpose assistants that added a health space and reach data held somewhere else, such as Apple Health on an iPhone, or medical records and wearables through partners. Google's coach belongs to the vendor that makes the device and runs the app the data lands in. It answers health and fitness questions, plans workouts and comments on sleep. Google does not present it as a general assistant.\n\n## What data the coach uses\n\nGoogle's post says the coach connects the dots across your shared data, including:\n\n- fitness and sleep metrics;\n- nutrition and cycle tracking;\n- environmental context like location and local weather;\n- personal medical records.\n\nThe post adds that \"the more context you choose to share, the more tailored and powerful the experience becomes\". Two more inputs come from you directly:\n\n- **An onboarding conversation.** You can share your goals, your daily routine, the equipment you have access to, injuries you are managing and general lifestyle context, and update them later in conversation.\n- **Logging.** Voice, images or documents, including photos of gym whiteboards, photos of meals for nutritional analysis, and files like PDFs or medical records.\n\nThe product page says the coach uses heart rate and HRV signals to adjust plans, and logged cycle data alongside sleep, fitness and wellness metrics.\n\n**Medical records.** The post describes the ability to sync medical records in the US and share them with the coach, and says the Health tab can summarize your personal health records. It does not name the partner that connects them.\n\n**Other platforms' stores.** Neither page says whether the coach reads Apple Health or Health Connect. That is not stated on the pages we read.\n\n**What it writes.** Inside the app, the coach builds a \"Weekly Plan\" on the Fitness tab and can create and save custom workouts from natural language. Neither page says whether anything is written to other apps or platform stores.\n\n## Who gets it, where and for how much\n\nAs stated in Google's May 7, 2026 post, read on November 24, 2026:\n\n- **Plan.** The coach is included with a Google Health Premium subscription (formerly Fitbit Premium), at $9.99 per month or $99 per year. Google AI Pro and Ultra subscribers get Google Health Premium at no extra cost.\n- **Devices.** It launched first for eligible Fitbit and Pixel Watch users, with support for other devices \"coming soon\". Anyone can download the app and sign up. If you do not have a Fitbit device or a Google Pixel Watch, Google says you will be notified when the coach is ready for you.\n- **Dates.** It left preview on May 19, rolling out to 100% on May 26.\n- **Regions.** The post says the coach became available globally, and a footnote on that sentence reads \"In select international markets.\" Medical record sync is described for the US only.\n- **Requirements.** Footnotes on both pages list a Google Health Premium subscription (sold separately), the Google Health app, Wi-Fi and an internet connection, and say availability varies.\n- **Not stated on the pages we read.** Phone platforms (Android or iOS), an age limit, and which countries are included.\n\n## Privacy: what the pages say, and what they leave out\n\nThe privacy statements on the two pages are short. Google's post says: \"Google committed to not use Fitbit users’ health and wellness data for Google Ads.\" It adds that the Fitbit app is now the Google Health app and that Google will keep the commitment. The product page repeats the commitment and adds two more lines: \"Turn off optional features at any point\" and \"Your coach operates with built-in security protections.\" It also says privacy settings give you control over your data.\n\nIn our reading, the advertising commitment covers Google Ads. It is not a statement about model training. The pages we read do not state:\n\n- whether coach conversations or health data are used to train or improve models;\n- whether conversations are reviewed by people;\n- how to delete coach conversations or the data the coach used, or how long either is kept;\n- how to disconnect synced medical records.\n\nGoogle's support pages may cover some of this, but we could not read them, so this page does not report it. If you are deciding whether to share medical records or location with the coach, our recommendation is to read Google's privacy and support pages in your own browser first.\n\n## How Google describes the coach's grounding\n\nGoogle's post says the coach is grounded in Gemini models, health research and established health and wellness principles, and evaluated against a framework of safety, helpfulness, accuracy, relevance and personalization that Google calls SHARP. It also says Google worked with its Consumer Health Advisory Panel of medical experts and clinicians. These are Google's descriptions of its own process. This page makes no claim about the accuracy of the coach's guidance. The footnotes say it is not intended for medical purposes and ask you to check responses for accuracy. The general problems are covered in [LLM safety for fitness advice](/ai/llm-safety-fitness-advice).\n\n## If you are a developer\n\nThe coach has no developer interface on the pages we read. If you want to read Fitbit-account data in your own app, Google's developer route is the [Google Health API](/google-health-api), the Fitbit Web API's successor. If you want an assistant to read your own wearable data through an MCP server or an export, the checks to run first are in [connecting wearable data to AI assistants](/ai/connect-wearable-data-to-ai-assistants).\n",
+    "faqs": [
+      {
+        "q": "Is Google Health Coach the same as the Gemini app?",
+        "a": "No. Google says the coach is built with Gemini, but it lives in the Google Health app, which Google's post says is what the Fitbit app has become. Footnotes on Google's blog post and product page state that Gemini features work independently of Gemini apps. The coach answers health and fitness questions and plans workouts from the data in that app; Google does not present it as a general assistant."
+      },
+      {
+        "q": "How much does Google Health Coach cost?",
+        "a": "Google's May 7, 2026 post, as we read it on November 24, 2026, says the coach is included with a Google Health Premium subscription, formerly Fitbit Premium, at $9.99 per month or $99 per year. It also says Google AI Pro and Ultra subscribers get Google Health Premium at no extra cost. Google's footnotes say availability varies, so check the app for your country."
+      },
+      {
+        "q": "Do I need a Fitbit or Pixel Watch to use Google Health Coach?",
+        "a": "At launch, yes. Google's post says the coach launched first for eligible Fitbit and Pixel Watch users, with support for other devices coming soon. Anyone can download the Google Health app and sign up, and Google says people without a Fitbit device or Google Pixel Watch will be notified when the coach is ready for them. The pages we read do not list the other devices or give a date."
+      },
+      {
+        "q": "Does Google use Health Coach data for ads or model training?",
+        "a": "On ads, Google's blog post and product page both say Google committed to not use Fitbit users' health and wellness data for Google Ads, and the post says Google will keep that commitment now that the Fitbit app is the Google Health app. On model training, the pages we read say nothing. Google's support pages could not be read for this page, so check them directly."
+      }
+    ],
+    "related": [
+      {
+        "href": "/ai/which-ai-can-read-your-health-data",
+        "label": "Which AI can read your health data"
+      },
+      {
+        "href": "/ai/copilot-health",
+        "label": "Microsoft Copilot Health"
+      },
+      {
+        "href": "/ai/perplexity-health",
+        "label": "Perplexity Health"
+      },
+      {
+        "href": "/google-health-api",
+        "label": "Google Health API reference"
+      },
+      {
+        "href": "/ai/llm-safety-fitness-advice",
+        "label": "LLM safety for fitness advice"
+      }
+    ],
+    "cta": {
+      "pitch": "Assistant health features change plans, regions and privacy terms without much notice. Our developer newsletter tracks what the vendors' own pages say as it moves."
+    },
+    "sources": [
+      {
+        "url": "https://blog.google/products-and-platforms/products/google-health/google-health-coach/",
+        "checked": "2026-11-24",
+        "note": "blog post, May 7, 2026: what the coach is, the data it uses, Premium pricing, devices, rollout dates, select markets, the Google Ads commitment"
+      },
+      {
+        "url": "https://healthapp.google/google-health-coach/",
+        "checked": "2026-11-24",
+        "note": "product page: built with Gemini, Premium membership, heart rate, HRV and cycle inputs, privacy lines, footnoted requirements"
+      }
+    ]
   }
 ];
