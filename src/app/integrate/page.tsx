@@ -9,6 +9,7 @@ import ClusterHero from "@/components/ClusterHero";
 import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
+import AccessScoreboard from "@/components/AccessScoreboard";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef, faqPageJsonLd, publishedDate } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
@@ -219,6 +220,8 @@ export default function IntegratePillar() {
             </section>
           );
         })}
+
+        <AccessScoreboard />
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Frequently asked questions</h2>

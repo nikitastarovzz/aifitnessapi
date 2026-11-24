@@ -11,6 +11,8 @@ import { countdownTargets } from "@/lib/vendorDeadlines";
 import { allEmbeddableTables, clusterLabel, EMBED_TABLE_CLUSTERS, embedSnippets, embedTablePath } from "@/lib/embedTables";
 import { GRAVEYARD, GRAVEYARD_PATH } from "@/data/graveyard";
 import { opennessVendors } from "@/lib/openness";
+import { ACCESS_REPORTS } from "@/data/accessReports";
+import { VENDORS as ACCESS_VENDORS, accessBadgeAlt, accessBadges } from "@/lib/accessReportSubmission.mjs";
 import { OPENNESS_PATH, vendorAnchor } from "@/lib/opennessIndex.mjs";
 import {
   badgeAlt,
@@ -437,6 +439,36 @@ export default async function BadgesPage() {
                   <Snippet
                     code={badgeMarkdown(opennessBadgeAlt(v), opennessBadgePath(v.id), `${OPENNESS_PATH}#${vendorAnchor(v.id)}`)}
                     label={`Markdown for the ${v.name} openness badge`}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          <h3 id="access-badges" className="mt-10 scroll-mt-24 text-lg font-bold tracking-tight text-[var(--fg)]">
+            Access-report badges
+          </h3>
+          <p className="mt-3 leading-relaxed text-[var(--muted)]">
+            One per vendor in{" "}
+            <Link href="/integrate#access-scoreboard" className="text-brand-600 hover:text-brand-500">
+              the access-report scoreboard
+            </Link>
+            : how many developers&rsquo; reports of applying for that vendor&rsquo;s API access have been accepted,
+            and the median days to a first answer once three reports give a number. It reads &ldquo;no reports
+            yet&rdquo; until the first one. Unlike the badges above, it is a file redrawn each time the reports are
+            imported, not at every build, and the count is what submitters said happened, not a figure from the vendor.
+          </p>
+          <div className="mt-6 space-y-6">
+            {accessBadges(ACCESS_REPORTS).map((b) => {
+              const v = ACCESS_VENDORS.find((x) => x.slug === b.slug)!;
+              return (
+                <div key={b.slug} data-access-badge={b.path} data-access-badge-alt={badgeAlt(b)}>
+                  <p className="flex flex-wrap items-center gap-3">
+                    <img src={b.path} alt={badgeAlt(b)} height={20} loading="lazy" />
+                  </p>
+                  <Snippet
+                    code={badgeMarkdown(accessBadgeAlt(v.name), b.path, `${v.pages[0]}#access-reports`)}
+                    label={`Markdown for the ${v.name} access-report badge`}
                   />
                 </div>
               );

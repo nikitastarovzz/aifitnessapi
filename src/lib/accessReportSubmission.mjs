@@ -10,7 +10,10 @@
  * ACCEPT_LABEL; scripts/import-access-reports.mjs (run by hand,
  * unauthenticated, no secrets) turns accepted issues into
  * src/data/accessReports.ts, which components/AccessReports renders at build
- * on each vendor's English /integrate page and on /fix/garmin-api-approval.
+ * on each vendor's English /integrate page and on /fix/garmin-api-approval,
+ * and components/AccessScoreboard sums per vendor on the /integrate hub. The
+ * importer also redraws one README badge per vendor,
+ * public/badges/access/<vendor>.svg (accessBadges below).
  *
  * One module, imported by the component (to build the link), by the importer
  * (to parse what came back) and by scripts/access-reports.test.mjs, so the
@@ -265,3 +268,74 @@ export function summarize(reports) {
 
 /** An issue URL this repository could have issued: https://github.com/<REPO>/issues/<n>. */
 export const ISSUE_URL = new RegExp(`^${REPO_URL.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&")}/issues/\\d+$`);
+
+/**
+ * The all-vendor scoreboard on /integrate (components/AccessScoreboard): one
+ * row per vendor in VENDORS, each summarize()d from that vendor's reports
+ * alone, so the median follows the panel's rule (MEDIAN_MIN). Vendors with
+ * more reports come first; ties keep the VENDORS order. `page` is the English
+ * page whose #access-reports panel the row links.
+ */
+export function scoreboard(reports) {
+  return VENDORS.map((v, order) => ({ slug: v.slug, name: v.name, page: v.pages[0], order, ...summarize(reports.filter((r) => r.vendor === v.slug)) }))
+    .sort((a, b) => b.total - a.total || a.order - b.order)
+    .map(({ order: _order, ...row }) => row);
+}
+
+/**
+ * The README badge per vendor, written by the importer to
+ * public/badges/access/<vendor>.svg with the site's shared badge drawing
+ * (src/lib/statBadgeSvg.mjs). The value is the panel's own summary: the
+ * report count, and the median days only where summarize() gives one.
+ */
+export const ACCESS_BADGE_BASE = "/badges/access";
+export const ACCESS_BADGE_DIR = "public/badges/access";
+export const accessBadgePath = (slug) => `${ACCESS_BADGE_BASE}/${slug}.svg`;
+export const ACCESS_BADGE_COLORS = { none: "#4b5563", some: "#059669" };
+const fmtDays = (n) => `${n} ${n === 1 ? "day" : "days"}`;
+
+/** The badge text for one vendor from its summarize() result: { label, value, color }. */
+export function accessBadge(vendorName, s) {
+  const label = `${vendorName} API access`;
+  if (!s.total) return { label, value: "no reports yet", color: ACCESS_BADGE_COLORS.none };
+  const count = `${s.total} ${s.total === 1 ? "report" : "reports"}`;
+  return { label, value: s.medianDays === null ? count : `${count} · median ${fmtDays(s.medianDays)}`, color: ACCESS_BADGE_COLORS.some };
+}
+
+/** Every vendor's badge, from the reports given: [{ slug, path, label, value, color }]. */
+export function accessBadges(reports) {
+  return VENDORS.map((v) => ({
+    slug: v.slug,
+    path: accessBadgePath(v.slug),
+    ...accessBadge(v.name, summarize(reports.filter((r) => r.vendor === v.slug))),
+  }));
+}
+
+/** The README snippet's fixed alt text: the image changes under it, the alt does not. */
+export const accessBadgeAlt = (vendorName) => `${vendorName} API access reports`;
+
+/**
+ * The line a reader shares from one accepted report's row. It describes the
+ * report, not the reader ("per developer report #7"), because anyone can
+ * press Share on any row; the link is the vendor's panel (shareUrl).
+ */
+export function shareText(r) {
+  const v = vendorBySlug(r.vendor);
+  if (!v) throw new Error(`unknown vendor ${r.vendor}`);
+  const inDays = Number.isInteger(r.daysToFirstAnswer) ? ` in ${fmtDays(r.daysToFirstAnswer)}` : "";
+  const what = {
+    approved: `approved${inDays}`,
+    rejected: `rejected${inDays}`,
+    "no-answer": "no answer",
+    pending: inDays ? `pending, first answer${inDays}` : "pending",
+  }[r.outcome];
+  if (!what) throw new Error(`unknown outcome ${r.outcome}`);
+  return `${v.name} API access ${what}, per developer report #${r.issue} (applied ${r.applied}). Reports from developers:`;
+}
+
+/** The link that goes with shareText: the vendor's first English page, at its panel. */
+export function shareUrl(r, origin = "https://aifitnessapi.com") {
+  const v = vendorBySlug(r.vendor);
+  if (!v) throw new Error(`unknown vendor ${r.vendor}`);
+  return `${origin}${v.pages[0]}#access-reports`;
+}
