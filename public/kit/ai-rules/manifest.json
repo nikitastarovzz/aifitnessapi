@@ -1,0 +1,124 @@
+{
+  "about": "AI coding-assistant rule packs from https://aifitnessapi.com, rendered by scripts/build-ai-rules.mjs from the site's generated data.",
+  "formats": [
+    {
+      "tool": "Cursor",
+      "url": "https://cursor.com/docs/context/rules",
+      "readOn": "2026-11-24",
+      "via": "source-snapshot run 45496299201"
+    },
+    {
+      "tool": "Claude Code",
+      "url": "https://code.claude.com/docs/en/memory",
+      "readOn": "2026-11-24",
+      "via": "direct fetch"
+    },
+    {
+      "tool": "GitHub Copilot",
+      "url": "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions",
+      "readOn": "2026-11-24",
+      "via": "source-snapshot run 45496299201"
+    }
+  ],
+  "files": [
+    {
+      "file": "healthkit.mdc",
+      "topic": "healthkit",
+      "flavor": "cursor",
+      "installAs": ".cursor/rules/healthkit.mdc",
+      "bytes": 39216,
+      "lines": 245,
+      "bodyHash": "9fd96dde71ead47548092f6c5681d2b8784b0d7b704fbc25e9a26cc689762185",
+      "dataReadOn": "2026-10-02",
+      "generatedOn": "2026-11-24"
+    },
+    {
+      "file": "healthkit.md",
+      "topic": "healthkit",
+      "flavor": "claude",
+      "installAs": ".claude/rules/healthkit.md",
+      "bytes": 39034,
+      "lines": 240,
+      "bodyHash": "9fd96dde71ead47548092f6c5681d2b8784b0d7b704fbc25e9a26cc689762185",
+      "dataReadOn": "2026-10-02",
+      "generatedOn": "2026-11-24"
+    },
+    {
+      "file": "healthkit.instructions.md",
+      "topic": "healthkit",
+      "flavor": "copilot",
+      "installAs": ".github/instructions/healthkit.instructions.md",
+      "bytes": 39057,
+      "lines": 244,
+      "bodyHash": "9fd96dde71ead47548092f6c5681d2b8784b0d7b704fbc25e9a26cc689762185",
+      "dataReadOn": "2026-10-02",
+      "generatedOn": "2026-11-24"
+    },
+    {
+      "file": "health-connect.mdc",
+      "topic": "health-connect",
+      "flavor": "cursor",
+      "installAs": ".cursor/rules/health-connect.mdc",
+      "bytes": 18265,
+      "lines": 110,
+      "bodyHash": "1962756ec519d73902bf37a64437bc5f2ad6490e50ee3bc1382327d29749de83",
+      "dataReadOn": "2026-10-03",
+      "generatedOn": "2026-11-24"
+    },
+    {
+      "file": "health-connect.md",
+      "topic": "health-connect",
+      "flavor": "claude",
+      "installAs": ".claude/rules/health-connect.md",
+      "bytes": 18106,
+      "lines": 105,
+      "bodyHash": "1962756ec519d73902bf37a64437bc5f2ad6490e50ee3bc1382327d29749de83",
+      "dataReadOn": "2026-10-03",
+      "generatedOn": "2026-11-24"
+    },
+    {
+      "file": "health-connect.instructions.md",
+      "topic": "health-connect",
+      "flavor": "copilot",
+      "installAs": ".github/instructions/health-connect.instructions.md",
+      "bytes": 18129,
+      "lines": 109,
+      "bodyHash": "1962756ec519d73902bf37a64437bc5f2ad6490e50ee3bc1382327d29749de83",
+      "dataReadOn": "2026-10-03",
+      "generatedOn": "2026-11-24"
+    },
+    {
+      "file": "pose-keypoints.mdc",
+      "topic": "pose-keypoints",
+      "flavor": "cursor",
+      "installAs": ".cursor/rules/pose-keypoints.mdc",
+      "bytes": 16138,
+      "lines": 142,
+      "bodyHash": "111e5cfe716b54664a572e5a079d77a24eaeaa54a05edb1a1aba29075081b172",
+      "dataReadOn": "2026-10-17",
+      "generatedOn": "2026-11-24"
+    },
+    {
+      "file": "pose-keypoints.md",
+      "topic": "pose-keypoints",
+      "flavor": "claude",
+      "installAs": ".claude/rules/pose-keypoints.md",
+      "bytes": 15963,
+      "lines": 137,
+      "bodyHash": "111e5cfe716b54664a572e5a079d77a24eaeaa54a05edb1a1aba29075081b172",
+      "dataReadOn": "2026-10-17",
+      "generatedOn": "2026-11-24"
+    },
+    {
+      "file": "pose-keypoints.instructions.md",
+      "topic": "pose-keypoints",
+      "flavor": "copilot",
+      "installAs": ".github/instructions/pose-keypoints.instructions.md",
+      "bytes": 15986,
+      "lines": 141,
+      "bodyHash": "111e5cfe716b54664a572e5a079d77a24eaeaa54a05edb1a1aba29075081b172",
+      "dataReadOn": "2026-10-17",
+      "generatedOn": "2026-11-24"
+    }
+  ]
+}

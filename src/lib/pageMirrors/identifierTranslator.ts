@@ -1,6 +1,7 @@
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { site } from "@/lib/site";
+import { ROSETTA_HEADING, rosettaParagraphs } from "@/lib/codeRosettaPage";
 import { interactiveNote, link, moreToolsSection, type MirrorDoc } from "./core";
 
 const PATH = "/tools/identifier-translator";
@@ -25,6 +26,9 @@ export function identifierTranslatorMirror(): MirrorDoc {
     body: [
       interactiveNote(PATH, "the two-way lookup"),
       "",
+      `## ${ROSETTA_HEADING}`,
+      "",
+      ...rosettaParagraphs().flatMap((p) => [p, ""]),
       "## How this works",
       "",
       `Everything runs client-side from this site’s published dataset — no lookup service, no network call. Two sources feed it. The Apple identifier list is generated from Apple’s own documentation, last read ${HK_FETCHED_ON}. The cross-platform pairs are the ${MATRIX_ROWS.length} rows of the HealthKit ↔ Health Connect matrix, each one confirmed against both Apple’s and Google’s developer documentation, with the per-row source recorded in the dataset.`,

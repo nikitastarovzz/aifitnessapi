@@ -3,6 +3,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PageSummary from "@/components/PageSummary";
+import AiRulesDownloads from "@/components/AiRulesDownloads";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, publishedDate } from "@/lib/schema";
 import { formatDate } from "@/lib/posts";
@@ -377,6 +378,8 @@ claude mcp add --transport stdio aifitnessapi -- node "$PWD/src/index.js"`}</Cod
             way; if they ever disagree, the hosted one has newer data.
           </p>
         </section>
+
+        <AiRulesDownloads />
 
         <section className="mt-12 space-y-4 text-[var(--fg)]" data-llms-files>
           <h2 className="text-2xl font-bold tracking-tight">Text and answer files for language models</h2>
