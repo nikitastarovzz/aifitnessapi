@@ -13,6 +13,7 @@ import {
 import { POSE_BENCHMARK_RESULTS_IMPORTED_ON } from "@/data/poseBenchmarkResults";
 import { ACCEPT_LABEL, REPO, TITLE_PREFIX } from "@/lib/poseBenchmarkSubmission.mjs";
 import { LEADERBOARD_TEMPLATE_URL, leaderboardDelegate, leaderboardGroups, leaderboardMs, leaderboardRuntime } from "@/lib/poseLeaderboard";
+import { DRAW_SCORE_MIN, FRAME_H, FRAME_W, METER_FRAMES, RECORD_MS } from "@/lib/poseArena.mjs";
 import { site } from "@/lib/site";
 import { interactiveNote, link, table, type MirrorDoc } from "./core";
 
@@ -76,6 +77,16 @@ export function poseBenchmarkMirror(): MirrorDoc {
       interactiveNote(PATH, "the benchmark runner"),
       "",
       ...leaderboard,
+      "## Pose arena: both models on the same frames",
+      "",
+      `The arena runs one MediaPipe Pose Landmarker model and one MoveNet model side by side on your camera or on a video file from your device. Each frame is drawn once into a single ${FRAME_W}×${FRAME_H} image and that same image goes to both models, so the two panels show what each model returns for identical pixels: MediaPipe’s landmarks in blue on the left, MoveNet’s keypoints in orange on the right. The lines join the same twelve limb joints in both and are this page’s drawing; a hollow dot is a keypoint the model scored below ${DRAW_SCORE_MIN}, a cutoff chosen for the picture.`,
+      "",
+      interactiveNote(`${PATH}#arena`, "the pose arena and its 5-second recorder"),
+      "",
+      `Each panel’s rate is 1,000 divided by that model’s mean inference time over the last ${METER_FRAMES} frames: what the model alone could sustain on your device. The arena runs both models on every frame, one after the other, so it redraws slower than either rate and the two compete for the same processor. The benchmark above runs one model at a time and is the measurement to quote.`,
+      "",
+      `**Record ${RECORD_MS / 1000} seconds** saves the arena as a video your browser makes (WebM where it can, MP4 otherwise) for you to download; nothing is uploaded. The caption under the panels, with both model names, their rates and this page’s address, is drawn into every frame, so a clip you share says where it came from. If MoveNet’s weights cannot be downloaded from tfhub.dev, its panel says so and MediaPipe keeps running.`,
+      "",
       "## What it runs",
       "",
       `Google’s \`@mediapipe/tasks-vision\` package, version ${TASKS_VISION_VERSION} (the stable release on the npm registry when this page was checked on ${VERIFIED_ON}), loaded from cdn.jsdelivr.net only when you press Run. It runs in WebAssembly, and the package’s *delegate* option asks for inference on the GPU or the CPU; the benchmark times each one you tick. If the landmarker cannot be created with a delegate on your browser, that row says so instead of a number.`,
@@ -102,7 +113,7 @@ export function poseBenchmarkMirror(): MirrorDoc {
       "",
       "## How this works, and what it sends",
       "",
-      "Everything runs client-side. Camera frames go from your browser’s video element straight into the WebAssembly runtime and are never stored, sent or recorded; this site has no server code behind this page and logs no event from it beyond its ordinary page view. The network requests the page makes are the ones any app using the libraries makes: the runtimes from cdn.jsdelivr.net, each MediaPipe model file from storage.googleapis.com and, only if you tick MoveNet, its weights from tfhub.dev (and any host that download is redirected to), so those hosts see an ordinary download.",
+      "Everything runs client-side. Camera frames go from your browser’s video element straight into the WebAssembly runtime and are never stored or sent; the only recording is the arena’s, made in your browser when you press Record and kept there until you download it. This site has no server code behind this page and logs no event from it beyond its ordinary page view and a click on the arena’s download button. The network requests the page makes are the ones any app using the libraries makes: the runtimes from cdn.jsdelivr.net, each MediaPipe model file from storage.googleapis.com and, only if you tick MoveNet, its weights from tfhub.dev (and any host that download is redirected to), so those hosts see an ordinary download.",
       "",
       `The runtime also reports its own usage to Google. Version ${TASKS_VISION_VERSION} posts to \`${TASKS_VISION_USAGE_LOG_URL}\` about once a minute and when a model closes, which we saw in our own test of this page on ${VERIFIED_ON}. In the library’s code the report is built from the task name, the running mode, an operating-system family read from the user agent, the library version and timing counters such as frames processed and latency; no image, video or landmark value goes into it. Its public options offer no switch to turn it off, and blocking that host does not stop the benchmark. The TensorFlow.js ${TFJS_VERSION} and pose-detection ${POSE_DETECTION_VERSION} bundles the MoveNet rows load name no reporting address: when we listed every URL in them on ${MOVENET_VERIFIED_ON}, they were model hosts and documentation links only.`,
       "",

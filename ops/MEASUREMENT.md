@@ -209,6 +209,15 @@ so what a reader types or pastes stays in the tab.
 |---|---|---|---|
 | `open-exercises-json`, `open-exercises-csv`, `open-exercises-card` | `exercise-normalizer` | The "Normalize a gym-floor exercise name" section of `/tools/exercise-taxonomy-crosswalk` | a direct download of `/datasets/open-exercises-2026.json` or `.csv`, or opening its dataset card `.md` |
 
+Added 2026-11-24 (pose tools for the Pose Model Picker). Both are downloads
+of something made or published locally; the event carries only the fixed id,
+never the clip, its size or anything from the camera.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `pose-arena-download` | `pose-arena` | The download button that appears after "Record 5 seconds" in the pose arena on `/tools/pose-benchmark` (`components/tools/PoseArena`) | saving the clip the browser just recorded (a `blob:` URL); nothing is uploaded |
+| `kit-rep-counter` | `rep-counter-playground` | "Download rep-counter.html" in the one-file section of `/tools/rep-counter-playground` | a direct download of `/kit/rep-counter.html` |
+
 ## UTM on links to the funder
 
 Every placement link to kinestex.com is built by `funderHref(placement, path)`

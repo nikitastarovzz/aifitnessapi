@@ -412,6 +412,7 @@ if (fs.existsSync(matrixPath)) {
     "fitness-apis-2026.csv",
     "healthkit-type-identifiers-2026.csv",
     "fitness-api-decision-kit.zip",
+    "rep-counter.html",
   ];
   for (const f of KIT) {
     if (!fs.existsSync(`public/kit/${f}`)) problems.push(`KIT-MISSING  public/kit/${f}`);
