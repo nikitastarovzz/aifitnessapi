@@ -232,6 +232,18 @@ The "Switching libraries?" picker on `/libraries/react-native`, `/flutter` and
 `/capacitor-cordova` (`components/LibrarySwitchPicker`) sends nothing: its
 links are plain navigation to this site's type pages and to GitHub.
 
+Added 2026-11-24 (fact cards, the built-with gallery and Challenge 2.0).
+Plain elements and share rows as above; every id is fixed in code, so no
+event carries a fact id, a quote, a project or a score.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `fact-share` | `key-facts` | The "Share this fact" button on each line of the "Key facts" block on English cluster pages (`components/FactShareLink`) | opening the share row for that fact; nothing is sent until a target is picked |
+| `fact-card-open` | `key-facts` | "Open its card", in that share row | a link to `/s?t=fact&id=<fact id>`, the noindex fact card |
+| `share-fact-<target>` | `share-row` | The share row under a key fact, and the one on the `/s?t=fact&…` page itself | copying, or opening a compose page for, the fact card's address |
+| `awesome-built-with-submit` | `awesome` | The "Submit your project" button in the "Built with these APIs" section of `/awesome` | opening a new GitHub issue from the `built-with.md` template in the site's repository |
+| `share-challenge-<target>` | `share-row` | The result of `/challenge`, under the score card | copying, or opening a compose page for, the "Beat my score" address (`/challenge?ex=<exercise>&beat=<score>`); the score is in the shared address, never in the event |
+
 ## UTM on links to the funder
 
 Every placement link to kinestex.com is built by `funderHref(placement, path)`

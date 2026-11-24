@@ -8,6 +8,8 @@ import { MCP_HEALTH_SERVERS, MCP_SERVER_GROUPS, MCP_SERVERS_FETCHED_ON } from "@
 import { ALL_TOOLS } from "@/lib/toolRegistry";
 import { site } from "@/lib/site";
 import { awesomeLead, awesomeModel, type AwesomeModel } from "@/lib/awesomeList.mjs";
+import { BUILT_WITH } from "@/data/builtWith";
+import { TEMPLATE_URL as BUILT_WITH_SUBMIT_URL } from "@/lib/builtWithSubmission.mjs";
 
 /**
  * What /awesome and /awesome.md render: the same model scripts/build-awesome.mjs
@@ -54,6 +56,7 @@ export function awesomePageModel(): AwesomeModel {
     mcpFetchedOn: MCP_SERVERS_FETCHED_ON,
     datasets: datasets(),
     tools: ALL_TOOLS,
+    builtWith: { projects: BUILT_WITH, submitUrl: BUILT_WITH_SUBMIT_URL },
   });
   return cached;
 }
@@ -72,4 +75,5 @@ export const AWESOME_METHOD = [
   "API lines restate the directory: category, how the product bills developers, and whether its entry names an approval step before production. Library lines are the libraries hub's own one-line notes with the registry's license; MCP server lines are the official MCP Registry's descriptions, verbatim and not reviewed.",
   "Inclusion is mechanical and nothing is ranked: every directory product, every library on the hub, every server the registry scan matched, every published dataset and tool.",
   "KinesteX funds this site. Its line is drawn from the same directory fields as every other product's.",
+  "Built with these APIs is the one section in other people's words: makers submit a project as a public GitHub issue, a maintainer reads it, and only accepted issues are listed, each linking the issue it came from. Listing is not a review.",
 ];
