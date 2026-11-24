@@ -1,0 +1,152 @@
+[
+  {
+    "claim": "Apple's HealthKit splits time in bed into awake, core, deep and REM sleep samples.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkcategoryvaluesleepanalysis.json",
+    "quote": "These detailed samples show when the user was awake, in core sleep, in deep sleep, or in rapid eye movement (REM) sleep."
+  },
+  {
+    "claim": "In HealthKit, in-bed time and the sleep-state samples are separate samples that overlap.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkcategoryvaluesleepanalysis.json",
+    "quote": "To track both the amount of time a person spends in bed and the quality and quantity of their sleep, use samples with overlapping times."
+  },
+  {
+    "claim": "Apple Watch records awake samples only between two sleep samples.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkcategoryvaluesleepanalysis.json",
+    "quote": "Samples recorded by Apple Watch only include awake samples that occur between two sleep samples."
+  },
+  {
+    "claim": "Health Connect has a stage for sleep whose stage is not known.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/SleepSessionRecord?hl=en",
+    "quote": "The user is asleep but the particular stage of sleep (light, deep or REM) is unknown."
+  },
+  {
+    "claim": "Health Connect separates awake in bed from out of bed.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/SleepSessionRecord?hl=en",
+    "quote": "The user is out of bed and assumed to be awake."
+  },
+  {
+    "claim": "Health Connect has an awake-in-bed stage.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/SleepSessionRecord?hl=en",
+    "quote": "The user is awake and in bed."
+  },
+  {
+    "claim": "Health Connect has an unknown stage.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/SleepSessionRecord?hl=en",
+    "quote": "Use this type if the stage of sleep is unknown."
+  },
+  {
+    "claim": "Google Health API's classic sleep has three stage types: awake, restless and asleep.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "Classic sleep is a sleep with 3 stages types: AWAKE, RESTLESS and ASLEEP."
+  },
+  {
+    "claim": "Google Health API's staged sleep overwrites the classic stages with awake, light, REM and deep.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "an additional processing pass can calculate stages more precisely, overwriting the prior stages with AWAKE, LIGHT, REM and DEEP."
+  },
+  {
+    "claim": "Google Health API does not compute stages for a sleep shorter than three hours.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "Sleep stages cannot be computed because the sleep log is a nap (has < 3h duration)."
+  },
+  {
+    "claim": "Fitbit's staged logs return deep, light, REM and wake at 30-second granularity.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date/",
+    "quote": "Levels data is returned with 30-second granularity. 'Sleep Stages' levels include deep, light, rem, and wake."
+  },
+  {
+    "claim": "Fitbit's classic logs return asleep, restless and awake at 60-second granularity.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date/",
+    "quote": "Levels data returned with 60-second granularity. 'Sleep Pattern' levels include asleep, restless, and awake."
+  },
+  {
+    "claim": "Fitbit dates a sleep log by the day it ends.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date/",
+    "quote": "The dateOfSleep in the GET sleep log endpoint response is the date on which the sleep event ends."
+  },
+  {
+    "claim": "Oura reports deep sleep duration in seconds.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Duration spent in deep sleep in seconds."
+  },
+  {
+    "claim": "Oura reports light sleep duration in seconds.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Duration spent in light sleep in seconds."
+  },
+  {
+    "claim": "Oura reports REM sleep duration in seconds.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Duration spent in REM sleep in seconds."
+  },
+  {
+    "claim": "Oura reports awake time in seconds.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Duration spent awake in seconds."
+  },
+  {
+    "claim": "Oura publishes a stage timeline at 5-minute resolution.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "5-minute sleep phase classification for the period where every character corresponds to:"
+  },
+  {
+    "claim": "Oura publishes a stage timeline at 30-second resolution.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "30-second sleep phase classification for the period where every character corresponds to:"
+  },
+  {
+    "claim": "WHOOP reports light sleep as a total in milliseconds.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "Total time the user spent in light sleep, in milliseconds"
+  },
+  {
+    "claim": "WHOOP calls deep sleep Slow Wave Sleep.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "Total time the user spent in Slow Wave Sleep (SWS), in milliseconds"
+  },
+  {
+    "claim": "WHOOP reports REM sleep as a total in milliseconds.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "Total time the user spent in Rapid Eye Movement (REM) sleep, in milliseconds"
+  },
+  {
+    "claim": "WHOOP reports awake time as a total in milliseconds.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "Total time the user spent awake, in milliseconds"
+  },
+  {
+    "claim": "WHOOP reports time with no data separately.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "Total time WHOOP did not receive data from the user during the sleep, in milliseconds"
+  },
+  {
+    "claim": "Garmin's public Health API page lists sleep among its metrics without naming sleep stages.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Steps Intensity Minutes Sleep Calories Heart Rate Stress Pulse Ox Body Battery Body Composition Respiration Blood Pressure"
+  },
+  {
+    "claim": "HealthKit groups its sleep-state values (awake, asleepCore, asleepDeep, asleepREM, asleepUnspecified) apart from in-bed time.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkcategoryvaluesleepanalysis.json",
+    "quote": "Values for Tracking Sleep States"
+  },
+  {
+    "claim": "HealthKit has an asleepUnspecified value.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkcategoryvaluesleepanalysis.json",
+    "quote": "HKCategoryValueSleepAnalysis/asleepUnspecified"
+  },
+  {
+    "claim": "HealthKit has an asleepCore value.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkcategoryvaluesleepanalysis.json",
+    "quote": "HKCategoryValueSleepAnalysis/asleepCore"
+  },
+  {
+    "claim": "HealthKit tracks in-bed time with its own value.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkcategoryvaluesleepanalysis.json",
+    "quote": "Values for Tracking Time In-Bed"
+  },
+  {
+    "claim": "HealthKit lists the plain asleep value as deprecated.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkcategoryvaluesleepanalysis.json",
+    "quote": "Deprecated values"
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "claim": "Apple's HealthKit documentation says HealthKit stores HRV as SDNN, the standard deviation of the intervals between normal heartbeats, typically in milliseconds.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/heartratevariabilitysdnn.json",
+    "quote": "While there are multiple ways of computing HRV, HealthKit uses SDNN heart rate variability, which uses the standard deviation of the inter-beat (RR) intervals between normal heartbeats (typically measured in milliseconds)."
+  },
+  {
+    "claim": "Apple says only that the system records the samples on Apple Watch; the identifier page states no measurement window or time of day.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/heartratevariabilitysdnn.json",
+    "quote": "The system automatically records samples on Apple Watch."
+  },
+  {
+    "claim": "Health Connect's HRV record is RMSSD.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/HeartRateVariabilityRmssdRecord?hl=en",
+    "quote": "Captures user's heart rate variability (HRV) as measured by the root mean square of successive differences (RMSSD) between normal heartbeats."
+  },
+  {
+    "claim": "Health Connect's HRV value is in milliseconds, with a valid range of 1 to 200.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/HeartRateVariabilityRmssdRecord?hl=en",
+    "quote": "Heart rate variability in milliseconds. Required field. Valid Range: 1-200."
+  },
+  {
+    "claim": "Google Health API's daily HRV gives an average RMSSD.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "A user's average heart rate variability calculated using the root mean square of successive differences (RMSSD) in times between heartbeats."
+  },
+  {
+    "claim": "Google Health API's daily HRV also carries a separate RMSSD for deep sleep.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "The root mean square of successive differences (RMSSD) value during deep sleep."
+  },
+  {
+    "claim": "Google Health API's HRV sample type may hold RMSSD or SDNN.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "Captures user's heart rate variability (HRV) as measured by the root mean square of successive differences (RMSSD) between normal heartbeats or by standard deviation of the inter-beat intervals (SDNN)."
+  },
+  {
+    "claim": "Fitbit's Web API reference says its daily HRV value is RMSSD in milliseconds.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "The Root Mean Square of Successive Differences (RMSSD) between heart beats. It measures short-term variability in the user’s daily heart rate in milliseconds (ms)."
+  },
+  {
+    "claim": "Fitbit's HRV applies to the main sleep, the longest sleep period of the date.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "HRV data applies specifically to a user’s “main sleep,” which is the longest single period of time asleep on a given date."
+  },
+  {
+    "claim": "Fitbit provides the HRV value at the end of a sleep period.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "The measurement is provided at the end of a period of sleep."
+  },
+  {
+    "claim": "Fitbit collects HRV only after at least three hours of sleep.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "the user must have a minimum of 3 hours of sleep."
+  },
+  {
+    "claim": "Fitbit also returns a deep-sleep RMSSD.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "It measures short-term variability in the user’s heart rate while in deep sleep, in milliseconds (ms)."
+  },
+  {
+    "claim": "Oura's API reference describes its HRV field only as an average during sleep, without naming the statistic or the unit.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Average heart rate variability during sleep."
+  },
+  {
+    "claim": "Oura's sleep record also carries HRV samples.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Object containing heart rate variability samples."
+  },
+  {
+    "claim": "Oura's samples carry their own sampling interval.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Interval in seconds between the sampled items."
+  },
+  {
+    "claim": "Oura's readiness reports HRV balance as a 1 to 100 contribution, not a value in milliseconds.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Contribution of heart rate variability balance in range [1, 100]."
+  },
+  {
+    "claim": "WHOOP's Recovery reports HRV as RMSSD in milliseconds.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "The user's Heart Rate Variability measured using Root Mean Square of Successive Differences (RMSSD), in milliseconds."
+  },
+  {
+    "claim": "WHOOP calculates Recovery when the member wakes up.",
+    "url": "https://developer.whoop.com/docs/developing/user-data/recovery/",
+    "quote": "When you wake up in the morning, WHOOP calculates a Recovery score as a percentage between 0 - 100%."
+  },
+  {
+    "claim": "Each WHOOP Recovery is tied to a sleep.",
+    "url": "https://developer.whoop.com/docs/developing/user-data/recovery/",
+    "quote": "ID of the Sleep associated with the Recovery"
+  },
+  {
+    "claim": "Garmin's public Health API page lists heart rate, sleep and stress among its metrics and names no HRV statistic.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Steps Intensity Minutes Sleep Calories Heart Rate Stress Pulse Ox Body Battery Body Composition Respiration Blood Pressure"
+  },
+  {
+    "claim": "Garmin's beat-to-beat interval feed is marked as Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
+  },
+  {
+    "claim": "Google Health API dates each daily HRV value in the user's time zone.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "Date (in the user's timezone) of heart rate variability measurement."
+  },
+  {
+    "claim": "Each Health Connect HRV record carries a single time.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/HeartRateVariabilityRmssdRecord?hl=en",
+    "quote": "Time the record happened."
+  }
+]

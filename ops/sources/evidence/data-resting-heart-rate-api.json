@@ -1,0 +1,72 @@
+[
+  {
+    "claim": "Apple describes HealthKit's resting heart rate as an estimate of the lowest heart rate during rest.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/restingheartrate.json",
+    "quote": "It is an estimation of  the user’s lowest heart rate during periods of rest, and is intended to be used as a medically relevant metric."
+  },
+  {
+    "claim": "Apple estimates it from sedentary heart rate samples taken through the day.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/restingheartrate.json",
+    "quote": "the system estimates the resting heart rate by analyzing sedentary heart rate samples throughout the day."
+  },
+  {
+    "claim": "Apple may replace earlier resting heart rate samples with better estimates.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/restingheartrate.json",
+    "quote": "the system may delete earlier samples and replace them with better estimates."
+  },
+  {
+    "claim": "Health Connect's resting heart rate record is one instantaneous measurement, with no derivation described.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/RestingHeartRateRecord?hl=en",
+    "quote": "Each record represents a single instantaneous measurement."
+  },
+  {
+    "claim": "Google Health API's daily resting heart rate is calculated from all-day heart rate measurements.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "Measures the daily resting heart rate for a user, calculated using the all day heart rate measurements."
+  },
+  {
+    "claim": "Google Health API's calculation method can be with sleep data.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "The resting heart rate is calculated using the sleep data."
+  },
+  {
+    "claim": "Google Health API's calculation method can be awake data only.",
+    "url": "https://developers.google.com/health/reference/rest/v4/users.dataTypes.dataPoints?hl=en",
+    "quote": "The resting heart rate is calculated using only awake data."
+  },
+  {
+    "claim": "Fitbit's Web API reference says the device uses heart rate through the day, favoring still, well-rested periods and sleep.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date/",
+    "quote": "To calculate resting heart rate, the device takes the heart rate measurements throughout the day and focuses on periods when the person is still and well-rested, with a priority for during sleep measurements."
+  },
+  {
+    "claim": "Fitbit returns no resting heart rate on a day without enough data.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date/",
+    "quote": "If there isn't enough data, a resting heart rate value won't be available for that day."
+  },
+  {
+    "claim": "Oura's sleep record reports the lowest heart rate during sleep.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Lowest heart rate during sleep."
+  },
+  {
+    "claim": "Oura's readiness reports resting heart rate as a 1 to 100 contribution, not in beats per minute.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Contribution of resting heart rate in range [1, 100]."
+  },
+  {
+    "claim": "WHOOP's reference describes its resting heart rate field without saying how it is derived.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "The user's resting heart rate."
+  },
+  {
+    "claim": "WHOOP's resting heart rate is one of the measurements behind the Recovery score.",
+    "url": "https://developer.whoop.com/docs/developing/user-data/recovery/",
+    "quote": "the Recovery object has objective measurements that factored into the score such as the resting heart rate (RHR), heart rate variability (HRV)"
+  },
+  {
+    "claim": "Garmin's public Health API page lists heart rate among its metrics without a resting heart rate definition.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Steps Intensity Minutes Sleep Calories Heart Rate Stress Pulse Ox Body Battery Body Composition Respiration Blood Pressure"
+  }
+]
