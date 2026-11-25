@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24",
+  "generated": "2026-11-25",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -171,15 +171,15 @@
     },
     {
       "file": "health-mcp-servers-2026.csv",
-      "bytes": 180355,
-      "rows": 283,
-      "sha256": "e9b707c110abe256c8d9c61a52fe559692e497cdc2e4ef7bbf839bd5cc609c29"
+      "bytes": 187437,
+      "rows": 295,
+      "sha256": "3d909aa91050e5c69783e62d9a632a7a66c54a19734f10c6a02d13aff8bfe35c"
     },
     {
       "file": "health-mcp-servers-2026.json",
-      "bytes": 341594,
-      "rows": 283,
-      "sha256": "ff8c28186f5fc2a6beb3efde98b7fc72a0fd8a317c4c769b7c97aa89d747b637"
+      "bytes": 355456,
+      "rows": 295,
+      "sha256": "29e60554ce494c2bf952aad5a1295cfecd056d82ef12d4991447902d20a75bb1"
     },
     {
       "file": "healthkit-metadata-keys-2026.csv",

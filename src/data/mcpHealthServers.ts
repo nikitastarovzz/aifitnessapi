@@ -106,23 +106,23 @@ export type McpHealthServer = {
 };
 
 /** The date the registry was read for this file (UTC). */
-export const MCP_SERVERS_FETCHED_ON = "2026-11-18";
+export const MCP_SERVERS_FETCHED_ON = "2026-11-25";
 
 /** The generator's floor for the in-scope count; it refuses to write fewer. */
 export const MCP_SERVERS_EXPECTED_MIN = 158;
 
 /** What the run read and kept. */
 export const MCP_REGISTRY_SCAN = {
-  "pages": 668,
-  "entries": 66784,
-  "uniqueNames": 66784,
+  "pages": 738,
+  "entries": 73761,
+  "uniqueNames": 73761,
   "duplicateNames": 0,
-  "matched": 294,
+  "matched": 306,
   "excluded": 11,
-  "contextDropped": 16,
-  "inScope": 283,
-  "npmLookups": 60,
-  "pypiLookups": 43
+  "contextDropped": 20,
+  "inScope": 295,
+  "npmLookups": 61,
+  "pypiLookups": 42
 };
 
 /** This site's own server (mcp/package.json), looked up in the same run: registry entries naming it, and npm. */
@@ -679,10 +679,34 @@ export const MCP_SERVERS_CONTEXT_DROPPED: { name: string; term: string; field: s
     "text": "junction"
   },
   {
+    "name": "com.lsc-lab.terra/terra",
+    "term": "Terra",
+    "field": "name",
+    "text": "terra"
+  },
+  {
     "name": "com.modevc/chart-llm-rankings-by-category-specialists",
     "term": "Terra",
     "field": "description",
     "text": "terra"
+  },
+  {
+    "name": "com.olavital/ola",
+    "term": "Vital",
+    "field": "title",
+    "text": "Vital"
+  },
+  {
+    "name": "com.olavital/ola-clientas",
+    "term": "Vital",
+    "field": "title",
+    "text": "Vital"
+  },
+  {
+    "name": "com.olavital/ola-duenas",
+    "term": "Vital",
+    "field": "title",
+    "text": "Vital"
   },
   {
     "name": "com.polaranalytics/polar",
@@ -2169,6 +2193,50 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "publisherEvidence": null
   },
   {
+    "slug": "app-roarer-roarer",
+    "name": "app.roarer/roarer",
+    "namespace": "app.roarer",
+    "title": "Roarer",
+    "description": "Read-only access to your Roarer workouts: programs, history, records and body measurements.",
+    "version": "1.0.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-25",
+    "updatedOn": "2026-11-25",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.roarer.app/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://roarer.app/en/mcp",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/app.roarer%2Froarer/versions/1.0.0",
+    "matches": [
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workouts",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
     "slug": "app-somvia-health",
     "name": "app.somvia/health",
     "namespace": "app.somvia",
@@ -2305,6 +2373,71 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
         "term": "workout",
         "field": "description",
         "text": "workout",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
+    "slug": "app-thenextrace-tnr",
+    "name": "app.thenextrace/tnr",
+    "namespace": "app.thenextrace",
+    "title": "The Next Race",
+    "description": "Plan, track and coach endurance training: races, plans, workouts, activities and recovery.",
+    "version": "0.27.1",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-18",
+    "updatedOn": "2026-11-18",
+    "packages": [
+      {
+        "registryType": "npm",
+        "registryBaseUrl": null,
+        "identifier": "@thenextrace/tnr",
+        "version": "0.27.1",
+        "transport": "stdio",
+        "runtimeHint": null,
+        "environmentVariables": [],
+        "secretEnvironmentVariables": [],
+        "facts": {
+          "registry": "npm",
+          "url": "https://www.npmjs.com/package/@thenextrace/tnr",
+          "found": true,
+          "latestVersion": "0.27.1",
+          "lastPublished": "2026-11-18",
+          "license": "MIT",
+          "licenseEvidence": "package.json license",
+          "deprecated": null
+        }
+      }
+    ],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://www.thenextrace.app/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://www.thenextrace.app/mcp",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/app.thenextrace%2Ftnr/versions/0.27.1",
+    "matches": [
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workouts",
         "context": null
       }
     ],
@@ -2789,6 +2922,110 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "publisherEvidence": null
   },
   {
+    "slug": "ch-visin-mcp-suunto",
+    "name": "ch.visin.mcp/suunto",
+    "namespace": "ch.visin.mcp",
+    "title": "MCP for Suunto",
+    "description": "Independent, not by Suunto: read your Suunto workouts, sleep and recovery, and add routes.",
+    "version": "0.3.1",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-21",
+    "updatedOn": "2026-11-21",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://suunto.mcp.visin.ch/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://suunto.mcp.visin.ch",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/ch.visin.mcp%2Fsuunto/versions/0.3.1",
+    "matches": [
+      {
+        "source": "suunto",
+        "term": "Suunto",
+        "field": "name",
+        "text": "suunto",
+        "context": null
+      },
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workouts",
+        "context": null
+      }
+    ],
+    "sources": [
+      "suunto",
+      "general"
+    ],
+    "group": "suunto",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
+    "slug": "co-workouter-workouter",
+    "name": "co.workouter/workouter",
+    "namespace": "co.workouter",
+    "title": "Workouter",
+    "description": "Create structured workouts and push them to Apple Watch or Garmin.",
+    "version": "1.0.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-19",
+    "updatedOn": "2026-11-19",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://workouter.co/api/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://workouter.co/docs/mcp",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/co.workouter%2Fworkouter/versions/1.0.0",
+    "matches": [
+      {
+        "source": "garmin",
+        "term": "Garmin",
+        "field": "description",
+        "text": "Garmin",
+        "context": null
+      },
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workouts",
+        "context": null
+      }
+    ],
+    "sources": [
+      "garmin",
+      "general"
+    ],
+    "group": "garmin",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
     "slug": "coach-freddy-freddy",
     "name": "coach.freddy/freddy",
     "namespace": "coach.freddy",
@@ -2884,6 +3121,66 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "publisherEvidence": null
   },
   {
+    "slug": "com-aiplusvitals-vitals",
+    "name": "com.aiplusvitals/vitals",
+    "namespace": "com.aiplusvitals",
+    "title": "AI + Vitals",
+    "description": "Your wearable wellness data (Apple Health, Oura): this week vs your own 4-week baseline. Read-only.",
+    "version": "1.0.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-20",
+    "updatedOn": "2026-11-20",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://aiplusvitals.com/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://aiplusvitals.com/guides/claude-chatgpt-connector",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.aiplusvitals%2Fvitals/versions/1.0.0",
+    "matches": [
+      {
+        "source": "apple-health",
+        "term": "Apple Health",
+        "field": "description",
+        "text": "Apple Health",
+        "context": null
+      },
+      {
+        "source": "oura",
+        "term": "Oura",
+        "field": "description",
+        "text": "Oura",
+        "context": null
+      },
+      {
+        "source": "general",
+        "term": "wearable",
+        "field": "description",
+        "text": "wearable",
+        "context": null
+      }
+    ],
+    "sources": [
+      "apple-health",
+      "oura",
+      "general"
+    ],
+    "group": "several",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
     "slug": "com-cyclingcoachai-cycling-coach-ai",
     "name": "com.cyclingcoachai/cycling-coach-ai",
     "namespace": "com.cyclingcoachai",
@@ -2948,6 +3245,50 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
       "general"
     ],
     "group": "several",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
+    "slug": "com-evestri-mcp",
+    "name": "com.evestri/mcp",
+    "namespace": "com.evestri",
+    "title": "EVESTRI",
+    "description": "Read and log your EVESTRI workouts, training plan and goals from your AI assistant. Needs Premium.",
+    "version": "1.0.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-20",
+    "updatedOn": "2026-11-20",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.evestri.com/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://evestri.com/en",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.evestri%2Fmcp/versions/1.0.0",
+    "matches": [
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workouts",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
     "publisherIsVendor": false,
     "publisherEvidence": null
   },
@@ -3272,6 +3613,50 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "publisherEvidence": null
   },
   {
+    "slug": "com-gonextset-nextset",
+    "name": "com.gonextset/nextset",
+    "namespace": "com.gonextset",
+    "title": "Nextset",
+    "description": "The workout tracker your AI can edit: build programs, swap exercises and read your logged sets.",
+    "version": "1.0.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-18",
+    "updatedOn": "2026-11-18",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://www.gonextset.com/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://www.gonextset.com",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.gonextset%2Fnextset/versions/1.0.0",
+    "matches": [
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workout",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
     "slug": "com-gymnavigator-coach",
     "name": "com.gymnavigator/coach",
     "namespace": "com.gymnavigator",
@@ -3365,18 +3750,18 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "com.healthaccessmcp",
     "title": "Health Access MCP",
     "description": "Apple Health and Apple Watch workouts for your AI, from local files. Plans go back to the Watch.",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-17",
-    "updatedOn": "2026-11-17",
+    "publishedOn": "2026-11-20",
+    "updatedOn": "2026-11-20",
     "packages": [
       {
         "registryType": "npm",
         "registryBaseUrl": null,
         "identifier": "healthaccess-mcp",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "transport": "stdio",
         "runtimeHint": null,
         "environmentVariables": [],
@@ -3385,8 +3770,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "npm",
           "url": "https://www.npmjs.com/package/healthaccess-mcp",
           "found": true,
-          "latestVersion": "1.0.4",
-          "lastPublished": "2026-11-17",
+          "latestVersion": "1.0.5",
+          "lastPublished": "2026-11-20",
           "license": "MIT",
           "licenseEvidence": "package.json license",
           "deprecated": null
@@ -3398,7 +3783,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": null,
     "repositorySubfolder": null,
     "websiteUrl": "https://healthaccessmcp.com",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.healthaccessmcp%2Fhealthaccess-mcp/versions/1.0.4",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.healthaccessmcp%2Fhealthaccess-mcp/versions/1.0.5",
     "matches": [
       {
         "source": "apple-health",
@@ -3515,14 +3900,14 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "slug": "com-kovejournal-kove",
     "name": "com.kovejournal/kove",
     "namespace": "com.kovejournal",
-    "title": "Kove",
-    "description": "Your private health journal: log meals, workouts and anything you track, and ask about your days.",
-    "version": "1.0.0",
+    "title": "Kove Journal",
+    "description": "Private health journal for your AI assistant: food looked up, calories added up, workouts, sleep.",
+    "version": "1.0.2",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-09",
-    "updatedOn": "2026-11-09",
+    "publishedOn": "2026-11-20",
+    "updatedOn": "2026-11-20",
     "packages": [],
     "remotes": [
       {
@@ -3538,7 +3923,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": "https://kovejournal.com/connect/",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.kovejournal%2Fkove/versions/1.0.0",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.kovejournal%2Fkove/versions/1.0.2",
     "matches": [
       {
         "source": "general",
@@ -3988,12 +4373,12 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "com.pack4back",
     "title": "Nutrition by Pack4Back",
     "description": "Log meals, water, and weight to Garmin Connect from Claude or ChatGPT.",
-    "version": "0.7.17",
+    "version": "0.7.22",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-10-08",
-    "updatedOn": "2026-10-08",
+    "publishedOn": "2026-11-19",
+    "updatedOn": "2026-11-19",
     "packages": [],
     "remotes": [
       {
@@ -4009,7 +4394,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": "https://nutrition.pack4back.com/",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.pack4back%2Fnutrition/versions/0.7.17",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.pack4back%2Fnutrition/versions/0.7.22",
     "matches": [
       {
         "source": "garmin",
@@ -4358,6 +4743,94 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "publisherEvidence": null
   },
   {
+    "slug": "com-sellbehavioralhealthdatatoai-site",
+    "name": "com.sellbehavioralhealthdatatoai/site",
+    "namespace": "com.sellbehavioralhealthdatatoai",
+    "title": null,
+    "description": "Sell Behavioral Health Data to AI: the site's own MCP server — enquiry (enquiry = a human...",
+    "version": "1.0.1",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-23",
+    "updatedOn": "2026-11-23",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://sellbehavioralhealthdatatoai.com/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://sellbehavioralhealthdatatoai.com",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.sellbehavioralhealthdatatoai%2Fsite/versions/1.0.1",
+    "matches": [
+      {
+        "source": "general",
+        "term": "health data",
+        "field": "description",
+        "text": "Health Data",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
+    "slug": "com-sellhomehealthdatatoai-site",
+    "name": "com.sellhomehealthdatatoai/site",
+    "namespace": "com.sellhomehealthdatatoai",
+    "title": null,
+    "description": "Sell Home Health Data to AI: the site's own MCP server — enquiry (enquiry = a human handoff, not...",
+    "version": "1.0.1",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-23",
+    "updatedOn": "2026-11-23",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://sellhomehealthdatatoai.com/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://sellhomehealthdatatoai.com",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.sellhomehealthdatatoai%2Fsite/versions/1.0.1",
+    "matches": [
+      {
+        "source": "general",
+        "term": "health data",
+        "field": "description",
+        "text": "Health Data",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
     "slug": "com-shapecalendar-shape",
     "name": "com.shapecalendar/shape",
     "namespace": "com.shapecalendar",
@@ -4528,6 +5001,50 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
         "term": "workout",
         "field": "description",
         "text": "workouts",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
+    "slug": "com-trace-training-trace",
+    "name": "com.trace-training/trace",
+    "namespace": "com.trace-training",
+    "title": "Trace",
+    "description": "Gym workout log. Your assistant analyses every set: progress, records, stalls and muscle balance.",
+    "version": "0.1.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-20",
+    "updatedOn": "2026-11-20",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://trace-training.com/api/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://trace-training.com/connect?utm_source=mcp-registry",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.trace-training%2Ftrace/versions/0.1.0",
+    "matches": [
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workout",
         "context": null
       }
     ],
@@ -4756,6 +5273,50 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
         "term": "workout",
         "field": "description",
         "text": "Workout",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
+    "slug": "de-innov-ai-tive-coachaize-coachaize",
+    "name": "de.innov-ai-tive.coachaize/coachaize",
+    "namespace": "de.innov-ai-tive.coachaize",
+    "title": "CoachAIze",
+    "description": "Booking and course platform for yoga, fitness and sports studios: schedule, bookings, members.",
+    "version": "1.0.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-21",
+    "updatedOn": "2026-11-21",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://coachaize.innov-ai-tive.de/functions/v1/mcp-server",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://coachaize.innov-ai-tive.de/connect",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/de.innov-ai-tive.coachaize%2Fcoachaize/versions/1.0.0",
+    "matches": [
+      {
+        "source": "general",
+        "term": "fitness",
+        "field": "description",
+        "text": "fitness",
         "context": null
       }
     ],
@@ -5550,62 +6111,6 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
         "term": "workout",
         "field": "description",
         "text": "workouts",
-        "context": null
-      }
-    ],
-    "sources": [
-      "general"
-    ],
-    "group": "general",
-    "publisherIsVendor": false,
-    "publisherEvidence": null
-  },
-  {
-    "slug": "dev-cotlet-truecoach",
-    "name": "dev.cotlet/truecoach",
-    "namespace": "dev.cotlet",
-    "title": "TrueCoach MCP Server and API by Cotlet",
-    "description": "TrueCoach personal trainer coaching MCP server: list clients, create workout, assign program.",
-    "version": "1.0.2",
-    "versionRule": "registry isLatest",
-    "status": "active",
-    "statusMessage": null,
-    "publishedOn": "2026-11-10",
-    "updatedOn": "2026-11-10",
-    "packages": [],
-    "remotes": [
-      {
-        "type": "streamable-http",
-        "url": "https://cotlet.dev/mcp/v1/truecoach/connect",
-        "headers": [],
-        "secretHeaders": [],
-        "urlVariables": [],
-        "secretUrlVariables": []
-      },
-      {
-        "type": "streamable-http",
-        "url": "https://cotlet.dev/mcp/v1/truecoach",
-        "headers": [
-          "Authorization"
-        ],
-        "secretHeaders": [
-          "Authorization"
-        ],
-        "urlVariables": [],
-        "secretUrlVariables": []
-      }
-    ],
-    "repositoryUrl": null,
-    "repositorySource": null,
-    "repositorySubfolder": null,
-    "websiteUrl": "https://cotlet.dev/integrations/truecoach-api-mcp-server",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/dev.cotlet%2Ftruecoach/versions/1.0.2",
-    "matches": [
-      {
-        "source": "general",
-        "term": "workout",
-        "field": "description",
-        "text": "workout",
         "context": null
       }
     ],
@@ -6554,17 +7059,17 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.andronaft",
     "title": "health-os",
     "description": "Local-first personal health record: labs, meds, wearables, food log, deterministic safety checks",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-10-18",
-    "updatedOn": "2026-10-18",
+    "publishedOn": "2026-11-20",
+    "updatedOn": "2026-11-20",
     "packages": [
       {
         "registryType": "oci",
         "registryBaseUrl": null,
-        "identifier": "ghcr.io/andronaft/health-os:0.3.0",
+        "identifier": "ghcr.io/andronaft/health-os:0.4.0",
         "version": null,
         "transport": "stdio",
         "runtimeHint": null,
@@ -6584,7 +7089,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": "https://github.com/andronaft/health-os",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.andronaft%2Fhealth-os/versions/0.3.0",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.andronaft%2Fhealth-os/versions/0.4.0",
     "matches": [
       {
         "source": "general",
@@ -7204,70 +7709,46 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "publisherEvidence": null
   },
   {
-    "slug": "io-github-briangaoo-totem",
-    "name": "io.github.briangaoo/totem",
-    "namespace": "io.github.briangaoo",
-    "title": null,
-    "description": "Totem — talk to your wearables with AI. Today: full Whoop access (48 tools).",
-    "version": "1.4.3",
+    "slug": "io-github-blainomd-solvinghealth-data-tools",
+    "name": "io.github.blainomd/solvinghealth-data-tools",
+    "namespace": "io.github.blainomd",
+    "title": "SolvingHealth federal health data",
+    "description": "Read-only US federal health data with sources: NPI, FDA 510(k), recalls, trials, hospitals.",
+    "version": "1.1.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-06-08",
-    "updatedOn": "2026-06-08",
-    "packages": [
+    "publishedOn": "2026-11-19",
+    "updatedOn": "2026-11-19",
+    "packages": [],
+    "remotes": [
       {
-        "registryType": "npm",
-        "registryBaseUrl": null,
-        "identifier": "@briangaoo/totem",
-        "version": "1.4.3",
-        "transport": "stdio",
-        "runtimeHint": null,
-        "environmentVariables": [
-          "WHOOP_IOS_BEARER_TOKEN",
-          "WHOOP_COGNITO_REFRESH_TOKEN",
-          "WHOOP_EMAIL",
-          "WHOOP_USER_ID",
-          "WHOOP_TIMEZONE"
-        ],
-        "secretEnvironmentVariables": [
-          "WHOOP_IOS_BEARER_TOKEN",
-          "WHOOP_COGNITO_REFRESH_TOKEN"
-        ],
-        "facts": {
-          "registry": "npm",
-          "url": "https://www.npmjs.com/package/@briangaoo/totem",
-          "found": false
-        }
+        "type": "streamable-http",
+        "url": "https://solvinghealth.com/api/data-mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
       }
     ],
-    "remotes": [],
-    "repositoryUrl": "https://github.com/briangaoo/totem",
+    "repositoryUrl": "https://github.com/blainomd/solvinghealth-data-tools",
     "repositorySource": "github",
     "repositorySubfolder": null,
-    "websiteUrl": null,
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.briangaoo%2Ftotem/versions/1.4.3",
+    "websiteUrl": "https://solvinghealth.com/mcp",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.blainomd%2Fsolvinghealth-data-tools/versions/1.1.0",
     "matches": [
       {
-        "source": "whoop",
-        "term": "WHOOP",
-        "field": "description",
-        "text": "Whoop",
-        "context": null
-      },
-      {
         "source": "general",
-        "term": "wearable",
-        "field": "description",
-        "text": "wearables",
+        "term": "health data",
+        "field": "title",
+        "text": "health data",
         "context": null
       }
     ],
     "sources": [
-      "whoop",
       "general"
     ],
-    "group": "whoop",
+    "group": "general",
     "publisherIsVendor": false,
     "publisherEvidence": null
   },
@@ -7736,18 +8217,18 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.colincooperio",
     "title": null,
     "description": "Ask your AI assistant about your Garmin training, sleep and recovery data",
-    "version": "1.4.3",
+    "version": "1.5.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-17",
-    "updatedOn": "2026-11-17",
+    "publishedOn": "2026-11-25",
+    "updatedOn": "2026-11-25",
     "packages": [
       {
         "registryType": "npm",
         "registryBaseUrl": null,
         "identifier": "garmin-mcp",
-        "version": "1.4.3",
+        "version": "1.5.0",
         "transport": "stdio",
         "runtimeHint": null,
         "environmentVariables": [
@@ -7760,8 +8241,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "npm",
           "url": "https://www.npmjs.com/package/garmin-mcp",
           "found": true,
-          "latestVersion": "1.4.3",
-          "lastPublished": "2026-11-17",
+          "latestVersion": "1.5.0",
+          "lastPublished": "2026-11-25",
           "license": "MIT",
           "licenseEvidence": "package.json license",
           "deprecated": null
@@ -7773,7 +8254,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": null,
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.colincooperio%2Fgarmin-mcp/versions/1.4.3",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.colincooperio%2Fgarmin-mcp/versions/1.5.0",
     "matches": [
       {
         "source": "garmin",
@@ -9465,12 +9946,12 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.DynamicsNinja",
     "title": "Garmin Connect",
     "description": "Unofficial Garmin Connect access: sleep, HRV, training, activities, workouts and weight.",
-    "version": "0.12.0",
+    "version": "0.13.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-16",
-    "updatedOn": "2026-11-16",
+    "publishedOn": "2026-11-24",
+    "updatedOn": "2026-11-24",
     "packages": [],
     "remotes": [
       {
@@ -9486,7 +9967,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": "mcp",
     "websiteUrl": "https://garmin.ficdev.xyz/claude",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.DynamicsNinja%2Fgarminconnect/versions/0.12.0",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.DynamicsNinja%2Fgarminconnect/versions/0.13.0",
     "matches": [
       {
         "source": "garmin",
@@ -9661,18 +10142,18 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.endurancetools",
     "title": null,
     "description": "Unofficial Garmin Connect server: training load, form, HRV readiness and workouts for your watch",
-    "version": "0.6.3",
+    "version": "0.8.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-17",
-    "updatedOn": "2026-11-17",
+    "publishedOn": "2026-11-22",
+    "updatedOn": "2026-11-22",
     "packages": [
       {
         "registryType": "npm",
         "registryBaseUrl": null,
         "identifier": "garmin-mcp-server",
-        "version": "0.6.3",
+        "version": "0.8.0",
         "transport": "stdio",
         "runtimeHint": null,
         "environmentVariables": [
@@ -9685,8 +10166,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "npm",
           "url": "https://www.npmjs.com/package/garmin-mcp-server",
           "found": true,
-          "latestVersion": "0.6.3",
-          "lastPublished": "2026-11-17",
+          "latestVersion": "0.8.0",
+          "lastPublished": "2026-11-22",
           "license": "MIT",
           "licenseEvidence": "package.json license",
           "deprecated": null
@@ -9698,7 +10179,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": null,
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.endurancetools%2Fgarmin-mcp/versions/0.6.3",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.endurancetools%2Fgarmin-mcp/versions/0.8.0",
     "matches": [
       {
         "source": "garmin",
@@ -10356,18 +10837,18 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.googlarz",
     "title": "Suunto MCP",
     "description": "Suunto watch data (workouts, sleep, recovery, 24/7 activity) for Claude and other AI assistants.",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-17",
-    "updatedOn": "2026-11-17",
+    "publishedOn": "2026-11-23",
+    "updatedOn": "2026-11-23",
     "packages": [
       {
         "registryType": "npm",
         "registryBaseUrl": "https://registry.npmjs.org",
         "identifier": "suunto-mcp",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "transport": "stdio",
         "runtimeHint": "npx",
         "environmentVariables": [
@@ -10383,8 +10864,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "npm",
           "url": "https://www.npmjs.com/package/suunto-mcp",
           "found": true,
-          "latestVersion": "1.3.0",
-          "lastPublished": "2026-11-17",
+          "latestVersion": "1.3.1",
+          "lastPublished": "2026-11-23",
           "license": "MIT",
           "licenseEvidence": "package.json license",
           "deprecated": null
@@ -10396,7 +10877,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": "https://github.com/googlarz/suunto-mcp#readme",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.googlarz%2Fsuunto-mcp/versions/1.3.0",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.googlarz%2Fsuunto-mcp/versions/1.3.1",
     "matches": [
       {
         "source": "suunto",
@@ -10559,67 +11040,6 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
       "general"
     ],
     "group": "garmin",
-    "publisherIsVendor": false,
-    "publisherEvidence": null
-  },
-  {
-    "slug": "io-github-hhopke-intervals-icu-mcp",
-    "name": "io.github.hhopke/intervals-icu-mcp",
-    "namespace": "io.github.hhopke",
-    "title": null,
-    "description": "Read/write Intervals.icu MCP server: activities, wellness, calendar, gear, and workouts.",
-    "version": "5.9.1",
-    "versionRule": "registry isLatest",
-    "status": "active",
-    "statusMessage": null,
-    "publishedOn": "2026-11-07",
-    "updatedOn": "2026-11-07",
-    "packages": [
-      {
-        "registryType": "pypi",
-        "registryBaseUrl": null,
-        "identifier": "intervals-icu-mcp",
-        "version": "5.9.1",
-        "transport": "stdio",
-        "runtimeHint": null,
-        "environmentVariables": [
-          "INTERVALS_ICU_API_KEY",
-          "INTERVALS_ICU_ATHLETE_ID"
-        ],
-        "secretEnvironmentVariables": [
-          "INTERVALS_ICU_API_KEY"
-        ],
-        "facts": {
-          "registry": "pypi",
-          "url": "https://pypi.org/project/intervals-icu-mcp/",
-          "found": true,
-          "latestVersion": "5.9.1",
-          "lastPublished": "2026-11-07",
-          "license": "MIT",
-          "licenseEvidence": "PyPI license_expression",
-          "deprecated": null
-        }
-      }
-    ],
-    "remotes": [],
-    "repositoryUrl": "https://github.com/hhopke/intervals-icu-mcp",
-    "repositorySource": "github",
-    "repositorySubfolder": null,
-    "websiteUrl": null,
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.hhopke%2Fintervals-icu-mcp/versions/5.9.1",
-    "matches": [
-      {
-        "source": "general",
-        "term": "workout",
-        "field": "description",
-        "text": "workouts",
-        "context": null
-      }
-    ],
-    "sources": [
-      "general"
-    ],
-    "group": "general",
     "publisherIsVendor": false,
     "publisherEvidence": null
   },
@@ -11406,12 +11826,12 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.lgda-technologies",
     "title": null,
     "description": "Buy LGDA wellness music with USDC: 27 tracks, x402 payments, signed HRV receipts.",
-    "version": "2.2.0",
+    "version": "2.5.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-18",
-    "updatedOn": "2026-11-18",
+    "publishedOn": "2026-11-20",
+    "updatedOn": "2026-11-20",
     "packages": [],
     "remotes": [
       {
@@ -11427,7 +11847,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": "https://lgda-music.fly.dev",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.lgda-technologies%2Flgda-autonomic-node/versions/2.2.0",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.lgda-technologies%2Flgda-autonomic-node/versions/2.5.0",
     "matches": [
       {
         "source": "general",
@@ -12063,6 +12483,62 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "publisherEvidence": null
   },
   {
+    "slug": "io-github-mrfentmen-la-fitness-class-guide-mcp",
+    "name": "io.github.mrfentmen/la-fitness-class-guide-mcp",
+    "namespace": "io.github.mrfentmen",
+    "title": "La Fitness Class Planner",
+    "description": "Real local JSON analysis of la fitness class in the La Fitness lane. 25 MCP tools, no paywall.",
+    "version": "1.0.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-23",
+    "updatedOn": "2026-11-23",
+    "packages": [
+      {
+        "registryType": "npm",
+        "registryBaseUrl": null,
+        "identifier": "@mrfentmen/la-fitness-class-guide-mcp",
+        "version": "1.0.0",
+        "transport": "stdio",
+        "runtimeHint": null,
+        "environmentVariables": [],
+        "secretEnvironmentVariables": [],
+        "facts": {
+          "registry": "npm",
+          "url": "https://www.npmjs.com/package/@mrfentmen/la-fitness-class-guide-mcp",
+          "found": true,
+          "latestVersion": "1.0.0",
+          "lastPublished": "2026-11-23",
+          "license": "MIT",
+          "licenseEvidence": "package.json license",
+          "deprecated": null
+        }
+      }
+    ],
+    "remotes": [],
+    "repositoryUrl": "https://github.com/mrfentmen/awesome-servers",
+    "repositorySource": "github",
+    "repositorySubfolder": null,
+    "websiteUrl": null,
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.mrfentmen%2Fla-fitness-class-guide-mcp/versions/1.0.0",
+    "matches": [
+      {
+        "source": "general",
+        "term": "fitness",
+        "field": "name",
+        "text": "fitness",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
     "slug": "io-github-mrfentmen-suunto-mcp",
     "name": "io.github.mrfentmen/suunto-mcp",
     "namespace": "io.github.mrfentmen",
@@ -12213,8 +12689,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "npm",
           "url": "https://www.npmjs.com/package/hevy2whoop",
           "found": true,
-          "latestVersion": "1.1.0",
-          "lastPublished": "2026-11-05",
+          "latestVersion": "1.2.0",
+          "lastPublished": "2026-11-23",
           "license": "MIT",
           "licenseEvidence": "package.json license",
           "deprecated": null
@@ -12801,18 +13277,18 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.pablo-albaladejo",
     "title": null,
     "description": "Convert, validate, and inspect workout files (FIT, TCX, ZWO, Garmin Connect) for AI agents.",
-    "version": "10.5.0",
+    "version": "10.5.1",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-10-30",
-    "updatedOn": "2026-10-30",
+    "publishedOn": "2026-11-20",
+    "updatedOn": "2026-11-20",
     "packages": [
       {
         "registryType": "npm",
         "registryBaseUrl": null,
         "identifier": "@kaiord/mcp",
-        "version": "10.5.0",
+        "version": "10.5.1",
         "transport": "stdio",
         "runtimeHint": null,
         "environmentVariables": [],
@@ -12821,8 +13297,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "npm",
           "url": "https://www.npmjs.com/package/@kaiord/mcp",
           "found": true,
-          "latestVersion": "10.5.0",
-          "lastPublished": "2026-10-30",
+          "latestVersion": "10.5.1",
+          "lastPublished": "2026-11-20",
           "license": "MIT",
           "licenseEvidence": "package.json license",
           "deprecated": null
@@ -12843,7 +13319,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": "https://kaiord.com/docs/mcp/tools",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.pablo-albaladejo%2Fkaiord/versions/10.5.0",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.pablo-albaladejo%2Fkaiord/versions/10.5.1",
     "matches": [
       {
         "source": "garmin",
@@ -12930,18 +13406,18 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.partymola",
     "title": null,
     "description": "MCP server for the Google Health API, with a local SQLite cache and trend analysis.",
-    "version": "1.12.0",
+    "version": "1.13.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-06",
-    "updatedOn": "2026-11-06",
+    "publishedOn": "2026-11-22",
+    "updatedOn": "2026-11-22",
     "packages": [
       {
         "registryType": "pypi",
         "registryBaseUrl": null,
         "identifier": "google-health-mcp",
-        "version": "1.12.0",
+        "version": "1.13.0",
         "transport": "stdio",
         "runtimeHint": null,
         "environmentVariables": [],
@@ -12950,8 +13426,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "pypi",
           "url": "https://pypi.org/project/google-health-mcp/",
           "found": true,
-          "latestVersion": "1.12.0",
-          "lastPublished": "2026-11-06",
+          "latestVersion": "1.13.0",
+          "lastPublished": "2026-11-22",
           "license": "GPL-3.0-or-later",
           "licenseEvidence": "PyPI license_expression",
           "deprecated": null
@@ -12963,7 +13439,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": null,
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.partymola%2Fgoogle-health-mcp/versions/1.12.0",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.partymola%2Fgoogle-health-mcp/versions/1.13.0",
     "matches": [
       {
         "source": "google-health",
@@ -13688,18 +14164,18 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.rwestergren",
     "title": null,
     "description": "MCP server for Cronometer nutrition tracking — food logs, diary, macros, fasting",
-    "version": "0.2.6",
+    "version": "0.2.8",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-10-13",
-    "updatedOn": "2026-10-13",
+    "publishedOn": "2026-11-25",
+    "updatedOn": "2026-11-25",
     "packages": [
       {
         "registryType": "pypi",
         "registryBaseUrl": null,
         "identifier": "cronometer-api-mcp",
-        "version": "0.2.6",
+        "version": "0.2.8",
         "transport": "stdio",
         "runtimeHint": null,
         "environmentVariables": [
@@ -13716,8 +14192,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "pypi",
           "url": "https://pypi.org/project/cronometer-api-mcp/",
           "found": true,
-          "latestVersion": "0.2.6",
-          "lastPublished": "2026-10-13",
+          "latestVersion": "0.2.8",
+          "lastPublished": "2026-11-25",
           "license": "MIT",
           "licenseEvidence": "PyPI license_expression",
           "deprecated": null
@@ -13729,7 +14205,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": null,
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.rwestergren%2Fcronometer-api-mcp/versions/0.2.6",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.rwestergren%2Fcronometer-api-mcp/versions/0.2.8",
     "matches": [
       {
         "source": "cronometer",
@@ -14474,19 +14950,19 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "name": "io.github.syncky/syncky-health",
     "namespace": "io.github.syncky",
     "title": "Syncky Health",
-    "description": "Apple Health data, end-to-end encrypted between iPhone and local Syncky agent, allowed write-back",
-    "version": "0.1.9",
+    "description": "Apple Health → your own AI agent over an end-to-end encrypted relay; per-type write-back; no account",
+    "version": "0.2.2",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-16",
-    "updatedOn": "2026-11-16",
+    "publishedOn": "2026-11-24",
+    "updatedOn": "2026-11-24",
     "packages": [
       {
         "registryType": "npm",
         "registryBaseUrl": "https://registry.npmjs.org",
         "identifier": "@syncky/agent",
-        "version": "0.1.9",
+        "version": "0.2.2",
         "transport": "stdio",
         "runtimeHint": "npx",
         "environmentVariables": [],
@@ -14495,8 +14971,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "npm",
           "url": "https://www.npmjs.com/package/@syncky/agent",
           "found": true,
-          "latestVersion": "0.1.9",
-          "lastPublished": "2026-11-16",
+          "latestVersion": "0.2.2",
+          "lastPublished": "2026-11-24",
           "license": "Apache-2.0",
           "licenseEvidence": "package.json license",
           "deprecated": null
@@ -14505,7 +14981,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
       {
         "registryType": "mcpb",
         "registryBaseUrl": null,
-        "identifier": "https://github.com/syncky/syncky-open/releases/download/v0.1.9/syncky-health.mcpb",
+        "identifier": "https://github.com/syncky/syncky-open/releases/download/v0.2.2/syncky-health.mcpb",
         "version": null,
         "transport": "stdio",
         "runtimeHint": null,
@@ -14519,7 +14995,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": "https://syncky.app/agents",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.syncky%2Fsyncky-health/versions/0.1.9",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.syncky%2Fsyncky-health/versions/0.2.2",
     "matches": [
       {
         "source": "apple-health",
@@ -14527,18 +15003,10 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
         "field": "description",
         "text": "Apple Health",
         "context": null
-      },
-      {
-        "source": "general",
-        "term": "health data",
-        "field": "description",
-        "text": "Health data",
-        "context": null
       }
     ],
     "sources": [
-      "apple-health",
-      "general"
+      "apple-health"
     ],
     "group": "apple-health",
     "publisherIsVendor": false,
@@ -14549,38 +15017,32 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "name": "io.github.thebriangao/totem",
     "namespace": "io.github.thebriangao",
     "title": null,
-    "description": "Totem — talk to your wearables with AI. Today: full Whoop access (48 tools).",
-    "version": "1.4.4",
+    "description": "Your own WHOOP server for AI apps: recovery, sleep, strain, workouts, journal and more (41 tools).",
+    "version": "2.0.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-06-12",
-    "updatedOn": "2026-06-12",
+    "publishedOn": "2026-11-23",
+    "updatedOn": "2026-11-23",
     "packages": [
       {
         "registryType": "npm",
         "registryBaseUrl": null,
         "identifier": "@thebriangao/totem",
-        "version": "1.4.4",
+        "version": "2.0.0",
         "transport": "stdio",
         "runtimeHint": null,
         "environmentVariables": [
-          "WHOOP_IOS_BEARER_TOKEN",
-          "WHOOP_COGNITO_REFRESH_TOKEN",
-          "WHOOP_EMAIL",
-          "WHOOP_USER_ID",
+          "TOTEM_TOKEN_FILE",
           "WHOOP_TIMEZONE"
         ],
-        "secretEnvironmentVariables": [
-          "WHOOP_IOS_BEARER_TOKEN",
-          "WHOOP_COGNITO_REFRESH_TOKEN"
-        ],
+        "secretEnvironmentVariables": [],
         "facts": {
           "registry": "npm",
           "url": "https://www.npmjs.com/package/@thebriangao/totem",
           "found": true,
-          "latestVersion": "1.4.4",
-          "lastPublished": "2026-06-12",
+          "latestVersion": "2.0.0",
+          "lastPublished": "2026-11-23",
           "license": "MIT",
           "licenseEvidence": "package.json license",
           "deprecated": null
@@ -14592,20 +15054,20 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": null,
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.thebriangao%2Ftotem/versions/1.4.4",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.thebriangao%2Ftotem/versions/2.0.0",
     "matches": [
       {
         "source": "whoop",
         "term": "WHOOP",
         "field": "description",
-        "text": "Whoop",
+        "text": "WHOOP",
         "context": null
       },
       {
         "source": "general",
-        "term": "wearable",
+        "term": "workout",
         "field": "description",
-        "text": "wearables",
+        "text": "workouts",
         "context": null
       }
     ],
@@ -14623,18 +15085,18 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.github.Thecimal",
     "title": "Quantified Self MCP",
     "description": "Local-first MCP server for personal health data with privacy, statistical evidence, and provenance.",
-    "version": "0.8.1",
+    "version": "0.8.2",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-14",
-    "updatedOn": "2026-11-14",
+    "publishedOn": "2026-11-21",
+    "updatedOn": "2026-11-21",
     "packages": [
       {
         "registryType": "pypi",
         "registryBaseUrl": null,
         "identifier": "quantified-self-mcp",
-        "version": "0.8.1",
+        "version": "0.8.2",
         "transport": "stdio",
         "runtimeHint": null,
         "environmentVariables": [],
@@ -14643,8 +15105,8 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
           "registry": "pypi",
           "url": "https://pypi.org/project/quantified-self-mcp/",
           "found": true,
-          "latestVersion": "0.8.1",
-          "lastPublished": "2026-11-14",
+          "latestVersion": "0.8.2",
+          "lastPublished": "2026-11-21",
           "license": null,
           "licenseEvidence": null,
           "deprecated": null
@@ -14656,7 +15118,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": null,
     "websiteUrl": null,
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Thecimal%2Fquantified-self-mcp/versions/0.8.1",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Thecimal%2Fquantified-self-mcp/versions/0.8.2",
     "matches": [
       {
         "source": "general",
@@ -14677,14 +15139,14 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "slug": "io-github-thegeekist-garmin-mcp",
     "name": "io.github.theGeekist/garmin-mcp",
     "namespace": "io.github.theGeekist",
-    "title": "Garmin MCP by geekist.co",
+    "title": "Garmin by geekist.co",
     "description": "Explore Garmin activity and health data with your AI assistant.",
-    "version": "0.3.6",
+    "version": "0.3.14",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-09",
-    "updatedOn": "2026-11-09",
+    "publishedOn": "2026-11-21",
+    "updatedOn": "2026-11-21",
     "packages": [],
     "remotes": [
       {
@@ -14700,7 +15162,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": null,
     "repositorySubfolder": null,
     "websiteUrl": "https://garmin.geekist.co/",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.theGeekist%2Fgarmin-mcp/versions/0.3.6",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.theGeekist%2Fgarmin-mcp/versions/0.3.14",
     "matches": [
       {
         "source": "garmin",
@@ -15388,12 +15850,12 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "namespace": "io.usefulapi",
     "title": "SugarWOD MCP by usefulapi",
     "description": "Read athletes, workouts, scores and movements; change an athlete's name or email in SugarWOD.",
-    "version": "1.7.4",
+    "version": "1.8.0",
     "versionRule": "registry isLatest",
     "status": "active",
     "statusMessage": null,
-    "publishedOn": "2026-11-18",
-    "updatedOn": "2026-11-18",
+    "publishedOn": "2026-11-21",
+    "updatedOn": "2026-11-21",
     "packages": [],
     "remotes": [
       {
@@ -15409,7 +15871,7 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
     "repositorySource": "github",
     "repositorySubfolder": "servers/sugarwod",
     "websiteUrl": "https://usefulapi.io/sugarwod/",
-    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.usefulapi%2Fsugarwod/versions/1.7.4",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.usefulapi%2Fsugarwod/versions/1.8.0",
     "matches": [
       {
         "source": "general",
@@ -15585,6 +16047,57 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
         "term": "health data",
         "field": "name",
         "text": "health data",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
+    "slug": "it-mouve-mcp",
+    "name": "it.mouve/mcp",
+    "namespace": "it.mouve",
+    "title": "Mouve",
+    "description": "Free Mouve connector: log meals, build workouts, track progress. Health data only with your consent.",
+    "version": "1.0.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-18",
+    "updatedOn": "2026-11-18",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://api.mouve.it/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://mouve.it/developers/mcp",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/it.mouve%2Fmcp/versions/1.0.0",
+    "matches": [
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workouts",
+        "context": null
+      },
+      {
+        "source": "general",
+        "term": "health data",
+        "field": "description",
+        "text": "Health data",
         "context": null
       }
     ],
@@ -16315,6 +16828,57 @@ export const MCP_HEALTH_SERVERS: McpHealthServer[] = [
         "term": "workout",
         "field": "description",
         "text": "workout",
+        "context": null
+      }
+    ],
+    "sources": [
+      "general"
+    ],
+    "group": "general",
+    "publisherIsVendor": false,
+    "publisherEvidence": null
+  },
+  {
+    "slug": "studio-perfectdimension-intervals",
+    "name": "studio.perfectdimension/intervals",
+    "namespace": "studio.perfectdimension",
+    "title": "Intervals",
+    "description": "Run history, fitness trends, training schedule and coached workouts from the Intervals running app.",
+    "version": "1.2.0",
+    "versionRule": "registry isLatest",
+    "status": "active",
+    "statusMessage": null,
+    "publishedOn": "2026-11-23",
+    "updatedOn": "2026-11-23",
+    "packages": [],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://api.intervals.perfectdimension.studio/mcp",
+        "headers": [],
+        "secretHeaders": [],
+        "urlVariables": [],
+        "secretUrlVariables": []
+      }
+    ],
+    "repositoryUrl": null,
+    "repositorySource": null,
+    "repositorySubfolder": null,
+    "websiteUrl": "https://perfectdimension.studio/intervals",
+    "registryEntryUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/studio.perfectdimension%2Fintervals/versions/1.2.0",
+    "matches": [
+      {
+        "source": "general",
+        "term": "fitness",
+        "field": "description",
+        "text": "fitness",
+        "context": null
+      },
+      {
+        "source": "general",
+        "term": "workout",
+        "field": "description",
+        "text": "workouts",
         "context": null
       }
     ],
