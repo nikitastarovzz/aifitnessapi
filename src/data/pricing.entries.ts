@@ -61,7 +61,7 @@ export const pricingEntries: ClusterEntry[] =
       "pitch": "Fitbit's move to the Google Health API rewrote the access rules in 2026 - subscribe for plain-English updates when Google publishes a price or changes a quota."
     },
     "sources": [
-      { "url": "https://developers.google.com/health/about", "checked": "2026-11-18", "note": "Timeline and turn-off; devices; \"actively evolving\"; no price stated" },
+      { "url": "https://developers.google.com/health/about", "checked": "2026-11-25", "note": "Timeline and turn-off; devices; \"actively evolving\"; no price stated" },
       { "url": "https://developers.google.com/health/rate-limits", "checked": "2026-11-18", "note": "Default quotas; unverified apps capped at 100 users; last updated October 30, 2026" },
       { "url": "https://developers.google.com/health/setup", "checked": "2026-11-18", "note": "Google Cloud project; third-party security review past 100 users" },
       { "url": "https://developers.google.com/health/developer-checklist", "checked": "2026-11-18", "note": "OAuth verification can take several days" },

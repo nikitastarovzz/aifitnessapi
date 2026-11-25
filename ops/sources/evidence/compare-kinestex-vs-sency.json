@@ -152,7 +152,7 @@
   {
     "claim": "Sency models are downloaded from Sency's server at configuration, no bundled fallback.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
-    "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server. It does not include bundled fallback models."
+    "quote": "SMKit 2.7.3 downloads models and required SDK assets from the server. It does not include bundled fallback models."
   },
   {
     "claim": "A valid Sency cache can be used offline later.",
@@ -192,7 +192,7 @@
   {
     "claim": "Sency Maven artifacts.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
-    "quote": "implementation \"com.sency.smkit:smkit:1.9.6\""
+    "quote": "implementation \"com.sency.smkit:smkit:1.9.9\""
   },
   {
     "claim": "Apache-2.0 LICENSE in the Swift repo.",
@@ -515,13 +515,13 @@
     "quote": "| **Custom Kit** | Android smkit | 1.7.1 | Native no-UI artifact. |"
   },
   {
-    "claim": "Sency's iOS demo installs SMKit 2.3.6.",
+    "claim": "Sency's iOS demo installs SMKit 2.7.3.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
-    "quote": "Latest version: `SMKit '2.3.6'`"
+    "quote": "Latest version: `SMKit '2.7.3'`"
   },
   {
-    "claim": "Sency's Android demo targets SMKit 1.9.6.",
+    "claim": "Sency's Android demo targets SMKit 1.9.9.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
-    "quote": "This application is the customer-facing reference for SMKit 1.9.6's low-level camera and movement-detection API."
+    "quote": "This application is the customer-facing reference for SMKit 1.9.9's low-level camera and movement-detection API."
   }
 ]
