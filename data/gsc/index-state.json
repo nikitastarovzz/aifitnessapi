@@ -1,73 +1,73 @@
 {
-  "generatedOn": "2026-11-24",
-  "asOf": "2026-11-23",
+  "generatedOn": "2026-11-25",
+  "asOf": "2026-11-24",
   "verdict": "closed",
-  "reason": "3 of 43 pages published 2026-11-02 to 2026-11-16 were shown in Google within 7 days",
-  "share": 0.0698,
-  "sample": 43,
+  "reason": "3 of 40 pages published 2026-11-03 to 2026-11-17 were shown in Google within 7 days",
+  "share": 0.075,
+  "sample": 40,
   "shownWithin7": 3,
   "window": {
-    "from": "2026-11-02",
-    "to": "2026-11-16"
+    "from": "2026-11-03",
+    "to": "2026-11-17"
   },
   "baseline": {
-    "share": 0.5227,
-    "sample": 419
+    "share": 0.519,
+    "sample": 422
   },
   "allowance": 1,
-  "publishedLast7": 10,
+  "publishedLast7": 13,
   "budget": 0,
   "newPagesToday": 0,
   "requestIndexing": [
     {
-      "path": "/cookbook/ble-heart-rate-parser",
+      "path": "/own-your-data/coros-export",
       "published": "2026-11-05",
-      "ageDays": 18
+      "ageDays": 19
     },
     {
-      "path": "/cookbook/cursor-pagination",
+      "path": "/own-your-data/fitbit-google-health-export",
       "published": "2026-11-05",
-      "ageDays": 18
+      "ageDays": 19
     },
     {
-      "path": "/cookbook/health-connect-error-policy",
+      "path": "/own-your-data/garmin-connect-export",
       "published": "2026-11-05",
-      "ageDays": 18
+      "ageDays": 19
     },
     {
-      "path": "/cookbook/multi-window-rate-pacer",
+      "path": "/own-your-data/health-connect-export",
       "published": "2026-11-05",
-      "ageDays": 18
+      "ageDays": 19
     },
     {
-      "path": "/cookbook/token-vault",
+      "path": "/own-your-data/oura-export",
       "published": "2026-11-05",
-      "ageDays": 18
+      "ageDays": 19
     },
     {
-      "path": "/cookbook/vendor-webhook-signatures",
+      "path": "/own-your-data/polar-flow-export",
       "published": "2026-11-05",
-      "ageDays": 18
+      "ageDays": 19
     },
     {
-      "path": "/cookbook/webhook-handshakes",
+      "path": "/own-your-data/samsung-health-export",
       "published": "2026-11-05",
-      "ageDays": 18
+      "ageDays": 19
     },
     {
-      "path": "/cookbook/withings-notification-router",
+      "path": "/own-your-data/strava-export",
       "published": "2026-11-05",
-      "ageDays": 18
+      "ageDays": 19
     },
     {
-      "path": "/cookbook/workout-type-crosswalk",
-      "published": "2026-11-05",
-      "ageDays": 18
+      "path": "/pt-br/alternatives/exercisedb-alternatives",
+      "published": "2026-10-27",
+      "ageDays": 28
     },
     {
-      "path": "/own-your-data/apple-health-export",
-      "published": "2026-11-05",
-      "ageDays": 18
+      "path": "/pt-br/alternatives/terra-alternatives",
+      "published": "2026-10-27",
+      "ageDays": 28
     }
   ],
   "listed": {
@@ -83,7 +83,6 @@
     "/alternatives/spike-api-alternatives": "2026-11-15",
     "/alternatives/suunto-api-alternatives": "2026-11-14",
     "/alternatives/wger-alternatives": "2026-11-14",
-    "/compare/apple-vision-vs-mediapipe": "2026-11-17",
     "/compare/exercisedb-vs-api-ninjas": "2026-11-17",
     "/compare/exercisedb-vs-free-exercise-db": "2026-11-15",
     "/compare/kinestex-vs-asensei": "2026-11-17",
@@ -126,7 +125,6 @@
     "/fix/healthkit-health-data-unavailable": "2026-11-19",
     "/fix/healthkit-invalid-argument": "2026-11-19",
     "/fix/healthkit-required-authorization-denied": "2026-11-19",
-    "/google-health-api/activity-level": "2026-11-23",
     "/guides/camera-pose-tracking": "2026-11-21",
     "/healthkit-category-values": "2026-11-21",
     "/healthkit-queries/healthkit-query-predicates": "2026-11-21",
@@ -143,6 +141,14 @@
     "/integrate/withings-api": "2026-11-20",
     "/integrate/your-move-exercise-api": "2026-11-20",
     "/own-your-data/apple-health-export": "2026-11-24",
+    "/own-your-data/coros-export": "2026-11-25",
+    "/own-your-data/fitbit-google-health-export": "2026-11-25",
+    "/own-your-data/garmin-connect-export": "2026-11-25",
+    "/own-your-data/health-connect-export": "2026-11-25",
+    "/own-your-data/oura-export": "2026-11-25",
+    "/own-your-data/polar-flow-export": "2026-11-25",
+    "/own-your-data/samsung-health-export": "2026-11-25",
+    "/own-your-data/strava-export": "2026-11-25",
     "/phone-sensors/android-16-body-sensors-health-permissions": "2026-11-22",
     "/phone-sensors/android-activity-recognition-transition-api": "2026-11-22",
     "/phone-sensors/android-recording-api": "2026-11-22",
@@ -159,11 +165,15 @@
     "/pricing/suunto-api-pricing": "2026-11-15",
     "/pricing/terra-api-pricing": "2026-11-15",
     "/pricing/wahoo-api-pricing": "2026-11-15",
+    "/pt-br/alternatives/exercisedb-alternatives": "2026-11-25",
+    "/pt-br/alternatives/terra-alternatives": "2026-11-25",
     "/workout-types": "2026-11-23"
   },
-  "recovered": [],
-  "previousAsOf": "2026-11-22",
-  "neverSeenCount": 105,
+  "recovered": [
+    "/compare/apple-vision-vs-mediapipe"
+  ],
+  "previousAsOf": "2026-11-23",
+  "neverSeenCount": 103,
   "cohorts": [
     {
       "date": "2026-07-08",
@@ -171,7 +181,7 @@
       "within7": 16,
       "within14": 19,
       "ever": 20,
-      "ageDays": 138
+      "ageDays": 139
     },
     {
       "date": "2026-07-09",
@@ -179,7 +189,7 @@
       "within7": 6,
       "within14": 12,
       "ever": 17,
-      "ageDays": 137
+      "ageDays": 138
     },
     {
       "date": "2026-07-10",
@@ -187,7 +197,7 @@
       "within7": 4,
       "within14": 7,
       "ever": 10,
-      "ageDays": 136
+      "ageDays": 137
     },
     {
       "date": "2026-07-13",
@@ -195,7 +205,7 @@
       "within7": 14,
       "within14": 18,
       "ever": 20,
-      "ageDays": 133
+      "ageDays": 134
     },
     {
       "date": "2026-07-14",
@@ -203,7 +213,7 @@
       "within7": 3,
       "within14": 6,
       "ever": 10,
-      "ageDays": 132
+      "ageDays": 133
     },
     {
       "date": "2026-07-20",
@@ -211,7 +221,7 @@
       "within7": 4,
       "within14": 5,
       "ever": 10,
-      "ageDays": 126
+      "ageDays": 127
     },
     {
       "date": "2026-07-23",
@@ -219,7 +229,7 @@
       "within7": 16,
       "within14": 18,
       "ever": 19,
-      "ageDays": 123
+      "ageDays": 124
     },
     {
       "date": "2026-07-24",
@@ -227,7 +237,7 @@
       "within7": 9,
       "within14": 9,
       "ever": 10,
-      "ageDays": 122
+      "ageDays": 123
     },
     {
       "date": "2026-07-25",
@@ -235,7 +245,7 @@
       "within7": 8,
       "within14": 9,
       "ever": 10,
-      "ageDays": 121
+      "ageDays": 122
     },
     {
       "date": "2026-07-27",
@@ -243,7 +253,7 @@
       "within7": 12,
       "within14": 20,
       "ever": 24,
-      "ageDays": 119
+      "ageDays": 120
     },
     {
       "date": "2026-07-30",
@@ -251,7 +261,7 @@
       "within7": 3,
       "within14": 6,
       "ever": 12,
-      "ageDays": 116
+      "ageDays": 117
     },
     {
       "date": "2026-08-02",
@@ -259,7 +269,7 @@
       "within7": 0,
       "within14": 2,
       "ever": 6,
-      "ageDays": 113
+      "ageDays": 114
     },
     {
       "date": "2026-08-11",
@@ -267,7 +277,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 4,
-      "ageDays": 104
+      "ageDays": 105
     },
     {
       "date": "2026-08-12",
@@ -275,7 +285,7 @@
       "within7": 4,
       "within14": 4,
       "ever": 20,
-      "ageDays": 103
+      "ageDays": 104
     },
     {
       "date": "2026-08-15",
@@ -283,7 +293,7 @@
       "within7": 7,
       "within14": 8,
       "ever": 12,
-      "ageDays": 100
+      "ageDays": 101
     },
     {
       "date": "2026-08-22",
@@ -291,7 +301,7 @@
       "within7": 24,
       "within14": 29,
       "ever": 37,
-      "ageDays": 93
+      "ageDays": 94
     },
     {
       "date": "2026-09-01",
@@ -299,7 +309,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 17,
-      "ageDays": 83
+      "ageDays": 84
     },
     {
       "date": "2026-09-04",
@@ -307,7 +317,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 23,
-      "ageDays": 80
+      "ageDays": 81
     },
     {
       "date": "2026-10-02",
@@ -315,7 +325,7 @@
       "within7": 1,
       "within14": 2,
       "ever": 2,
-      "ageDays": 52
+      "ageDays": 53
     },
     {
       "date": "2026-10-03",
@@ -323,7 +333,7 @@
       "within7": 45,
       "within14": 53,
       "ever": 55,
-      "ageDays": 51
+      "ageDays": 52
     },
     {
       "date": "2026-10-04",
@@ -331,7 +341,7 @@
       "within7": 21,
       "within14": 21,
       "ever": 22,
-      "ageDays": 50
+      "ageDays": 51
     },
     {
       "date": "2026-10-12",
@@ -339,15 +349,15 @@
       "within7": 3,
       "within14": 3,
       "ever": 3,
-      "ageDays": 42
+      "ageDays": 43
     },
     {
       "date": "2026-10-17",
       "pages": 56,
       "within7": 50,
       "within14": 53,
-      "ever": 55,
-      "ageDays": 37
+      "ever": 56,
+      "ageDays": 38
     },
     {
       "date": "2026-10-18",
@@ -355,7 +365,7 @@
       "within7": 46,
       "within14": 48,
       "ever": 48,
-      "ageDays": 36
+      "ageDays": 37
     },
     {
       "date": "2026-10-22",
@@ -363,15 +373,15 @@
       "within7": 2,
       "within14": 2,
       "ever": 2,
-      "ageDays": 32
+      "ageDays": 33
     },
     {
       "date": "2026-10-27",
       "pages": 22,
       "within7": 1,
       "within14": 1,
-      "ever": 6,
-      "ageDays": 27
+      "ever": 7,
+      "ageDays": 28
     },
     {
       "date": "2026-11-02",
@@ -379,7 +389,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 21
+      "ageDays": 22
     },
     {
       "date": "2026-11-04",
@@ -387,7 +397,7 @@
       "within7": 1,
       "within14": 1,
       "ever": 1,
-      "ageDays": 19
+      "ageDays": 20
     },
     {
       "date": "2026-11-05",
@@ -395,7 +405,7 @@
       "within7": 1,
       "within14": 2,
       "ever": 2,
-      "ageDays": 18
+      "ageDays": 19
     },
     {
       "date": "2026-11-09",
@@ -403,7 +413,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 14
+      "ageDays": 15
     },
     {
       "date": "2026-11-11",
@@ -411,7 +421,7 @@
       "within7": 1,
       "within14": 1,
       "ever": 1,
-      "ageDays": 12
+      "ageDays": 13
     },
     {
       "date": "2026-11-14",
@@ -419,7 +429,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 9
+      "ageDays": 10
     },
     {
       "date": "2026-11-18",
@@ -427,7 +437,7 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 5
+      "ageDays": 6
     },
     {
       "date": "2026-11-21",
@@ -435,7 +445,15 @@
       "within7": 0,
       "within14": 0,
       "ever": 0,
-      "ageDays": 2
+      "ageDays": 3
+    },
+    {
+      "date": "2026-11-24",
+      "pages": 6,
+      "within7": 0,
+      "within14": 0,
+      "ever": 0,
+      "ageDays": 0
     }
   ]
 }
