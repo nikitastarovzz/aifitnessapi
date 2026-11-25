@@ -8,7 +8,7 @@
  * posts and translations: the commit that added the file; generated
  * sections: the commit that added the route, or the item to the data file if
  * that came later). Keyed by URL path without the leading slash.
- * 603 rows.
+ * 609 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -32,13 +32,19 @@ export const PUBLISHED: Record<string, string> = {
   "ai/ai-nutrition-logging": "2026-07-27",
   "ai/ai-vs-rules-based-coaching": "2026-07-27",
   "ai/ai-workout-plan-generation": "2026-07-27",
+  "ai/chatgpt-health-apple-health": "2026-11-24",
   "ai/choosing-an-llm-for-fitness-apps": "2026-07-27",
+  "ai/claude-apple-health": "2026-11-24",
   "ai/connect-wearable-data-to-ai-assistants": "2026-10-17",
+  "ai/copilot-health": "2026-11-24",
   "ai/evaluating-ai-fitness-features": "2026-07-27",
+  "ai/google-health-coach": "2026-11-24",
   "ai/ground-llm-in-exercise-database": "2026-07-27",
   "ai/llm-safety-fitness-advice": "2026-07-27",
+  "ai/perplexity-health": "2026-11-24",
   "ai/personalize-with-wearable-data": "2026-07-27",
   "ai/structured-output-for-workout-plans": "2026-08-12",
+  "ai/which-ai-can-read-your-health-data": "2026-11-24",
   "alternatives/coros-api-alternatives": "2026-10-27",
   "alternatives/dexcom-api-alternatives": "2026-10-27",
   "alternatives/exercisedb-alternatives": "2026-07-13",
