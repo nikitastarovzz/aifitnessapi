@@ -6,10 +6,10 @@
  * GENERATED — do not hand-edit; regenerate with NODE_USE_ENV_PROXY=1 node scripts/fetch-bluetooth-gatt.mjs
  *
  * Source: https://bitbucket.org/bluetooth-SIG/public (branch main)
- *   commit aafc70f0bb888059b878d3eb446e23c05426de9f (committed 2026-11-16), read as https://bitbucket.org/bluetooth-SIG/public/get/aafc70f0bb888059b878d3eb446e23c05426de9f.tar.gz
+ *   commit 805932b0e6c13f94c41ea2d14042af4813641a03 (committed 2026-11-24), read as https://bitbucket.org/bluetooth-SIG/public/get/805932b0e6c13f94c41ea2d14042af4813641a03.tar.gz
  *   assigned_numbers/uuids/service_uuids.yaml, assigned_numbers/uuids/characteristic_uuids.yaml, assigned_numbers/uuids/units.yaml,
  *   assigned_numbers/profiles_and_services/<x>/<x>_permitted_characteristics.yaml, gss/*.yaml
- * Fetched: 2026-11-18
+ * Fetched: 2026-11-25
  *
  * Terms. The repository has no README or licence file. Every file read
  * (286) carries the same notice, kept verbatim in BT_GATT_TERMS. It says:
@@ -29,15 +29,15 @@
  */
 
 /** The date the generator last read the repository. */
-export const BT_GATT_FETCHED_ON = "2026-11-18";
+export const BT_GATT_FETCHED_ON = "2026-11-25";
 
 /** Where this file was read from: repository, branch, the commit at its head, and the archive. */
 export const BT_GATT_SOURCE = {
   "repository": "https://bitbucket.org/bluetooth-SIG/public",
   "branch": "main",
-  "commit": "aafc70f0bb888059b878d3eb446e23c05426de9f",
-  "commitDate": "2026-11-16",
-  "archive": "https://bitbucket.org/bluetooth-SIG/public/get/aafc70f0bb888059b878d3eb446e23c05426de9f.tar.gz",
+  "commit": "805932b0e6c13f94c41ea2d14042af4813641a03",
+  "commitDate": "2026-11-24",
+  "archive": "https://bitbucket.org/bluetooth-SIG/public/get/805932b0e6c13f94c41ea2d14042af4813641a03.tar.gz",
   "description": "Public YAML files for Bluetooth SIG Assigned Numbers, GATT Specification Supplement, and Device Properties",
   "files": {
     "serviceUuids": "assigned_numbers/uuids/service_uuids.yaml",
