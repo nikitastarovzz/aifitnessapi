@@ -1,6 +1,6 @@
 # Awesome Fitness APIs
 
-> A list of 25 fitness and health APIs and platforms, 20 open-source libraries, 283 MCP servers, 21 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
+> A list of 25 fitness and health APIs and platforms, 20 open-source libraries, 295 MCP servers, 21 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
 
 The same list is served at [aifitnessapi.com/awesome](https://aifitnessapi.com/awesome), with a markdown copy at [/awesome.md](https://aifitnessapi.com/awesome.md).
 
@@ -131,7 +131,7 @@ Open-source packages for HealthKit, Health Connect and vendor web APIs, read fro
 
 ## MCP servers for health data
 
-Model Context Protocol servers whose official MCP Registry entry names a health or fitness source, read from the registry on 2026-11-18. The description is the registry's, verbatim; none of these servers was reviewed or run for this list. Each links its repository, else its website, else its registry record.
+Model Context Protocol servers whose official MCP Registry entry names a health or fitness source, read from the registry on 2026-11-25. The description is the registry's, verbatim; none of these servers was reviewed or run for this list. Each links its repository, else its website, else its registry record.
 
 ### Apple Health (HealthKit)
 
@@ -154,7 +154,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [Apple Health (io.github.neiltron/apple-health-mcp)](https://github.com/neiltron/apple-health-mcp) - Local-first Apple Health MCP server for questions about your sleep, workouts and heart data.
 - [Apple Health AI Bridge (io.github.roian6/health-bridge)](https://github.com/roian6/apple-health-ai-bridge) - Read-only local MCP access to Apple Health data through Apple Health AI Bridge.
 - [P.R.O. Apple Health MCP (io.github.runwithfun/pro)](https://proapp.uk/apple-health-mcp) - Hosted Apple Health MCP: workouts, sleep and HRV in ChatGPT, Claude, Gemini, Grok. Free, no export.
-- [Syncky Health (io.github.syncky/syncky-health)](https://github.com/syncky/syncky-open) - Apple Health data, end-to-end encrypted between iPhone and local Syncky agent, allowed write-back.
+- [Syncky Health (io.github.syncky/syncky-health)](https://github.com/syncky/syncky-open) - Apple Health → your own AI agent over an end-to-end encrypted relay; per-type write-back; no account.
 - [tech.skeletonarmy/marrow](https://github.com/skeletonarmytech/marrow-mcp) - Marrow Health: your Apple Health data over MCP, from the free iOS app. Reads, and writes on demand.
 
 ### Health Connect
@@ -181,6 +181,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 
 - [garmlink (ai.garmlink/garmlink)](https://github.com/svassaux/garmlink.ai) - Garmin watch data for AI assistants: activities, sleep, HRV, recovery. Never writes to Garmin.
 - [durely insights MCP for Garmin (app.durely/garmin-insights-mcp)](https://github.com/durely/garmin-insights-mcp) - Your full Garmin history, kept locally, analysed down to the second, via the official Personal API.
+- [Workouter (co.workouter/workouter)](https://workouter.co/docs/mcp) - Create structured workouts and push them to Apple Watch or Garmin.
 - [Garmin MCP (com.garminmcp/garmin)](https://garminmcp.com) - Read-only Garmin data for your AI: sleep, Body Battery, activities, laps, and training status.
 - [Simma (com.getsimma/simma)](https://getsimma.com/resources/connect-simma-to-claude) - Your swim, run and ride training, explained. For coaches and athletes, computed from Garmin data.
 - [Garmin — MissingMCP (com.missingmcp/garmin)](https://github.com/VelkyVenik/missingmcp) - Garmin data in Claude: 135 tools — activities, sleep, HRV, training, workouts. Free, open source.
@@ -216,7 +217,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [Garmin Connect (unofficial) (io.github.sasha-sup/garmin-mcp)](https://github.com/sasha-sup/garmin-mcp) - Unofficial read-only Garmin Connect data: sleep, HRV, heart rate, stress, recovery analysis.
 - [io.github.slaat/garmin-connect-workouts-mcp](https://github.com/slaat/garmin-connect-workouts-mcp) - Turn plain language into real workouts on your Garmin watch: pace, HR, power, intervals, swim sets.
 - [io.github.snoozelieb/coach-mcp](https://github.com/snoozelieb/coach-mcp) - Adaptive AI training coach MCP server backed by Garmin Connect.
-- [Garmin MCP by geekist.co (io.github.theGeekist/garmin-mcp)](https://garmin.geekist.co/) - Explore Garmin activity and health data with your AI assistant.
+- [Garmin by geekist.co (io.github.theGeekist/garmin-mcp)](https://garmin.geekist.co/) - Explore Garmin activity and health data with your AI assistant.
 - [Pulsai — Garmin for any AI (me.pulsai/garmin)](https://pulsai.me) - Hosted MCP: your Garmin data (activities, sleep, HRV) in Claude, ChatGPT & Gemini.
 
 ### Oura
@@ -244,7 +245,6 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [io.github.AshwanthramKL/whoop-mcp](https://github.com/AshwanthramKL/whoop-mcp) - Read-only WHOOP v2 data for MCP clients, with local SQLite cache and CSV/JSONL/Parquet exports.
 - [WHOOP Health Signals (io.github.Yadheedhya06/mcp-server-whoop)](https://github.com/Yadheedhya06/mcp-server-whoop) - Local-first, read-only WHOOP MCP server for recovery, sleep, strain, workouts, and body signals.
 - [io.github.Zayden16/whoop-mcp-server](https://github.com/Zayden16/whoop-mcp-server) - MCP server for the official Whoop API v2: cycles, recovery, sleep, workouts, and profile data.
-- [io.github.briangaoo/totem](https://github.com/briangaoo/totem) - Totem — talk to your wearables with AI. Today: full Whoop access (48 tools).
 - [io.github.briangaoo/whoop-mcp](https://github.com/briangaoo/whoop-mcp) - Full read + write access to your Whoop fitness data via the private iOS API. 48 tools.
 - [WHOOP MCP (io.github.cunicopia-dev/whoop-postgres-mcp)](https://github.com/cunicopia-dev/whoop-mcp) - Sync WHOOP recovery, sleep, strain, and workouts into Postgres and query them from any MCP client.
 - [io.github.davidmosiah/whoop-mcp](https://github.com/davidmosiah/whoop-mcp) - Privacy-first, unofficial WHOOP MCP server for AI health, sleep, recovery, and performance agents.
@@ -255,7 +255,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [io.github.rajdeepmondaldotcom/whoop-mcp-server](https://github.com/rajdeepmondaldotcom/whoop-mcp-server) - WHOOP recovery, sleep, strain, and workouts for any AI. Analysis tools, demo mode, fast setup.
 - [io.github.shashankswe2020-ux/whoop](https://github.com/shashankswe2020-ux/whoop-mcp) - MCP server for WHOOP health data — recovery, sleep, workouts, cycles, and trends.
 - [io.github.souravpn/whoop-mcp](https://github.com/souravpn/whoop-mcp) - MCP server for WHOOP — gives Claude access to your recovery, sleep, strain, and workout data.
-- [io.github.thebriangao/totem](https://github.com/thebriangao/totem) - Totem — talk to your wearables with AI. Today: full Whoop access (48 tools).
+- [io.github.thebriangao/totem](https://github.com/thebriangao/totem) - Your own WHOOP server for AI apps: recovery, sleep, strain, workouts, journal and more (41 tools).
 - [Whoop MCP Server (io.github.yuridivonis/whoop-mcp-server)](https://github.com/yuridivonis/whoop-mcp-server) - Your WHOOP recovery, sleep, strain and workouts in Claude, ChatGPT or other MCP apps. Self-hosted.
 - [WHOOP MCP by usefulapi (io.usefulapi/whoop)](https://github.com/m190/usefulapi-mcp) - Read WHOOP recovery, sleep, cycles, workouts and body measurements.
 
@@ -272,6 +272,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 
 ### Suunto
 
+- [MCP for Suunto (ch.visin.mcp/suunto)](https://suunto.mcp.visin.ch) - Independent, not by Suunto: read your Suunto workouts, sleep and recovery, and add routes.
 - [Suunto MCP (io.github.googlarz/suunto-mcp)](https://github.com/googlarz/suunto-mcp) - Suunto watch data (workouts, sleep, recovery, 24/7 activity) for Claude and other AI assistants.
 - [io.github.mrfentmen/suunto-mcp](https://github.com/mrfentmen/awesome-mcps) - Suunto API: workout history, summaries. Needs OAuth token.
 
@@ -313,6 +314,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 
 ### Several sources
 
+- [AI + Vitals (com.aiplusvitals/vitals)](https://aiplusvitals.com/guides/claude-chatgpt-connector) - Your wearable wellness data (Apple Health, Oura): this week vs your own 4-week baseline. Read-only.
 - [Cycling Coach AI (com.cyclingcoachai/cycling-coach-ai)](https://registry.modelcontextprotocol.io/v0.1/servers/com.cyclingcoachai%2Fcycling-coach-ai/versions/1.0.0) - AI cycling coach: training plans, workouts, nutrition, strength training, Strava, Garmin and Wahoo.
 - [PulsVy (com.pulsvy/pulsvy)](https://pulsvy.com/) - Your Google Health data (Fitbit, Pixel Watch): sleep, HRV, readiness and biological age.
 - [Shape (com.shapecalendar/shape)](https://shapecalendar.com/help/mcp-server) - Training calendar, workouts and health data from Garmin, Wahoo, Polar, Apple Health and more.
@@ -347,8 +349,10 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [OnlineFitness.app (app.onlinefitness/coach)](https://onlinefitness.app/ai) - Manage fitness coaching clients, workouts, programs, chats and funnels from your assistant.
 - [PumpX (app.pumpx/pumpx)](https://pumpx.app/claude/) - Read-only access to your PumpX workout log: sessions, lift history, PRs, routines, measurements.
 - [WOD Coach: AI Personal Trainer (app.railway.up.wod-api-production/wod-coach)](https://wod-api-production.up.railway.app/llms.txt) - Fitness MCP: AI personal trainer, workouts, injury exercise swaps, race pacing. Pay-per-call x402.
+- [Roarer (app.roarer/roarer)](https://roarer.app/en/mcp) - Read-only access to your Roarer workouts: programs, history, records and body measurements.
 - [tectonic plates (app.tectonicplates/tectonic-plates)](https://github.com/stephaniewilkinson/tectonic) - Write whole barbell programmes, not just workouts: weeks, progressions, ramps, and plate maths.
 - [GetFit (app.thegetfit/getfit)](https://thegetfit.app/for-agents.html) - Build a workout that fits your time, gear and body — free, no sign-in.
+- [The Next Race (app.thenextrace/tnr)](https://www.thenextrace.app/mcp) - Plan, track and coach endurance training: races, plans, workouts, activities and recovery.
 - [ThresholdLink (app.thresholdlink/thresholdlink)](https://thresholdlink.app) - Connect Intervals.icu to Claude and ChatGPT: read training, plan workouts. Training never stored.
 - [TrainRec (app.trainrec/trainrec)](https://trainrec.app/) - Your AI assistant logs your meals and workouts, then plans your week from what you did.
 - [Train Ultra (app.trainultra/coach)](https://github.com/trainultra/coach) - Ask your private endurance coach about your workouts, plan, goals, recovery and nutrition.
@@ -360,16 +364,18 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [Hyperhuman (cc.hyperhuman/hyperhuman)](https://mcp.hyperhuman.cc/) - Create, personalize and deliver branded workouts and programs from any AI assistant.
 - [freddy (coach.freddy/freddy)](https://freddy.coach) - Connect your wearables, rings and training apps, then ask your AI about your own health data.
 - [AIm Workout Journal (com.aim-journal/aim)](https://github.com/persistmcp/aim) - Workout journal Claude and ChatGPT write to: log workouts, get a program, see your progress.
+- [EVESTRI (com.evestri/mcp)](https://evestri.com/en) - Read and log your EVESTRI workouts, training plan and goals from your AI assistant. Needs Premium.
 - [Exercise Images (com.exerciseimages/exercise-images)](https://exerciseimages.com/developers) - 1 000+ exercise line drawings: find an exercise, list by body part or equipment, show a workout.
 - [Fitai (com.fitailabs/fitai)](https://www.fitailabs.com/es/mcp) - Fitai MCP: read and manage clients, messages and appointments for fitness and nutrition pros.
 - [Fitzap (com.fitzapapps/fitzap)](https://github.com/LinusWestling/FitzapMCP) - Read your Fitzap workout and nutrition data and create workout drafts and recipes for review.
 - [com.getliftcompass/liftcompass](https://registry.modelcontextprotocol.io/v0.1/servers/com.getliftcompass%2Fliftcompass/versions/0.1.0) - Compare protein, creatine and pre-workout by price per serving, third-party testing and dose.
 - [goblingains (com.goblingains/workouts)](https://goblingains.com/ai) - Conditioning workouts from a coached library: suggest, vary or invent one for your kit and time.
+- [Nextset (com.gonextset/nextset)](https://www.gonextset.com) - The workout tracker your AI can edit: build programs, swap exercises and read your logged sets.
 - [Gym Navigator Coach (com.gymnavigator/coach)](https://gymnavigator.com/coach/) - Plan workouts, find exercises and gyms, log sessions and track progress with Gym Navigator.
 - [Gyms NJ directory (com.gymsnj/directory)](https://gymsnj.com/) - Gyms and fitness studios across New Jersey: hours, prices, free trials, and booking.
 - [JustGains (com.justgains/mcp-server)](https://github.com/JustGains/justgains-connector) - Save workouts, read training history and progress, search exercises, and log food in JustGains.
 - [Joti (com.kompetic/joti)](https://registry.modelcontextprotocol.io/v0.1/servers/com.kompetic%2Fjoti/versions/1.0.0) - Read your workouts, history, and stats; create and schedule new workouts. Writes are additive only.
-- [Kove (com.kovejournal/kove)](https://github.com/kovejournal/kove-skills) - Your private health journal: log meals, workouts and anything you track, and ask about your days.
+- [Kove Journal (com.kovejournal/kove)](https://github.com/kovejournal/kove-skills) - Private health journal for your AI assistant: food looked up, calories added up, workouts, sleep.
 - [Kracey (com.kracey/mcp)](https://kracey.com) - Your training, fitness and race predictions, HYROX pacing, a race finder and training plans.
 - [Nexus (com.kushalsm.nexus/nexus)](https://nexus.kushalsm.com/) - Calorie, workout and body-weight log inside ChatGPT and Claude. Log meals by text, photo or voice.
 - [LiftTrack (com.lifttrackapp/lifttrack)](https://lifttrackapp.com) - Manage strength workouts and track exercise progress. Requires a LiftTrack account.
@@ -382,11 +388,15 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [Reps: Gym Workout Log (com.repsworkout/reps)](https://repsworkout.com/connect?utm_source=mcp-registry) - Gym workout log for iPhone and Android: ask Claude or ChatGPT about your lifts, PRs and plans.
 - [Rhylthyme (com.rhylthyme/rhylthyme)](https://github.com/rhylthyme/rhylthyme-mcp) - Real-time multi-track schedules for cooking, lab protocols, events and workouts. Validate and share.
 - [RIRLift (com.rirlift/rirlift)](https://www.rirlift.com/ai/) - Your RIRLift strength training log: workouts, progress, volume, recovery and program drafts.
+- [com.sellbehavioralhealthdatatoai/site](https://sellbehavioralhealthdatatoai.com) - Sell Behavioral Health Data to AI: the site's own MCP server — enquiry (enquiry = a human...
+- [com.sellhomehealthdatatoai/site](https://sellhomehealthdatatoai.com) - Sell Home Health Data to AI: the site's own MCP server — enquiry (enquiry = a human handoff, not...
 - [Sport MCP (com.sport-mcp/sport-mcp)](https://sport-mcp.com) - Strength-training log for iPhone: read workouts, records and progress; plan and log training.
 - [Superset Fitness Coaching (com.supersetapp/training)](https://www.supersetapp.com/mcp) - Fitness MCP for coaches and gyms: build workouts and read clients' training from live Superset data.
+- [Trace (com.trace-training/trace)](https://trace-training.com/connect?utm_source=mcp-registry) - Gym workout log. Your assistant analyses every set: progress, records, stalls and muscle balance.
 - [Tredict (com.tredict/mcp-server)](https://github.com/tredict-com/mcp-server) - Analyse activities, build training plans and sync structured workouts to your sports watch.
 - [Wellnizz (com.wellnizz/health)](https://wellnizz.com/) - Your lab results, DNA files and wearable data explained in your agent, with action plans. EU-hosted.
 - [WorkoutLog Pro (com.workoutlogpro/workoutlog)](https://workoutlogpro.com) - Workout log your AI fills in: sets from text or notebook photos, daily plans, history and records.
+- [CoachAIze (de.innov-ai-tive.coachaize/coachaize)](https://coachaize.innov-ai-tive.de/connect) - Booking and course platform for yoga, fitness and sports studios: schedule, bookings, members.
 - [dev.anatome/anatome](https://anatome.dev) - Log workouts and meals by telling your AI. 873 exercises, muscle diagrams, food lookup.
 - [ClassPass MCP Server and API by Cotlet (dev.cotlet/classpass)](https://cotlet.dev/integrations/classpass-api-mcp-server) - ClassPass fitness class booking marketplace MCP server: search classes, list reservations.
 - [CoachingPortal by Cotlet (dev.cotlet/coachingportal)](https://cotlet.dev/integrations/coachingportal-api-mcp-server) - Manage clients, workout and meal plans, check-ins, habits.
@@ -397,7 +407,6 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [Mindbody MCP Server and API by Cotlet (dev.cotlet/mindbody)](https://cotlet.dev/integrations/mindbody-api-mcp-server) - Mindbody fitness wellness studio management MCP server: list classes, get class roster.
 - [Momence MCP Server and API by Cotlet (dev.cotlet/momence)](https://cotlet.dev/integrations/momence-api-mcp-server) - Momence fitness wellness studio booking MCP server: list sessions, book customer into class.
 - [TrainingPeaks MCP Server and API by Cotlet (dev.cotlet/trainingpeaks)](https://cotlet.dev/integrations/trainingpeaks-api-mcp-server) - TrainingPeaks endurance training platform MCP server: list calendar workouts, get workout details.
-- [TrueCoach MCP Server and API by Cotlet (dev.cotlet/truecoach)](https://cotlet.dev/integrations/truecoach-api-mcp-server) - TrueCoach personal trainer coaching MCP server: list clients, create workout, assign program.
 - [WellnessLiving MCP Server and API by Cotlet (dev.cotlet/wellnessliving)](https://cotlet.dev/integrations/wellnessliving-api-mcp-server) - WellnessLiving fitness and wellness management MCP server: book client into class, book appointment.
 - [MTFIT Programming (dev.workers.mtfit-mcp.mtfit-mcp/programming)](https://mtfit.ca) - Workout plans, meal plans and macros from a real personal trainer's rules. Pay per call with x402.
 - [OutPace (fit.outpace/outpace)](https://www.outpace.fit/developers/mcp) - Free step and fitness challenges on OutPace for friends, run clubs, teams and military units.
@@ -431,6 +440,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [health-os (io.github.andronaft/health-os)](https://github.com/andronaft/health-os) - Local-first personal health record: labs, meds, wearables, food log, deterministic safety checks.
 - [io.github.anthesiallc/meddata](https://github.com/anthesiallc/meddata-mcp) - Drug & supplement lookup and interaction checks from free U.S. government health data.
 - [HouseExhale (io.github.attachmentnerd/houseexhale)](https://houseexhale.com/ai) - Explain bedroom CO2 readings, check certified HRV/ERV airflow, and find US installers and rebates.
+- [SolvingHealth federal health data (io.github.blainomd/solvinghealth-data-tools)](https://github.com/blainomd/solvinghealth-data-tools) - Read-only US federal health data with sources: NPI, FDA 510(k), recalls, trials, hospitals.
 - [SisRUN Training Plan (io.github.cdutr/sisrun-mcp)](https://github.com/cdutr/sisrun-mcp) - Read your SisRUN (appsisrun.com.br) training plan: prescribed workouts, pace/HR windows, structure.
 - [Hevy MCP Server (io.github.chrisdoc/hevy-mcp)](https://github.com/chrisdoc/hevy-mcp) - MCP server for managing workouts, routines, and exercise data through the Hevy API.
 - [API Tool Calls (io.github.cowerxdev/apitoolcalls)](https://apitoolcalls.com/agent.html) - 94 tools, one small door: home costs, fitness, QR, barcodes, Markdown, SEO, recalls.
@@ -442,13 +452,13 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [io.github.dropflyai/fitfly-engine](https://workout-engine-production-5dd7.up.railway.app/connect) - Deterministic fitness coaching engine: adaptive programs, progression math, readiness autoregulation.
 - [WorkoutX Exercise API (io.github.furkanuruk/workoutx)](https://github.com/furkanuruk/workoutx-mcp) - Exercise API MCP: 1,900+ exercises with video, workout generator, supplements, dev tools.
 - [io.github.gabrielmahia/kenya-health-mcp](https://github.com/gabrielmahia/kenya-health-mcp) - MCP server for Kenya health data: SHIF contributions (NHIF's successor), a small facility sample, ma.
-- [io.github.hhopke/intervals-icu-mcp](https://github.com/hhopke/intervals-icu-mcp) - Read/write Intervals.icu MCP server: activities, wellness, calendar, gear, and workouts.
 - [GymLog (io.github.jarm-dev/gymlog)](https://github.com/jarm-dev/gymlog-mcp) - Strength training log: read your workouts, stats and gyms, and plan, log or edit sessions.
 - [io.github.jmbremer/rawwatts](https://rawwatts.com/ai/) - Smart trainer rides from the RawWatts iPhone app: power, heart rate, laps. Writes ERG workouts.
 - [PRzilla (io.github.kangax/przilla)](https://github.com/kangax/przilla-mcp) - OAuth-protected CrossFit and HYROX catalog: workouts, benchmarks, and movement guides.
 - [io.github.lgda-technologies/lgda-autonomic-node](https://github.com/lgda-technologies/lgda-autonomic-node) - Buy LGDA wellness music with USDC: 27 tracks, x402 payments, signed HRV receipts.
 - [Fitness Starter – hand-picked gift ideas (io.github.maggat/fitness-gifts)](https://fitness-starter.vercel.app) - Hand-picked gift ideas for new runners and yogis, turned into shareable wishlists fast.
 - [MFIT Personal (io.github.mcp-dir/mfit-mcp)](https://github.com/mcp-dir/mfit-mcp) - Client, workout, body composition, retention and finance management for personal trainers.
+- [La Fitness Class Planner (io.github.mrfentmen/la-fitness-class-guide-mcp)](https://github.com/mrfentmen/awesome-servers) - Real local JSON analysis of la fitness class in the La Fitness lane. 25 MCP tools, no paywall.
 - [io.github.mrfentmen/wger-mcp](https://github.com/mrfentmen/wger-mcp) - Exercises, muscles, and workout data from the open wger database. No key required.
 - [io.github.nftechie/transition-mcp](https://github.com/nftechie/transition-mcp) - AI-powered multisport coaching — workouts, training plans, and performance analytics.
 - [Wger (Unofficial) (io.github.pipeworx-io/wger)](https://github.com/pipeworx-io/mcp-wger) - Unofficial Wger MCP — wraps wger Workout Manager REST API (free, no auth for read)
@@ -461,6 +471,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [io.github.wmarceau/fitness-influencer](https://github.com/MarceauSolutions/dev-sandbox) - AI-powered fitness content creator tools: video editing, image generation, workout plans, analytics.
 - [SugarWOD MCP by usefulapi (io.usefulapi/sugarwod)](https://github.com/m190/usefulapi-mcp) - Read athletes, workouts, scores and movements; change an athlete's name or email in SugarWOD.
 - [K01 Synthetic Health Data (is.k01/synthetic-health-data)](https://github.com/K01labs/k01-mcp-server) - Privacy-preserving synthetic health data generation. FHIR R4/R5 compliant.
+- [Mouve (it.mouve/mcp)](https://mouve.it/developers/mcp) - Free Mouve connector: log meals, build workouts, track progress. Health data only with your consent.
 - [twyn (life.twyn/twyn)](https://twyn.life/for-ai-agents) - Your labs, wearables, DNA and notes as one health record your AI agent can read (OAuth 2.1).
 - [Heart (me.heart-of/heart)](https://github.com/kit-g/heart-api) - Your Heart workout log: workouts, records, templates, programs. Holds no health data.
 - [Upfit Plan Builder (mobile.upfit/upfit)](https://www.upfit.mobile) - Read-only bodyweight workout builder and exercise form cues from the Upfit iPhone app.
@@ -470,6 +481,7 @@ Model Context Protocol servers whose official MCP Registry entry names a health 
 - [plus.gym/gym-plus](https://gym.plus) - Connect ChatGPT or Claude to your Gym Plus account to log and review workouts with AI coaching.
 - [UK Fitness Pro (pro.ukfitness/personal-trainers)](https://mcp.ukfitness.pro/) - Find UK personal trainers by location, speciality, gender and price, and read their public profiles.
 - [STAS Running Coach for Claude (run.stas/stas)](https://github.com/hivrich/stas.run) - Connect Claude to your Intervals.icu watch data for fitness, workout review, and plan writing.
+- [Intervals (studio.perfectdimension/intervals)](https://perfectdimension.studio/intervals) - Run history, fitness trends, training schedule and coached workouts from the Intervals running app.
 - [uk.slate-hq/slate](https://slate-hq.uk/mcp-connector/) - Your own SLATE health data in your AI assistant: read, trend, plan and log. Never suggests a dose.
 - [BearTrail (xyz.perpvue/mcp)](https://gitlab.com/xihay/beartrail-mcp) - Query workouts, browse exercises, and explore fitness data from BearTrail.
 
