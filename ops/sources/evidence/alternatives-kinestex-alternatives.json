@@ -137,7 +137,7 @@
   {
     "claim": "Sency's iOS SDK downloads its models from the server, with no bundled fallback.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
-    "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server. It does not include bundled fallback models."
+    "quote": "SMKit 2.7.3 downloads models and required SDK assets from the server. It does not include bundled fallback models."
   },
   {
     "claim": "Sency's FAQ says data is analyzed on the user's device and never sent to the cloud.",
@@ -320,14 +320,9 @@
     "quote": "Updated Oct 9, 2026"
   },
   {
-    "claim": "Sency's packages page: Starter for up to 100 monthly active users.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Up to 100 monthly active users"
-  },
-  {
-    "claim": "Sency's packages page: Growth from $499 a month.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "From $499 / month"
+    "claim": "Sency's pricing page: up to 100 users is $99.99, a fixed price.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Up to 100 users | $99.99 | Fixed price"
   },
   {
     "claim": "Sency's pricing page: a fixed monthly fee for up to 100 users after a free trial.",
