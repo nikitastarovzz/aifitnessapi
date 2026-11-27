@@ -117,7 +117,7 @@
   {
     "claim": "Terra: hosted widget session from your backend.",
     "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
-    "quote": "call POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key headers."
+    "quote": "call POST https://access.tryterra.co/api/v2/widget/session with your dev-id and x-api-key headers."
   },
   {
     "claim": "Terra: do not call the widget API from your frontend.",
@@ -342,7 +342,7 @@
   {
     "claim": "Terra: \"call POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key headers\".",
     "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
-    "quote": "call POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key headers."
+    "quote": "call POST https://access.tryterra.co/api/v2/widget/session with your dev-id and x-api-key headers."
   },
   {
     "claim": "\"Do not use WebView or iFrame for the authentication flow.\"",
