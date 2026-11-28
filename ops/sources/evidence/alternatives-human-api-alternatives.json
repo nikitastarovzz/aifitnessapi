@@ -5,9 +5,9 @@
     "quote": "Health Intelligence, formerly Human API Health Intelligence"
   },
   {
-    "claim": "LexisNexis Human API: \"Contact Us For More Information\".",
+    "claim": "LexisNexis Human API: the call to action is a contact form.",
     "url": "https://risk.lexisnexis.com/products/humanapi",
-    "quote": "Contact Us For More Information"
+    "quote": "Tell us which health data sources and program goals matter to your organization."
   },
   {
     "claim": "\"Fast-track underwriting decisions with the EHR for life insurance platform built for adoption at scale\".",
@@ -25,29 +25,29 @@
     "quote": "Our solution automatically fulfills the request for an APS through our affiliate, Human API, Inc."
   },
   {
-    "claim": "Pitched to healthcare and life science organizations.",
+    "claim": "Pitched to research teams and healthcare organizations.",
     "url": "https://risk.lexisnexis.com/products/humanapi",
-    "quote": "Healthcare and life science organizations need secure, user-friendly methods for patients to share their data"
+    "quote": "research teams and healthcare organizations gain a more complete, real-world view of each individual's journey"
   },
   {
-    "claim": "\"LexisNexis® Human API™ combines a vast consumer-permission health data network\".",
+    "claim": "\"LexisNexis® HumanAPI™ brings together a broad consumer-permission health data network\".",
     "url": "https://risk.lexisnexis.com/products/humanapi",
-    "quote": "LexisNexis® Human API™ combines a vast consumer-permission health data network"
+    "quote": "LexisNexis® HumanAPI™ brings together a broad consumer-permission health data network"
   },
   {
-    "claim": "\"a vast data network of over 30,000 data connections including medical records, labs, fitness wearables and apps\".",
+    "claim": "\"30,000+ data sources\".",
     "url": "https://risk.lexisnexis.com/products/humanapi",
-    "quote": "a vast data network of over 30,000 data connections including medical records, labs, fitness wearables and apps"
+    "quote": "Leverage the power of 30,000+ data sources"
   },
   {
     "claim": "Clinical research use.",
     "url": "https://risk.lexisnexis.com/products/humanapi",
-    "quote": "Connecting Health Data to Advance Clinical Research and Healthcare"
+    "quote": "Streamline Clinical Trial Recruitment and Research"
   },
   {
-    "claim": "\"Clinical trial sites can conduct more efficient patient screening to improve site confidence in referrals\".",
+    "claim": "\"Increase site confidence in referrals by providing a more complete view of participant health history\".",
     "url": "https://risk.lexisnexis.com/products/humanapi",
-    "quote": "Clinical trial sites can conduct more efficient patient screening to improve site confidence in referrals"
+    "quote": "Increase site confidence in referrals by providing a more complete view of participant health history"
   },
   {
     "claim": "Developer reference: \"Health Intelligence Platform\" that \"converts data into actionable intelligence to accelerate underwriting and create better customer and distribution experiences.\"",
@@ -197,7 +197,7 @@
   {
     "claim": "Human API's network is described as consumer-permission.",
     "url": "https://risk.lexisnexis.com/products/humanapi",
-    "quote": "combines a vast consumer-permission health data network with next-generation digital capabilities to address the core challenges of data access."
+    "quote": "brings together a broad consumer-permission health data network and next-generation digital capabilities to clear these access barriers"
   },
   {
     "claim": "Spike: \"normalized, ingestion-ready data from wearables, EMRs, lab tests, IoT devices, and more\".",
@@ -305,9 +305,9 @@
     "quote": "To start using the Medical API for production workloads, with real patient data, you can take the following steps to request production API access"
   },
   {
-    "claim": "Its page lists \"fitness wearables and apps\" in its network.",
+    "claim": "Its page lists \"clinical, consumer and wearable data\" in its network.",
     "url": "https://risk.lexisnexis.com/products/humanapi",
-    "quote": "a vast data network of over 30,000 data connections including medical records, labs, fitness wearables and apps"
+    "quote": "Tap into a vast consumer-permissioned network across clinical, consumer and wearable data, covering 270M+ people."
   },
   {
     "claim": "FAQ: Validic free developer plan.",
