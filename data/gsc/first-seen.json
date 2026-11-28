@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-26",
+  "asOf": "2026-11-27",
   "firstSeen": {
     "/": "2026-07-08",
     "/about": "2026-07-12",
@@ -124,6 +124,7 @@
     "/bluetooth-fitness/blood-pressure-record": "2026-10-24",
     "/bluetooth-fitness/body-composition-measurement": "2026-10-18",
     "/bluetooth-fitness/cgm-feature": "2026-10-27",
+    "/bluetooth-fitness/cgm-measurement": "2026-11-26",
     "/bluetooth-fitness/cgm-session-start-time": "2026-11-16",
     "/bluetooth-fitness/cgm-specific-ops-control-point": "2026-11-14",
     "/bluetooth-fitness/cgm-status": "2026-10-21",
@@ -702,6 +703,7 @@
     "/my-stack": "2026-11-20",
     "/newsletter": "2026-10-21",
     "/no-code-fitness-app": "2026-08-25",
+    "/openness-index": "2026-11-27",
     "/opensearch.xml": "2026-10-11",
     "/own-your-data/suunto-export": "2026-11-08",
     "/paths": "2026-10-28",
